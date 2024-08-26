@@ -4,7 +4,7 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-> 测试. 
+> 测试.
 {: .prompt-tip }
 ## 我是一个学生
 
