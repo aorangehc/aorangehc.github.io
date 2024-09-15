@@ -16,7 +16,7 @@ tags_str = ', '.join(tags)
 # 创建 Jekyll front matter
 front_matter = f"---\n" \
                f"title: {title}\n" \
-               f"title: orange\n" \
+               f"author: orange\n" \
                f"date: {date_str}\n" \
                f"categories: [{categories_str}]\n" \
                f"tags: [{tags_str}]\n" \
