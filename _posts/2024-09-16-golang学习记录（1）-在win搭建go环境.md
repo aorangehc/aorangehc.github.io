@@ -1,8 +1,8 @@
 ---
 title: golang学习记录（1）-在win搭建go环境
 date: 2024-09-16 10:46:03  +0800
-categories: [go,  环境搭建]
-tags: [go,  环境搭建]
+categories: [golang,  环境搭建]
+tags: [golang,  环境搭建]
 math: true
 pin: true
 mermaid: true
