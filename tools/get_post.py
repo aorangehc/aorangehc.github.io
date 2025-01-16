@@ -27,7 +27,7 @@ front_matter = f"---\n" \
 # 创建 Markdown 文件名
 filename = f"{datetime.datetime.now().strftime('%Y-%m-%d')}-{title.replace(' ', '-')}.md"
 
-filename = "../_posts/" + filename
+filename = "./_posts/" + filename
 
 # 确保文件路径存在
 dir_path = os.path.dirname(filename)
