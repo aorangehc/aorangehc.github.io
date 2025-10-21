@@ -13,11 +13,6 @@ order: 2
         {% for project in site.data.projects.projects %}
           {% if project.name == featured_name %}
           <div class="featured-project-card">
-            {% if project.image %}
-            <div class="project-image">
-              <img src="{{ project.image }}" alt="{{ project.name }}" loading="lazy">
-            </div>
-            {% endif %}
             <div class="project-content">
               <h3>{{ project.name }}</h3>
               <p class="project-description">{{ project.description }}</p>
@@ -58,12 +53,6 @@ order: 2
         </div>
         
         <div class="project-body">
-          {% if project.image %}
-          <div class="project-thumbnail">
-            <img src="{{ project.image }}" alt="{{ project.name }}" loading="lazy">
-          </div>
-          {% endif %}
-          
           <div class="project-details">
             <p><strong>角色：</strong>{{ project.role }}</p>
             

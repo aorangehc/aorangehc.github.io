@@ -14,7 +14,7 @@ projects:
       - "支持文档预处理和索引构建"
     repository: "https://github.com/aorangehc/bm25-rag-assistant"
     demo: ""
-    image: "/assets/images/BM25_RAG/demo.png"
+    # image: 自动从项目相关图片中选择
     
   - name: "DeepSeek-R1-32B模型本地部署与推理优化"
     period: "2025.01"
@@ -30,7 +30,7 @@ projects:
       - "详细的性能测试和优化报告"
     repository: "https://github.com/aorangehc/deepseek-local-deployment"
     demo: ""
-    image: "/assets/images/deepseek-R1-32B-vllm/architecture.png"
+    # image: 自动从项目相关图片中选择
     
   - name: "Go语言学习与实践项目集合"
     period: "2024.09-2025.01"
@@ -47,7 +47,7 @@ projects:
       - "完整的学习笔记和代码示例"
     repository: "https://github.com/aorangehc/go-learning-journey"
     demo: ""
-    image: "/assets/images/go/golang-logo.png"
+    # image: 自动从项目相关图片中选择
     
   - name: "个人博客网站"
     period: "2024.08-至今"
