@@ -1,0 +1,109 @@
+# 个人简历数据
+personal:
+  name: "orange"
+  title: "研究生"
+  email: "morange0205@gmail.com"
+  github: "https://github.com/aorangehc"
+  location: "中国"
+  summary: "热爱技术的研究生，专注于机器学习、深度学习和软件开发。具有扎实的编程基础和项目实践经验。"
+
+education:
+  - degree: "硕士研究生"
+    major: "计算机科学与技术"
+    school: "某某大学"
+    period: "2023-2025"
+    gpa: "3.8/4.0"
+    description: "主要研究方向：机器学习、深度学习、自然语言处理"
+  
+  - degree: "学士学位"
+    major: "计算机科学与技术"
+    school: "某某大学"
+    period: "2019-2023"
+    gpa: "3.6/4.0"
+    description: "主修课程：数据结构、算法设计、数据库系统、软件工程"
+
+skills:
+  programming:
+    - name: "Python"
+      level: "熟练"
+      description: "机器学习、深度学习框架开发"
+    - name: "Go"
+      level: "中级"
+      description: "后端服务开发、微服务架构"
+    - name: "JavaScript"
+      level: "中级"
+      description: "前端开发、Node.js"
+    - name: "Java"
+      level: "中级"
+      description: "企业级应用开发"
+  
+  frameworks:
+    - "PyTorch"
+    - "TensorFlow"
+    - "Django"
+    - "Flask"
+    - "React"
+    - "Vue.js"
+  
+  tools:
+    - "Git"
+    - "Docker"
+    - "Linux"
+    - "MySQL"
+    - "Redis"
+    - "Elasticsearch"
+
+projects:
+  - name: "基于BM25检索算法构建RAG智能文档问答助手"
+    period: "2025.03"
+    role: "独立开发者"
+    technologies: ["Python", "BM25", "RAG", "NLP"]
+    description: "构建了一个智能文档问答系统，结合BM25检索算法和大语言模型，实现高效的文档检索和问答功能。"
+    repository: "https://github.com/aorangehc/bm25-rag-assistant"
+  
+  - name: "DeepSeek-R1-32B模型本地部署"
+    period: "2025.01"
+    role: "研究者"
+    technologies: ["Python", "VLLM", "深度学习", "模型部署"]
+    description: "成功在本地环境部署DeepSeek-R1-32B大语言模型，优化推理性能，实现高效的本地AI服务。"
+    repository: "https://github.com/aorangehc/deepseek-local-deployment"
+
+internships:
+  - company: "某某科技公司"
+    position: "机器学习实习生"
+    period: "2024.06-2024.09"
+    location: "北京"
+    description: 
+      - "参与推荐系统算法优化，提升用户点击率15%"
+      - "开发数据预处理工具，提高数据处理效率30%"
+      - "协助搭建模型训练和评估框架"
+    technologies: ["Python", "TensorFlow", "Spark", "Kafka"]
+
+publications:
+  - title: "An Efficient Man-Machine Recognition Method Based On Mouse"
+    authors: ["orange", "导师姓名"]
+    venue: "某某会议/期刊"
+    year: "2024"
+    type: "会议论文"
+    pdf: "/assets/pdf/An Efficient Man-Machine Recognition Method Based On Mouse.pdf"
+    description: "提出了一种基于鼠标行为的人机识别方法，在准确率和效率方面都有显著提升。"
+
+honors:
+  - name: "优秀研究生"
+    year: "2024"
+    organization: "某某大学"
+  
+  - name: "学业奖学金"
+    year: "2023"
+    organization: "某某大学"
+  
+  - name: "优秀毕业生"
+    year: "2023"
+    organization: "某某大学"
+
+languages:
+  - name: "中文"
+    level: "母语"
+  - name: "英语"
+    level: "CET-6"
+    description: "能够熟练阅读英文技术文档，具备基本的英文交流能力"

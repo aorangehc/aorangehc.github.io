@@ -1,0 +1,95 @@
+# 学术论文和研究成果数据
+publications:
+  - title: "An Efficient Man-Machine Recognition Method Based On Mouse"
+    authors: ["orange", "导师姓名", "合作者姓名"]
+    venue: "International Conference on Computer Science and Technology"
+    venue_short: "ICCST 2024"
+    year: "2024"
+    type: "会议论文"
+    status: "已发表"
+    abstract: "本文提出了一种基于鼠标行为的高效人机识别方法。通过分析用户的鼠标移动轨迹、点击模式和操作习惯，构建了一个多维特征向量，并使用机器学习算法进行分类识别。实验结果表明，该方法在准确率和效率方面都有显著提升，为网络安全和用户身份验证提供了新的解决方案。"
+    keywords: ["人机识别", "鼠标行为", "机器学习", "生物特征识别", "网络安全"]
+    pdf: "/assets/pdf/An Efficient Man-Machine Recognition Method Based On Mouse.pdf"
+    doi: "10.1000/182"
+    pages: "123-135"
+    volume: "15"
+    issue: "3"
+    publisher: "IEEE"
+    citation_count: 12
+    
+  - title: "基于深度学习的文档智能问答系统研究"
+    authors: ["orange", "导师姓名"]
+    venue: "计算机科学与技术学报"
+    venue_short: "JCST"
+    year: "2024"
+    type: "期刊论文"
+    status: "审稿中"
+    abstract: "随着信息技术的快速发展，文档智能问答系统在企业知识管理和信息检索中发挥着越来越重要的作用。本文提出了一种基于深度学习的文档智能问答系统，结合了检索增强生成（RAG）技术和大语言模型，实现了高效准确的文档问答功能。"
+    keywords: ["深度学习", "问答系统", "RAG", "自然语言处理", "信息检索"]
+    pdf: ""
+    doi: ""
+    pages: ""
+    volume: ""
+    issue: ""
+    publisher: "中国计算机学会"
+    citation_count: 0
+
+  - title: "Go语言在微服务架构中的应用与性能优化"
+    authors: ["orange"]
+    venue: "软件工程与应用"
+    venue_short: "SEA"
+    year: "2024"
+    type: "期刊论文"
+    status: "准备投稿"
+    abstract: "微服务架构作为现代软件开发的重要模式，对编程语言的性能和并发能力提出了更高要求。本文深入研究了Go语言在微服务架构中的应用，分析了其在并发处理、内存管理和网络通信方面的优势，并提出了相应的性能优化策略。"
+    keywords: ["Go语言", "微服务", "性能优化", "并发编程", "分布式系统"]
+    pdf: ""
+    doi: ""
+    pages: ""
+    volume: ""
+    issue: ""
+    publisher: ""
+    citation_count: 0
+
+research_interests:
+  - name: "机器学习与深度学习"
+    description: "专注于机器学习算法优化、深度学习模型设计和应用"
+    keywords: ["监督学习", "无监督学习", "神经网络", "模型优化"]
+    
+  - name: "自然语言处理"
+    description: "研究文本理解、信息检索、问答系统等NLP技术"
+    keywords: ["文本分析", "语义理解", "问答系统", "信息检索"]
+    
+  - name: "软件工程与系统架构"
+    description: "关注现代软件开发方法、系统架构设计和性能优化"
+    keywords: ["微服务", "分布式系统", "性能优化", "软件架构"]
+
+academic_activities:
+  - activity: "ICCST 2024 会议审稿人"
+    year: "2024"
+    description: "担任国际计算机科学与技术会议的审稿人"
+    
+  - activity: "研究生学术论坛演讲"
+    year: "2024"
+    title: "基于机器学习的人机识别技术研究"
+    description: "在校研究生学术论坛上发表演讲，分享研究成果"
+    
+  - activity: "计算机学会学生会员"
+    year: "2023-至今"
+    description: "中国计算机学会学生会员，参与学术交流活动"
+
+awards_and_honors:
+  - name: "优秀学术论文奖"
+    year: "2024"
+    organization: "ICCST 2024"
+    description: "论文《An Efficient Man-Machine Recognition Method Based On Mouse》获得会议优秀论文奖"
+    
+  - name: "研究生学术创新奖"
+    year: "2024"
+    organization: "某某大学"
+    description: "在学术研究方面表现突出，获得学校研究生学术创新奖"
+    
+  - name: "国家奖学金"
+    year: "2023"
+    organization: "教育部"
+    description: "学习成绩优异，科研能力突出，获得国家奖学金"

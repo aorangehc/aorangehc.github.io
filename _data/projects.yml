@@ -1,0 +1,88 @@
+# 项目展示数据
+projects:
+  - name: "基于BM25检索算法构建RAG智能文档问答助手"
+    period: "2025.03"
+    status: "已完成"
+    role: "独立开发者"
+    technologies: ["Python", "BM25", "RAG", "自然语言处理", "Streamlit", "OpenAI API"]
+    description: "构建了一个智能文档问答系统，结合BM25检索算法和大语言模型，实现高效的文档检索和问答功能。系统支持多种文档格式，具有良好的用户界面和高准确率的问答能力。"
+    features:
+      - "支持PDF、TXT、DOCX等多种文档格式"
+      - "基于BM25算法的高效文档检索"
+      - "集成大语言模型进行智能问答"
+      - "友好的Web界面，支持实时交互"
+      - "支持文档预处理和索引构建"
+    repository: "https://github.com/aorangehc/bm25-rag-assistant"
+    demo: ""
+    image: "/assets/images/BM25_RAG/demo.png"
+    
+  - name: "DeepSeek-R1-32B模型本地部署与推理优化"
+    period: "2025.01"
+    status: "已完成"
+    role: "研究者"
+    technologies: ["Python", "VLLM", "深度学习", "模型部署", "CUDA", "Docker"]
+    description: "成功在本地环境部署DeepSeek-R1-32B大语言模型，通过VLLM框架优化推理性能，实现高效的本地AI服务。项目包含完整的部署文档和性能优化方案。"
+    features:
+      - "支持DeepSeek-R1-32B模型的本地部署"
+      - "基于VLLM的高性能推理优化"
+      - "支持批量推理和流式输出"
+      - "完整的Docker容器化部署方案"
+      - "详细的性能测试和优化报告"
+    repository: "https://github.com/aorangehc/deepseek-local-deployment"
+    demo: ""
+    image: "/assets/images/deepseek-R1-32B-vllm/architecture.png"
+    
+  - name: "Go语言学习与实践项目集合"
+    period: "2024.09-2025.01"
+    status: "持续更新"
+    role: "学习者"
+    technologies: ["Go", "Gin", "GORM", "Redis", "MySQL", "Docker", "微服务"]
+    description: "系统学习Go语言的完整项目集合，包含从基础语法到高级特性的实践代码，以及多个实际项目案例。涵盖Web开发、数据库操作、并发编程等核心技能。"
+    features:
+      - "Go语言基础语法和高级特性实践"
+      - "基于Gin框架的Web API开发"
+      - "数据库操作和ORM使用"
+      - "并发编程和goroutine实践"
+      - "微服务架构设计和实现"
+      - "完整的学习笔记和代码示例"
+    repository: "https://github.com/aorangehc/go-learning-journey"
+    demo: ""
+    image: "/assets/images/go/golang-logo.png"
+    
+  - name: "个人博客网站"
+    period: "2024.08-至今"
+    status: "持续维护"
+    role: "开发者"
+    technologies: ["Jekyll", "GitHub Pages", "HTML", "CSS", "JavaScript", "Liquid"]
+    description: "基于Jekyll和GitHub Pages构建的个人技术博客，记录学习心得和技术分享。网站具有响应式设计、SEO优化、评论系统等功能。"
+    features:
+      - "响应式设计，支持多设备访问"
+      - "SEO优化，提高搜索引擎可见性"
+      - "集成Giscus评论系统"
+      - "支持标签和分类管理"
+      - "自动化部署和持续集成"
+      - "深色模式支持"
+    repository: "https://github.com/aorangehc/aorangehc.github.io"
+    demo: "https://aorangehc.github.io"
+    image: "/assets/images/orange.jpg"
+    
+  - name: "远程桌面连接解决方案"
+    period: "2025.01"
+    status: "已完成"
+    role: "技术研究者"
+    technologies: ["远程桌面", "网络安全", "系统配置", "VPN"]
+    description: "研究并实现了一种免费、高清、安全但配置复杂的远程桌面连接方案。提供了详细的配置教程和安全性分析，适用于需要高质量远程访问的场景。"
+    features:
+      - "免费的远程桌面解决方案"
+      - "高清画质和低延迟传输"
+      - "强化的安全配置和加密"
+      - "详细的部署和配置文档"
+      - "多平台兼容性支持"
+    repository: ""
+    demo: ""
+    image: "/assets/images/a-magical-remote-solution/remote-desktop.png"
+
+featured_projects:
+  - "基于BM25检索算法构建RAG智能文档问答助手"
+  - "DeepSeek-R1-32B模型本地部署与推理优化"
+  - "个人博客网站"

@@ -13,16 +13,28 @@
 - type: rss
   icon: "fas fa-rss"
   noblank: true
-# Uncomment and complete the url below to enable more contact options
+# Professional contact options for job seeking
+- type: linkedin
+  icon: 'fab fa-linkedin'   # icons powered by <https://fontawesome.com/>
+  url: 'https://www.linkedin.com/in/aorangehc'  # Fill with your actual LinkedIn profile
+
+- type: stack-overflow
+  icon: 'fab fa-stack-overflow'
+  url: 'https://stackoverflow.com/users/your-id'  # Fill with your stackoverflow profile
+
+# Additional professional platforms (uncomment and fill as needed)
+# - type: researchgate
+#   icon: 'fab fa-researchgate'
+#   url: 'https://www.researchgate.net/profile/your-profile'  # For academic profiles
+#
+# - type: orcid
+#   icon: 'fab fa-orcid'
+#   url: 'https://orcid.org/your-orcid-id'  # For academic identification
+#
+# - type: scholar
+#   icon: 'fas fa-graduation-cap'
+#   url: 'https://scholar.google.com/citations?user=your-id'  # Google Scholar profile
 #
 # - type: mastodon
 #   icon: 'fab fa-mastodon'   # icons powered by <https://fontawesome.com/>
 #   url:  ''                  # Fill with your Mastodon account page, rel="me" will be applied for verification
-#
-# - type: linkedin
-#   icon: 'fab fa-linkedin'   # icons powered by <https://fontawesome.com/>
-#   url:  ''                  # Fill with your Linkedin homepage
-#
-# - type: stack-overflow
-#   icon: 'fab fa-stack-overflow'
-#   url:  ''                  # Fill with your stackoverflow homepage
