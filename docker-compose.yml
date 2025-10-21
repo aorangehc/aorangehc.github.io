@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  jekyll:
+    image: jekyll/jekyll:4.2.2
+    container_name: jekyll-site
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/srv/jekyll
+      - jekyll_cache:/usr/local/bundle
+    environment:
+      - JEKYLL_ENV=development
+    command: >
+      bash -c "
+        bundle install &&
+        bundle exec jekyll serve --host 0.0.0.0 --livereload --force_polling
+      "
+    stdin_open: true
+    tty: true
+
+volumes:
+  jekyll_cache:

@@ -23,10 +23,10 @@ description: >- # used by seo meta and the atom feed
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.
-url: "https://hfxyddd.github.io"
+url: "https://aorangehc.github.io"
 
 github:
-  username: hfxyddd # change to your github username
+  username: aorangehc # change to your github username
 
 social:
   # Change to your full name.
@@ -35,8 +35,8 @@ social:
   email: morange0205@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://hfxyddd.github.io
-    - https://github.com/hfxyddd # change to your github homepage
+    - https://aorangehc.github.io
+    - https://github.com/aorangehc # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
@@ -97,7 +97,7 @@ avatar: assets/images/orange.jpg
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
-social_preview_image: # string, local or CORS resources
+social_preview_image: assets/images/orange.jpg # string, local or CORS resources
 
 # boolean type, the global switch for TOC in posts.
 toc: true
@@ -114,7 +114,7 @@ comments:
     issue_term: # < url | pathname | title | ...>
   # Giscus options › https://giscus.app
   giscus:
-    repo: hfxyddd/hfxyddd.github.io # <gh-username>/<repo>
+    repo: aorangehc/aorangehc.github.io # <gh-username>/<repo>
     repo_id: R_kgDOMhRkpQ
     category: Comments
     category_id: DIC_kwDOMhRkpc4ChgVw
