@@ -80,7 +80,7 @@ projects:
       - "多平台兼容性支持"
     repository: ""
     demo: ""
-    image: "/assets/images/a-magical-remote-solution/remote-desktop.png"
+    image: "/assets/images/a-magical-remote-solution/电脑远程方案原理.png"
 
 featured_projects:
   - "基于BM25检索算法构建RAG智能文档问答助手"
