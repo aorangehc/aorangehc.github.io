@@ -20,7 +20,7 @@ Jekyll基于Ruby开发，所以我们首先需要安装Ruby环境：
 2. 我选择的是[rubyinstaller-devkit-3.4.7-1-x64](https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-3.4.7-1/rubyinstaller-devkit-3.4.7-1-x64.exe)版本
 3. 你也可以根据系统配置选择合适的版本
 
-<img src="/assets/images/2025-10-24-win-install-Jekyll/rubyinstaller_download.png" alt="bm25_rag" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+<img src="/assets/images/2025-10-24-win-install-Jekyll/rubyinstaller_download.png" alt="win_jekyll" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;">
 
 安装时的关键步骤：
 
@@ -36,7 +36,7 @@ Jekyll基于Ruby开发，所以我们首先需要安装Ruby环境：
 ruby -v
 ```
 
-<img src="/assets/images/2025-10-24-win-install-Jekyll/install_finish.png" alt="bm25_rag" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+<img src="/assets/images/2025-10-24-win-install-Jekyll/install_finish.png" alt="win_jekyll" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;">
 
 ## 第二步：安装RubyGems
 
@@ -45,7 +45,7 @@ RubyGems是Ruby的包管理器，我们需要用它来安装Jekyll：
 1. 前往[RubyGems下载页面](https://rubygems.org/pages/download)
 2. 选择ZIP格式下载
 
-<img src="/assets/images/2025-10-24-win-install-Jekyll/rubygems_install.png" alt="bm25_rag" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+<img src="/assets/images/2025-10-24-win-install-Jekyll/rubygems_install.png" alt="win_jekyll" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;">
 
 安装步骤：
 
@@ -57,7 +57,7 @@ RubyGems是Ruby的包管理器，我们需要用它来安装Jekyll：
 ruby setup.rb
 ```
 
-<img src="/assets/images/2025-10-24-win-install-Jekyll/ruby_setup.png" alt="bm25_rag" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+<img src="/assets/images/2025-10-24-win-install-Jekyll/ruby_setup.png" alt="win_jekyll" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;">
 
 ## 第三步：安装Jekyll及相关组件
 
@@ -88,15 +88,15 @@ bundle exec jekyll server
 
 如果提示缺少某些插件，按照提示安装即可：
 
-<img src="/assets/images/2025-10-24-win-install-Jekyll/bundle_install.png" alt="bm25_rag" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+<img src="/assets/images/2025-10-24-win-install-Jekyll/bundle_install.png" alt="win_jekyll" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;">
 
 安装完成后重新运行，看到成功提示：
 
-<img src="/assets/images/2025-10-24-win-install-Jekyll/bundle_success.png" alt="bm25_rag" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+<img src="/assets/images/2025-10-24-win-install-Jekyll/bundle_success.png" alt="win_jekyll" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;">
 
 在浏览器中访问 `http://localhost:4000`，就能看到你的博客在本地运行的效果了！
 
-<img src="/assets/images/2025-10-24-win-install-Jekyll/server_success.png" alt="bm25_rag" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+<img src="/assets/images/2025-10-24-win-install-Jekyll/server_success.png" alt="win_jekyll" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;">
 
 ## 安装完成！🎉
 
