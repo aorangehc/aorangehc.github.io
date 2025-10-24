@@ -1,8 +1,8 @@
 ---
 title: Mac安装Jekyll
 date: 2025-10-24 21:11:11  +0800
-categories: [Github,  Jekyll]
-tags: [Github,  Jekyll]
+categories: [GitHub,  Blog]
+tags: [GitHub, Blog, Jekyll]
 math: true
 pin: true
 mermaid: true
