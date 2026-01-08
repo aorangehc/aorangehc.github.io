@@ -26,3 +26,5 @@ _sass/dist
 assets/js/dist
 
 .DS_Store
+
+_tmp/
