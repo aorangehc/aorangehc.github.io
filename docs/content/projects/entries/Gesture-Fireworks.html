@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-11-16">
+
+<title>Gesture-Fireworks</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../pages/index.html"> 
+<span class="menu-text"><span class="lang-en">About Me</span><span class="lang-zh">关于我</span></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../pages/home.html"> 
+<span class="menu-text"><span class="lang-en">Home</span><span class="lang-zh">主页</span></span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/blogs/index.html"> 
+<span class="menu-text"><span class="lang-en">Blogs</span><span class="lang-zh">博客</span></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/projects/index.html"> 
+<span class="menu-text"><span class="lang-en">Projects</span><span class="lang-zh">项目</span></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/papers/index.html"> 
+<span class="menu-text"><span class="lang-en">Papers</span><span class="lang-zh">论文</span></span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-span-classlang-enlearning-notesspanspan-classlang-zh学习笔记span" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><span class="lang-en">Learning Notes</span><span class="lang-zh">学习笔记</span></span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-span-classlang-enlearning-notesspanspan-classlang-zh学习笔记span">    
+        <li>
+    <a class="dropdown-item" href="../../../content/learning-notes/index.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../content/learning-notes/golang/index.html">
+ <span class="dropdown-text">golang</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="https://github.com/aorangehc" title="" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+    <a href="mailto:your-email@example.com" title="" class="quarto-navigation-tool px-1" aria-label="Email"><i class="bi bi-envelope"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#用手点燃烟花gesture-fireworks" id="toc-用手点燃烟花gesture-fireworks" class="nav-link active" data-scroll-target="#用手点燃烟花gesture-fireworks">「用手点燃烟花」——Gesture Fireworks ✨</a>
+  <ul class="collapse">
+  <li><a href="#一这个小项目想解决什么" id="toc-一这个小项目想解决什么" class="nav-link" data-scroll-target="#一这个小项目想解决什么">一、这个小项目想解决什么？</a></li>
+  <li><a href="#二项目功能一览它到底能干嘛" id="toc-二项目功能一览它到底能干嘛" class="nav-link" data-scroll-target="#二项目功能一览它到底能干嘛">二、项目功能一览：它到底能干嘛？</a></li>
+  <li><a href="#三手势和烟花的绑定关系" id="toc-三手势和烟花的绑定关系" class="nav-link" data-scroll-target="#三手势和烟花的绑定关系">三、手势和烟花的「绑定关系」</a></li>
+  <li><a href="#四手势识别怎么尽量识别得准一点" id="toc-四手势识别怎么尽量识别得准一点" class="nav-link" data-scroll-target="#四手势识别怎么尽量识别得准一点">四、手势识别：怎么尽量识别得「准一点」？</a>
+  <ul class="collapse">
+  <li><a href="#多帧平滑-稳定帧判定" id="toc-多帧平滑-稳定帧判定" class="nav-link" data-scroll-target="#多帧平滑-稳定帧判定">1. 多帧平滑 + 稳定帧判定</a></li>
+  <li><a href="#动态置信度阈值" id="toc-动态置信度阈值" class="nav-link" data-scroll-target="#动态置信度阈值">2. 动态置信度阈值</a></li>
+  <li><a href="#冷却机制-上升沿触发" id="toc-冷却机制-上升沿触发" class="nav-link" data-scroll-target="#冷却机制-上升沿触发">3. 冷却机制 + 上升沿触发</a></li>
+  </ul></li>
+  <li><a href="#五渲染层canvas-粒子系统的设计思路" id="toc-五渲染层canvas-粒子系统的设计思路" class="nav-link" data-scroll-target="#五渲染层canvas-粒子系统的设计思路">五、渲染层：Canvas 粒子系统的设计思路</a></li>
+  <li><a href="#六项目结构-技术栈简述" id="toc-六项目结构-技术栈简述" class="nav-link" data-scroll-target="#六项目结构-技术栈简述">六、项目结构 &amp; 技术栈简述</a></li>
+  <li><a href="#七如何本地跑起来" id="toc-七如何本地跑起来" class="nav-link" data-scroll-target="#七如何本地跑起来">七、如何本地跑起来？</a>
+  <ul class="collapse">
+  <li><a href="#环境准备" id="toc-环境准备" class="nav-link" data-scroll-target="#环境准备">1. 环境准备</a></li>
+  <li><a href="#启动步骤示例" id="toc-启动步骤示例" class="nav-link" data-scroll-target="#启动步骤示例">2. 启动步骤（示例）</a></li>
+  </ul></li>
+  <li><a href="#浏览器会弹出摄像头授权请求点击允许即可开始体验" id="toc-浏览器会弹出摄像头授权请求点击允许即可开始体验" class="nav-link" data-scroll-target="#浏览器会弹出摄像头授权请求点击允许即可开始体验">浏览器会弹出摄像头授权请求，点击「允许」即可开始体验。</a></li>
+  <li><a href="#八实际体验怎么玩得更爽" id="toc-八实际体验怎么玩得更爽" class="nav-link" data-scroll-target="#八实际体验怎么玩得更爽">八、实际体验：怎么玩得更爽？</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Gesture-Fireworks</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">selfTools</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 16, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="用手点燃烟花gesture-fireworks" class="level1">
+<h1>「用手点燃烟花」——Gesture Fireworks ✨</h1>
+<blockquote class="blockquote">
+<p>仓库地址：Gesture Fireworks（基于 MediaPipe 的手势烟花互动小工具）(<a href="https://github.com/aorangehc/Gesture-fireworks?tab=readme-ov-file">GitHub</a>)</p>
+</blockquote>
+<hr>
+<section id="一这个小项目想解决什么" class="level2">
+<h2 class="anchored" data-anchor-id="一这个小项目想解决什么">一、这个小项目想解决什么？</h2>
+<p>每年跨年、春节、烟花节，我们总会刷到各种烟花视频，但要么太吵，要么不环保，要么……钱包受不了 😅</p>
+<p>于是我做了一个轻量又好玩的实验项目：<strong>Gesture Fireworks（手势烟花）</strong>。 它的核心目标是——<strong>让你只用一台带摄像头的电脑 + 浏览器，就能用手势在空中「放烟花」。</strong></p>
+<p>你对着摄像头比一个 ✊、✌️ 或比心 ❤️，画面中就会在你的手边绽放对应的烟花效果。 不需要安装客户端，不需要复杂硬件，<strong>打开网页、授权摄像头，就能玩。</strong></p>
+<hr>
+</section>
+<section id="二项目功能一览它到底能干嘛" class="level2">
+<h2 class="anchored" data-anchor-id="二项目功能一览它到底能干嘛">二、项目功能一览：它到底能干嘛？</h2>
+<p>在目前的版本中，Gesture Fireworks 实现了这几类能力：</p>
+<ul>
+<li><p><strong>AI 手势识别</strong>：基于 MediaPipe 的手势识别方案，支持多种不同手势</p></li>
+<li><p><strong>绚丽烟花特效</strong>：精心设计了多种烟花，包括：</p>
+<ul>
+<li>爆炸烟花（FireworkBurst）</li>
+<li>圆环烟花（FireworkCircle）</li>
+<li>心形烟花（FireworkHeart）</li>
+<li>星形烟花（FireworkStar）</li>
+<li>螺旋烟花（FireworkSpiral）</li>
+<li>伞形烟花（FireworkUmbrella）</li>
+<li>等等</li>
+</ul></li>
+<li><p><strong>多手同时触发</strong>：双手可以同时做不同手势，各自单独触发烟花，带有独立冷却机制</p></li>
+<li><p><strong>高性能渲染</strong>：使用优化过的 Canvas 2D 粒子系统，可以同时渲染数千粒子而保持顺畅</p></li>
+<li><p><strong>智能识别算法</strong>：多帧平滑、稳定帧判定、动态阈值、冷却机制，尽量减少误判抖动</p></li>
+<li><p><strong>响应式页面</strong>：同时兼容桌面端 &amp; 移动端</p></li>
+</ul>
+<hr>
+</section>
+<section id="三手势和烟花的绑定关系" class="level2">
+<h2 class="anchored" data-anchor-id="三手势和烟花的绑定关系">三、手势和烟花的「绑定关系」</h2>
+<p>为了让体验更「直觉」，我为常见手势设计了不同的烟花风格：</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 17%">
+<col style="width: 31%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>手势</th>
+<th>识别名</th>
+<th>对应烟花</th>
+<th>视觉风格</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>✊ 拳头</td>
+<td>FIST</td>
+<td>FireworkBurst</td>
+<td>金黄色多层圆形爆炸，冲击感强</td>
+</tr>
+<tr class="even">
+<td>👌 OK 手势</td>
+<td>OK</td>
+<td>FireworkCircle</td>
+<td>红橙系双环高密度爆裂</td>
+</tr>
+<tr class="odd">
+<td>❤️ 比心</td>
+<td>HEART</td>
+<td>FireworkHeart</td>
+<td>粉色系心形烟花，氛围感拉满</td>
+</tr>
+<tr class="even">
+<td>👍 竖拇指</td>
+<td>THUMBS_UP</td>
+<td>FireworkStar</td>
+<td>金白色五角星爆炸，闪烁明显</td>
+</tr>
+<tr class="odd">
+<td>✌️ 剪刀手</td>
+<td>PEACE</td>
+<td>FireworkSpiral</td>
+<td>紫色螺旋扩散，有旋转轨迹</td>
+</tr>
+<tr class="even">
+<td>👉 指向</td>
+<td>POINTING</td>
+<td>FireworkUmbrella</td>
+<td>蓝色伞形烟花，拖尾柔和</td>
+</tr>
+<tr class="odd">
+<td>✋ 张开手掌</td>
+<td>OPEN_PALM</td>
+<td>FireworkA</td>
+<td>随机色环形爆裂 + 拖尾，基础通用款</td>
+</tr>
+</tbody>
+</table>
+<p>技术上，在入口逻辑里会根据识别到的手势类型，<strong>映射到不同的触发器函数，并传入不同的参数</strong>（粒子数量、配色、持续时间等），让每种手势都有明显区别的手感和视觉反馈。</p>
+<hr>
+</section>
+<section id="四手势识别怎么尽量识别得准一点" class="level2">
+<h2 class="anchored" data-anchor-id="四手势识别怎么尽量识别得准一点">四、手势识别：怎么尽量识别得「准一点」？</h2>
+<p>单纯做一个「能识别」的 Demo 很简单，但要做到「好玩、不烦人」，就必须控制误识别率和抖动。为此我做了几层处理逻辑：</p>
+<section id="多帧平滑-稳定帧判定" class="level3">
+<h3 class="anchored" data-anchor-id="多帧平滑-稳定帧判定">1. 多帧平滑 + 稳定帧判定</h3>
+<ul>
+<li>使用固定长度的历史帧（例如 <code>smoothingFrames = 10</code>）做平滑</li>
+<li>只有连续若干帧（例如 <code>stableFrames = 6</code>）都稳定识别为同一手势时，才视为「真正识别到」</li>
+</ul>
+<p>这样可以过滤掉短暂的抖动或过渡帧，让触发更可控。</p>
+</section>
+<section id="动态置信度阈值" class="level3">
+<h3 class="anchored" data-anchor-id="动态置信度阈值">2. 动态置信度阈值</h3>
+<p>不同手势本身的易混淆程度不一样，所以采用了<strong>区分度更高的阈值设计</strong>：</p>
+<ul>
+<li>对于容易混的手势（拳头、OK、点赞、剪刀手、指向等），阈值设为 <code>0.85</code></li>
+<li>对于张开手掌（OPEN_PALM），阈值略低一点 <code>0.8</code></li>
+</ul>
+<p>同时，还会要求<strong>第一名和第二名手势的置信度差值 ≥ 0.12</strong>，避免「半斤八两」的两种手势乱跳。</p>
+</section>
+<section id="冷却机制-上升沿触发" class="level3">
+<h3 class="anchored" data-anchor-id="冷却机制-上升沿触发">3. 冷却机制 + 上升沿触发</h3>
+<ul>
+<li>每个识别器有一个默认冷却时间 <code>cooldownMs = 350ms</code></li>
+<li>只有当「稳定手势从 A 变为 B」且不在冷却期内，才会触发一次烟花</li>
+</ul>
+<p>这意味着你可以<strong>保持一个手势不动，烟花不会无限制连发</strong>，更像是「一次明确的动作 → 一次清晰的反馈」。</p>
+<hr>
+</section>
+</section>
+<section id="五渲染层canvas-粒子系统的设计思路" class="level2">
+<h2 class="anchored" data-anchor-id="五渲染层canvas-粒子系统的设计思路">五、渲染层：Canvas 粒子系统的设计思路</h2>
+<p>视觉部分基于 <strong>Canvas 2D</strong> 实现了一个轻量的粒子系统：</p>
+<ul>
+<li><p>每个烟花本质上是大量粒子（位置、速度、加速度、颜色、透明度等属性）的集合</p></li>
+<li><p>每一帧进行：</p>
+<ul>
+<li>粒子位置更新（重力、阻尼、初速度方向等）</li>
+<li>透明度 &amp; 尺寸衰减</li>
+<li>组合出光晕、拖尾、闪烁等效果</li>
+</ul></li>
+</ul>
+<p>为了保证性能，我做了几件事：</p>
+<ol type="1">
+<li><strong>批量更新 &amp; 绘制</strong>，减少多余的状态切换</li>
+<li>针对不同烟花类型，限制最大粒子数量，避免堆爆内存</li>
+<li>在多发烟花场景下优先清理已经「看不见」的粒子</li>
+</ol>
+<p>在普通笔记本 + 现代浏览器环境下，同时存在<strong>数千个粒子</strong>仍可以保持比较流畅的体验。</p>
+<hr>
+</section>
+<section id="六项目结构-技术栈简述" class="level2">
+<h2 class="anchored" data-anchor-id="六项目结构-技术栈简述">六、项目结构 &amp; 技术栈简述</h2>
+<p>项目整体是一个很标准的前端小应用形态：</p>
+<ul>
+<li><p><strong>技术栈</strong></p>
+<ul>
+<li>JavaScript 为主（约 97.7%）</li>
+<li>少量 HTML 结构</li>
+<li>MediaPipe 手势检测（通过 vendor 依赖引入）</li>
+</ul></li>
+<li><p><strong>主要目录</strong></p>
+<ul>
+<li><p><code>src/hand</code>：手势识别与高级逻辑（置信度、稳定性、冷却等）</p></li>
+<li><p><code>src/main.js</code>：应用主入口，负责：</p>
+<ul>
+<li>摄像头采集与视频流</li>
+<li>调用识别模块</li>
+<li>根据手势触发不同烟花</li>
+</ul></li>
+<li><p><code>src/fireworks/*</code>：不同烟花特效的实现</p></li>
+</ul></li>
+</ul>
+<p>目的就是：<strong>保持结构清晰，方便以后扩展新的手势 &amp; 新的烟花类型。</strong></p>
+<hr>
+</section>
+<section id="七如何本地跑起来" class="level2">
+<h2 class="anchored" data-anchor-id="七如何本地跑起来">七、如何本地跑起来？</h2>
+<p>只要你对前端略有了解，就可以很快跑起来。</p>
+<section id="环境准备" class="level3">
+<h3 class="anchored" data-anchor-id="环境准备">1. 环境准备</h3>
+<ul>
+<li>现代浏览器（Chrome 88+、Firefox 85+、Safari 14+、Edge 88+）</li>
+<li>一台带摄像头的设备</li>
+<li>本地 HTTP 服务器（用于获取摄像头权限）</li>
+<li>网络连接（首次加载 MediaPipe 模型）</li>
+</ul>
+</section>
+<section id="启动步骤示例" class="level3">
+<h3 class="anchored" data-anchor-id="启动步骤示例">2. 启动步骤（示例）</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 克隆项目</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/your-username/Gesture-fireworks.git</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Gesture-fireworks</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 启动本地服务器（Python 3 示例）</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> http.server 8000</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 或者使用 Node.js</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">npx</span> http-server <span class="at">-p</span> 8000 <span class="at">-a</span> localhost</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然后在浏览器中访问：</p>
+<pre class="text"><code>http://localhost:8000</code></pre>
+</section>
+</section>
+<section id="浏览器会弹出摄像头授权请求点击允许即可开始体验" class="level2">
+<h2 class="anchored" data-anchor-id="浏览器会弹出摄像头授权请求点击允许即可开始体验">浏览器会弹出摄像头授权请求，点击「允许」即可开始体验。</h2>
+</section>
+<section id="八实际体验怎么玩得更爽" class="level2">
+<h2 class="anchored" data-anchor-id="八实际体验怎么玩得更爽">八、实际体验：怎么玩得更爽？</h2>
+<p>结合调试过程，总结了一些实用的小技巧：</p>
+<ul>
+<li><p><strong>光线充足</strong>：正面光最好，避免背光和强阴影</p></li>
+<li><p><strong>距离合适</strong>：人与摄像头保持 1–2 米，手部占画面约 1/4 效果最佳</p></li>
+<li><p><strong>手势清晰稳定</strong>：</p>
+<ul>
+<li>比完手势后保持 1–2 秒</li>
+<li>手指要伸直 / 收紧到位，避免半吊子动作</li>
+</ul></li>
+<li><p><strong>居中一点</strong>：手尽量在画面中央区域，边缘区域容易畸变、识别不准</p></li>
+<li><p><strong>多手玩法</strong>：双手分别做不同手势，可以点亮「组合烟花」，非常适合多人一起玩</p></li>
+</ul>
+<hr>
+<p>如果你对这个项目有兴趣，欢迎来仓库看看源码、提 Issue 或一起玩</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<button id="lang-toggle" type="button" aria-label="Toggle language"></button>
+<script>
+  (() => {
+    const storageKey = "site-lang";
+    const defaultLang = "zh";
+    const button = document.getElementById("lang-toggle");
+    if (!button) {
+      return;
+    }
+
+    const applyLang = (lang) => {
+      document.body.dataset.lang = lang;
+      button.textContent = lang === "zh" ? "EN" : "中文";
+      button.setAttribute("aria-label", lang === "zh" ? "Switch to English" : "切换中文");
+      window.localStorage.setItem(storageKey, lang);
+    };
+
+    const stored = window.localStorage.getItem(storageKey);
+    applyLang(stored || defaultLang);
+
+    button.addEventListener("click", () => {
+      const next = document.body.dataset.lang === "zh" ? "en" : "zh";
+      applyLang(next);
+    });
+  })();
+</script>
+<script>
+  (() => {
+    const storageKey = "theme-preference";
+    const getStored = () => {
+      try {
+        return window.localStorage.getItem(storageKey);
+      } catch {
+        return null;
+      }
+    };
+    const setStored = (value) => {
+      try {
+        window.localStorage.setItem(storageKey, value);
+      } catch {}
+    };
+    const currentTheme = () =>
+      document.body.classList.contains("quarto-dark") ? "dark" : "light";
+
+    const applyStored = () => {
+      const stored = getStored();
+      if (!stored) {
+        return;
+      }
+      if (stored !== currentTheme() && window.quartoToggleColorScheme) {
+        window.quartoToggleColorScheme();
+      }
+    };
+
+    const bindToggle = () => {
+      const toggles = document.querySelectorAll(".quarto-color-scheme-toggle");
+      toggles.forEach((toggle) => {
+        toggle.addEventListener("click", () => {
+          window.setTimeout(() => setStored(currentTheme()), 0);
+        });
+      });
+    };
+
+    applyStored();
+    bindToggle();
+  })();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with Quarto</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
