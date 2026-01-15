@@ -1,10 +1,13 @@
 [
   {
-    "listing": "/content/papers/index.html",
-    "items": []
+    "listing": "/content/projects/index.html",
+    "items": [
+      "/content/projects/entries/Daily-Log-Maker.html",
+      "/content/projects/entries/Gesture-Fireworks.html"
+    ]
   },
   {
-    "listing": "/content/learning-notes/golang/index.html",
+    "listing": "/content/learning-notes/index.html",
     "items": [
       "/content/learning-notes/golang/entries/go的版本管理工具-g的安装和使用.html",
       "/content/learning-notes/golang/entries/golang学习记录（13）.html",
@@ -23,8 +26,26 @@
     ]
   },
   {
+    "listing": "/content/blogs/index.html",
+    "items": [
+      "/content/blogs/entries/一文读懂RAG.html",
+      "/content/blogs/entries/本地服务器低速传输解决方案.html",
+      "/content/blogs/entries/leetcode-灵神跟练-滑动窗口与双指针-不定长滑动窗口-越长越合法+求最短+最小.html",
+      "/content/blogs/entries/leetcode-灵神跟练-滑动窗口与双指针-定长滑动窗口-基础.html",
+      "/content/blogs/entries/Mac安装Jekyll.html",
+      "/content/blogs/entries/Windows安装Jekyll.html",
+      "/content/blogs/entries/基于BM25检索算法构建RAG智能文档问答助手--学习和实践.html",
+      "/content/blogs/entries/Deepseek-R1-32B模型部署.html",
+      "/content/blogs/entries/开源协议.html",
+      "/content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html",
+      "/content/blogs/entries/保姆教程如何创建自己的“个人网站”.html",
+      "/content/blogs/entries/《深度学习详解》--1、通过案例了解机器学习.html"
+    ]
+  },
+  {
     "listing": "/pages/home.html",
     "items": [
+      "/content/blogs/entries/一文读懂RAG.html",
       "/content/blogs/entries/本地服务器低速传输解决方案.html",
       "/content/blogs/entries/leetcode-灵神跟练-滑动窗口与双指针-不定长滑动窗口-越长越合法+求最短+最小.html",
       "/content/blogs/entries/leetcode-灵神跟练-滑动窗口与双指针-定长滑动窗口-基础.html",
@@ -55,23 +76,7 @@
     ]
   },
   {
-    "listing": "/content/blogs/index.html",
-    "items": [
-      "/content/blogs/entries/本地服务器低速传输解决方案.html",
-      "/content/blogs/entries/leetcode-灵神跟练-滑动窗口与双指针-不定长滑动窗口-越长越合法+求最短+最小.html",
-      "/content/blogs/entries/leetcode-灵神跟练-滑动窗口与双指针-定长滑动窗口-基础.html",
-      "/content/blogs/entries/Mac安装Jekyll.html",
-      "/content/blogs/entries/Windows安装Jekyll.html",
-      "/content/blogs/entries/基于BM25检索算法构建RAG智能文档问答助手--学习和实践.html",
-      "/content/blogs/entries/Deepseek-R1-32B模型部署.html",
-      "/content/blogs/entries/开源协议.html",
-      "/content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html",
-      "/content/blogs/entries/保姆教程如何创建自己的“个人网站”.html",
-      "/content/blogs/entries/《深度学习详解》--1、通过案例了解机器学习.html"
-    ]
-  },
-  {
-    "listing": "/content/learning-notes/index.html",
+    "listing": "/content/learning-notes/golang/index.html",
     "items": [
       "/content/learning-notes/golang/entries/go的版本管理工具-g的安装和使用.html",
       "/content/learning-notes/golang/entries/golang学习记录（13）.html",
@@ -90,10 +95,7 @@
     ]
   },
   {
-    "listing": "/content/projects/index.html",
-    "items": [
-      "/content/projects/entries/Daily-Log-Maker.html",
-      "/content/projects/entries/Gesture-Fireworks.html"
-    ]
+    "listing": "/content/papers/index.html",
+    "items": []
   }
 ]

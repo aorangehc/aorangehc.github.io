@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-11-16">
+<meta name="dcterms.date" content="2026-01-01">
 
-<title>leetcode-灵神跟练-滑动窗口与双指针-不定长滑动窗口-越长越合法+求最短+最小</title>
+<title>一文读懂RAG</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -307,14 +307,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#定长滑动窗口-越长越合法求最短最小" id="toc-定长滑动窗口-越长越合法求最短最小" class="nav-link active" data-scroll-target="#定长滑动窗口-越长越合法求最短最小">定长滑动窗口-越长越合法/求最短/最小</a>
+  <li><a href="#一文读懂rag" id="toc-一文读懂rag" class="nav-link active" data-scroll-target="#一文读懂rag">一文读懂RAG</a>
   <ul class="collapse">
-  <li><a href="#长度最小的子数组" id="toc-长度最小的子数组" class="nav-link" data-scroll-target="#长度最小的子数组">209. 长度最小的子数组</a></li>
-  <li><a href="#最短且字典序最小的美丽子字符串" id="toc-最短且字典序最小的美丽子字符串" class="nav-link" data-scroll-target="#最短且字典序最小的美丽子字符串">2904. 最短且字典序最小的美丽子字符串</a></li>
-  <li><a href="#替换子串得到平衡字符串" id="toc-替换子串得到平衡字符串" class="nav-link" data-scroll-target="#替换子串得到平衡字符串">1234. 替换子串得到平衡字符串</a></li>
-  <li><a href="#无限数组的最短子数组" id="toc-无限数组的最短子数组" class="nav-link" data-scroll-target="#无限数组的最短子数组">2875. 无限数组的最短子数组</a></li>
-  <li><a href="#最小覆盖子串" id="toc-最小覆盖子串" class="nav-link" data-scroll-target="#最小覆盖子串">76. 最小覆盖子串</a></li>
-  <li><a href="#最小区间" id="toc-最小区间" class="nav-link" data-scroll-target="#最小区间">632. 最小区间</a></li>
+  <li><a href="#基本概念" id="toc-基本概念" class="nav-link" data-scroll-target="#基本概念">基本概念</a></li>
+  <li><a href="#背景和技术原理" id="toc-背景和技术原理" class="nav-link" data-scroll-target="#背景和技术原理">背景和技术原理</a></li>
+  <li><a href="#rag框架" id="toc-rag框架" class="nav-link" data-scroll-target="#rag框架">RAG框架</a></li>
+  <li><a href="#rag的多跳多领域问题" id="toc-rag的多跳多领域问题" class="nav-link" data-scroll-target="#rag的多跳多领域问题">RAG的多跳多领域问题</a></li>
+  <li><a href="#多模态rag" id="toc-多模态rag" class="nav-link" data-scroll-target="#多模态rag">多模态RAG</a></li>
+  <li><a href="#rag的应用案例" id="toc-rag的应用案例" class="nav-link" data-scroll-target="#rag的应用案例">RAG的应用案例</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -325,10 +325,10 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">leetcode-灵神跟练-滑动窗口与双指针-不定长滑动窗口-越长越合法+求最短+最小</h1>
+<h1 class="title">一文读懂RAG</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">算法</div>
-    <div class="quarto-category">leetcode</div>
+    <div class="quarto-category">RAG</div>
+    <div class="quarto-category">LLM</div>
   </div>
   </div>
 
@@ -340,7 +340,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 16, 2025</p>
+      <p class="date">January 1, 2026</p>
     </div>
   </div>
   
@@ -352,567 +352,51 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="定长滑动窗口-越长越合法求最短最小" class="level1">
-<h1>定长滑动窗口-越长越合法/求最短/最小</h1>
-<section id="长度最小的子数组" class="level3">
-<h3 class="anchored" data-anchor-id="长度最小的子数组"><a href="https://leetcode.cn/problems/minimum-size-subarray-sum/description/">209. 长度最小的子数组</a></h3>
-<section id="题面" class="level4">
-<h4 class="anchored" data-anchor-id="题面">题面</h4>
-<p>给定一个含有 n 个正整数的数组和一个正整数 target 。</p>
-<p>找出该数组中满足其总和大于等于 target 的长度最小的 子数组 [numsl, numsl+1, …, numsr-1, numsr] ，并返回其长度。如果不存在符合条件的子数组，返回 0 。</p>
-<p>示例 1：</p>
-<p>输入：target = 7, nums = [2,3,1,2,4,3]</p>
-<p>输出：2</p>
-<p>解释：子数组 [4,3] 是该条件下的长度最小的子数组。</p>
-<p>示例 2：</p>
-<p>输入：target = 4, nums = [1,4,4]</p>
-<p>输出：1</p>
-<p>示例 3：</p>
-<p>输入：target = 11, nums = [1,1,1,1,1,1,1,1]</p>
-<p>输出：0</p>
-<p>提示：</p>
-<p>1 &lt;= target &lt;= 10^9</p>
-<p>1 &lt;= nums.length &lt;= 10^5</p>
-<p>1 &lt;= nums[i] &lt;= 10^4</p>
+<section id="一文读懂rag" class="level1">
+<h1>一文读懂RAG</h1>
+<p><span style="color: inherit; background-color: rgba(183,237,177,0.8)">写在前面，作者也是初学者，抱着学习的心态写了这篇文章，如果有问题，欢迎大家邮箱联系进行批评指正。</span></p>
+<p>本篇将系统介绍RAG的基本概念、核心技术原理、发展背景和典型架构，随后深入探讨多模态RAG（如文本-图像、文本-视频的检索增强生成）和Graph RAG（基于图结构数据的检索增强生成）等前沿方向，最后分析当前面临的挑战与未来发展趋势。</p>
+<section id="基本概念" class="level2">
+<h2 class="anchored" data-anchor-id="基本概念">基本概念</h2>
+<p>RAG（Retrieval Augmented Generation），中文名称是检索增强生成，通俗意义上来讲就是通过检索提升大模型生成效果的技术，旨在提升生成式AI的准确性与可信度。它实现了大语言模型与外部知识库的结合，是缓解幻觉与提升可追溯性的关键路线之一。该概念最初由Facebook AI研究团队在2020年提出，并发表了命名RAG的开创性论文。如今，RAG已发展为一类庞大的方法体系，被认为是通向更可靠生成式AI的重要方向。</p>
 </section>
-<section id="思路说明" class="level4">
-<h4 class="anchored" data-anchor-id="思路说明">思路说明</h4>
-<p>采用双指针变长滑动窗口的思路</p>
-<p>设定左指针，控制窗口大小，遍历数组的index作为右指针</p>
-<p>设置变量统计窗口内的数字和</p>
-<p>当数字和达到要求的时候 - 采用while循环 - 更新字数组的最小值 - 将左边的值排除窗口，更新数字和，同时将左指针向右移动 - 直到数字和不满足要求结束循环</p>
+<section id="背景和技术原理" class="level2">
+<h2 class="anchored" data-anchor-id="背景和技术原理">背景和技术原理</h2>
+<p>大模型在没有外部知识库的情况下也能“记住”大量知识，但仍然存在明显局限：参数中的知识更新成本高、回答往往缺少可核验的证据来源；遇到冷门知识、最新信息或长链路推理时，错误率会上升；在多轮对话与长上下文场景里，也可能出现信息遗忘、主题漂移与证据混淆等问题。比如，你问的是aorangehc是谁，它却开始讲爱因斯坦是谁，这类与问题无关或事实不稳的生成通常被称为幻觉。幻觉并非某一个模型的偶然故障，而是概率式生成在信息不足、目标不清或证据缺失时容易出现的系统性现象，因此研究者开始从模型之外引入约束与外部信息来降低这类问题的发生。</p>
+<p>一种方法是在预训练之后对模型进行指令微调与对齐训练，让它在不确定时更倾向于回答“不知道”或主动澄清。</p>
+<p>一种方法是使用者通过Prompt对回答范围、证据要求与输出格式进行限制，减少模型自由发挥的空间。</p>
+<p>还有一种就是引入外部知识库。我们现在使用ChatGPT、Gemini、Kimi、豆包以及DeepSeek等大模型应用时，经常会看到联网搜索或知识库问答功能：系统会根据问题去外部数据源检索网页或文档片段，将检索结果作为证据提供给模型，再由模型基于证据与自身语言能力组织答案，从而显著提升事实性与可解释性。这个“先检索、再生成”的过程，就是RAG的典型范式。</p>
+<p>现在意义上的大模型具有很多能力，我们日常中更多是使用大模型进行提问，让它解决遇到的难题，比如Python代码报错，把报错信息扔给大模型，它给出修改意见，这个过程中使用的主要能力是指令遵循。除此之外还有上下文学习、推理、工具使用等，随着技术的发展，大模型可调用的能力在不断扩展。</p>
+<p>在RAG中主要利用的就是大模型的上下文学习能力，通过检索获取相关知识作为上下文提供给大模型，然后由大模型基于问题与证据进行归纳总结并生成回答。</p>
+<p>RAG的核心思想是在生成任务中引入检索模块。模型在接到输入后，先由检索模块从外部知识库（如维基百科、专有文档库、企业内部资料等）中检索出相关资料，再将检索到的内容与原始输入一起送入生成模型，生成最终回答或文本。这种“检索-生成”策略使模型能够现查现用所需知识，而不必完全依赖参数中存储的旧知识。OpenAI的WebGPT工作即是典型案例：它让GPT-3在一个受控的浏览环境中搜索网页、抽取引用片段并据此回答长问题，从而提升答案的事实性与可核验性。通过引入检索，不仅能降低幻觉发生率，也使知识库可以更灵活地扩展与更新，例如用户可以按需接入新的数据源供系统使用。</p>
+<p>自RAG提出后，各大研究团队纷纷推出改进的检索增强模型。例如，DeepMind在2021年发布的RETRO模型通过接入超大规模文本数据库进行检索增强，在较小参数规模下取得了与当时超大模型相当甚至在部分基准上更优的效果，体现了检索对“以更小模型获得更强知识能力”的潜力。又如Meta在2022年推出的Atlas模型，将预训练的检索增强语言模型用于少样本学习，在开放域问答等知识密集任务上，用显著更少的参数规模取得了与超大模型相竞争的表现。这些成果表明，检索增强可以在更小模型规模下达到甚至逼近超大模型的效果，凸显了参数与检索融合的效率优势与工程价值。</p>
 </section>
-<section id="题解" class="level4">
-<h4 class="anchored" data-anchor-id="题解">题解</h4>
-<pre class="golang"><code>
-// 209.长度最小的子数组
-package main
-
-import (
-    "fmt"
-    "math"
-)
-
-func minSubArrayLen(target int, nums []int) int {
-    ans, left := math.MaxInt, 0
-    cnt := 0
-
-    for i, num := range nums {
-        cnt += num
-        for cnt &gt;= target {
-            ans = min(ans, i-left+1)
-            cnt -= nums[left]
-            left += 1
-        }
-    }
-
-    if ans &gt; len(nums) {
-        return 0
-    } else {
-        return ans
-    }
-}
-
-func main() {
-    testCases := []struct {
-        nums   []int
-        target int
-    }{
-        {[]int{2, 3, 1, 2, 4, 3}, 7},
-        {[]int{1, 4, 4}, 4},
-        {[]int{1, 1, 1, 1, 1, 1, 1, 1}, 11},
-    }
-
-    for _, testCase := range testCases {
-        fmt.Println(minSubArrayLen(testCase.target, testCase.nums))
-    }
-}
-</code></pre>
+<section id="rag框架" class="level2">
+<h2 class="anchored" data-anchor-id="rag框架">RAG框架</h2>
+<p>【RAG通用框架图，后面补充】</p>
+<p>典型RAG系统包含检索器与生成器两大核心组件。首先，输入查询会被检索模块编码为向量表示，并在外部知识库的向量索引中进行相似度搜索，检索出若干相关文本片段。随后，这些检索到的证据片段与原始查询一并提供给生成模型，模型将基于问题与证据生成最终回答。通过将外部知识融入生成过程，RAG能够让回答更贴近事实，并在工程实现上支持给出引用来源与证据片段，从而提升可解释性与可审计性。</p>
+<p>经典RAG在生成整个回答时往往使用固定的一组检索文档；也有更高级的变体如RAG-Token，可以在生成过程中对不同位置动态使用不同检索证据，从而提升信息使用的灵活性。无论哪种方式，检索结果与生成模型的融合都是关键：很多实现会将检索文本直接拼接到模型输入中，而一些研究也探索在模型内部以更结构化的方式利用检索信息，使模型在生成时能更稳定地对齐证据、减少无关发挥。实践中，检索器与生成器既可以分阶段独立优化，也可以在特定设定下进行联合训练或端到端微调，以让检索器更偏向于返回对生成最有帮助的证据、生成器也更善于引用与整合证据。</p>
 </section>
+<section id="rag的多跳多领域问题" class="level2">
+<h2 class="anchored" data-anchor-id="rag的多跳多领域问题">RAG的多跳多领域问题</h2>
+<p>在RAG中有一个非常经典的瓶颈问题：有些问题并不是在找某一段最相似的文本，而是在要求把分散在多篇文档、多个概念、甚至多个领域的线索串起来，形成综合结论。当回答需要沿着共享实体、属性或关系在不同信息片段间穿行，并在此基础上生成新的洞察时，单纯依赖向量相似度检索往往不够用。这就是RAG需要面对的多跳与多领域问题。</p>
+<p>GraphRAG（Graph Retrieval-Augmented Generation）可以被看作是为这两类问题准备的一条升级路线，它不只检索语义相近的文本块，而是把知识显式表示成图结构，例如从文本中抽取实体与关系形成知识图谱或图索引，并利用图中的关系结构来组织证据与推进推理。</p>
+<p>IBM对GraphRAG的定义很贴近工程实践：GraphRAG是一种引入图结构数据的高级RAG；不同于仅靠向量检索语义相似文本，它利用图的关系结构来检索与处理信息，尤其擅长多跳推理、关系上下文以及层级结构数据的组织与查询。</p>
 </section>
-<section id="最短且字典序最小的美丽子字符串" class="level3">
-<h3 class="anchored" data-anchor-id="最短且字典序最小的美丽子字符串"><a href="https://leetcode.cn/problems/shortest-and-lexicographically-smallest-beautiful-string/description/">2904. 最短且字典序最小的美丽子字符串</a></h3>
-<section id="题面-1" class="level4">
-<h4 class="anchored" data-anchor-id="题面-1">题面</h4>
-<p>给你一个二进制字符串 s 和一个正整数 k 。</p>
-<p>如果 s 的某个子字符串中 1 的个数恰好等于 k ，则称这个子字符串是一个 美丽子字符串 。</p>
-<p>令 len 等于 最短 美丽子字符串的长度。</p>
-<p>返回长度等于 len 且字典序 最小 的美丽子字符串。如果 s 中不含美丽子字符串，则返回一个 空 字符串。</p>
-<p>对于相同长度的两个字符串 a 和 b ，如果在 a 和 b 出现不同的第一个位置上，a 中该位置上的字符严格大于 b 中的对应字符，则认为字符串 a 字典序 大于 字符串 b 。</p>
-<p>例如，“abcd” 的字典序大于 “abcc” ，因为两个字符串出现不同的第一个位置对应第四个字符，而 d 大于 c 。</p>
-<p>示例 1：</p>
-<p>输入：s = “100011001”, k = 3</p>
-<p>输出：“11001”</p>
-<p>解释：示例中共有 7 个美丽子字符串：</p>
-<ol type="1">
-<li>子字符串 “100011001” 。</li>
-<li>子字符串 “100011001” 。</li>
-<li>子字符串 “100011001” 。</li>
-<li>子字符串 “100011001” 。</li>
-<li>子字符串 “100011001” 。</li>
-<li>子字符串 “100011001” 。</li>
-<li>子字符串 “100011001” 。</li>
-</ol>
-<p>最短美丽子字符串的长度是 5 。</p>
-<p>长度为 5 且字典序最小的美丽子字符串是子字符串 “11001” 。</p>
-<p>示例 2：</p>
-<p>输入：s = “1011”, k = 2</p>
-<p>输出：“11”</p>
-<p>解释：示例中共有 3 个美丽子字符串： 1. 子字符串 “1011” 。 2. 子字符串 “1011” 。 3. 子字符串 “1011” 。</p>
-<p>最短美丽子字符串的长度是 2 。</p>
-<p>长度为 2 且字典序最小的美丽子字符串是子字符串 “11” 。</p>
-<p>示例 3：</p>
-<p>输入：s = “000”, k = 1</p>
-<p>输出：“”</p>
-<p>解释：示例中不存在美丽子字符串。</p>
-<p>提示：</p>
-<p>1 &lt;= s.length &lt;= 100</p>
-<p>1 &lt;= k &lt;= s.length</p>
+<section id="多模态rag" class="level2">
+<h2 class="anchored" data-anchor-id="多模态rag">多模态RAG</h2>
+<p>随着多模态大模型的发展，研究者开始探索多模态检索增强生成（Multimodal RAG），即让系统不仅能检索文本，还能利用图像、音频、视频等多种数据源作为知识依据。多模态RAG的基本理念是：针对不同模态的数据，引入对应的编码器将它们映射到可比较的向量空间，从而支持跨模态检索。例如，系统可以将图像用视觉模型编码为向量、将文本用语言模型编码为向量，并建立统一或可对齐的检索索引。当用户以文本提出查询时，检索模块不仅可以返回相关文本片段，也可以返回相关图像、音频片段或视频片段作为补充信息。目前多模态检索最常见的是图文两种模态，更深入的细节往往与VLM相关，后面会进一步介绍。</p>
+<p>多模态RAG在需要综合视觉与文本信息的任务中展现出独特价值。例如在跨媒体问答场景中，用户给出一张图片并提出与之相关的问题，系统可以先对图像内容进行理解，再结合检索到的外部知识文本回答更深入的问题，例如图片中的人物背景、地点信息或历史事件脉络等。又如在视频问答或多媒体搜索中，系统可以综合检索字幕文本、视频关键帧、片段摘要乃至音频线索来获得更全面的信息。一些研究将多模态RAG用于视觉问答任务，证明结合图像内容与外部知识能够回答一些仅凭图像本身难以回答的问题。业界也出现了支持多模态检索的开源工具与框架，例如使用CLIP类模型编码图文以实现跨模态搜索。总体而言，多模态RAG拓展了传统RAG只能处理纯文本的限制，为系统提供了面向多模态世界的外部证据通道，使生成结果更丰富且更可核验。</p>
+<p>实现多模态RAG需要解决多方面的难题。首先，不同模态的数据格式各异，如何对齐多模态表示是关键，常见做法是基于大规模图文对、音频与转写文本等进行对比学习，使不同模态向量落在语义一致的空间中。其次，检索过程可能需要在不同模态间跳转，例如以图搜文或以文搜图，这要求索引能够存储多模态信息并支持任意模态查询到任意模态内容。再次，多模态数据规模大且检索计算开销高，尤其是在海量图像或视频片段上做近似最近邻检索时，对成本与延迟都是挑战。一些系统会采用先转文本再检索的策略，例如对图片做OCR或生成描述后再进入文本检索流程，以兼容现有文本检索体系，但这可能丢失关键视觉细节。更偏前沿的方法倾向于保留原始模态信息，让检索结果直接返回图像或视频内容，并由多模态生成模型端到端完成理解与生成，从而减少中间表示带来的信息损失。</p>
 </section>
-<section id="思路说明-1" class="level4">
-<h4 class="anchored" data-anchor-id="思路说明-1">思路说明</h4>
-<p>我们要做的是找到一个子字符串，子字符串中1的数量为看，如果有多个答案，返回字典序最小的那个</p>
-<p>首先根据题目，当字符串中1的数量小于k的时候，会返回空字符串，直接返回</p>
-<p>然后初始化结果ans为输入字符串s，因为最差的结果就是s，所以设置为s</p>
-<p>之后设置cnt表示窗口内1的数量，left表示窗口的左边界，用循环的index表示右边界</p>
-<p>每次移动右边界之后 - 判断窗口内1的数量是不是达到要求 - 如果达到了，开始移动左边界，直到把最左边的1排出 - 这个过程中，左边可能有很多0，排出之后会减小子字符串的长度，所以不断更新子字符串以及左边界，这是还要注意子字符串长度相同选最小字典序的情况 - 这个过程通过while循环实现</p>
-</section>
-<section id="题解-1" class="level4">
-<h4 class="anchored" data-anchor-id="题解-1">题解</h4>
-<pre class="golang"><code>
-// 2904.最短且字典序最小的美丽子字符串
-package main
-
-import (
-    "fmt"
-    "strings"
-)
-
-func shortestBeautifulSubstring(s string, k int) string {
-    if strings.Count(s, "1") &lt; k {
-        return ""
-    }
-    ans := s
-    cnt, left := 0, 0
-
-    for i, ch := range s {
-        if ch == '1' {
-            cnt += 1
-        }
-
-        for cnt &gt;= k {
-            tmp := s[left : i+1]
-            if s[left] == '1' {
-                cnt -= 1
-            }
-            left += 1
-            if len(tmp) == len(ans) {
-                if tmp &lt; ans {
-                    ans = tmp
-                }
-            }
-            if len(tmp) &lt; len(ans) {
-                ans = tmp
-            }
-        }
-    }
-
-    return ans
-}
-
-func main() {
-    testCases := []struct {
-        s string
-        k int
-    }{
-        {"100011001", 3},
-        {"1011", 2},
-        {"000", 1},
-    }
-
-    for _, testCase := range testCases {
-        fmt.Println(shortestBeautifulSubstring(testCase.s, testCase.k))
-    }
-}
-</code></pre>
-</section>
-</section>
-<section id="替换子串得到平衡字符串" class="level3">
-<h3 class="anchored" data-anchor-id="替换子串得到平衡字符串"><a href="https://leetcode.cn/problems/replace-the-substring-for-balanced-string/description/">1234. 替换子串得到平衡字符串</a></h3>
-<section id="题面-2" class="level4">
-<h4 class="anchored" data-anchor-id="题面-2">题面</h4>
-<p>有一个只含有 ‘Q’, ‘W’, ‘E’, ‘R’ 四种字符，且长度为 n 的字符串。</p>
-<p>假如在该字符串中，这四个字符都恰好出现 n/4 次，那么它就是一个「平衡字符串」。</p>
-<p>给你一个这样的字符串 s，请通过「替换一个子串」的方式，使原字符串 s 变成一个「平衡字符串」。</p>
-<p>你可以用和「待替换子串」长度相同的 任何 其他字符串来完成替换。</p>
-<p>请返回待替换子串的最小可能长度。</p>
-<p>如果原字符串自身就是一个平衡字符串，则返回 0。</p>
-<p>示例 1：</p>
-<p>输入：s = “QWER”</p>
-<p>输出：0</p>
-<p>解释：s 已经是平衡的了。</p>
-<p>示例 2：</p>
-<p>输入：s = “QQWE”</p>
-<p>输出：1</p>
-<p>解释：我们需要把一个 ‘Q’ 替换成 ‘R’，这样得到的 “RQWE” (或 “QRWE”) 是平衡的。</p>
-<p>示例 3：</p>
-<p>输入：s = “QQQW”</p>
-<p>输出：2</p>
-<p>解释：我们可以把前面的 “QQ” 替换成 “ER”。</p>
-<p>示例 4：</p>
-<p>输入：s = “QQQQ”</p>
-<p>输出：3</p>
-<p>解释：我们可以替换后 3 个 ‘Q’，使 s = “QWER”。</p>
-<p>提示：</p>
-<p>1 &lt;= s.length &lt;= 10^5</p>
-<p>s.length 是 4 的倍数</p>
-<p>s 中只含有 ‘Q’, ‘W’, ‘E’, ‘R’ 四种字符</p>
-</section>
-<section id="思路说明-2" class="level4">
-<h4 class="anchored" data-anchor-id="思路说明-2">思路说明</h4>
-<p>构建一个最小窗口，让窗口外的每种字符数量尽量接近n，这个最小窗口就是需要替换的字符串</p>
-<p>通过哈希表统计每种字符的数量</p>
-</section>
-<section id="题解-2" class="level4">
-<h4 class="anchored" data-anchor-id="题解-2">题解</h4>
-<pre class="golang"><code>
-// 1234.替换子串得到平衡字符串
-package main
-
-import "fmt"
-
-func balancedString(s string) int {
-    // 构建哈希表，统计各自的数量
-    // 构建一个最小窗口，让窗口外的每种字符数量尽量接近n，这个最小窗口就是需要替换的字符串
-    mp := make(map[byte]int, 4)
-    n := len(s) / 4
-
-    for i := 0; i &lt; len(s); i++ {
-        mp[s[i]] += 1
-    }
-
-    // 已经平衡，返回0
-    if mp['Q'] == n &amp;&amp; mp['W'] == n &amp;&amp; mp['E'] == n &amp;&amp; mp['R'] == n {
-        return 0
-    }
-
-    ans, left := len(s), 0
-
-    for i := 0; i &lt; len(s); i++ {
-        mp[s[i]] -= 1 // 放进窗口
-        for mp['Q'] &lt;= n &amp;&amp; mp['W'] &lt;= n &amp;&amp; mp['E'] &lt;= n &amp;&amp; mp['R'] &lt;= n {
-            // 满足条件，记录并收缩
-            ans = min(ans, i-left+1)
-            mp[s[left]] += 1
-            left += 1
-        }
-    }
-
-    return ans
-}
-
-func main() {
-    testCases := []string{
-        "QWER",
-        "QQWE",
-        "QQQW",
-        "QQQQ",
-    }
-
-    for _, testCase := range testCases {
-        fmt.Println(balancedString(testCase))
-    }
-}
-</code></pre>
-</section>
-</section>
-<section id="无限数组的最短子数组" class="level3">
-<h3 class="anchored" data-anchor-id="无限数组的最短子数组"><a href="https://leetcode.cn/problems/minimum-size-subarray-in-infinite-array/description/">2875. 无限数组的最短子数组</a></h3>
-<section id="题面-3" class="level4">
-<h4 class="anchored" data-anchor-id="题面-3">题面</h4>
-<p>给你一个下标从 0 开始的数组 nums 和一个整数 target 。</p>
-<p>下标从 0 开始的数组 infinite_nums 是通过无限地将 nums 的元素追加到自己之后生成的。</p>
-<p>请你从 infinite_nums 中找出满足 元素和 等于 target 的 最短 子数组，并返回该子数组的长度。如果不存在满足条件的子数组，返回 -1 。</p>
-<p>示例 1：</p>
-<p>输入：nums = [1,2,3], target = 5</p>
-<p>输出：2</p>
-<p>解释：在这个例子中 infinite_nums = [1,2,3,1,2,3,1,2,…] 。</p>
-<p>区间 [1,2] 内的子数组的元素和等于 target = 5 ，且长度 length = 2 。</p>
-<p>可以证明，当元素和等于目标值 target = 5 时，2 是子数组的最短长度。</p>
-<p>示例 2：</p>
-<p>输入：nums = [1,1,1,2,3], target = 4</p>
-<p>输出：2</p>
-<p>解释：在这个例子中 infinite_nums = [1,1,1,2,3,1,1,1,2,3,1,1,…].</p>
-<p>区间 [4,5] 内的子数组的元素和等于 target = 4 ，且长度 length = 2 。</p>
-<p>可以证明，当元素和等于目标值 target = 4 时，2 是子数组的最短长度。</p>
-<p>示例 3：</p>
-<p>输入：nums = [2,4,6,8], target = 3</p>
-<p>输出：-1</p>
-<p>解释：在这个例子中 infinite_nums = [2,4,6,8,2,4,6,8,…] 。</p>
-<p>可以证明，不存在元素和等于目标值 target = 3 的子数组。</p>
-<p>提示：</p>
-<p>1 &lt;= nums.length &lt;= 10^5</p>
-<p>1 &lt;= nums[i] &lt;= 10^5</p>
-<p>1 &lt;= target &lt;= 10^9</p>
-</section>
-<section id="思路说明-3" class="level4">
-<h4 class="anchored" data-anchor-id="思路说明-3">思路说明</h4>
-<p>使用的nuns的数量是不不定的，可能是1-n个，但是可以观察到，如果使用n个，中间n-2个是完整的，左边nums和右边nums，分别取右边和左边连续的数据</p>
-<p>设 nums的数据和事total</p>
-<p>target = total*m + res</p>
-<p>res = nums*2[i:j]</p>
-<p>我们要做的就是找到res的长度</p>
-<p>res = target &amp; total</p>
-<p>其他的按照固定步骤做即可</p>
-</section>
-<section id="题解-3" class="level4">
-<h4 class="anchored" data-anchor-id="题解-3">题解</h4>
-<pre class="golang"><code>
-// 2875.无限数组的最短子数组
-package main
-
-import (
-    "fmt"
-    "math"
-)
-
-func minSizeSubarray(nums []int, target int) int {
-    total := 0
-    for _, x := range nums {
-        total += x
-    }
-
-    ans := math.MaxInt
-    left, sum, n := 0, 0, len(nums)
-    for right := 0; right &lt; n*2; right++ {
-        sum += nums[right%n]
-        for sum &gt; target%total {
-            sum -= nums[left%n]
-            left++
-        }
-        if sum == target%total {
-            ans = min(ans, right-left+1)
-        }
-    }
-    if ans == math.MaxInt {
-        return -1
-    }
-    return ans + target/total*n
-}
-
-func main() {
-    testCases := []struct {
-        nums   []int
-        target int
-    }{
-        {[]int{1, 2, 3}, 5},
-        {[]int{1, 1, 1, 2, 3}, 4},
-        {[]int{2, 4, 6, 8}, 3},
-    }
-
-    for _, testCase := range testCases {
-        fmt.Println(minSizeSubarray(testCase.nums, testCase.target))
-    }
-}
-</code></pre>
-</section>
-</section>
-<section id="最小覆盖子串" class="level3">
-<h3 class="anchored" data-anchor-id="最小覆盖子串"><a href="https://leetcode.cn/problems/minimum-window-substring/description/">76. 最小覆盖子串</a></h3>
-<section id="题面-4" class="level4">
-<h4 class="anchored" data-anchor-id="题面-4">题面</h4>
-<p>给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 “” 。</p>
-<p>注意：</p>
-<p>对于 t 中重复字符，我们寻找的子字符串中该字符数量必须不少于 t 中该字符数量。</p>
-<p>如果 s 中存在这样的子串，我们保证它是唯一的答案。</p>
-<p>示例 1：</p>
-<p>输入：s = “ADOBECODEBANC”, t = “ABC”</p>
-<p>输出：“BANC”</p>
-<p>解释：最小覆盖子串 “BANC” 包含来自字符串 t 的 ‘A’、‘B’ 和 ‘C’。</p>
-<p>示例 2：</p>
-<p>输入：s = “a”, t = “a”</p>
-<p>输出：“a”</p>
-<p>解释：整个字符串 s 是最小覆盖子串。</p>
-<p>示例 3:</p>
-<p>输入: s = “a”, t = “aa”</p>
-<p>输出: “”</p>
-<p>解释: t 中两个字符 ‘a’ 均应包含在 s 的子串中，</p>
-<p>因此没有符合条件的子字符串，返回空字符串。</p>
-<p>提示：</p>
-<p>m == s.length</p>
-<p>n == t.length</p>
-<p>1 &lt;= m, n &lt;= 10^5</p>
-<p>s 和 t 由英文字母组成</p>
-</section>
-<section id="思路说明-4" class="level4">
-<h4 class="anchored" data-anchor-id="思路说明-4">思路说明</h4>
-<p>先说一下题目的要求，找到s的子串，子串包含t中所有字符（种类和数量）</p>
-<p>首先，我们要知道t中有哪些字符</p>
-<p>然后，在s中找到子串，子串中包含t中所有种类字符，这个子串尽可能小</p>
-<p>所以使用哈希表统计t中所有字符种类和数量</p>
-<p>然后在s中找子串，如果子串中字符在哈希表中，就减去，如果哈希表全部变成0，表示子串中已经包含t中全部字符，然后缩小窗口，直到不满足要求</p>
-</section>
-<section id="题解-4" class="level4">
-<h4 class="anchored" data-anchor-id="题解-4">题解</h4>
-<pre class="golang"><code>
-// 76.最小覆盖子串
-package main
-
-import (
-    "fmt"
-    "math"
-)
-
-func minWindow(s string, t string) string {
-    // 先统计一下t中各个字符的数量,统计一下字符的种类
-    mp := make(map[byte]int)
-
-    for i := 0; i &lt; len(t); i++ {
-        mp[t[i]] += 1
-    }
-    left := 0
-    cnt := len(mp) // 字符的种类
-    ans := ""
-    tmp := math.MaxInt
-
-    for i := 0; i &lt; len(s); i++ {
-        if _, ok := mp[s[i]]; ok { // 字符有效
-            mp[s[i]] -= 1
-            if mp[s[i]] == 0 { // 符合要求
-                cnt -= 1
-            }
-        }
-
-        for cnt == 0 { // 子串中已经满足要求，缩小子串范围
-            if tmp &gt; i-left+1 {
-                tmp = i - left + 1
-                ans = s[left : i+1]
-            }
-            if _, ok := mp[s[left]]; ok { // 字符有效
-                mp[s[left]] += 1
-                if mp[s[left]] == 1 { // 符合要求
-                    cnt += 1
-                }
-            }
-            left += 1
-        }
-    }
-
-    return ans
-}
-
-func main() {
-    testCases := []struct {
-        s string
-        t string
-    }{
-        {"ADOBECODEBANC", "ABC"},
-        {"a", "a"},
-        {"a", "aa"},
-    }
-
-    for _, testCase := range testCases {
-        fmt.Println(minWindow(testCase.s, testCase.t))
-    }
-}
-</code></pre>
-</section>
-</section>
-<section id="最小区间" class="level3">
-<h3 class="anchored" data-anchor-id="最小区间"><a href="https://leetcode.cn/problems/smallest-range-covering-elements-from-k-lists/description/">632. 最小区间</a></h3>
-<section id="题面-5" class="level4">
-<h4 class="anchored" data-anchor-id="题面-5">题面</h4>
-<p>你有 k 个 非递减排列 的整数列表。找到一个 最小 区间，使得 k 个列表中的每个列表至少有一个数包含在其中。</p>
-<p>我们定义如果 b-a &lt; d-c 或者在 b-a == d-c 时 a &lt; c，则区间 [a,b] 比 [c,d] 小。</p>
-<p>示例 1：</p>
-<p>输入：nums = [[4,10,15,24,26], [0,9,12,20], [5,18,22,30]]</p>
-<p>输出：[20,24]</p>
-<p>解释：</p>
-<p>列表 1：[4, 10, 15, 24, 26]，24 在区间 [20,24] 中。</p>
-<p>列表 2：[0, 9, 12, 20]，20 在区间 [20,24] 中。</p>
-<p>列表 3：[5, 18, 22, 30]，22 在区间 [20,24] 中。</p>
-<p>示例 2：</p>
-<p>输入：nums = [[1,2,3],[1,2,3],[1,2,3]]</p>
-<p>输出：[1,1]</p>
-<p>提示：</p>
-<p>nums.length == k</p>
-<p>1 &lt;= k &lt;= 3500</p>
-<p>1 &lt;= nums[i].length &lt;= 50</p>
-<p>-105 &lt;= nums[i][j] &lt;= 10^5</p>
-<p>nums[i] 按非递减顺序排列</p>
-</section>
-<section id="思路说明-5" class="level4">
-<h4 class="anchored" data-anchor-id="思路说明-5">思路说明</h4>
-<p>构建pair，包含数字和位置，然后排序，构建一个滑动窗口，窗口包含所有index并且窗口最小</p>
-</section>
-<section id="题解-5" class="level4">
-<h4 class="anchored" data-anchor-id="题解-5">题解</h4>
-<pre class="golang"><code>
-// 632.最小区间
-package main
-
-import (
-    "fmt"
-    "slices"
-)
-
-func smallestRange(nums [][]int) []int {
-    type pair struct{ x, i int } // 数字和他们所在的位置
-    pairs := []pair{}
-
-    for i, arr := range nums {
-        for _, num := range arr {
-            pairs = append(pairs, pair{num, i})
-        }
-    }
-
-    slices.SortFunc(pairs, func(a, b pair) int { return a.x - b.x })
-
-    ansL, ansR := pairs[0].x, pairs[len(pairs)-1].x
-    mp := make(map[int]int)
-    left := 0
-
-    for _, p := range pairs {
-        r, i := p.x, p.i
-        mp[i] += 1
-
-        for len(mp) == len(nums) { // 每个列表都至少包含一个数
-            l, i := pairs[left].x, pairs[left].i
-            if r-l &lt; ansR-ansL {
-                ansL, ansR = l, r
-            }
-            mp[i] -= 1
-            if mp[i] == 0 {
-                delete(mp, i)
-            }
-            left += 1
-        }
-    }
-    return []int{ansL, ansR}
-}
-
-func main() {
-    testCases := [][][]int{
-        [][]int{
-            []int{4, 10, 15, 24, 26},
-            []int{0, 9, 12, 20},
-            []int{5, 18, 22, 30},
-        },
-        [][]int{
-            []int{1, 2, 3},
-            []int{1, 2, 3},
-            []int{1, 2, 3},
-        },
-    }
-
-    for _, testCase := range testCases {
-        fmt.Println(smallestRange(testCase))
-    }
-}
-</code></pre>
+<section id="rag的应用案例" class="level2">
+<h2 class="anchored" data-anchor-id="rag的应用案例">RAG的应用案例</h2>
+<p>个人与企业内部知识库 这类应用致力于解决私有数据的检索与问答难题，它将公司内部文档、手册或个人笔记进行结构化处理与向量化索引，当用户提问时系统能够定位到文件中的相关段落并由大模型基于证据生成答案，从而在很多场景中替代传统关键词搜索并显著提升信息获取效率。</p>
+<p>学术论文深度阅读与溯源 针对科研人员需要处理海量文献且对准确性要求极高的场景，这类应用能够跨多篇论文检索证据并生成综述或回答，其核心特点是强调证据可追溯与引用对齐，尽可能让每一个关键结论都能回到原文依据，从而最大化降低幻觉带来的风险。</p>
+<p>超大规模代码库智能助手 为了解决传统大模型难以一次性读完完整项目代码的问题，这类应用会对代码仓库的结构、符号与依赖关系进行索引，让开发者能够用自然语言查询项目架构或具体函数实现细节，并在证据范围内给出解释与修改建议，从而更高效地理解与维护复杂的遗留代码。</p>
+<p><span style="color: inherit; background-color: rgba(183,237,177,0.8)">未完待续</span></p>
 
 
-</section>
 </section>
 </section>
 
