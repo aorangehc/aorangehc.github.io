@@ -19,6 +19,11 @@
 ## 快速开始
 
 ### 本地预览
+
+quarto render
+quarto preview
+
+
 ```sh
 ./scripts/preview.sh   # 启动本地服务器（热更新）
 ```
