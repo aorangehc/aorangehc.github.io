@@ -9,6 +9,7 @@
   {
     "listing": "/content/learning-notes/microservices/index.html",
     "items": [
+      "/content/learning-notes/microservices/entries/go-kit.html",
       "/content/learning-notes/microservices/entries/微服务框架(golang).html"
     ]
   },
@@ -39,6 +40,7 @@
       "/content/blogs/entries/leetcode-灵神跟练-滑动窗口与双指针-不定长滑动窗口-越长越合法+求最短+最小.html",
       "/content/blogs/entries/leetcode-灵神跟练-滑动窗口与双指针-定长滑动窗口-基础.html",
       "/content/blogs/entries/Mac安装Jekyll.html",
+      "/content/blogs/entries/pc的快捷指令.html",
       "/content/blogs/entries/Windows安装Jekyll.html",
       "/content/blogs/entries/基于BM25检索算法构建RAG智能文档问答助手--学习和实践.html",
       "/content/blogs/entries/Deepseek-R1-32B模型部署.html",
@@ -50,6 +52,7 @@
       "/content/projects/entries/Daily-Log-Maker.html",
       "/content/projects/entries/Gesture-Fireworks.html",
       "/content/learning-notes/golang/entries/go的版本管理工具-g的安装和使用.html",
+      "/content/learning-notes/microservices/entries/go-kit.html",
       "/content/learning-notes/microservices/entries/微服务框架(golang).html",
       "/content/learning-notes/golang/entries/golang学习记录（13）.html",
       "/content/learning-notes/golang/entries/golang学习记录（12）.html",
@@ -74,6 +77,7 @@
       "/content/blogs/entries/leetcode-灵神跟练-滑动窗口与双指针-不定长滑动窗口-越长越合法+求最短+最小.html",
       "/content/blogs/entries/leetcode-灵神跟练-滑动窗口与双指针-定长滑动窗口-基础.html",
       "/content/blogs/entries/Mac安装Jekyll.html",
+      "/content/blogs/entries/pc的快捷指令.html",
       "/content/blogs/entries/Windows安装Jekyll.html",
       "/content/blogs/entries/基于BM25检索算法构建RAG智能文档问答助手--学习和实践.html",
       "/content/blogs/entries/Deepseek-R1-32B模型部署.html",
@@ -88,6 +92,7 @@
     "listing": "/content/learning-notes/index.html",
     "items": [
       "/content/learning-notes/golang/entries/go的版本管理工具-g的安装和使用.html",
+      "/content/learning-notes/microservices/entries/go-kit.html",
       "/content/learning-notes/microservices/entries/微服务框架(golang).html",
       "/content/learning-notes/golang/entries/golang学习记录（13）.html",
       "/content/learning-notes/golang/entries/golang学习记录（12）.html",

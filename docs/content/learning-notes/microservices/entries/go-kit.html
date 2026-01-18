@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-01-16">
 
-<title>微服务学习笔记</title>
+<title>Go-Kit 微服务框架</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,33 +21,66 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<script src="../../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,67 +107,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -311,25 +287,25 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../pages/index.html"> 
+    <a class="nav-link" href="../../../../pages/index.html"> 
 <span class="menu-text"><span class="lang-en">About Me</span><span class="lang-zh">关于我</span></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../pages/home.html"> 
+    <a class="nav-link" href="../../../../pages/home.html"> 
 <span class="menu-text"><span class="lang-en">Home</span><span class="lang-zh">主页</span></span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../content/blogs/index.html"> 
+    <a class="nav-link" href="../../../../content/blogs/index.html"> 
 <span class="menu-text"><span class="lang-en">Blogs</span><span class="lang-zh">博客</span></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../content/projects/index.html"> 
+    <a class="nav-link" href="../../../../content/projects/index.html"> 
 <span class="menu-text"><span class="lang-en">Projects</span><span class="lang-zh">项目</span></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../content/papers/index.html"> 
+    <a class="nav-link" href="../../../../content/papers/index.html"> 
 <span class="menu-text"><span class="lang-en">Papers</span><span class="lang-zh">论文</span></span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -338,15 +314,15 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-span-classlang-enlearning-notesspanspan-classlang-zh学习笔记span">    
         <li>
-    <a class="dropdown-item" href="../../../content/learning-notes/index.html">
+    <a class="dropdown-item" href="../../../../content/learning-notes/index.html">
  <span class="dropdown-text">Overview</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../content/learning-notes/golang/index.html">
+    <a class="dropdown-item" href="../../../../content/learning-notes/golang/index.html">
  <span class="dropdown-text">golang基础</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../content/learning-notes/microservices/index.html">
+    <a class="dropdown-item" href="../../../../content/learning-notes/microservices/index.html">
  <span class="dropdown-text">微服务(golang)</span></a>
   </li>  
     </ul>
@@ -366,22 +342,51 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="JUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx">微服务 <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Z28ta2l0">go-kit <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z29sYW5n">golang <span class="quarto-category-count">(2)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#简介" id="toc-简介" class="nav-link active" data-scroll-target="#简介">简介</a></li>
+  <li><a href="#核心结构-三层模型" id="toc-核心结构-三层模型" class="nav-link" data-scroll-target="#核心结构-三层模型">核心结构-三层模型</a>
+  <ul class="collapse">
+  <li><a href="#transport" id="toc-transport" class="nav-link" data-scroll-target="#transport">Transport</a></li>
+  <li><a href="#endpoint" id="toc-endpoint" class="nav-link" data-scroll-target="#endpoint">Endpoint</a></li>
+  <li><a href="#service" id="toc-service" class="nav-link" data-scroll-target="#service">Service</a></li>
+  </ul></li>
+  <li><a href="#demo-实现一个简单加法器" id="toc-demo-实现一个简单加法器" class="nav-link" data-scroll-target="#demo-实现一个简单加法器">Demo-实现一个简单加法器</a>
+  <ul class="collapse">
+  <li><a href="#http" id="toc-http" class="nav-link" data-scroll-target="#http">HTTP</a></li>
+  <li><a href="#rpc" id="toc-rpc" class="nav-link" data-scroll-target="#rpc">RPC</a></li>
+  </ul></li>
+  <li><a href="#参考资料" id="toc-参考资料" class="nav-link" data-scroll-target="#参考资料">参考资料</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">微服务学习笔记</h1>
-</div>
+<h1 class="title">Go-Kit 微服务框架</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">golang</div>
+    <div class="quarto-category">微服务</div>
+    <div class="quarto-category">go-kit</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 16, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -391,77 +396,118 @@ window.Quarto = {
 </header>
 
 
-<p>记录一下微服务学习过程中的笔记.主要语言还是golang.</p>
-<p>相关代码仓库github: <a href="https://github.com/aorangehc/GoFramwork">aorangehc/GoFramwork</a></p>
+<p><img src="../assets/images/go-kit/image-5.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<section id="简介" class="level2">
+<h2 class="anchored" data-anchor-id="简介">简介</h2>
+<p>go-kit严格意义上并不算是一个完整的框架，更像是一个工具箱或者库的集合，官方描述它为一组包和最佳实践的集合。</p>
+<p><img src="../assets/images/go-kit/image-6.png" alt="go" style="width: 80%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p>它提供了构建微服务所有的标准组件，并且采用整洁架构和洋葱结构。它不追求开发的速度，而是采用强制三层架构，严格分成业务逻辑层（Service）、作为适配器的端点层（Endpoint）和进行协议处理的传输层（Transport），将业务逻辑和网络通信完全解耦。</p>
+</section>
+<section id="核心结构-三层模型" class="level2">
+<h2 class="anchored" data-anchor-id="核心结构-三层模型">核心结构-三层模型</h2>
+<p><img src="../assets/images/go-kit/image-4.png" alt="go" style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<section id="transport" class="level3">
+<h3 class="anchored" data-anchor-id="transport">Transport</h3>
+<p>这是最外层的结构，负责处理具体的网络协议，通常是http和rpc，主要功能就是进行编解码，将外部传来的请求，比如Json解析成Endpoint能够读懂的golang结构体，然后调用Endpoint层，再将从Endpoint层获取的结果进行编码，传输发送给客户端。</p>
+</section>
+<section id="endpoint" class="level3">
+<h3 class="anchored" data-anchor-id="endpoint">Endpoint</h3>
+<p>这是连接业务和网络的中间一层，它负责将Service层中的各种方法强制封装成一个统一的标准函数签名，然后交给Transport层调用</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Endpoint定义</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> Endpoint <span class="kw">func</span><span class="op">(</span>ctx context<span class="op">.</span>Context<span class="op">,</span> request <span class="kw">interface</span><span class="op">{})</span> <span class="op">(</span>response <span class="kw">interface</span><span class="op">{},</span> err <span class="dt">error</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>在这一层，所有的调用都会被统一抽象成同一种形式，通常在这一层进行中间件的挂载。实现一套中间件能应用于所有的接口。</p>
+</section>
+<section id="service" class="level3">
+<h3 class="anchored" data-anchor-id="service">Service</h3>
+<p>业务逻辑层Service只考虑具体业务逻辑的实现，定义并实现接口即可，不用考虑协议和网络服务。</p>
+</section>
+</section>
+<section id="demo-实现一个简单加法器" class="level2">
+<h2 class="anchored" data-anchor-id="demo-实现一个简单加法器">Demo-实现一个简单加法器</h2>
+<p>Demo的GitHub地址：<a href="https://github.com/aorangehc/GoFramwork/tree/main/GoKitAddSrv">GoKitAddSrv</a>，简单实现int类型和string类型的加法器</p>
+<p><span style="color: rgb(216,57,49); background-color: rgba(255,246,122,0.8)">写得比较简单，能跑就行，一些bug和规范问题见谅！</span></p>
+<section id="http" class="level3">
+<h3 class="anchored" data-anchor-id="http">HTTP</h3>
+<section id="说明" class="level4">
+<h4 class="anchored" data-anchor-id="说明">说明</h4>
+<ol type="1">
+<li><p>在Service层定义接口，包含两个方法</p>
+<ol type="1">
+<li><p>Add实现int类型的的加法</p></li>
+<li><p>Concat实现string类型的加法</p></li>
+<li><p>基本流程就是定义接口，实现接口</p></li>
+</ol></li>
+<li><p>在Endpoint层，定义请求和响应数据的结构体，将Service层的方法进行封装</p>
+<ol type="1">
+<li>接本流程就是定义结构体，封装方法</li>
+</ol></li>
+<li><p>在Transport层，进行具体协议处理和响应</p>
+<ol type="1">
+<li><p>实现编解码</p></li>
+<li><p>实现Handler</p></li>
+<li><p>定义路由和端口</p></li>
+<li><p>……</p></li>
+</ol></li>
+</ol>
+</section>
+<section id="测试" class="level4">
+<h4 class="anchored" data-anchor-id="测试">测试</h4>
+<p>使用Postman进行测试</p>
+<p><img src="../assets/images/go-kit/image-3.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/go-kit/image-2.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
+</section>
+<section id="rpc" class="level3">
+<h3 class="anchored" data-anchor-id="rpc">RPC</h3>
+<p>这里使用gRpc</p>
+<section id="说明-1" class="level4">
+<h4 class="anchored" data-anchor-id="说明-1">说明</h4>
+<ol type="1">
+<li><p>实现proto文件</p>
+<ol type="1">
+<li><p>定义proto文件夹</p></li>
+<li><p>在文件夹中编写proto文件，定义service和message</p></li>
+<li><p>执行protoc指令，生成golang文件</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>protoc <span class="op">-</span>I<span class="op">=</span>proto <span class="op">--</span>go_out<span class="op">=</span>proto <span class="op">--</span>go_opt<span class="op">=</span>paths<span class="op">=</span>source_relative <span class="op">--</span><span class="cf">go</span><span class="op">-</span>grpc_out<span class="op">=</span>proto <span class="op">--</span><span class="cf">go</span><span class="op">-</span>grpc_opt<span class="op">=</span>paths<span class="op">=</span>source_relative proto<span class="op">/</span>addsrv<span class="op">.</span>proto</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ol></li>
+<li><p>在Service层定义接口，包含两个方法</p>
+<ol type="1">
+<li><p>Add实现int类型的的加法</p></li>
+<li><p>Concat实现string类型的加法</p></li>
+<li><p>基本流程就是定义接口，实现接口</p></li>
+</ol></li>
+<li><p>在Endpoint层，定义请求和响应数据的结构体，将Service层的方法进行封装</p>
+<ol type="1">
+<li>接本流程就是定义结构体，封装方法</li>
+</ol></li>
+<li><p>在Transport层，进行具体协议处理和响应</p>
+<ol type="1">
+<li><p>实现rpc编解码</p></li>
+<li><p>实现Handler</p></li>
+<li><p>实现protobuf接口</p></li>
+<li><p>……</p></li>
+</ol></li>
+</ol>
+</section>
+<section id="测试-1" class="level4">
+<h4 class="anchored" data-anchor-id="测试-1">测试</h4>
+<p>使用Postman进行测试</p>
+<p><img src="../assets/images/go-kit/image.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/go-kit/image-1.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
+</section>
+</section>
+<section id="参考资料" class="level2">
+<h2 class="anchored" data-anchor-id="参考资料">参考资料</h2>
+<p><a href="https://github.com/go-kit/kit/tree/master?tab=readme-ov-file">Go-kit</a></p>
+<p><a href="https://gemini.google.com/">Gemini老师</a></p>
+<p><a href="https://www.liwenzhou.com/posts/Go/go-kit-tutorial-01/">Go kit教程01——基础示例</a></p>
+<p><a href="https://www.liwenzhou.com/posts/Go/go-kit-tutorial-02/">Go kit教程02——gRPC</a></p>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Z29sYW5nJTJDJUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUExJTJDZ28ta2l0" data-listing-date-sort="1737033306000" data-listing-file-modified-sort="1768739340402" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="220">
-<div class="thumbnail"><a href="../../../content/learning-notes/microservices/entries/go-kit.html" class="no-external">
-
-<p class="card-img-top"><img src="assets/images/go-kit/image-5.png" alt="go" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../../content/learning-notes/microservices/entries/go-kit.html" class="no-external">Go-Kit 微服务框架</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z29sYW5n'); return false;">golang</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx'); return false;">微服务</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z28ta2l0'); return false;">go-kit</div>
-
-</div>
-<div class="delink listing-description"><a href="../../../content/learning-notes/microservices/entries/go-kit.html" class="no-external">
-go-kit严格意义上并不算是一个完整的框架，更像是一个工具箱或者库的集合，官方描述它为一组包和最佳实践的集合。
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../../content/learning-notes/microservices/entries/go-kit.html" class="no-external">
-<div class="listing-date">
-Jan 16, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Z29sYW5nJTJDJUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx" data-listing-date-sort="1737033306000" data-listing-file-modified-sort="1768738795914" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="43">
-<div class="thumbnail"><a href="../../../content/learning-notes/microservices/entries/微服务框架(golang).html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" style="height: 140px;">&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../../content/learning-notes/microservices/entries/微服务框架(golang).html" class="no-external">微服务框架(golang)</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z29sYW5n'); return false;">golang</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx'); return false;">微服务</div>
-
-</div>
-<div class="delink listing-description"><a href="../../../content/learning-notes/microservices/entries/微服务框架(golang).html" class="no-external">
-框架，英文名称framework，可以看作一种脚手架或者是一种标准化模版
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../../content/learning-notes/microservices/entries/微服务框架(golang).html" class="no-external">
-<div class="listing-date">
-Jan 16, 2025
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <button id="lang-toggle" type="button" aria-label="Toggle language"></button>
 <script>
   (() => {
