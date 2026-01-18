@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-11-16">
 
-<title>Gesture-Fireworks</title>
+<title>微服务学习笔记</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -66,6 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-listing/list.min.js"></script>
+<script src="../../../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -107,7 +73,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../../styles.css">
 </head>
@@ -342,57 +366,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#用手点燃烟花gesture-fireworks" id="toc-用手点燃烟花gesture-fireworks" class="nav-link active" data-scroll-target="#用手点燃烟花gesture-fireworks">「用手点燃烟花」——Gesture Fireworks ✨</a>
-  <ul class="collapse">
-  <li><a href="#一这个小项目想解决什么" id="toc-一这个小项目想解决什么" class="nav-link" data-scroll-target="#一这个小项目想解决什么">一、这个小项目想解决什么？</a></li>
-  <li><a href="#二项目功能一览它到底能干嘛" id="toc-二项目功能一览它到底能干嘛" class="nav-link" data-scroll-target="#二项目功能一览它到底能干嘛">二、项目功能一览：它到底能干嘛？</a></li>
-  <li><a href="#三手势和烟花的绑定关系" id="toc-三手势和烟花的绑定关系" class="nav-link" data-scroll-target="#三手势和烟花的绑定关系">三、手势和烟花的「绑定关系」</a></li>
-  <li><a href="#四手势识别怎么尽量识别得准一点" id="toc-四手势识别怎么尽量识别得准一点" class="nav-link" data-scroll-target="#四手势识别怎么尽量识别得准一点">四、手势识别：怎么尽量识别得「准一点」？</a>
-  <ul class="collapse">
-  <li><a href="#多帧平滑-稳定帧判定" id="toc-多帧平滑-稳定帧判定" class="nav-link" data-scroll-target="#多帧平滑-稳定帧判定">1. 多帧平滑 + 稳定帧判定</a></li>
-  <li><a href="#动态置信度阈值" id="toc-动态置信度阈值" class="nav-link" data-scroll-target="#动态置信度阈值">2. 动态置信度阈值</a></li>
-  <li><a href="#冷却机制-上升沿触发" id="toc-冷却机制-上升沿触发" class="nav-link" data-scroll-target="#冷却机制-上升沿触发">3. 冷却机制 + 上升沿触发</a></li>
-  </ul></li>
-  <li><a href="#五渲染层canvas-粒子系统的设计思路" id="toc-五渲染层canvas-粒子系统的设计思路" class="nav-link" data-scroll-target="#五渲染层canvas-粒子系统的设计思路">五、渲染层：Canvas 粒子系统的设计思路</a></li>
-  <li><a href="#六项目结构-技术栈简述" id="toc-六项目结构-技术栈简述" class="nav-link" data-scroll-target="#六项目结构-技术栈简述">六、项目结构 &amp; 技术栈简述</a></li>
-  <li><a href="#七如何本地跑起来" id="toc-七如何本地跑起来" class="nav-link" data-scroll-target="#七如何本地跑起来">七、如何本地跑起来？</a>
-  <ul class="collapse">
-  <li><a href="#环境准备" id="toc-环境准备" class="nav-link" data-scroll-target="#环境准备">1. 环境准备</a></li>
-  <li><a href="#启动步骤示例" id="toc-启动步骤示例" class="nav-link" data-scroll-target="#启动步骤示例">2. 启动步骤（示例）</a></li>
-  </ul></li>
-  <li><a href="#浏览器会弹出摄像头授权请求点击允许即可开始体验" id="toc-浏览器会弹出摄像头授权请求点击允许即可开始体验" class="nav-link" data-scroll-target="#浏览器会弹出摄像头授权请求点击允许即可开始体验">浏览器会弹出摄像头授权请求，点击「允许」即可开始体验。</a></li>
-  <li><a href="#八实际体验怎么玩得更爽" id="toc-八实际体验怎么玩得更爽" class="nav-link" data-scroll-target="#八实际体验怎么玩得更爽">八、实际体验：怎么玩得更爽？</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+        
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx">微服务 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z29sYW5n">golang <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Gesture-Fireworks</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">selfTools</div>
-  </div>
-  </div>
+<h1 class="title">微服务学习笔记</h1>
+</div>
 
 
 
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">November 16, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -402,234 +391,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="用手点燃烟花gesture-fireworks" class="level1">
-<h1>「用手点燃烟花」——Gesture Fireworks ✨</h1>
-<blockquote class="blockquote">
-<p>仓库地址：Gesture Fireworks（基于 MediaPipe 的手势烟花互动小工具）(<a href="https://github.com/aorangehc/Gesture-fireworks?tab=readme-ov-file">GitHub</a>)</p>
-</blockquote>
-<hr>
-<section id="一这个小项目想解决什么" class="level2">
-<h2 class="anchored" data-anchor-id="一这个小项目想解决什么">一、这个小项目想解决什么？</h2>
-<p>每年跨年、春节、烟花节，我们总会刷到各种烟花视频，但要么太吵，要么不环保，要么……钱包受不了 😅</p>
-<p>于是我做了一个轻量又好玩的实验项目：<strong>Gesture Fireworks（手势烟花）</strong>。 它的核心目标是——<strong>让你只用一台带摄像头的电脑 + 浏览器，就能用手势在空中「放烟花」。</strong></p>
-<p>你对着摄像头比一个 ✊、✌️ 或比心 ❤️，画面中就会在你的手边绽放对应的烟花效果。 不需要安装客户端，不需要复杂硬件，<strong>打开网页、授权摄像头，就能玩。</strong></p>
-<hr>
-</section>
-<section id="二项目功能一览它到底能干嘛" class="level2">
-<h2 class="anchored" data-anchor-id="二项目功能一览它到底能干嘛">二、项目功能一览：它到底能干嘛？</h2>
-<p>在目前的版本中，Gesture Fireworks 实现了这几类能力：</p>
-<ul>
-<li><p><strong>AI 手势识别</strong>：基于 MediaPipe 的手势识别方案，支持多种不同手势</p></li>
-<li><p><strong>绚丽烟花特效</strong>：精心设计了多种烟花，包括：</p>
-<ul>
-<li>爆炸烟花（FireworkBurst）</li>
-<li>圆环烟花（FireworkCircle）</li>
-<li>心形烟花（FireworkHeart）</li>
-<li>星形烟花（FireworkStar）</li>
-<li>螺旋烟花（FireworkSpiral）</li>
-<li>伞形烟花（FireworkUmbrella）</li>
-<li>等等</li>
-</ul></li>
-<li><p><strong>多手同时触发</strong>：双手可以同时做不同手势，各自单独触发烟花，带有独立冷却机制</p></li>
-<li><p><strong>高性能渲染</strong>：使用优化过的 Canvas 2D 粒子系统，可以同时渲染数千粒子而保持顺畅</p></li>
-<li><p><strong>智能识别算法</strong>：多帧平滑、稳定帧判定、动态阈值、冷却机制，尽量减少误判抖动</p></li>
-<li><p><strong>响应式页面</strong>：同时兼容桌面端 &amp; 移动端</p></li>
-</ul>
-<hr>
-</section>
-<section id="三手势和烟花的绑定关系" class="level2">
-<h2 class="anchored" data-anchor-id="三手势和烟花的绑定关系">三、手势和烟花的「绑定关系」</h2>
-<p>为了让体验更「直觉」，我为常见手势设计了不同的烟花风格：</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 15%">
-<col style="width: 17%">
-<col style="width: 31%">
-<col style="width: 35%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>手势</th>
-<th>识别名</th>
-<th>对应烟花</th>
-<th>视觉风格</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>✊ 拳头</td>
-<td>FIST</td>
-<td>FireworkBurst</td>
-<td>金黄色多层圆形爆炸，冲击感强</td>
-</tr>
-<tr class="even">
-<td>👌 OK 手势</td>
-<td>OK</td>
-<td>FireworkCircle</td>
-<td>红橙系双环高密度爆裂</td>
-</tr>
-<tr class="odd">
-<td>❤️ 比心</td>
-<td>HEART</td>
-<td>FireworkHeart</td>
-<td>粉色系心形烟花，氛围感拉满</td>
-</tr>
-<tr class="even">
-<td>👍 竖拇指</td>
-<td>THUMBS_UP</td>
-<td>FireworkStar</td>
-<td>金白色五角星爆炸，闪烁明显</td>
-</tr>
-<tr class="odd">
-<td>✌️ 剪刀手</td>
-<td>PEACE</td>
-<td>FireworkSpiral</td>
-<td>紫色螺旋扩散，有旋转轨迹</td>
-</tr>
-<tr class="even">
-<td>👉 指向</td>
-<td>POINTING</td>
-<td>FireworkUmbrella</td>
-<td>蓝色伞形烟花，拖尾柔和</td>
-</tr>
-<tr class="odd">
-<td>✋ 张开手掌</td>
-<td>OPEN_PALM</td>
-<td>FireworkA</td>
-<td>随机色环形爆裂 + 拖尾，基础通用款</td>
-</tr>
-</tbody>
-</table>
-<p>技术上，在入口逻辑里会根据识别到的手势类型，<strong>映射到不同的触发器函数，并传入不同的参数</strong>（粒子数量、配色、持续时间等），让每种手势都有明显区别的手感和视觉反馈。</p>
-<hr>
-</section>
-<section id="四手势识别怎么尽量识别得准一点" class="level2">
-<h2 class="anchored" data-anchor-id="四手势识别怎么尽量识别得准一点">四、手势识别：怎么尽量识别得「准一点」？</h2>
-<p>单纯做一个「能识别」的 Demo 很简单，但要做到「好玩、不烦人」，就必须控制误识别率和抖动。为此我做了几层处理逻辑：</p>
-<section id="多帧平滑-稳定帧判定" class="level3">
-<h3 class="anchored" data-anchor-id="多帧平滑-稳定帧判定">1. 多帧平滑 + 稳定帧判定</h3>
-<ul>
-<li>使用固定长度的历史帧（例如 <code>smoothingFrames = 10</code>）做平滑</li>
-<li>只有连续若干帧（例如 <code>stableFrames = 6</code>）都稳定识别为同一手势时，才视为「真正识别到」</li>
-</ul>
-<p>这样可以过滤掉短暂的抖动或过渡帧，让触发更可控。</p>
-</section>
-<section id="动态置信度阈值" class="level3">
-<h3 class="anchored" data-anchor-id="动态置信度阈值">2. 动态置信度阈值</h3>
-<p>不同手势本身的易混淆程度不一样，所以采用了<strong>区分度更高的阈值设计</strong>：</p>
-<ul>
-<li>对于容易混的手势（拳头、OK、点赞、剪刀手、指向等），阈值设为 <code>0.85</code></li>
-<li>对于张开手掌（OPEN_PALM），阈值略低一点 <code>0.8</code></li>
-</ul>
-<p>同时，还会要求<strong>第一名和第二名手势的置信度差值 ≥ 0.12</strong>，避免「半斤八两」的两种手势乱跳。</p>
-</section>
-<section id="冷却机制-上升沿触发" class="level3">
-<h3 class="anchored" data-anchor-id="冷却机制-上升沿触发">3. 冷却机制 + 上升沿触发</h3>
-<ul>
-<li>每个识别器有一个默认冷却时间 <code>cooldownMs = 350ms</code></li>
-<li>只有当「稳定手势从 A 变为 B」且不在冷却期内，才会触发一次烟花</li>
-</ul>
-<p>这意味着你可以<strong>保持一个手势不动，烟花不会无限制连发</strong>，更像是「一次明确的动作 → 一次清晰的反馈」。</p>
-<hr>
-</section>
-</section>
-<section id="五渲染层canvas-粒子系统的设计思路" class="level2">
-<h2 class="anchored" data-anchor-id="五渲染层canvas-粒子系统的设计思路">五、渲染层：Canvas 粒子系统的设计思路</h2>
-<p>视觉部分基于 <strong>Canvas 2D</strong> 实现了一个轻量的粒子系统：</p>
-<ul>
-<li><p>每个烟花本质上是大量粒子（位置、速度、加速度、颜色、透明度等属性）的集合</p></li>
-<li><p>每一帧进行：</p>
-<ul>
-<li>粒子位置更新（重力、阻尼、初速度方向等）</li>
-<li>透明度 &amp; 尺寸衰减</li>
-<li>组合出光晕、拖尾、闪烁等效果</li>
-</ul></li>
-</ul>
-<p>为了保证性能，我做了几件事：</p>
-<ol type="1">
-<li><strong>批量更新 &amp; 绘制</strong>，减少多余的状态切换</li>
-<li>针对不同烟花类型，限制最大粒子数量，避免堆爆内存</li>
-<li>在多发烟花场景下优先清理已经「看不见」的粒子</li>
-</ol>
-<p>在普通笔记本 + 现代浏览器环境下，同时存在<strong>数千个粒子</strong>仍可以保持比较流畅的体验。</p>
-<hr>
-</section>
-<section id="六项目结构-技术栈简述" class="level2">
-<h2 class="anchored" data-anchor-id="六项目结构-技术栈简述">六、项目结构 &amp; 技术栈简述</h2>
-<p>项目整体是一个很标准的前端小应用形态：</p>
-<ul>
-<li><p><strong>技术栈</strong></p>
-<ul>
-<li>JavaScript 为主（约 97.7%）</li>
-<li>少量 HTML 结构</li>
-<li>MediaPipe 手势检测（通过 vendor 依赖引入）</li>
-</ul></li>
-<li><p><strong>主要目录</strong></p>
-<ul>
-<li><p><code>src/hand</code>：手势识别与高级逻辑（置信度、稳定性、冷却等）</p></li>
-<li><p><code>src/main.js</code>：应用主入口，负责：</p>
-<ul>
-<li>摄像头采集与视频流</li>
-<li>调用识别模块</li>
-<li>根据手势触发不同烟花</li>
-</ul></li>
-<li><p><code>src/fireworks/*</code>：不同烟花特效的实现</p></li>
-</ul></li>
-</ul>
-<p>目的就是：<strong>保持结构清晰，方便以后扩展新的手势 &amp; 新的烟花类型。</strong></p>
-<hr>
-</section>
-<section id="七如何本地跑起来" class="level2">
-<h2 class="anchored" data-anchor-id="七如何本地跑起来">七、如何本地跑起来？</h2>
-<p>只要你对前端略有了解，就可以很快跑起来。</p>
-<section id="环境准备" class="level3">
-<h3 class="anchored" data-anchor-id="环境准备">1. 环境准备</h3>
-<ul>
-<li>现代浏览器（Chrome 88+、Firefox 85+、Safari 14+、Edge 88+）</li>
-<li>一台带摄像头的设备</li>
-<li>本地 HTTP 服务器（用于获取摄像头权限）</li>
-<li>网络连接（首次加载 MediaPipe 模型）</li>
-</ul>
-</section>
-<section id="启动步骤示例" class="level3">
-<h3 class="anchored" data-anchor-id="启动步骤示例">2. 启动步骤（示例）</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 克隆项目</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/your-username/Gesture-fireworks.git</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Gesture-fireworks</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 启动本地服务器（Python 3 示例）</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> http.server 8000</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 或者使用 Node.js</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">npx</span> http-server <span class="at">-p</span> 8000 <span class="at">-a</span> localhost</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>然后在浏览器中访问：</p>
-<pre class="text"><code>http://localhost:8000</code></pre>
-</section>
-</section>
-<section id="浏览器会弹出摄像头授权请求点击允许即可开始体验" class="level2">
-<h2 class="anchored" data-anchor-id="浏览器会弹出摄像头授权请求点击允许即可开始体验">浏览器会弹出摄像头授权请求，点击「允许」即可开始体验。</h2>
-</section>
-<section id="八实际体验怎么玩得更爽" class="level2">
-<h2 class="anchored" data-anchor-id="八实际体验怎么玩得更爽">八、实际体验：怎么玩得更爽？</h2>
-<p>结合调试过程，总结了一些实用的小技巧：</p>
-<ul>
-<li><p><strong>光线充足</strong>：正面光最好，避免背光和强阴影</p></li>
-<li><p><strong>距离合适</strong>：人与摄像头保持 1–2 米，手部占画面约 1/4 效果最佳</p></li>
-<li><p><strong>手势清晰稳定</strong>：</p>
-<ul>
-<li>比完手势后保持 1–2 秒</li>
-<li>手指要伸直 / 收紧到位，避免半吊子动作</li>
-</ul></li>
-<li><p><strong>居中一点</strong>：手尽量在画面中央区域，边缘区域容易畸变、识别不准</p></li>
-<li><p><strong>多手玩法</strong>：双手分别做不同手势，可以点亮「组合烟花」，非常适合多人一起玩</p></li>
-</ul>
-<hr>
-<p>如果你对这个项目有兴趣，欢迎来仓库看看源码、提 Issue 或一起玩</p>
+<p>记录一下微服务学习过程中的笔记.主要语言还是golang.</p>
+<p>相关代码仓库github: <a href="https://github.com/aorangehc/GoFramwork">aorangehc/GoFramwork</a></p>
 
 
-</section>
-</section>
 
-</main> <!-- /main -->
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="Z29sYW5nJTJDJUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx" data-listing-date-sort="1737033306000" data-listing-file-modified-sort="1768702561101" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="43">
+<div class="thumbnail"><a href="../../../content/learning-notes/microservices/entries/微服务框架(golang).html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" style="height: 140px;">&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../../../content/learning-notes/microservices/entries/微服务框架(golang).html" class="no-external">微服务框架(golang)</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Z29sYW5n'); return false;">golang</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('JUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx'); return false;">微服务</div>
+
+</div>
+<div class="delink listing-description"><a href="../../../content/learning-notes/microservices/entries/微服务框架(golang).html" class="no-external">
+框架，英文名称framework，可以看作一种脚手架或者是一种标准化模版
+</a></div>
+</div>
+<div class="metadata">
+<a href="../../../content/learning-notes/microservices/entries/微服务框架(golang).html" class="no-external">
+<div class="listing-date">
+Jan 16, 2025
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div></main> <!-- /main -->
 <button id="lang-toggle" type="button" aria-label="Toggle language"></button>
 <script>
   (() => {
