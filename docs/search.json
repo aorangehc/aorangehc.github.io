@@ -1120,6 +1120,13 @@
     "text": "给结构体定义一个方法\n在go中定义结构体的方法是在结构体外进行定义的\n\ntype Person struct{\n    name string\n    age int\n}\n\nfunc (p Person) print(){\n    fmt.Printf(\"姓名：%s， 年龄：%d\\r\\n\", p.name, p.age)\n}\n\nfunc main() {\n    p := Person{\n        name: \"小明\",\n        age: 18,\n    }\n    p.print()\n}\n想要在结构体方法中修改结构体的属性，需要使用指针类型的结构体\ntype Person struct{\n    name string\n    age int\n}\n\nfunc (p *Person) print(){\n    p.age = 19\n    fmt.Printf(\"姓名：%s， 年龄：%d\\r\\n\", p.name, p.age)\n}\n\nfunc main() {\n    p := Person{\n        name: \"小明\",\n        age: 18,\n    }\n    p.print()\n}\n//此时输出的结果为：姓名：小明， 年龄：19"
   },
   {
+    "objectID": "content/learning-notes/microservices/entries/go-kit.html",
+    "href": "content/learning-notes/microservices/entries/go-kit.html",
+    "title": "Go-Kit 微服务框架",
+    "section": "",
+    "text": "相关代码的GitHub地址：GoKitAddSrv，不同文件夹代表不同章节，直接go run .可运行\n写得比较简单，能跑就行，一些bug和规范问题见谅！"
+  },
+  {
     "objectID": "content/learning-notes/microservices/entries/go-kit.html#简介",
     "href": "content/learning-notes/microservices/entries/go-kit.html#简介",
     "title": "Go-Kit 微服务框架",
@@ -1138,14 +1145,42 @@
     "href": "content/learning-notes/microservices/entries/go-kit.html#demo-实现一个简单加法器",
     "title": "Go-Kit 微服务框架",
     "section": "Demo-实现一个简单加法器",
-    "text": "Demo-实现一个简单加法器\nDemo的GitHub地址：GoKitAddSrv，简单实现int类型和string类型的加法器\n写得比较简单，能跑就行，一些bug和规范问题见谅！\n\nHTTP\n\n说明\n\n在Service层定义接口，包含两个方法\n\nAdd实现int类型的的加法\nConcat实现string类型的加法\n基本流程就是定义接口，实现接口\n\n在Endpoint层，定义请求和响应数据的结构体，将Service层的方法进行封装\n\n接本流程就是定义结构体，封装方法\n\n在Transport层，进行具体协议处理和响应\n\n实现编解码\n实现Handler\n定义路由和端口\n……\n\n\n\n\n测试\n使用Postman进行测试\n\n\n\n\n\nRPC\n这里使用gRpc\n\n说明\n\n实现proto文件\n\n定义proto文件夹\n在文件夹中编写proto文件，定义service和message\n执行protoc指令，生成golang文件\nprotoc -I=proto --go_out=proto --go_opt=paths=source_relative --go-grpc_out=proto --go-grpc_opt=paths=source_relative proto/addsrv.proto\n\n在Service层定义接口，包含两个方法\n\nAdd实现int类型的的加法\nConcat实现string类型的加法\n基本流程就是定义接口，实现接口\n\n在Endpoint层，定义请求和响应数据的结构体，将Service层的方法进行封装\n\n接本流程就是定义结构体，封装方法\n\n在Transport层，进行具体协议处理和响应\n\n实现rpc编解码\n实现Handler\n实现protobuf接口\n……\n\n\n\n\n测试\n使用Postman进行测试"
+    "text": "Demo-实现一个简单加法器\n\nHTTP\n\n说明\n\n在Service层定义接口，包含两个方法\n\nAdd实现int类型的的加法\nConcat实现string类型的加法\n基本流程就是定义接口，实现接口\n\n在Endpoint层，定义请求和响应数据的结构体，将Service层的方法进行封装\n\n接本流程就是定义结构体，封装方法\n\n在Transport层，进行具体协议处理和响应\n\n实现编解码\n实现Handler\n定义路由和端口\n……\n\n\n\n\n测试\n使用Postman进行测试\n\n\n\n\n\nRPC\n这里使用gRpc\n\n说明\n\n实现proto文件\n\n定义proto文件夹\n在文件夹中编写proto文件，定义service和message\n执行protoc指令，生成golang文件\nprotoc -I=proto --go_out=proto --go_opt=paths=source_relative --go-grpc_out=proto --go-grpc_opt=paths=source_relative proto/addsrv.proto\n\n在Service层定义接口，包含两个方法\n\nAdd实现int类型的的加法\nConcat实现string类型的加法\n基本流程就是定义接口，实现接口\n\n在Endpoint层，定义请求和响应数据的结构体，将Service层的方法进行封装\n\n接本流程就是定义结构体，封装方法\n\n在Transport层，进行具体协议处理和响应\n\n实现rpc编解码\n实现Handler\n实现protobuf接口\n……\n\n\n\n\n测试\n使用Postman进行测试"
+  },
+  {
+    "objectID": "content/learning-notes/microservices/entries/go-kit.html#项目结构拆分",
+    "href": "content/learning-notes/microservices/entries/go-kit.html#项目结构拆分",
+    "title": "Go-Kit 微服务框架",
+    "section": "项目结构拆分",
+    "text": "项目结构拆分\n根据go-kit设计好的三层结构，我们对原本单独的三个文件夹进行分层实现，下面是具体的目录结构"
+  },
+  {
+    "objectID": "content/learning-notes/microservices/entries/go-kit.html#中间件",
+    "href": "content/learning-notes/microservices/entries/go-kit.html#中间件",
+    "title": "Go-Kit 微服务框架",
+    "section": "中间件",
+    "text": "中间件\n\n日志\n\n全局创建日志\n在接口实现的时候传入日志\n定义日志接口，在接口中加入应用接口+日志，然后再实现方法\n\n// go-kit官方设计\ntype logMiddleware struct {\n    logger log.Logger\n    next   AddService\n}\n在项目中加入日志中间件，简单实现示意\n\n\n\n限流\n加入限流中间件，1秒钟只能请求一次\n在实际业务场景中可以针对单个用户进行更加细粒度的限制\n\n在项目中加入限流中间件，简单实现示意\n\n\n\n指标采集\n使用metrics包来记录关于服务运行时行为的统计信息，比如计算已处理作业的数量、记录请求完成后的持续时间以及跟踪正在执行的操作的数量等等。\n在项目中加入指标采集中间件，简单实现示意"
+  },
+  {
+    "objectID": "content/learning-notes/microservices/entries/go-kit.html#服务调用",
+    "href": "content/learning-notes/microservices/entries/go-kit.html#服务调用",
+    "title": "Go-Kit 微服务框架",
+    "section": "服务调用",
+    "text": "服务调用\n通过构建结构体，加入当前服务和被调用服务（被设置为endpoint.Endpoint类型）实现调用\n\n简单实现示意"
+  },
+  {
+    "objectID": "content/learning-notes/microservices/entries/go-kit.html#服务发现和负载均衡",
+    "href": "content/learning-notes/microservices/entries/go-kit.html#服务发现和负载均衡",
+    "title": "Go-Kit 微服务框架",
+    "section": "服务发现和负载均衡",
+    "text": "服务发现和负载均衡"
   },
   {
     "objectID": "content/learning-notes/microservices/entries/go-kit.html#参考资料",
     "href": "content/learning-notes/microservices/entries/go-kit.html#参考资料",
     "title": "Go-Kit 微服务框架",
     "section": "参考资料",
-    "text": "参考资料\nGo-kit\nGemini老师\nGo kit教程01——基础示例\nGo kit教程02——gRPC"
+    "text": "参考资料\nGo-kit\nGemini老师\nGo kit教程01——基础示例\nGo kit教程02——gRPC\nGo kit教程03——代码分层\nGo kit教程04——中间件和日志\nGo kit教程05——调用其他服务\nGo kit教程06——服务发现和负载均衡"
   },
   {
     "objectID": "content/projects/entries/Daily-Log-Maker.html",

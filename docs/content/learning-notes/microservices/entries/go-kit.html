@@ -358,6 +358,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#http" id="toc-http" class="nav-link" data-scroll-target="#http">HTTP</a></li>
   <li><a href="#rpc" id="toc-rpc" class="nav-link" data-scroll-target="#rpc">RPC</a></li>
   </ul></li>
+  <li><a href="#项目结构拆分" id="toc-项目结构拆分" class="nav-link" data-scroll-target="#项目结构拆分">项目结构拆分</a></li>
+  <li><a href="#中间件" id="toc-中间件" class="nav-link" data-scroll-target="#中间件">中间件</a>
+  <ul class="collapse">
+  <li><a href="#日志" id="toc-日志" class="nav-link" data-scroll-target="#日志">日志</a></li>
+  <li><a href="#限流" id="toc-限流" class="nav-link" data-scroll-target="#限流">限流</a></li>
+  <li><a href="#指标采集" id="toc-指标采集" class="nav-link" data-scroll-target="#指标采集">指标采集</a></li>
+  </ul></li>
+  <li><a href="#服务调用" id="toc-服务调用" class="nav-link" data-scroll-target="#服务调用">服务调用</a></li>
+  <li><a href="#服务发现和负载均衡" id="toc-服务发现和负载均衡" class="nav-link" data-scroll-target="#服务发现和负载均衡">服务发现和负载均衡</a></li>
   <li><a href="#参考资料" id="toc-参考资料" class="nav-link" data-scroll-target="#参考资料">参考资料</a></li>
   </ul>
 </nav>
@@ -396,16 +405,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><img src="../assets/images/go-kit/image-5.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/go-kit/image-13.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p>相关代码的GitHub地址：<a href="https://github.com/aorangehc/GoFramwork/tree/main/GoKitAddSrv">GoKitAddSrv</a>，不同文件夹代表不同章节，直接<strong>go run .</strong>可运行</p>
+<p><span style="color: rgb(216,57,49); background-color: rgba(255,246,122,0.8)">写得比较简单，能跑就行，一些bug和规范问题见谅！</span></p>
 <section id="简介" class="level2">
 <h2 class="anchored" data-anchor-id="简介">简介</h2>
 <p>go-kit严格意义上并不算是一个完整的框架，更像是一个工具箱或者库的集合，官方描述它为一组包和最佳实践的集合。</p>
-<p><img src="../assets/images/go-kit/image-6.png" alt="go" style="width: 80%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/go-kit/image-14.png" alt="go" style="width: 80%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
 <p>它提供了构建微服务所有的标准组件，并且采用整洁架构和洋葱结构。它不追求开发的速度，而是采用强制三层架构，严格分成业务逻辑层（Service）、作为适配器的端点层（Endpoint）和进行协议处理的传输层（Transport），将业务逻辑和网络通信完全解耦。</p>
 </section>
 <section id="核心结构-三层模型" class="level2">
 <h2 class="anchored" data-anchor-id="核心结构-三层模型">核心结构-三层模型</h2>
-<p><img src="../assets/images/go-kit/image-4.png" alt="go" style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/go-kit/image-10.png" alt="go" style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
 <section id="transport" class="level3">
 <h3 class="anchored" data-anchor-id="transport">Transport</h3>
 <p>这是最外层的结构，负责处理具体的网络协议，通常是http和rpc，主要功能就是进行编解码，将外部传来的请求，比如Json解析成Endpoint能够读懂的golang结构体，然后调用Endpoint层，再将从Endpoint层获取的结果进行编码，传输发送给客户端。</p>
@@ -424,8 +435,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="demo-实现一个简单加法器" class="level2">
 <h2 class="anchored" data-anchor-id="demo-实现一个简单加法器">Demo-实现一个简单加法器</h2>
-<p>Demo的GitHub地址：<a href="https://github.com/aorangehc/GoFramwork/tree/main/GoKitAddSrv">GoKitAddSrv</a>，简单实现int类型和string类型的加法器</p>
-<p><span style="color: rgb(216,57,49); background-color: rgba(255,246,122,0.8)">写得比较简单，能跑就行，一些bug和规范问题见谅！</span></p>
 <section id="http" class="level3">
 <h3 class="anchored" data-anchor-id="http">HTTP</h3>
 <section id="说明" class="level4">
@@ -453,8 +462,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="测试" class="level4">
 <h4 class="anchored" data-anchor-id="测试">测试</h4>
 <p>使用Postman进行测试</p>
-<p><img src="../assets/images/go-kit/image-3.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
-<p><img src="../assets/images/go-kit/image-2.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/go-kit/image-12.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/go-kit/image-11.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
 </section>
 </section>
 <section id="rpc" class="level3">
@@ -497,12 +506,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 </section>
+<section id="项目结构拆分" class="level2">
+<h2 class="anchored" data-anchor-id="项目结构拆分">项目结构拆分</h2>
+<p>根据go-kit设计好的三层结构，我们对原本单独的三个文件夹进行分层实现，下面是具体的目录结构</p>
+<p><img src="../assets/images/go-kit/image-2.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
+<section id="中间件" class="level2">
+<h2 class="anchored" data-anchor-id="中间件">中间件</h2>
+<section id="日志" class="level3">
+<h3 class="anchored" data-anchor-id="日志">日志</h3>
+<ol type="1">
+<li><p>全局创建日志</p></li>
+<li><p>在接口实现的时候传入日志</p></li>
+<li><p>定义日志接口，在接口中加入应用接口+日志，然后再实现方法</p></li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// go-kit官方设计</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> logMiddleware <span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    logger log<span class="op">.</span>Logger</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    next   AddService</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>在项目中加入日志中间件，简单实现示意</p>
+<p><img src="../assets/images/go-kit/image-3.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
+<section id="限流" class="level3">
+<h3 class="anchored" data-anchor-id="限流">限流</h3>
+<p>加入限流中间件，1秒钟只能请求一次</p>
+<p>在实际业务场景中可以针对单个用户进行更加细粒度的限制</p>
+<p><img src="../assets/images/go-kit/image-4.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p>在项目中加入限流中间件，简单实现示意</p>
+<p><img src="../assets/images/go-kit/image-5.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
+<section id="指标采集" class="level3">
+<h3 class="anchored" data-anchor-id="指标采集">指标采集</h3>
+<p>使用metrics包来记录关于服务运行时行为的统计信息，比如计算已处理作业的数量、记录请求完成后的持续时间以及跟踪正在执行的操作的数量等等。</p>
+<p>在项目中加入指标采集中间件，简单实现示意</p>
+<p><img src="../assets/images/go-kit/image-6.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/go-kit/image-7.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
+</section>
+<section id="服务调用" class="level2">
+<h2 class="anchored" data-anchor-id="服务调用">服务调用</h2>
+<p>通过构建结构体，加入当前服务和被调用服务（被设置为endpoint.Endpoint类型）实现调用</p>
+<p><img src="../assets/images/go-kit/image-8.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p>简单实现示意</p>
+<p><img src="../assets/images/go-kit/image-9.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
+<section id="服务发现和负载均衡" class="level2">
+<h2 class="anchored" data-anchor-id="服务发现和负载均衡">服务发现和负载均衡</h2>
+</section>
 <section id="参考资料" class="level2">
 <h2 class="anchored" data-anchor-id="参考资料">参考资料</h2>
 <p><a href="https://github.com/go-kit/kit/tree/master?tab=readme-ov-file">Go-kit</a></p>
 <p><a href="https://gemini.google.com/">Gemini老师</a></p>
 <p><a href="https://www.liwenzhou.com/posts/Go/go-kit-tutorial-01/">Go kit教程01——基础示例</a></p>
 <p><a href="https://www.liwenzhou.com/posts/Go/go-kit-tutorial-02/">Go kit教程02——gRPC</a></p>
+<p><a href="https://www.liwenzhou.com/posts/Go/go-kit-tutorial-03/">Go kit教程03——代码分层</a></p>
+<p><a href="https://www.liwenzhou.com/posts/Go/go-kit-tutorial-04/">Go kit教程04——中间件和日志</a></p>
+<p><a href="https://www.liwenzhou.com/posts/Go/go-kit-tutorial-05/">Go kit教程05——调用其他服务</a></p>
+<p><a href="https://www.liwenzhou.com/posts/Go/go-kit-tutorial-06/">Go kit教程06——服务发现和负载均衡</a></p>
 
 
 </section>
