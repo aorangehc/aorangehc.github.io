@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-01-16">
 
-<title>Go-Kit 微服务框架</title>
+<title>Consul</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -304,10 +304,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="../../../../content/projects/index.html"> 
 <span class="menu-text"><span class="lang-en">Projects</span><span class="lang-zh">项目</span></span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../../content/papers/index.html"> 
-<span class="menu-text"><span class="lang-en">Papers</span><span class="lang-zh">论文</span></span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-span-classlang-enpapersspanspan-classlang-zh论文span" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><span class="lang-en">Papers</span><span class="lang-zh">论文</span></span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-span-classlang-enpapersspanspan-classlang-zh论文span">    
+        <li>
+    <a class="dropdown-item" href="../../../../content/papers/index.html">
+ <span class="dropdown-text">Overview</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../content/papers/deepseek/index.html">
+ <span class="dropdown-text">DeepSeek</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-span-classlang-enlearning-notesspanspan-classlang-zh学习笔记span" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text"><span class="lang-en">Learning Notes</span><span class="lang-zh">学习笔记</span></span>
@@ -326,8 +337,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">微服务(golang)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../../content/learning-notes/middleware/index.html">
- <span class="dropdown-text">中间件(golang)</span></a>
+    <a class="dropdown-item" href="../../../../content/learning-notes/infrastructure/index.html">
+ <span class="dropdown-text">基础设施(golang)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../content/learning-notes/deepL/index.html">
+ <span class="dropdown-text">深度学习</span></a>
   </li>  
     </ul>
   </li>
@@ -363,11 +378,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Go-Kit 微服务框架</h1>
+<h1 class="title">Consul</h1>
   <div class="quarto-categories">
     <div class="quarto-category">golang</div>
     <div class="quarto-category">微服务</div>
-    <div class="quarto-category">go-kit</div>
+    <div class="quarto-category">基础设施</div>
+    <div class="quarto-category">consul</div>
   </div>
   </div>
 
@@ -392,9 +408,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><img src="../assets/images/Consul/image.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p>Consul 是 HashiCorp 开发的一款基于 Go 语言的开源基础设施，旨在为微服务架构提供一站式的服务治理能力。</p>
 <section id="简介" class="level2">
 <h2 class="anchored" data-anchor-id="简介">简介</h2>
-<p>Consul 是 HashiCorp 开发的一款基于 Go 语言的开源中间件，旨在为微服务架构提供一站式的服务治理能力：它通过服务发现机制实现了服务实例的自动注册与动态查找（DNS/HTTP），并结合实时的健康检查自动隔离故障节点，确保流量的高可用性；同时，它内置了分布式的 Key/Value 存储，可直接作为动态配置中心使用；此外，其原生支持的多数据中心架构，使其能够轻松打通跨机房或跨云环境的服务连接，是云原生生态中极具竞争力的基础设施组件。</p>
+<p>Consul 是 HashiCorp 开发的一款基于 Go 语言的开源基础设施，旨在为微服务架构提供一站式的服务治理能力：它通过服务发现机制实现了服务实例的自动注册与动态查找（DNS/HTTP），并结合实时的健康检查自动隔离故障节点，确保流量的高可用性；同时，它内置了分布式的 Key/Value 存储，可直接作为动态配置中心使用；此外，其原生支持的多数据中心架构，使其能够轻松打通跨机房或跨云环境的服务连接，是云原生生态中极具竞争力的基础设施组件。</p>
 </section>
 <section id="安装和启动" class="level2">
 <h2 class="anchored" data-anchor-id="安装和启动">安装和启动</h2>

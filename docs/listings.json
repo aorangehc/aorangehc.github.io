@@ -7,91 +7,16 @@
     ]
   },
   {
-    "listing": "/content/learning-notes/middleware/index.html",
+    "listing": "/content/papers/deepseek/index.html",
     "items": [
-      "/content/learning-notes/middleware/entries/Consul.html",
-      "/content/learning-notes/middleware/entries/中间件(golang).html"
+      "/content/papers/deepseek/entries/default.html"
     ]
   },
   {
-    "listing": "/content/learning-notes/index.html",
+    "listing": "/content/learning-notes/infrastructure/index.html",
     "items": [
-      "/content/learning-notes/golang/entries/go的版本管理工具-g的安装和使用.html",
-      "/content/learning-notes/microservices/entries/go-kit.html",
-      "/content/learning-notes/microservices/entries/微服务框架(golang).html",
-      "/content/learning-notes/middleware/entries/Consul.html",
-      "/content/learning-notes/middleware/entries/中间件(golang).html",
-      "/content/learning-notes/golang/entries/golang学习记录（13）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（12）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（11）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（10）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（9）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（8）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（7）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（6）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（5）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（4）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（3）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（2）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（1）-在win搭建go环境.html"
-    ]
-  },
-  {
-    "listing": "/content/blogs/index.html",
-    "items": [
-      "/content/blogs/entries/一文读懂RAG.html",
-      "/content/blogs/entries/本地服务器低速传输解决方案.html",
-      "/content/blogs/entries/leetcode-灵神跟练-滑动窗口与双指针-不定长滑动窗口-越长越合法+求最短+最小.html",
-      "/content/blogs/entries/leetcode-灵神跟练-滑动窗口与双指针-定长滑动窗口-基础.html",
-      "/content/blogs/entries/Mac安装Jekyll.html",
-      "/content/blogs/entries/pc的快捷指令.html",
-      "/content/blogs/entries/Windows安装Jekyll.html",
-      "/content/blogs/entries/基于BM25检索算法构建RAG智能文档问答助手--学习和实践.html",
-      "/content/blogs/entries/Deepseek-R1-32B模型部署.html",
-      "/content/blogs/entries/如何使用git.html",
-      "/content/blogs/entries/开源协议.html",
-      "/content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html",
-      "/content/blogs/entries/保姆教程如何创建自己的“个人网站”.html",
-      "/content/blogs/entries/《深度学习详解》--1、通过案例了解机器学习.html"
-    ]
-  },
-  {
-    "listing": "/pages/home.html",
-    "items": [
-      "/content/blogs/entries/一文读懂RAG.html",
-      "/content/blogs/entries/本地服务器低速传输解决方案.html",
-      "/content/blogs/entries/leetcode-灵神跟练-滑动窗口与双指针-不定长滑动窗口-越长越合法+求最短+最小.html",
-      "/content/blogs/entries/leetcode-灵神跟练-滑动窗口与双指针-定长滑动窗口-基础.html",
-      "/content/blogs/entries/Mac安装Jekyll.html",
-      "/content/blogs/entries/pc的快捷指令.html",
-      "/content/blogs/entries/Windows安装Jekyll.html",
-      "/content/blogs/entries/基于BM25检索算法构建RAG智能文档问答助手--学习和实践.html",
-      "/content/blogs/entries/Deepseek-R1-32B模型部署.html",
-      "/content/blogs/entries/如何使用git.html",
-      "/content/blogs/entries/开源协议.html",
-      "/content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html",
-      "/content/blogs/entries/保姆教程如何创建自己的“个人网站”.html",
-      "/content/blogs/entries/《深度学习详解》--1、通过案例了解机器学习.html",
-      "/content/projects/entries/Daily-Log-Maker.html",
-      "/content/projects/entries/Gesture-Fireworks.html",
-      "/content/learning-notes/golang/entries/go的版本管理工具-g的安装和使用.html",
-      "/content/learning-notes/microservices/entries/go-kit.html",
-      "/content/learning-notes/microservices/entries/微服务框架(golang).html",
-      "/content/learning-notes/middleware/entries/Consul.html",
-      "/content/learning-notes/middleware/entries/中间件(golang).html",
-      "/content/learning-notes/golang/entries/golang学习记录（13）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（12）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（11）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（10）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（9）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（8）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（7）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（6）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（5）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（4）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（3）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（2）.html",
-      "/content/learning-notes/golang/entries/golang学习记录（1）-在win搭建go环境.html"
+      "/content/learning-notes/infrastructure/entries/Consul.html",
+      "/content/learning-notes/infrastructure/entries/基础设施(golang).html"
     ]
   },
   {
@@ -114,6 +39,101 @@
     ]
   },
   {
+    "listing": "/content/learning-notes/algorithm/index.html",
+    "items": [
+      "/content/learning-notes/algorithm/entries/hot100.html",
+      "/content/learning-notes/algorithm/entries/不定长滑动窗口-越长越合法+求最短+最小.html",
+      "/content/learning-notes/algorithm/entries/滑动窗口与双指针-定长滑动窗口-基础.html"
+    ]
+  },
+  {
+    "listing": "/pages/home.html",
+    "items": [
+      "/content/blogs/entries/一文读懂RAG.html",
+      "/content/blogs/entries/本地服务器低速传输解决方案.html",
+      "/content/blogs/entries/Mac安装Jekyll.html",
+      "/content/blogs/entries/pc的快捷指令.html",
+      "/content/blogs/entries/Windows安装Jekyll.html",
+      "/content/blogs/entries/基于BM25检索算法构建RAG智能文档问答助手--学习和实践.html",
+      "/content/blogs/entries/Deepseek-R1-32B模型部署.html",
+      "/content/blogs/entries/如何使用git.html",
+      "/content/blogs/entries/开源协议.html",
+      "/content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html",
+      "/content/blogs/entries/保姆教程如何创建自己的“个人网站”.html",
+      "/content/projects/entries/Daily-Log-Maker.html",
+      "/content/projects/entries/Gesture-Fireworks.html",
+      "/content/papers/deepseek/entries/default.html",
+      "/content/learning-notes/algorithm/entries/hot100.html",
+      "/content/learning-notes/algorithm/entries/不定长滑动窗口-越长越合法+求最短+最小.html",
+      "/content/learning-notes/algorithm/entries/滑动窗口与双指针-定长滑动窗口-基础.html",
+      "/content/learning-notes/golang/entries/go的版本管理工具-g的安装和使用.html",
+      "/content/learning-notes/infrastructure/entries/Consul.html",
+      "/content/learning-notes/infrastructure/entries/基础设施(golang).html",
+      "/content/learning-notes/microservices/entries/go-kit.html",
+      "/content/learning-notes/microservices/entries/微服务框架(golang).html",
+      "/content/learning-notes/golang/entries/golang学习记录（13）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（12）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（11）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（10）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（9）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（8）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（7）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（6）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（5）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（4）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（3）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（2）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（1）-在win搭建go环境.html",
+      "/content/learning-notes/deepL/entries/通过案例了解机器学习.html"
+    ]
+  },
+  {
+    "listing": "/content/blogs/index.html",
+    "items": [
+      "/content/blogs/entries/一文读懂RAG.html",
+      "/content/blogs/entries/本地服务器低速传输解决方案.html",
+      "/content/blogs/entries/Mac安装Jekyll.html",
+      "/content/blogs/entries/pc的快捷指令.html",
+      "/content/blogs/entries/Windows安装Jekyll.html",
+      "/content/blogs/entries/基于BM25检索算法构建RAG智能文档问答助手--学习和实践.html",
+      "/content/blogs/entries/Deepseek-R1-32B模型部署.html",
+      "/content/blogs/entries/如何使用git.html",
+      "/content/blogs/entries/开源协议.html",
+      "/content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html",
+      "/content/blogs/entries/保姆教程如何创建自己的“个人网站”.html"
+    ]
+  },
+  {
+    "listing": "/content/learning-notes/deepL/index.html",
+    "items": [
+      "/content/learning-notes/deepL/entries/通过案例了解机器学习.html"
+    ]
+  },
+  {
+    "listing": "/content/learning-notes/index.html",
+    "items": [
+      "/content/learning-notes/golang/entries/go的版本管理工具-g的安装和使用.html",
+      "/content/learning-notes/microservices/entries/go-kit.html",
+      "/content/learning-notes/microservices/entries/微服务框架(golang).html",
+      "/content/learning-notes/infrastructure/entries/Consul.html",
+      "/content/learning-notes/infrastructure/entries/基础设施(golang).html",
+      "/content/learning-notes/golang/entries/golang学习记录（13）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（12）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（11）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（10）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（9）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（8）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（7）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（6）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（5）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（4）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（3）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（2）.html",
+      "/content/learning-notes/golang/entries/golang学习记录（1）-在win搭建go环境.html",
+      "/content/learning-notes/deepL/entries/通过案例了解机器学习.html"
+    ]
+  },
+  {
     "listing": "/content/learning-notes/microservices/index.html",
     "items": [
       "/content/learning-notes/microservices/entries/go-kit.html",
@@ -122,6 +142,8 @@
   },
   {
     "listing": "/content/papers/index.html",
-    "items": []
+    "items": [
+      "/content/papers/deepseek/entries/default.html"
+    ]
   }
 ]

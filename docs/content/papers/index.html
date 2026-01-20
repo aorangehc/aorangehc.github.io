@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Papers论文</title>
+<title>Paper&amp;Report论文和技术报告</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,9 +83,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -328,10 +328,21 @@ window.Quarto = {
     <a class="nav-link" href="../../content/projects/index.html"> 
 <span class="menu-text"><span class="lang-en">Projects</span><span class="lang-zh">项目</span></span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="../../content/papers/index.html" aria-current="page"> 
-<span class="menu-text"><span class="lang-en">Papers</span><span class="lang-zh">论文</span></span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-span-classlang-enpapersspanspan-classlang-zh论文span" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><span class="lang-en">Papers</span><span class="lang-zh">论文</span></span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-span-classlang-enpapersspanspan-classlang-zh论文span">    
+        <li>
+    <a class="dropdown-item" href="../../content/papers/index.html">
+ <span class="dropdown-text">Overview</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/papers/deepseek/index.html">
+ <span class="dropdown-text">DeepSeek</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-span-classlang-enlearning-notesspanspan-classlang-zh学习笔记span" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text"><span class="lang-en">Learning Notes</span><span class="lang-zh">学习笔记</span></span>
@@ -350,8 +361,12 @@ window.Quarto = {
  <span class="dropdown-text">微服务(golang)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/learning-notes/middleware/index.html">
- <span class="dropdown-text">中间件(golang)</span></a>
+    <a class="dropdown-item" href="../../content/learning-notes/infrastructure/index.html">
+ <span class="dropdown-text">基础设施(golang)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/learning-notes/deepL/index.html">
+ <span class="dropdown-text">深度学习</span></a>
   </li>  
     </ul>
   </li>
@@ -371,14 +386,14 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(0)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGVlcFNlZWs=">DeepSeek <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TExN">LLM <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGFwZXI=">Paper <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVwb3J0">Report <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="lang-en">Papers</span><span class="lang-zh">论文</span></h1>
+<h1 class="title"><span class="lang-en">Paper&amp;Report</span><span class="lang-zh">论文和技术报告</span></h1>
 </div>
 
 
@@ -395,14 +410,46 @@ window.Quarto = {
 </header>
 
 
-<p>Paper reviews, reading notes, and reproductions.</p>
+<p>记录论文和技术报告阅读</p>
 
 
 
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="TExNJTJDUGFwZXIlMkNSZXBvcnQlMkNEZWVwU2Vlaw==" data-listing-date-sort="1737033306000" data-listing-file-modified-sort="1768899186549" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="13">
+<div class="thumbnail"><a href="../../content/papers/deepseek/entries/default.html" class="no-external">
 
+<p class="card-img-top"><img src="deepseek/assets/images/deepseek/default/image.png" alt="deepseek" style="height: 140px;"  class="thumbnail-image card-img"/></p>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../../content/papers/deepseek/entries/default.html" class="no-external">DeepSeek</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('TExN'); return false;">LLM</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UGFwZXI='); return false;">Paper</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmVwb3J0'); return false;">Report</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGVlcFNlZWs='); return false;">DeepSeek</div>
+
+</div>
+<div class="delink listing-description"><a href="../../content/papers/deepseek/entries/default.html" class="no-external">
+
+</a></div>
+</div>
+<div class="metadata">
+<a href="../../content/papers/deepseek/entries/default.html" class="no-external">
+<div class="listing-date">
+Jan 16, 2025
+</div>
+</a>
+</div>
+</div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
 </div></main> <!-- /main -->
