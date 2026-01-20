@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-10-14">
+<meta name="dcterms.date" content="2025-01-16">
 
-<title>golang学习记录（5）</title>
+<title>Go-Kit 微服务框架</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -350,26 +350,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#字符串的基本操作" id="toc-字符串的基本操作" class="nav-link active" data-scroll-target="#字符串的基本操作">字符串的基本操作</a>
-  <ul class="collapse">
-  <li><a href="#转义符" id="toc-转义符" class="nav-link" data-scroll-target="#转义符">1、转义符</a>
-  <ul class="collapse">
-  <li><a href="#基本规则" id="toc-基本规则" class="nav-link" data-scroll-target="#基本规则">1.1、基本规则</a></li>
-  <li><a href="#常见的转义符" id="toc-常见的转义符" class="nav-link" data-scroll-target="#常见的转义符">1.2、常见的转义符</a></li>
-  </ul></li>
-  <li><a href="#格式化输出" id="toc-格式化输出" class="nav-link" data-scroll-target="#格式化输出">2、格式化输出</a>
-  <ul class="collapse">
-  <li><a href="#优缺点" id="toc-优缺点" class="nav-link" data-scroll-target="#优缺点">2.2、优缺点</a></li>
-  <li><a href="#进阶" id="toc-进阶" class="nav-link" data-scroll-target="#进阶">2.3、进阶</a></li>
-  </ul></li>
-  <li><a href="#字符串操作常用方法" id="toc-字符串操作常用方法" class="nav-link" data-scroll-target="#字符串操作常用方法">3、字符串操作常用方法</a>
-  <ul class="collapse">
-  <li><a href="#计算字符串的长度" id="toc-计算字符串的长度" class="nav-link" data-scroll-target="#计算字符串的长度">3.1、计算字符串的长度</a></li>
-  <li><a href="#高性能字符串拼接" id="toc-高性能字符串拼接" class="nav-link" data-scroll-target="#高性能字符串拼接">3.2、高性能字符串拼接</a></li>
-  <li><a href="#字符串的比较" id="toc-字符串的比较" class="nav-link" data-scroll-target="#字符串的比较">3.3、字符串的比较</a></li>
-  <li><a href="#strings包里常用的方法" id="toc-strings包里常用的方法" class="nav-link" data-scroll-target="#strings包里常用的方法">3.4、strings包里常用的方法</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#简介" id="toc-简介" class="nav-link active" data-scroll-target="#简介">简介</a></li>
+  <li><a href="#安装和启动" id="toc-安装和启动" class="nav-link" data-scroll-target="#安装和启动">安装和启动</a></li>
+  <li><a href="#在golang中使用consul" id="toc-在golang中使用consul" class="nav-link" data-scroll-target="#在golang中使用consul">在golang中使用consul</a></li>
+  <li><a href="#参考文献" id="toc-参考文献" class="nav-link" data-scroll-target="#参考文献">参考文献</a></li>
   </ul>
 </nav>
     </div>
@@ -379,10 +363,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">golang学习记录（5）</h1>
+<h1 class="title">Go-Kit 微服务框架</h1>
   <div class="quarto-categories">
     <div class="quarto-category">golang</div>
-    <div class="quarto-category">golang基础学习</div>
+    <div class="quarto-category">微服务</div>
+    <div class="quarto-category">go-kit</div>
   </div>
   </div>
 
@@ -394,7 +379,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 14, 2024</p>
+      <p class="date">January 16, 2025</p>
     </div>
   </div>
   
@@ -406,185 +391,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="字符串的基本操作" class="level1">
-<h1>字符串的基本操作</h1>
-<section id="转义符" class="level2">
-<h2 class="anchored" data-anchor-id="转义符">1、转义符</h2>
-<section id="基本规则" class="level3">
-<h3 class="anchored" data-anchor-id="基本规则">1.1、基本规则</h3>
-<blockquote class="blockquote">
-<p>通常在各种语言中转义符都是同一个：，千万不要写反</p>
-</blockquote>
-<p>举例：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">:=</span> <span class="st">"你可真是个</span><span class="ch">\"</span><span class="st">小机灵鬼</span><span class="ch">\"</span><span class="st">"</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">//在这里直接使用"小机灵鬼"会报错，因为双引号是字符串的标志，所以需要使用转义符来表示引号：\"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="../assets/images/Consul/image.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<section id="简介" class="level2">
+<h2 class="anchored" data-anchor-id="简介">简介</h2>
+<p>Consul 是 HashiCorp 开发的一款基于 Go 语言的开源中间件，旨在为微服务架构提供一站式的服务治理能力：它通过服务发现机制实现了服务实例的自动注册与动态查找（DNS/HTTP），并结合实时的健康检查自动隔离故障节点，确保流量的高可用性；同时，它内置了分布式的 Key/Value 存储，可直接作为动态配置中心使用；此外，其原生支持的多数据中心架构，使其能够轻松打通跨机房或跨云环境的服务连接，是云原生生态中极具竞争力的基础设施组件。</p>
 </section>
-<section id="常见的转义符" class="level3">
-<h3 class="anchored" data-anchor-id="常见的转义符">1.2、常见的转义符</h3>
-<p>在golang中常用的转义符如下：</p>
-<p><img src="../assets/images/go/学习记录（5）/1.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<section id="安装和启动" class="level2">
+<h2 class="anchored" data-anchor-id="安装和启动">安装和启动</h2>
+<p>我在使用的时候选择通过docker安装和启动，下面是相关的指令</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 安装</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull hashicorp/consul:latest</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 启动</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="dt">\</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">--name</span><span class="op">=</span>dev-consul <span class="dt">\</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">-p</span> 8500:8500 <span class="dt">\</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  hashicorp/consul:latest agent <span class="at">-dev</span> <span class="at">-client</span><span class="op">=</span>0.0.0.0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="../assets/images/Consul/image-2.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p>之后在<strong><span style="color: rgb(143,149,158); background-color: rgba(255,246,122,0.8)">localhost</span><span style="color: rgb(143,149,158); background-color: rgba(255,246,122,0.8)">:8500</span></strong>就可以进行访问</p>
+<p><img src="../assets/images/Consul/image-1.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
 </section>
+<section id="在golang中使用consul" class="level2">
+<h2 class="anchored" data-anchor-id="在golang中使用consul">在golang中使用consul</h2>
+<p>官方提供相应的接口和库供开发人员调用: <a href="https://github.com/hashicorp/consul/tree/main/api">Hashicorp/consul</a></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="st">"github.com/hashicorp/consul/api"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="格式化输出" class="level2">
-<h2 class="anchored" data-anchor-id="格式化输出">2、格式化输出</h2>
-<p>Println:表示输出换行 Print:表示输出不换行 ### 2.1、基本使用</p>
-<p>通常情况下使用平凑方法进行输出非常麻烦： <img src="../assets/images/go/学习记录（5）/2.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
-<p>使用格式化输出的方法–Printf:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fmt<span class="op">.</span>Printf<span class="op">(</span><span class="st">"用户名：%s， 年龄：%d，地址：%s， 电话：%s</span><span class="ch">\r\n</span><span class="st">"</span><span class="op">,</span>username<span class="op">,</span> age<span class="op">,</span> address<span class="op">,</span> mobile <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="优缺点" class="level3">
-<h3 class="anchored" data-anchor-id="优缺点">2.2、优缺点</h3>
-<p>优点：易读易维护</p>
-<p>缺点：性能相对较低</p>
-</section>
-<section id="进阶" class="level3">
-<h3 class="anchored" data-anchor-id="进阶">2.3、进阶</h3>
-<section id="缺省格式和类型" class="level4">
-<h4 class="anchored" data-anchor-id="缺省格式和类型">2.3.1、缺省格式和类型</h4>
-<p><img src="../assets/images/go/学习记录（5）/3.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
-</section>
-<section id="整形" class="level4">
-<h4 class="anchored" data-anchor-id="整形">2.3.2、整形</h4>
-<p><img src="../assets/images/go/学习记录（5）/4.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
-</section>
-<section id="字符" class="level4">
-<h4 class="anchored" data-anchor-id="字符">2.3.3、字符</h4>
-<p><img src="../assets/images/go/学习记录（5）/5.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
-</section>
-<section id="字符串" class="level4">
-<h4 class="anchored" data-anchor-id="字符串">2.3.4、字符串</h4>
-<p><img src="../assets/images/go/学习记录（5）/7.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
-</section>
-<section id="浮点数" class="level4">
-<h4 class="anchored" data-anchor-id="浮点数">2.3.5、浮点数</h4>
-<p><img src="../assets/images/go/学习记录（5）/6.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
-</section>
-</section>
-</section>
-<section id="字符串操作常用方法" class="level2">
-<h2 class="anchored" data-anchor-id="字符串操作常用方法">3、字符串操作常用方法</h2>
-<section id="计算字符串的长度" class="level3">
-<h3 class="anchored" data-anchor-id="计算字符串的长度">3.1、计算字符串的长度</h3>
-<p>计算字符串的长度也有很多种情况</p>
-<section id="只有英文和数字" class="level4">
-<h4 class="anchored" data-anchor-id="只有英文和数字">3.1.1、只有英文和数字</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">:=</span> <span class="st">"hello world"</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fmt<span class="op">.</span>Println<span class="op">(</span><span class="bu">len</span><span class="op">(</span>name<span class="op">))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="字符串中包含中文" class="level4">
-<h4 class="anchored" data-anchor-id="字符串中包含中文">3.1.2、字符串中包含中文</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">:=</span> <span class="st">"hello 世界"</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>bytes <span class="op">:=</span> <span class="op">[]</span><span class="dt">byte</span><span class="op">(</span>name<span class="op">)</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>fmt<span class="op">.</span>Println<span class="op">(</span><span class="bu">len</span><span class="op">(</span>bytes<span class="op">))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-<section id="高性能字符串拼接" class="level3">
-<h3 class="anchored" data-anchor-id="高性能字符串拼接">3.2、高性能字符串拼接</h3>
-<section id="使用号" class="level4">
-<h4 class="anchored" data-anchor-id="使用号">3.2.1、使用+号</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>username <span class="op">:=</span> <span class="st">"user"</span> <span class="op">+</span> <span class="st">"name"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="在输出的时候通过格式化输出" class="level4">
-<h4 class="anchored" data-anchor-id="在输出的时候通过格式化输出">3.2.2、在输出的时候通过格式化输出</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fmt<span class="op">.</span>Printf<span class="op">(</span><span class="st">"用户名：%s， 年龄：%d，地址：%s， 电话：%s</span><span class="ch">\r\n</span><span class="st">"</span><span class="op">,</span>username<span class="op">,</span> age<span class="op">,</span> address<span class="op">,</span> mobile <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="使用strings.builder" class="level4">
-<h4 class="anchored" data-anchor-id="使用strings.builder">3.2.3、使用strings.Builder</h4>
-<blockquote class="blockquote">
-<p>这是一种高性能的方式</p>
-</blockquote>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> builder strings<span class="op">.</span>Builder</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>builder<span class="op">.</span>WriteString<span class="op">(</span><span class="st">"hello"</span><span class="op">)</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>builder<span class="op">.</span>WriteString<span class="op">(</span><span class="st">"world"</span><span class="op">)</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">:=</span> builder<span class="op">.</span>String<span class="op">()</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>fmt<span class="op">.</span>Println<span class="op">(</span>result<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-<section id="字符串的比较" class="level3">
-<h3 class="anchored" data-anchor-id="字符串的比较">3.3、字符串的比较</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">//等于</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">:=</span> <span class="st">"hello"</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">:=</span> <span class="st">"hello"</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>fmt<span class="op">.</span>Println<span class="op">(</span>a <span class="op">==</span> b<span class="op">)</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">//不等于</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="st">"hello"</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="st">"world"</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>fmt<span class="op">.</span>Println<span class="op">(</span>a <span class="op">!=</span> b<span class="op">)</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">//大于</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="st">"hello"</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="st">"world"</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>fmt<span class="op">.</span>Println<span class="op">(</span>a <span class="op">&gt;</span> b<span class="op">)</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">//小于</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="st">"hello"</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="st">"world"</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>fmt<span class="op">.</span>Println<span class="op">(</span>a <span class="op">&lt;</span> b<span class="op">)</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co">//大于等于</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co">//小于等于</span></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co">//……</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="strings包里常用的方法" class="level3">
-<h3 class="anchored" data-anchor-id="strings包里常用的方法">3.4、strings包里常用的方法</h3>
-<section id="关于包的导入" class="level4">
-<h4 class="anchored" data-anchor-id="关于包的导入">3.4.1、关于包的导入</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="op">{</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"fmt"</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"strings"</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="常用方法" class="level4">
-<h4 class="anchored" data-anchor-id="常用方法">3.4.2、常用方法</h4>
-<p>(1)、是否包含指定字符串</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>strings<span class="op">.</span>Contains<span class="op">(</span><span class="st">"hello world"</span><span class="op">,</span> <span class="st">"world"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>(2)、字符串的长度</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">:=</span> <span class="st">"hello world"</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span><span class="op">(</span>name<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>(3)、查询字串出现的次数</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>strings<span class="op">.</span>Count<span class="op">(</span><span class="st">"hello world"</span><span class="op">,</span> <span class="st">"l"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>(4)、分割字符串</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">//以空格为分隔符进行分割</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>strings<span class="op">.</span>Split<span class="op">(</span><span class="st">"hello world"</span><span class="op">,</span> <span class="st">" "</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>(5)、字符串是否包含前后缀</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">//前缀</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>strings<span class="op">.</span>HasPrefix<span class="op">(</span><span class="st">"hello world"</span><span class="op">,</span> <span class="st">"he"</span><span class="op">)</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">//后缀</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>strings<span class="op">.</span>HasSuffix<span class="op">(</span><span class="st">"hello world"</span><span class="op">,</span> <span class="st">"ld"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>(6)、查询字串出现的位置</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">//英文</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>strings<span class="op">.</span>Index<span class="op">(</span><span class="st">"hello world"</span><span class="op">,</span> <span class="st">"lo"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>(7)、字串替换</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">//把字符串里的所有l替换成a，替换前2个</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">//-1表示全部替换</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>strings<span class="op">.</span>Replace<span class="op">(</span><span class="st">"hello world"</span><span class="op">,</span> <span class="st">"l"</span><span class="op">,</span> <span class="st">"a"</span><span class="op">,</span> <span class="dv">2</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>(8)、大小写转换</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">//全转成小写</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>strings<span class="op">.</span>ToLower<span class="op">(</span><span class="st">"HELLO WORLD"</span><span class="op">)</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">//全转成大写</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>strings<span class="op">.</span>ToUpper<span class="op">(</span><span class="st">"hello world"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>(9)、去掉特殊字符</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">//去掉左右两边指定的字符，指定的字符可以是多个，比如空格，#，*等</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>strings<span class="op">.</span>Trim<span class="op">(</span><span class="st">"#hello #world#"</span><span class="op">,</span> <span class="st">"#"</span><span class="op">)</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">//得到的结果是：hello #world</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">//左边的特殊字符</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>strings<span class="op">.</span>TrimLeft<span class="op">(</span><span class="st">"#hello #world#"</span><span class="op">,</span> <span class="st">"#"</span><span class="op">)</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">//得到的结果是：hello #world#</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">//右边的特殊字符</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>strings<span class="op">.</span>TrimRight<span class="op">(</span><span class="st">"#hello #world#"</span><span class="op">,</span> <span class="st">"#"</span><span class="op">)</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">//得到的结果是：#hello #world</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<blockquote class="blockquote">
-<p>更多方法可以查看源码，在ide中点击显示的函数可以直接转换到源码</p>
-</blockquote>
+<section id="参考文献" class="level2">
+<h2 class="anchored" data-anchor-id="参考文献">参考文献</h2>
 
 
-</section>
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->

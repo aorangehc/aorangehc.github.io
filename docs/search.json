@@ -532,25 +532,25 @@
     "text": "Project write-ups, demos, and technical summaries.\n\n\n\n\n\n\n\n\n\n\n\n\nDaily Log Maker\n\n\n\nselfTools\n\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\n\n\n\n\n\n\n\n\n\nGesture-Fireworks\n\n\n\nselfTools\n\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "content/learning-notes/microservices/index.html",
-    "href": "content/learning-notes/microservices/index.html",
-    "title": "微服务学习笔记",
+    "objectID": "content/learning-notes/middleware/index.html",
+    "href": "content/learning-notes/middleware/index.html",
+    "title": "中间件学习笔记",
     "section": "",
-    "text": "记录一下微服务学习过程中的笔记.主要语言还是golang.\n相关代码仓库github: aorangehc/GoFramwork\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGo-Kit 微服务框架\n\n\n\ngolang\n\n微服务\n\ngo-kit\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n微服务框架(golang)\n\n\n\ngolang\n\n微服务\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\nNo matching items"
+    "text": "记录一下golang相关中间件的学习笔记.\n中间件是微服务架构中的一种软件组件，它位于应用程序的客户端和服务器之间，负责处理请求和响应。中间件可以实现各种功能，例如身份验证、授权、日志记录、缓存、负载均衡等。\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGo-Kit 微服务框架\n\n\n\ngolang\n\n微服务\n\ngo-kit\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n中间件(golang)\n\n\n\ngolang\n\n中间件\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "content/learning-notes/golang/index.html",
-    "href": "content/learning-notes/golang/index.html",
-    "title": "golang",
+    "objectID": "content/learning-notes/index.html",
+    "href": "content/learning-notes/index.html",
+    "title": "Learning Notes学习笔记",
     "section": "",
-    "text": "记录一下golang学习过程中的笔记.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngo的版本管理工具-g的安装和使用\n\n\n\ngolang\n\n环境搭建\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（13）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（12）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（11）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（10）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（9）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 19, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（8）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 18, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（7）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 17, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（6）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 16, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（5）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（4）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 13, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（3）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nSep 29, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（2）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nSep 23, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（1）-在win搭建go环境\n\n\n\ngolang\n\n环境搭建\n\n\n\n\n\n\n\n\n\nSep 16, 2024\n\n\n\n\n\nNo matching items"
+    "text": "课程学习笔记.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngo的版本管理工具-g的安装和使用\n\n\n\ngolang\n\n环境搭建\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nGo-Kit 微服务框架\n\n\n\ngolang\n\n微服务\n\ngo-kit\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n微服务框架(golang)\n\n\n\ngolang\n\n微服务\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nGo-Kit 微服务框架\n\n\n\ngolang\n\n微服务\n\ngo-kit\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n中间件(golang)\n\n\n\ngolang\n\n中间件\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（13）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（12）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（11）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（10）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（9）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 19, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（8）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 18, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（7）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 17, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（6）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 16, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（5）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（4）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 13, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（3）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nSep 29, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（2）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nSep 23, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（1）-在win搭建go环境\n\n\n\ngolang\n\n环境搭建\n\n\n\n\n\n\n\n\n\nSep 16, 2024\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "pages/home.html",
-    "href": "pages/home.html",
-    "title": "Home主页",
+    "objectID": "content/blogs/index.html",
+    "href": "content/blogs/index.html",
+    "title": "Blogs博客",
     "section": "",
-    "text": "这里是首页，汇总各模块最近更新内容。\n\n\nThis is the home page with the latest updates from each module.\n\n\n\nBlogs博客\n\n\n\n\n\n\n\n\n\n\n\n一文读懂RAG\n\n\n\nRAG\n\nLLM\n\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n本地服务器低速传输解决方案\n\n\n\n技术\n\n技术实践\n\n\n\n\n\n\n\n\n\nDec 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nleetcode-灵神跟练-滑动窗口与双指针-不定长滑动窗口-越长越合法+求最短+最小\n\n\n\n算法\n\nleetcode\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\nNo matching items\n\n\n\n\nProjects项目\n\n\n\n\n\n\n\n\n\nDaily Log Maker\n\n\n\nselfTools\n\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\n\n\n\n\n\n\n\n\n\nGesture-Fireworks\n\n\n\nselfTools\n\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\nNo matching items\n\n\n\n\nPapers论文\n\n\n\n\n\nNo matching items\n\n\n\n\nLearning Notes学习笔记\n\n\n\n\n\n\n\n\n\n\n\ngo的版本管理工具-g的安装和使用\n\n\n\ngolang\n\n环境搭建\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nGo-Kit 微服务框架\n\n\n\ngolang\n\n微服务\n\ngo-kit\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n微服务框架(golang)\n\n\n\ngolang\n\n微服务\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\nNo matching items"
+    "text": "Short essays, reviews, and research notes.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n一文读懂RAG\n\n\n\nRAG\n\nLLM\n\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n本地服务器低速传输解决方案\n\n\n\n技术\n\n技术实践\n\n\n\n\n\n\n\n\n\nDec 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nleetcode-灵神跟练-滑动窗口与双指针-不定长滑动窗口-越长越合法+求最短+最小\n\n\n\n算法\n\nleetcode\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nleetcode-灵神跟练-滑动窗口与双指针-定长滑动窗口-基础\n\n\n\n算法\n\nleetcode\n\n滑动窗口与双指针\n\n\n\n\n\n\n\n\n\nNov 9, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nMac安装Jekyll\n\n\n\nGitHub\n\nBlog\n\n\n\n\n\n\n\n\n\nOct 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nPC的快捷指令\n\n\n\n\n\n\n\n\nOct 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nWindows安装Jekyll\n\n\n\nGitHub\n\nBlog\n\n\n\n\n\n\n\n\n\nOct 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n基于BM25检索算法构建RAG智能文档问答助手–学习和实践\n\n\n\n大模型\n\nRAG\n\n\n\n\n\n\n\n\n\nMar 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nDeepseek-R1-32B模型部署\n\n\n\n大模型\n\n部署\n\n\n\n\n\n\n\n\n\nJan 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n如何使用git\n\n\n\n\n\n\n\n\nJan 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n开源协议\n\n\n\n技术\n\n技术理论\n\n\n\n\n\n\n\n\n\nJan 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n一种免费、高清、安全、但是很麻烦的远程桌面连接方案\n\n\n\n技术\n\n技术实践\n\n\n\n\n\n\n\n\n\nJan 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n保姆教程如何创建自己的“个人网站”\n\n\n\nGitHub\n\nBlog\n\n\n\n\n\n\n\n\n\nSep 15, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n《深度学习详解》–1、通过案例了解机器学习\n\n\n\n深度学习\n\n深度学习基础\n\n\n\n\n\n\n\n\n\nAug 26, 2024\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "pages/index.html",
@@ -630,18 +630,25 @@
     "text": "Golang Development LLM Deep Learning Federated Learning"
   },
   {
-    "objectID": "content/blogs/index.html",
-    "href": "content/blogs/index.html",
-    "title": "Blogs博客",
+    "objectID": "pages/home.html",
+    "href": "pages/home.html",
+    "title": "Home主页",
     "section": "",
-    "text": "Short essays, reviews, and research notes.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n一文读懂RAG\n\n\n\nRAG\n\nLLM\n\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n本地服务器低速传输解决方案\n\n\n\n技术\n\n技术实践\n\n\n\n\n\n\n\n\n\nDec 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nleetcode-灵神跟练-滑动窗口与双指针-不定长滑动窗口-越长越合法+求最短+最小\n\n\n\n算法\n\nleetcode\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nleetcode-灵神跟练-滑动窗口与双指针-定长滑动窗口-基础\n\n\n\n算法\n\nleetcode\n\n滑动窗口与双指针\n\n\n\n\n\n\n\n\n\nNov 9, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nMac安装Jekyll\n\n\n\nGitHub\n\nBlog\n\n\n\n\n\n\n\n\n\nOct 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nPC的快捷指令\n\n\n\n\n\n\n\n\nOct 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nWindows安装Jekyll\n\n\n\nGitHub\n\nBlog\n\n\n\n\n\n\n\n\n\nOct 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n基于BM25检索算法构建RAG智能文档问答助手–学习和实践\n\n\n\n大模型\n\nRAG\n\n\n\n\n\n\n\n\n\nMar 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nDeepseek-R1-32B模型部署\n\n\n\n大模型\n\n部署\n\n\n\n\n\n\n\n\n\nJan 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n如何使用git\n\n\n\n\n\n\n\n\nJan 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n开源协议\n\n\n\n技术\n\n技术理论\n\n\n\n\n\n\n\n\n\nJan 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n一种免费、高清、安全、但是很麻烦的远程桌面连接方案\n\n\n\n技术\n\n技术实践\n\n\n\n\n\n\n\n\n\nJan 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n保姆教程如何创建自己的“个人网站”\n\n\n\nGitHub\n\nBlog\n\n\n\n\n\n\n\n\n\nSep 15, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n《深度学习详解》–1、通过案例了解机器学习\n\n\n\n深度学习\n\n深度学习基础\n\n\n\n\n\n\n\n\n\nAug 26, 2024\n\n\n\n\n\nNo matching items"
+    "text": "这里是首页，汇总各模块最近更新内容。\n\n\nThis is the home page with the latest updates from each module.\n\n\n\nBlogs博客\n\n\n\n\n\n\n\n\n\n\n\n一文读懂RAG\n\n\n\nRAG\n\nLLM\n\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n本地服务器低速传输解决方案\n\n\n\n技术\n\n技术实践\n\n\n\n\n\n\n\n\n\nDec 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nleetcode-灵神跟练-滑动窗口与双指针-不定长滑动窗口-越长越合法+求最短+最小\n\n\n\n算法\n\nleetcode\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\nNo matching items\n\n\n\n\nProjects项目\n\n\n\n\n\n\n\n\n\nDaily Log Maker\n\n\n\nselfTools\n\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\n\n\n\n\n\n\n\n\n\nGesture-Fireworks\n\n\n\nselfTools\n\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\nNo matching items\n\n\n\n\nPapers论文\n\n\n\n\n\nNo matching items\n\n\n\n\nLearning Notes学习笔记\n\n\n\n\n\n\n\n\n\n\n\ngo的版本管理工具-g的安装和使用\n\n\n\ngolang\n\n环境搭建\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nGo-Kit 微服务框架\n\n\n\ngolang\n\n微服务\n\ngo-kit\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n微服务框架(golang)\n\n\n\ngolang\n\n微服务\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "content/learning-notes/index.html",
-    "href": "content/learning-notes/index.html",
-    "title": "Learning Notes学习笔记",
+    "objectID": "content/learning-notes/golang/index.html",
+    "href": "content/learning-notes/golang/index.html",
+    "title": "golang",
     "section": "",
-    "text": "课程学习笔记.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngo的版本管理工具-g的安装和使用\n\n\n\ngolang\n\n环境搭建\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nGo-Kit 微服务框架\n\n\n\ngolang\n\n微服务\n\ngo-kit\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n微服务框架(golang)\n\n\n\ngolang\n\n微服务\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（13）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（12）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（11）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（10）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（9）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 19, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（8）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 18, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（7）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 17, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（6）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 16, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（5）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（4）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 13, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（3）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nSep 29, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（2）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nSep 23, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（1）-在win搭建go环境\n\n\n\ngolang\n\n环境搭建\n\n\n\n\n\n\n\n\n\nSep 16, 2024\n\n\n\n\n\nNo matching items"
+    "text": "记录一下golang学习过程中的笔记.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngo的版本管理工具-g的安装和使用\n\n\n\ngolang\n\n环境搭建\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（13）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（12）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（11）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（10）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（9）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 19, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（8）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 18, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（7）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 17, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（6）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 16, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（5）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（4）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 13, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（3）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nSep 29, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（2）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nSep 23, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（1）-在win搭建go环境\n\n\n\ngolang\n\n环境搭建\n\n\n\n\n\n\n\n\n\nSep 16, 2024\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "content/learning-notes/microservices/index.html",
+    "href": "content/learning-notes/microservices/index.html",
+    "title": "微服务学习笔记",
+    "section": "",
+    "text": "记录一下微服务学习过程中的笔记.主要语言还是golang.\n相关代码仓库github: aorangehc/GoFramwork\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGo-Kit 微服务框架\n\n\n\ngolang\n\n微服务\n\ngo-kit\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n微服务框架(golang)\n\n\n\ngolang\n\n微服务\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "content/papers/index.html",
@@ -1173,7 +1180,7 @@
     "href": "content/learning-notes/microservices/entries/go-kit.html#服务发现和负载均衡",
     "title": "Go-Kit 微服务框架",
     "section": "服务发现和负载均衡",
-    "text": "服务发现和负载均衡"
+    "text": "服务发现和负载均衡\n关于concul的安装和使用可以见：concul\ngo-kit提供服务发现和负载均衡的相应机制\n\nGo kit 提供了工厂函数Factory， 它是一个将实例字符串(例如host:port)转换为特定端点的函数。提供多个端点的实例需要多个工厂函数。工厂函数还返回一个当实例消失并需要清理时调用的io.Closer。\nGo kit 提供了基本的负载均衡器，也可以自己实现。\n重试策略包装负载均衡器，并返回可用的端点。重试策略将重试失败的请求，直到达到最大尝试或超时为止。\n\n// 工厂函数\ntype Factory func(instance string) (endpoint.Endpoint, io.Closer, error)\n\n//  负载均衡\nimport \"github.com/go-kit/kit/sd/lb\"\nbalancer := lb.NewRoundRobin(endpointer)\n\n// 重试\nfunc Retry(max int, timeout time.Duration, lb Balancer) endpoint.Endpoint\nimport \"github.com/go-kit/kit/sd/lb\"\nretry := lb.Retry(3, 500*time.Millisecond, balancer)\n下面是简单实现\n开了两个trim_service分别在两个终端，调用的时候会自动轮询"
   },
   {
     "objectID": "content/learning-notes/microservices/entries/go-kit.html#参考资料",
@@ -1181,6 +1188,34 @@
     "title": "Go-Kit 微服务框架",
     "section": "参考资料",
     "text": "参考资料\nGo-kit\nGemini老师\nGo kit教程01——基础示例\nGo kit教程02——gRPC\nGo kit教程03——代码分层\nGo kit教程04——中间件和日志\nGo kit教程05——调用其他服务\nGo kit教程06——服务发现和负载均衡"
+  },
+  {
+    "objectID": "content/learning-notes/middleware/entries/Consul.html#简介",
+    "href": "content/learning-notes/middleware/entries/Consul.html#简介",
+    "title": "Go-Kit 微服务框架",
+    "section": "简介",
+    "text": "简介\nConsul 是 HashiCorp 开发的一款基于 Go 语言的开源中间件，旨在为微服务架构提供一站式的服务治理能力：它通过服务发现机制实现了服务实例的自动注册与动态查找（DNS/HTTP），并结合实时的健康检查自动隔离故障节点，确保流量的高可用性；同时，它内置了分布式的 Key/Value 存储，可直接作为动态配置中心使用；此外，其原生支持的多数据中心架构，使其能够轻松打通跨机房或跨云环境的服务连接，是云原生生态中极具竞争力的基础设施组件。"
+  },
+  {
+    "objectID": "content/learning-notes/middleware/entries/Consul.html#安装和启动",
+    "href": "content/learning-notes/middleware/entries/Consul.html#安装和启动",
+    "title": "Go-Kit 微服务框架",
+    "section": "安装和启动",
+    "text": "安装和启动\n我在使用的时候选择通过docker安装和启动，下面是相关的指令\n# 安装\ndocker pull hashicorp/consul:latest\n\n# 启动\ndocker run -d \\\n  --name=dev-consul \\\n  -p 8500:8500 \\\n  hashicorp/consul:latest agent -dev -client=0.0.0.0\n\n之后在localhost:8500就可以进行访问"
+  },
+  {
+    "objectID": "content/learning-notes/middleware/entries/Consul.html#在golang中使用consul",
+    "href": "content/learning-notes/middleware/entries/Consul.html#在golang中使用consul",
+    "title": "Go-Kit 微服务框架",
+    "section": "在golang中使用consul",
+    "text": "在golang中使用consul\n官方提供相应的接口和库供开发人员调用: Hashicorp/consul\nimport \"github.com/hashicorp/consul/api\""
+  },
+  {
+    "objectID": "content/learning-notes/middleware/entries/Consul.html#参考文献",
+    "href": "content/learning-notes/middleware/entries/Consul.html#参考文献",
+    "title": "Go-Kit 微服务框架",
+    "section": "参考文献",
+    "text": "参考文献"
   },
   {
     "objectID": "content/projects/entries/Daily-Log-Maker.html",

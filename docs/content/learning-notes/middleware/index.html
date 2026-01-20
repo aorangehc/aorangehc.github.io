@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-10-20">
 
-<title>golang学习记录（13）</title>
+<title>中间件学习笔记</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,66 +20,33 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../../">
-<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-listing/list.min.js"></script>
+<script src="../../../site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -107,9 +73,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
 
-<link rel="stylesheet" href="../../../../styles.css">
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -287,25 +311,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../pages/index.html"> 
+    <a class="nav-link" href="../../../pages/index.html"> 
 <span class="menu-text"><span class="lang-en">About Me</span><span class="lang-zh">关于我</span></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../pages/home.html"> 
+    <a class="nav-link" href="../../../pages/home.html"> 
 <span class="menu-text"><span class="lang-en">Home</span><span class="lang-zh">主页</span></span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../content/blogs/index.html"> 
+    <a class="nav-link" href="../../../content/blogs/index.html"> 
 <span class="menu-text"><span class="lang-en">Blogs</span><span class="lang-zh">博客</span></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../content/projects/index.html"> 
+    <a class="nav-link" href="../../../content/projects/index.html"> 
 <span class="menu-text"><span class="lang-en">Projects</span><span class="lang-zh">项目</span></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../content/papers/index.html"> 
+    <a class="nav-link" href="../../../content/papers/index.html"> 
 <span class="menu-text"><span class="lang-en">Papers</span><span class="lang-zh">论文</span></span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -314,19 +338,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-span-classlang-enlearning-notesspanspan-classlang-zh学习笔记span">    
         <li>
-    <a class="dropdown-item" href="../../../../content/learning-notes/index.html">
+    <a class="dropdown-item" href="../../../content/learning-notes/index.html">
  <span class="dropdown-text">Overview</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../../content/learning-notes/golang/index.html">
+    <a class="dropdown-item" href="../../../content/learning-notes/golang/index.html">
  <span class="dropdown-text">golang基础</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../../content/learning-notes/microservices/index.html">
+    <a class="dropdown-item" href="../../../content/learning-notes/microservices/index.html">
  <span class="dropdown-text">微服务(golang)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../../content/learning-notes/middleware/index.html">
+    <a class="dropdown-item" href="../../../content/learning-notes/middleware/index.html">
  <span class="dropdown-text">中间件(golang)</span></a>
   </li>  
     </ul>
@@ -346,47 +370,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#go中的单元测试" id="toc-go中的单元测试" class="nav-link active" data-scroll-target="#go中的单元测试">go中的单元测试</a>
-  <ul class="collapse">
-  <li><a href="#单元测试用例" id="toc-单元测试用例" class="nav-link" data-scroll-target="#单元测试用例">1、单元测试用例</a>
-  <ul class="collapse">
-  <li><a href="#单元测试用例编写" id="toc-单元测试用例编写" class="nav-link" data-scroll-target="#单元测试用例编写">1.1、单元测试用例编写</a></li>
-  <li><a href="#跳过耗时的单元测试用例" id="toc-跳过耗时的单元测试用例" class="nav-link" data-scroll-target="#跳过耗时的单元测试用例">1.2、跳过耗时的单元测试用例</a></li>
-  </ul></li>
-  <li><a href="#基于表格驱动测试" id="toc-基于表格驱动测试" class="nav-link" data-scroll-target="#基于表格驱动测试">2、基于表格驱动测试</a></li>
-  <li><a href="#benchmark性能测试" id="toc-benchmark性能测试" class="nav-link" data-scroll-target="#benchmark性能测试">3、benchmark性能测试</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+        
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="JUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx">微服务 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUU0JUI4JUFEJUU5JTk3JUI0JUU0JUJCJUI2">中间件 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z28ta2l0">go-kit <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z29sYW5n">golang <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">golang学习记录（13）</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">golang</div>
-    <div class="quarto-category">golang基础学习</div>
-  </div>
-  </div>
+<h1 class="title">中间件学习笔记</h1>
+</div>
 
 
 
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">October 20, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -396,120 +395,81 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="go中的单元测试" class="level1">
-<h1>go中的单元测试</h1>
-<section id="单元测试用例" class="level2">
-<h2 class="anchored" data-anchor-id="单元测试用例">1、单元测试用例</h2>
-<blockquote class="blockquote">
-<p>go test命令是一个按照一定约定和组织的测试代码驱动程序</p>
-<p>在包目录中，所有以_test.go结尾的源码文件都会被go test运行到</p>
-<p>我们写的 _test.go源码文件不用担心内容过多，因为go test命令不会将这些测试文件打包到最后的可执行文件</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>在实际应用中，test文件有四类：</p>
-<p>1、Test开头的：功能测试</p>
-<p>2、Benchmark开头的：性能测试</p>
-<p>3、Example开头的：模糊测试</p>
-<p>4、TestMain开头的：单元测试</p>
-</blockquote>
-<section id="单元测试用例编写" class="level3">
-<h3 class="anchored" data-anchor-id="单元测试用例编写">1.1、单元测试用例编写</h3>
-<p>下面举一个单元测试的例子：</p>
-<p>在包目录中有三个go文件，分别是：</p>
-<p>1、add.go</p>
-<p>2、add_test.go</p>
-<p>3、main.go</p>
-<p><img src="../assets/images/go/学习记录（13）/1.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
-<p>在add.go中定义了一个Add函数，用来实现两个整数的相加：</p>
-<p>在add_test.go中首先导入”testing”包，然后定义了一个TestAdd函数，用来测试Add函数的正确性，并作出相应的出错处理：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="st">"testing"</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> TestAdd<span class="op">(</span>t <span class="op">*</span>testing<span class="op">.</span>T<span class="op">){</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    re <span class="op">:=</span> add<span class="op">(</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">)</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> re<span class="op">!=</span> <span class="dv">3</span><span class="op">{</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        t<span class="op">.</span>Errorf<span class="op">(</span><span class="st">"add(1,2) = %d; want 3"</span><span class="op">,</span> re<span class="op">)</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>之后对add_test.go文件执行go test命令，即可进行单元测试，查看测试结果</p>
-</section>
-<section id="跳过耗时的单元测试用例" class="level3">
-<h3 class="anchored" data-anchor-id="跳过耗时的单元测试用例">1.2、跳过耗时的单元测试用例</h3>
-<blockquote class="blockquote">
-<p>在实际应用中，我们可能会遇到一些耗时的单元测试用例，我们可以使用t.Skip()函数来跳过这些耗时的单元测试用例</p>
-<p>在执行测试文件的过程中，使用 go test -short命令可以查看测试结果，其中 -short命令会跳过所有耗时的单元测试用例</p>
-<p>耗时的单元测试用例是有自己定义的</p>
-</blockquote>
-<p>下面是一个使用跳过单元测试的例子：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> TestAdd<span class="op">(</span>t <span class="op">*</span>testing<span class="op">.</span>T<span class="op">){</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> testing<span class="op">.</span>Short<span class="op">(){</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        t<span class="op">.</span>Skip<span class="op">(</span><span class="st">"skip this test"</span><span class="op">)</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 下面是执行不到的</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    re <span class="op">:=</span> add<span class="op">(</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">)</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> re<span class="op">!=</span> <span class="dv">3</span><span class="op">{</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        t<span class="op">.</span>Errorf<span class="op">(</span><span class="st">"add(1,2) = %d; want 3"</span><span class="op">,</span> re<span class="op">)</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>testing中的short相当于采用了两种模式，供用户选择。</p>
-</section>
-</section>
-<section id="基于表格驱动测试" class="level2">
-<h2 class="anchored" data-anchor-id="基于表格驱动测试">2、基于表格驱动测试</h2>
-<blockquote class="blockquote">
-<p>在实际测试的的时候，测试用例可能不止一组，一个一个测试非常耗时，go中提供了一种基于表格驱动测试的方式，它可以一次性测试多组数据，提高测试效率</p>
-</blockquote>
-<p>下面是一个基于表格驱动测试的例子：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="st">"testing"</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> TestAdd<span class="op">(</span>t <span class="op">*</span>testing<span class="op">.</span>T<span class="op">){</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> tests <span class="op">=</span> <span class="op">[]</span><span class="kw">struct</span><span class="op">{</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        a <span class="dt">int</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        b <span class="dt">int</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        want <span class="dt">int</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}{</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">},</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">5</span><span class="op">},</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">7</span><span class="op">},</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _<span class="op">,</span> tt <span class="op">:=</span> <span class="kw">range</span> tests<span class="op">{</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        re <span class="op">:=</span> add<span class="op">(</span>tt<span class="op">.</span>a<span class="op">,</span> tt<span class="op">.</span>b<span class="op">)</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> re<span class="op">!=</span> tt<span class="op">.</span>want<span class="op">{</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>            t<span class="op">.</span>Errorf<span class="op">(</span><span class="st">"add(%d, %d) = %d; want %d"</span><span class="op">,</span> tt<span class="op">.</span>a<span class="op">,</span> tt<span class="op">.</span>b<span class="op">,</span> re<span class="op">,</span> tt<span class="op">.</span>want<span class="op">)</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="benchmark性能测试" class="level2">
-<h2 class="anchored" data-anchor-id="benchmark性能测试">3、benchmark性能测试</h2>
-<blockquote class="blockquote">
-<p>在一些核心函数中对性能有要求，我们可以使用benchmark性能测试来测试函数的性能</p>
-<p>同样，性能测试函数也在”testing”包中</p>
-<p>在应用过程中，性能测试函数的命名必须以Benchmark开头，后面跟上要测试的函数名</p>
-<p>性能测试函数的参数必须是*testing.B类型的指针</p>
-<p>在执行测试文件的过程中，使用 go test -bench命令可以查看测试结果，其中 -bench命令会执行所有的性能测试用例</p>
-</blockquote>
-<p>下面是一个关于单元性能测试的例子：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="st">"testing"</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> BenchmarkAdd<span class="op">(</span>b <span class="op">*</span>testing<span class="op">.</span>B<span class="op">){</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    a <span class="op">:=</span> <span class="dv">123</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    b <span class="op">:=</span> <span class="dv">456</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    c <span class="op">:=</span> <span class="dv">579</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i<span class="op">:=</span><span class="dv">0</span><span class="op">;</span> i<span class="op">&lt;</span>b<span class="op">.</span>N<span class="op">;</span> i<span class="op">++{</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> actual <span class="op">:=</span> add<span class="op">(</span>a<span class="op">,</span>b<span class="op">);</span> actual<span class="op">!=</span> c<span class="op">{</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>            fmt<span class="op">.</span>Printf<span class="op">(</span><span class="st">"add(%d, %d) = %d; want %d"</span><span class="op">,</span> a<span class="op">,</span> b<span class="op">,</span> actual<span class="op">,</span> c<span class="op">)</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>在进行性能测试过沉重还有一个常用的函数：b.ResetTimer()，它可以重置计时器，使得测试结果更加准确</p>
+<p>记录一下golang相关中间件的学习笔记.</p>
+<p>中间件是微服务架构中的一种软件组件，它位于应用程序的客户端和服务器之间，负责处理请求和响应。中间件可以实现各种功能，例如身份验证、授权、日志记录、缓存、负载均衡等。</p>
 
 
-</section>
-</section>
 
-</main> <!-- /main -->
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="Z29sYW5nJTJDJUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUExJTJDZ28ta2l0" data-listing-date-sort="1737033306000" data-listing-file-modified-sort="1768881623381" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="76">
+<div class="thumbnail"><a href="../../../content/learning-notes/middleware/entries/Consul.html" class="no-external">
+
+<p class="card-img-top"><img src="assets/images/Consul/image.png" alt="go" style="height: 140px;"  class="thumbnail-image card-img"/></p>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../../../content/learning-notes/middleware/entries/Consul.html" class="no-external">Go-Kit 微服务框架</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Z29sYW5n'); return false;">golang</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('JUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx'); return false;">微服务</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Z28ta2l0'); return false;">go-kit</div>
+
+</div>
+<div class="delink listing-description"><a href="../../../content/learning-notes/middleware/entries/Consul.html" class="no-external">
+Consul 是 HashiCorp 开发的一款基于 Go 语言的开源中间件，旨在为微服务架构提供一站式的服务治理能力：它通过服务发现机制实现了服务实例的自动注册与动态查找（DNS/HTTP），并结合实时的健康检查自动隔离故障节点，确保流量的高可用性；同时，它内置了分布式的 Key/Value…
+</a></div>
+</div>
+<div class="metadata">
+<a href="../../../content/learning-notes/middleware/entries/Consul.html" class="no-external">
+<div class="listing-date">
+Jan 16, 2025
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="Z29sYW5nJTJDJUU0JUI4JUFEJUU5JTk3JUI0JUU0JUJCJUI2" data-listing-date-sort="1737033306000" data-listing-file-modified-sort="1768881422692" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+<div class="thumbnail"><a href="../../../content/learning-notes/middleware/entries/中间件(golang).html" class="no-external">
+
+<div class="listing-item-img-placeholder card-img-top" style="height: 140px;">&nbsp;</div>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../../../content/learning-notes/middleware/entries/中间件(golang).html" class="no-external">中间件(golang)</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Z29sYW5n'); return false;">golang</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('JUU0JUI4JUFEJUU5JTk3JUI0JUU0JUJCJUI2'); return false;">中间件</div>
+
+</div>
+<div class="delink listing-description"><a href="../../../content/learning-notes/middleware/entries/中间件(golang).html" class="no-external">
+
+
+
+
+
+</a></div>
+</div>
+<div class="metadata">
+<a href="../../../content/learning-notes/middleware/entries/中间件(golang).html" class="no-external">
+<div class="listing-date">
+Jan 16, 2025
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div></main> <!-- /main -->
 <button id="lang-toggle" type="button" aria-label="Toggle language"></button>
 <script>
   (() => {
