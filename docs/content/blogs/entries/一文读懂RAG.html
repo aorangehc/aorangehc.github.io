@@ -334,15 +334,35 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#一文读懂rag" id="toc-一文读懂rag" class="nav-link active" data-scroll-target="#一文读懂rag">一文读懂RAG</a>
+  <li><a href="#引言" id="toc-引言" class="nav-link active" data-scroll-target="#引言">0 引言</a></li>
+  <li><a href="#基本概念" id="toc-基本概念" class="nav-link" data-scroll-target="#基本概念">1 基本概念</a></li>
+  <li><a href="#背景和技术原理" id="toc-背景和技术原理" class="nav-link" data-scroll-target="#背景和技术原理">2 背景和技术原理</a>
   <ul class="collapse">
-  <li><a href="#基本概念" id="toc-基本概念" class="nav-link" data-scroll-target="#基本概念">基本概念</a></li>
-  <li><a href="#背景和技术原理" id="toc-背景和技术原理" class="nav-link" data-scroll-target="#背景和技术原理">背景和技术原理</a></li>
-  <li><a href="#rag框架" id="toc-rag框架" class="nav-link" data-scroll-target="#rag框架">RAG框架</a></li>
-  <li><a href="#rag的多跳多领域问题" id="toc-rag的多跳多领域问题" class="nav-link" data-scroll-target="#rag的多跳多领域问题">RAG的多跳多领域问题</a></li>
-  <li><a href="#多模态rag" id="toc-多模态rag" class="nav-link" data-scroll-target="#多模态rag">多模态RAG</a></li>
-  <li><a href="#rag的应用案例" id="toc-rag的应用案例" class="nav-link" data-scroll-target="#rag的应用案例">RAG的应用案例</a></li>
+  <li><a href="#背景" id="toc-背景" class="nav-link" data-scroll-target="#背景">2. 1 背景</a></li>
+  <li><a href="#技术原理" id="toc-技术原理" class="nav-link" data-scroll-target="#技术原理">2.2 技术原理</a></li>
   </ul></li>
+  <li><a href="#rag框架" id="toc-rag框架" class="nav-link" data-scroll-target="#rag框架">3 RAG框架</a>
+  <ul class="collapse">
+  <li><a href="#检索器" id="toc-检索器" class="nav-link" data-scroll-target="#检索器">3.1 检索器</a></li>
+  <li><a href="#生成器" id="toc-生成器" class="nav-link" data-scroll-target="#生成器">3.2 生成器</a></li>
+  <li><a href="#rag基本流程" id="toc-rag基本流程" class="nav-link" data-scroll-target="#rag基本流程">3.3 RAG基本流程</a></li>
+  </ul></li>
+  <li><a href="#rag增强" id="toc-rag增强" class="nav-link" data-scroll-target="#rag增强">4 RAG增强</a>
+  <ul class="collapse">
+  <li><a href="#输入增强" id="toc-输入增强" class="nav-link" data-scroll-target="#输入增强">4.1 输入增强</a></li>
+  <li><a href="#检索器增强" id="toc-检索器增强" class="nav-link" data-scroll-target="#检索器增强">4.2 检索器增强</a></li>
+  <li><a href="#生成器增强" id="toc-生成器增强" class="nav-link" data-scroll-target="#生成器增强">4.3 生成器增强</a></li>
+  <li><a href="#结果增强" id="toc-结果增强" class="nav-link" data-scroll-target="#结果增强">4.4 结果增强</a></li>
+  <li><a href="#流程增强-pipeline-enhancement" id="toc-流程增强-pipeline-enhancement" class="nav-link" data-scroll-target="#流程增强-pipeline-enhancement">4.5 流程增强 Pipeline Enhancement</a></li>
+  </ul></li>
+  <li><a href="#rag的多跳多领域问题" id="toc-rag的多跳多领域问题" class="nav-link" data-scroll-target="#rag的多跳多领域问题">5 RAG的多跳多领域问题</a></li>
+  <li><a href="#多模态rag" id="toc-多模态rag" class="nav-link" data-scroll-target="#多模态rag">6 多模态RAG</a></li>
+  <li><a href="#rag的应用案例" id="toc-rag的应用案例" class="nav-link" data-scroll-target="#rag的应用案例">7 RAG的应用案例</a>
+  <ul class="collapse">
+  <li><a href="#应用领域" id="toc-应用领域" class="nav-link" data-scroll-target="#应用领域">7.1 应用领域</a></li>
+  <li><a href="#ima" id="toc-ima" class="nav-link" data-scroll-target="#ima">7.2 Ima</a></li>
+  </ul></li>
+  <li><a href="#参考资料" id="toc-参考资料" class="nav-link" data-scroll-target="#参考资料">参考资料</a></li>
   </ul>
 </nav>
     </div>
@@ -379,52 +399,244 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="一文读懂rag" class="level1">
-<h1>一文读懂RAG</h1>
-<p><span style="color: inherit; background-color: rgba(183,237,177,0.8)">写在前面，作者也是初学者，抱着学习的心态写了这篇文章，如果有问题，欢迎大家邮箱联系进行批评指正。</span></p>
+<p><img src="../assets/images/allRag/image.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p>RAG（Retrieval Augmented Generation）：检索增强生成</p>
+<section id="引言" class="level2">
+<h2 class="anchored" data-anchor-id="引言">0 引言</h2>
+<p><span style="color: inherit; background-color: rgba(183,237,177,0.8)">写在前面，作者也是初学者，抱着学习的心态写了这篇文章，如果有问题，欢迎大家</span><a href="mailto:morange0205@gmail.com"><span style="color: inherit; background-color: rgba(183,237,177,0.8)">邮箱</span></a><span style="color: inherit; background-color: rgba(183,237,177,0.8)">联系进行批评指正。</span></p>
 <p>本篇将系统介绍RAG的基本概念、核心技术原理、发展背景和典型架构，随后深入探讨多模态RAG（如文本-图像、文本-视频的检索增强生成）和Graph RAG（基于图结构数据的检索增强生成）等前沿方向，最后分析当前面临的挑战与未来发展趋势。</p>
+</section>
 <section id="基本概念" class="level2">
-<h2 class="anchored" data-anchor-id="基本概念">基本概念</h2>
+<h2 class="anchored" data-anchor-id="基本概念">1 基本概念</h2>
 <p>RAG（Retrieval Augmented Generation），中文名称是检索增强生成，通俗意义上来讲就是通过检索提升大模型生成效果的技术，旨在提升生成式AI的准确性与可信度。它实现了大语言模型与外部知识库的结合，是缓解幻觉与提升可追溯性的关键路线之一。该概念最初由Facebook AI研究团队在2020年提出，并发表了命名RAG的开创性论文。如今，RAG已发展为一类庞大的方法体系，被认为是通向更可靠生成式AI的重要方向。</p>
 </section>
 <section id="背景和技术原理" class="level2">
-<h2 class="anchored" data-anchor-id="背景和技术原理">背景和技术原理</h2>
-<p>大模型在没有外部知识库的情况下也能“记住”大量知识，但仍然存在明显局限：参数中的知识更新成本高、回答往往缺少可核验的证据来源；遇到冷门知识、最新信息或长链路推理时，错误率会上升；在多轮对话与长上下文场景里，也可能出现信息遗忘、主题漂移与证据混淆等问题。比如，你问的是aorangehc是谁，它却开始讲爱因斯坦是谁，这类与问题无关或事实不稳的生成通常被称为幻觉。幻觉并非某一个模型的偶然故障，而是概率式生成在信息不足、目标不清或证据缺失时容易出现的系统性现象，因此研究者开始从模型之外引入约束与外部信息来降低这类问题的发生。</p>
-<p>一种方法是在预训练之后对模型进行指令微调与对齐训练，让它在不确定时更倾向于回答“不知道”或主动澄清。</p>
-<p>一种方法是使用者通过Prompt对回答范围、证据要求与输出格式进行限制，减少模型自由发挥的空间。</p>
+<h2 class="anchored" data-anchor-id="背景和技术原理">2 背景和技术原理</h2>
+<section id="背景" class="level3">
+<h3 class="anchored" data-anchor-id="背景">2. 1 背景</h3>
+<p>大模型在没有外部知识库的情况下也能“记住”大量知识，但仍然存在明显局限：参数中的知识更新成本高、回答往往缺少可核验的证据来源；遇到冷门知识、最新信息或长链路推理时，错误率会上升；在多轮对话与长上下文场景里，也可能出现信息遗忘、主题漂移与证据混淆等问题。</p>
+<p>比如，你问的是aorangehc是谁，它却开始讲爱因斯坦是谁，这类与问题无关或事实不符的生成通常被称为幻觉（LLM Hallucination)。幻觉并非某一个模型的偶然故障，而是概率式生成在信息不足、目标不清或证据缺失时容易出现的系统性现象，因此研究者开始从模型之外引入约束与外部信息来降低这类问题的发生。</p>
+<p>一种方法是在预训练之后对模型进行指令微调与对齐训练，让它在不确定时更倾向于回答“不知道”或主动澄清。一种方法是使用者通过Prompt对回答范围、证据要求与输出格式进行限制，减少模型自由发挥的空间。</p>
 <p>还有一种就是引入外部知识库。我们现在使用ChatGPT、Gemini、Kimi、豆包以及DeepSeek等大模型应用时，经常会看到联网搜索或知识库问答功能：系统会根据问题去外部数据源检索网页或文档片段，将检索结果作为证据提供给模型，再由模型基于证据与自身语言能力组织答案，从而显著提升事实性与可解释性。这个“先检索、再生成”的过程，就是RAG的典型范式。</p>
+</section>
+<section id="技术原理" class="level3">
+<h3 class="anchored" data-anchor-id="技术原理">2.2 技术原理</h3>
 <p>现在意义上的大模型具有很多能力，我们日常中更多是使用大模型进行提问，让它解决遇到的难题，比如Python代码报错，把报错信息扔给大模型，它给出修改意见，这个过程中使用的主要能力是指令遵循。除此之外还有上下文学习、推理、工具使用等，随着技术的发展，大模型可调用的能力在不断扩展。</p>
 <p>在RAG中主要利用的就是大模型的上下文学习能力，通过检索获取相关知识作为上下文提供给大模型，然后由大模型基于问题与证据进行归纳总结并生成回答。</p>
 <p>RAG的核心思想是在生成任务中引入检索模块。模型在接到输入后，先由检索模块从外部知识库（如维基百科、专有文档库、企业内部资料等）中检索出相关资料，再将检索到的内容与原始输入一起送入生成模型，生成最终回答或文本。这种“检索-生成”策略使模型能够现查现用所需知识，而不必完全依赖参数中存储的旧知识。OpenAI的WebGPT工作即是典型案例：它让GPT-3在一个受控的浏览环境中搜索网页、抽取引用片段并据此回答长问题，从而提升答案的事实性与可核验性。通过引入检索，不仅能降低幻觉发生率，也使知识库可以更灵活地扩展与更新，例如用户可以按需接入新的数据源供系统使用。</p>
 <p>自RAG提出后，各大研究团队纷纷推出改进的检索增强模型。例如，DeepMind在2021年发布的RETRO模型通过接入超大规模文本数据库进行检索增强，在较小参数规模下取得了与当时超大模型相当甚至在部分基准上更优的效果，体现了检索对“以更小模型获得更强知识能力”的潜力。又如Meta在2022年推出的Atlas模型，将预训练的检索增强语言模型用于少样本学习，在开放域问答等知识密集任务上，用显著更少的参数规模取得了与超大模型相竞争的表现。这些成果表明，检索增强可以在更小模型规模下达到甚至逼近超大模型的效果，凸显了参数与检索融合的效率优势与工程价值。</p>
 </section>
+</section>
 <section id="rag框架" class="level2">
-<h2 class="anchored" data-anchor-id="rag框架">RAG框架</h2>
-<p>【RAG通用框架图，后面补充】</p>
-<p>典型RAG系统包含检索器与生成器两大核心组件。首先，输入查询会被检索模块编码为向量表示，并在外部知识库的向量索引中进行相似度搜索，检索出若干相关文本片段。随后，这些检索到的证据片段与原始查询一并提供给生成模型，模型将基于问题与证据生成最终回答。通过将外部知识融入生成过程，RAG能够让回答更贴近事实，并在工程实现上支持给出引用来源与证据片段，从而提升可解释性与可审计性。</p>
-<p>经典RAG在生成整个回答时往往使用固定的一组检索文档；也有更高级的变体如RAG-Token，可以在生成过程中对不同位置动态使用不同检索证据，从而提升信息使用的灵活性。无论哪种方式，检索结果与生成模型的融合都是关键：很多实现会将检索文本直接拼接到模型输入中，而一些研究也探索在模型内部以更结构化的方式利用检索信息，使模型在生成时能更稳定地对齐证据、减少无关发挥。实践中，检索器与生成器既可以分阶段独立优化，也可以在特定设定下进行联合训练或端到端微调，以让检索器更偏向于返回对生成最有帮助的证据、生成器也更善于引用与整合证据。</p>
+<h2 class="anchored" data-anchor-id="rag框架">3 RAG框架</h2>
+<p><img src="../assets/images/allRag/image-1.png" alt="go" style="width: 80%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><span style="color: rgb(143,149,158); background-color: inherit">图片引用自文献</span><a href="https://arxiv.org/abs/2402.19473"><span style="color: rgb(143,149,158); background-color: inherit">Retrieval-Augmented Generation for AI-Generated Content: A Survey</span></a></p>
+<p>典型RAG系统包含检索器与生成器两大核心组件。</p>
+<section id="检索器" class="level3">
+<h3 class="anchored" data-anchor-id="检索器">3.1 检索器</h3>
+<p>检索是指根据信息需求识别并获取相关信息。具体来说，我们可以将信息资源视为一个键值存储，其中每个键对应一个值，键和值可以相同。给定一个查询，目标是使用相似性函数搜索出最相似的前k个键，并获取与之配对的值。根据不同的相似性函数，现有的检索方法可分为稀疏检索、稠密检索及其他类型。</p>
+<section id="稀疏检索器" class="level4">
+<h4 class="anchored" data-anchor-id="稀疏检索器">3.1.1 稀疏检索器</h4>
+<p>稀疏检索器利用词项匹配指标，如TF-IDF、BM25，主要用于文档的相关检索。这些方法通过分析文本中的词统计信息并构建倒排索引来实现高效搜索。本质上，BM25是大规模网络搜索中的一个强大基线，它整合了逆文档频率权重、查询词项出现次数和其他相关指标。</p>
+</section>
+<section id="稠密检索器" class="level4">
+<h4 class="anchored" data-anchor-id="稠密检索器">3.1.2 稠密检索器</h4>
+<p>稠密检索通过稠密嵌入向量来表示查询和键，并构建近似最近邻索引加快搜索速度，能用于所有模态的检索。稠密检索将原本的数据通过预训练模型编码成为向量，然后通过计算相似度分数进行检索，相似度计算可以通过余弦、内积和L2距离等。</p>
+<p>现在的RAG系统为了提升效果一般采用稀疏检索+稠密检索的混合检索模式，提升效果。</p>
+</section>
+</section>
+<section id="生成器" class="level3">
+<h3 class="anchored" data-anchor-id="生成器">3.2 生成器</h3>
+<p>生成器结合检索到的内容，生成所需内容。</p>
+<p>随着AIGC时代的发展，生成器也不断发展丰富成熟，不同的生成器模型可以用于不同的场景，比如</p>
+<ul>
+<li><p>Transformer模型用于文本到文本的任务</p></li>
+<li><p>VisualGPT可以用于图像到文本的任务</p></li>
+<li><p>Stable Diffusion可以用于文本到图像的任务</p></li>
+<li><p>Codex可以用于文本到代码的任务</p></li>
+</ul>
+</section>
+<section id="rag基本流程" class="level3">
+<h3 class="anchored" data-anchor-id="rag基本流程">3.3 RAG基本流程</h3>
+<p>首先，输入查询会被检索模块编码为向量表示，并在外部知识库的向量索引中进行相似度搜索，检索出若干相关文本片段。随后，这些检索到的证据片段与原始查询一并提供给生成模型，模型将基于问题与证据生成最终回答。通过将外部知识融入生成过程，RAG能够让回答更贴近事实，并在工程实现上支持给出引用来源与证据片段，从而提升可解释性与可审计性。</p>
+<p>经典RAG在生成整个回答时往往使用固定的一组检索文档；也有更高级的变体如RAG-Token，可以在生成过程中对不同位置动态使用不同检索证据，从而提升信息使用的灵活性。</p>
+<p>无论哪种方式，检索结果与生成模型的融合都是关键：很多实现会将检索文本直接拼接到模型输入中，而一些研究也探索在模型内部以更结构化的方式利用检索信息，使模型在生成时能更稳定地对齐证据、减少无关发挥。实践中，检索器与生成器既可以分阶段独立优化，也可以在特定设定下进行联合训练或端到端微调，以让检索器更偏向于返回对生成最有帮助的证据、生成器也更善于引用与整合证据。</p>
+</section>
+</section>
+<section id="rag增强" class="level2">
+<h2 class="anchored" data-anchor-id="rag增强">4 RAG增强</h2>
+<p>是的检索增强生成(的)增强也是很重要的研究点，有很多技巧。</p>
+<section id="输入增强" class="level3">
+<h3 class="anchored" data-anchor-id="输入增强">4.1 输入增强</h3>
+<p>最初输入到检索器中的内容对检索阶段的最终结果有显著影响，输入增强的方式主要有以下几种。</p>
+<section id="查询转换" class="level4">
+<h4 class="anchored" data-anchor-id="查询转换">4.1.1 查询转换</h4>
+<p>查询转换可以通过修改输入查询来增强检索结果。</p>
+<p>Query2doc和HyDE，利用原始查询生成伪文档，之后将该伪文档用作检索的查询。伪文档包含更丰富的相关信息，有助于检索出更准确的结果。</p>
+<p>TOC利用检索到的内容，将模糊的查询分解为多个清晰的子查询，这些子查询被发送到生成器，经聚合后产生最终结果。对于。</p>
+<p>RQ-RAG将复杂或模糊的查询分解为清晰的子查询以进行细粒度检索，并对响应进行综合，从而为原始查询提供连贯的答案</p>
+</section>
+<section id="数据增强" class="level4">
+<h4 class="anchored" data-anchor-id="数据增强">4.1.2 数据增强</h4>
+<p>数据增强表示在检索前对数据进行改进，包括去除无关信息、消除歧义、更新过时文档、合成新数据等技术</p>
+<p>Make-An-Audio利用字幕生成和音频-文本检索为无语言音频生成字幕，以缓解数据稀疏问题，并添加随机概念音频来改进原始音频。</p>
+<p>LESS通过分析梯度信息优化下游任务的数据集选择，旨在提升模型对指令提示的响应性能。</p>
+<p>ReACC通过重命名和死代码插入来预训练代码检索模型。</p>
+</section>
+</section>
+<section id="检索器增强" class="level3">
+<h3 class="anchored" data-anchor-id="检索器增强">4.2 检索器增强</h3>
+<section id="递归检索" class="level4">
+<h4 class="anchored" data-anchor-id="递归检索">4.2.1 递归检索</h4>
+<p>归检索是指执行多次搜索以获取更丰富、更高质量的内容。</p>
+<p>ReACT利用思维链（CoT）将查询分解以进行递归检索，并提供更丰富的信息。</p>
+<p>RATP采用蒙特卡洛树搜索进行模拟，以选择最优的检索内容，然后将其模板化并转发给生成器进行输出。</p>
+</section>
+<section id="块优化" class="level4">
+<h4 class="anchored" data-anchor-id="块优化">4.2.2 块优化</h4>
+<p>块优化指的是调整块大小以改善检索结果。</p>
+<p>LlamaIndex集成了一系列 chunk 优化方法，其中一种遵循“从小到大”的原则。其核心思想是精准定位更细粒度的内容，同时返回更丰富的信息。例如，句子窗口检索会获取小的文本块，并返回检索片段周围的相关句子窗口。在自动合并检索中，文档被组织成树状结构。该过程先获取子节点，再检索包含其子节点内容的父节点。</p>
+<p>RAPTOR采用递归嵌入、聚类和文本块摘要的方法，直到无法进一步聚类为止，从而构建多层树状结构。</p>
+<p>Prompt-RAG通过预先生成目录来提高检索准确性，使模型能够根据查询自主选择相关章节。</p>
+</section>
+<section id="检索器微调" class="level4">
+<h4 class="anchored" data-anchor-id="检索器微调">4.2.3 检索器微调</h4>
+<p>在稠密检索中检索器依赖于一个高效的嵌入模型，来表示相关内容并为生成器提供输入，从而提升系统性能。</p>
+<p>可以通过特定领域或任务相关的数据进行微调，以提升在目标领域的性能。</p>
+<p>REPLUG将语言模型视为黑盒，并根据最终结果更新检索模型。</p>
+<p>APICoder使用Python文件以及API名称、签名和描述对检索模型进行微调。</p>
+<p>EDITSUM对检索模型进行微调，以减小检索后摘要之间的杰卡德距离。</p>
+<p>最新的模型Qwen3系列开源了多种embedding和rerank模型，并开放了技术报告，效果很好。其中小模型适合用来做微调测试和效果对比。</p>
+</section>
+<section id="混合检索" class="level4">
+<h4 class="anchored" data-anchor-id="混合检索">4.2.4 混合检索</h4>
+<p>混合检索指同时采用多种不同的检索方法或从多个不同的来源提取信息。</p>
+<p>RAP-Gen、BlendedRAG 和ReACC均同时使用密集检索器和稀疏检索器来提高检索质量。</p>
+<p>Rencos使用稀疏检索器在句法层面检索相似的代码片段，并使用密集检索器在语义层面检索相似的代码片段。</p>
+<p>BASHEXPLAINER首先使用密集检索器捕获语义信息，然后使用稀疏检索器获取词汇信息。</p>
+<p>RetDream先通过文本进行检索，再通过图像嵌入进行检索。</p>
+<p>CRAG的特点是配备了一个检索评估器，用于衡量文档与查询的相关性，并根据置信度生成三种检索响应：如果结果准确，则直接用于知识优化；如果结果不正确，则进行网络搜索；对于模糊情况，则采用混合方法。</p>
+</section>
+<section id="rerank" class="level4">
+<h4 class="anchored" data-anchor-id="rerank">4.2.5 Rerank</h4>
+<p>重排序应该是最常见的方式，指对检索到的内容进行重新排序，以获得更高的多样性和更好的结果。也有很多重排序的模型开源可以使用。</p>
+<p>Re2G在传统检索器之后应用了一个重排序器模型，以减少因将文本压缩为向量而导致的信息丢失所带来的影响。</p>
+<p>AceCoder利用选择器对检索到的程序进行重排序，以减少冗余程序并获得多样化的检索程序。</p>
+<p>XRICL在检索后使用基于蒸馏的示例重排序器。</p>
+<p>Rangan采用量化影响度量，通过评估查询和参考之间的统计偏差来衡量数据子集的相似性，并对检索结果进行重排序。</p>
+<p>UDAPDR利用大语言模型经济高效地生成用于训练特定领域重排序器的合成查询，然后应用多教师知识蒸馏来开发一个协同的检索器。</p>
+</section>
+<section id="检索转换" class="level4">
+<h4 class="anchored" data-anchor-id="检索转换">4.2.6 检索转换</h4>
+<p>检索转换通过重新表述检索到的内容，以更好地激发生成器的潜力，从而改进输出结果。</p>
+<p>FILCO能高效地从检索到的文本中清除无关内容，只保留相关的支持性内容，从而简化生成器的任务，有助于准确预测答案。</p>
+<p>FiD-Light首先使用编码器将检索到的内容转换为向量，然后对其进行压缩，大幅减少了延迟时间。</p>
+</section>
+</section>
+<section id="生成器增强" class="level3">
+<h3 class="anchored" data-anchor-id="生成器增强">4.3 生成器增强</h3>
+<section id="提示工程-prompt-engineering" class="level4">
+<h4 class="anchored" data-anchor-id="提示工程-prompt-engineering">4.3.1 提示工程-Prompt Engineering</h4>
+<p>提示工程是一种专注于提高大型语言模型输出质量的提示工程技术，如提示压缩、后退提示、主动提示、思维链提示等，均适用于检索增强生成系统中的大型语言模型生成器。</p>
+<p>LLMLingua应用一个小型模型来压缩查询的整体长度，以加速模型推理，减轻无关信息对模型的负面影响，并缓解中间迷失现象。</p>
+<p>ReMoDiffuse通过使用ChatGPT将复杂描述分解为结构化文本脚本。</p>
+<p>ASAP将包含输入代码、函数定义、分析结果和相应注释的示例元组纳入提示词中，以获得更好的结果。</p>
+<p>CEDAR使用设计好的提示词模板，将代码演示、查询和自然语言指令组织成提示词。</p>
+<p>XRICL利用思维链技术，在跨语言语义解析和推理中添加翻译对作为中间步骤。</p>
+<p>ACTIVERAG采用认知连接机制来校准大语言模型的内在认知，并在答案生成中应用思维链提示词。</p>
+<p>Make-An-Audio能够使用其他模态作为输入，这可以为后续过程提供更丰富的信息。</p>
+</section>
+<section id="解码调优" class="level4">
+<h4 class="anchored" data-anchor-id="解码调优">4.3.2 解码调优</h4>
+<p>解码调优包括通过微调超参数来增强生成器控制，以提高多样性、限制输出词汇量以及进行其他调整。</p>
+<p>InferFix通过调整解码器的温度来平衡结果的多样性和质量。（温度可以理解为一个参数，控制模型生成内容的发散程度）</p>
+<p>SYNCHROMESH通过实施补全引擎来消除实现错误，从而限制解码器的输出词汇量。</p>
+</section>
+<section id="生成器微调" class="level4">
+<h4 class="anchored" data-anchor-id="生成器微调">4.3.3 生成器微调</h4>
+<p>生成器的微调可以增强模型掌握更精确领域知识的能力，或使其更好地与检索器相适配。</p>
+<p>RETRO固定了检索器的参数，并在生成器中使用分块交叉注意力机制来结合查询和检索器的内容。</p>
+<p>CARE 利用图像、音频和视频-文本对训练编码器，然后微调解码器（生成器）以同时减少字幕和概念检测损失，同时保持编码器和检索器固定。</p>
+<p>Animate-A-Story利用图像数据优化视频生成器，然后微调LoRA适配器以捕捉给定角色的外观细节。</p>
+</section>
+</section>
+<section id="结果增强" class="level3">
+<h3 class="anchored" data-anchor-id="结果增强">4.4 结果增强</h3>
+<section id="输出重写" class="level4">
+<h4 class="anchored" data-anchor-id="输出重写">4.4.1 输出重写</h4>
+<p>输出重写指的是在特定场景下对生成器生成的内容进行改写，以满足下游任务的需求。</p>
+<p>SARGAM通过采用一种特殊的Transformer，结合删除分类器、占位符分类器和插入分类器，在代码相关任务中优化输出，使其更贴合现实世界的代码语境。</p>
+<p>Ring根据生成器产生的每个令牌的对数概率平均值对候选结果进行重新排序，从而获得多样化的结果。</p>
+<p>CBR-KBQA通过将生成的关系与知识图谱中查询实体的本地邻域所呈现的关系进行对齐，来修正结果。</p>
+</section>
+</section>
+<section id="流程增强-pipeline-enhancement" class="level3">
+<h3 class="anchored" data-anchor-id="流程增强-pipeline-enhancement">4.5 流程增强 Pipeline Enhancement</h3>
+<p>RAG流程增强指的是对RAG的整个流程进行优化，以获得更好的性能结果。</p>
+<section id="自适应检索" class="level4">
+<h4 class="anchored" data-anchor-id="自适应检索">4.5.1 自适应检索</h4>
+<p>一些关于RAG的研究表明，检索并非总能提升最终结果。当模型固有的参数化知识足以回答相关问题时，过度检索可能会导致资源浪费，并可能造成混淆。因此有些方法研究是否应该进行RAG。</p>
+<ul>
+<li><p>基于规则</p>
+<ul>
+<li><p>FLARE会在生成过程中主动决定是否以及何时对概率进行搜索。</p></li>
+<li><p>Efficient-KNNLM将 KNN-LM 和 NPM的生成概率与超参数 λ 相结合，以确定生成和检索的比例。</p></li>
+<li><p>还有对问题进行统计分析，以便为高频问题提供直接答案，并对低频问题应用检索增强生成等。</p></li>
+</ul></li>
+<li><p>基于模型</p>
+<ul>
+<li><p>Self-RAG使用训练过的生成器，根据不同用户查询下的检索令牌来决定是否执行检索。</p></li>
+<li><p>SKR利用大型语言模型自身的能力预先判断其是否能够回答该问题，若能回答，则不执行检索。</p></li>
+<li><p>Rowen将一个问题翻译成多种语言，并检查这些语言版本答案的一致性，以此来决定是否需要信息检索。</p></li>
+<li><p>AdaptiveRAG通过一个较小的语言模型作为分类器，根据查询的复杂程度动态决定是否进行检索。</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="迭代式检索增强生成" class="level4">
+<h4 class="anchored" data-anchor-id="迭代式检索增强生成">4.5.2 迭代式检索增强生成</h4>
+<p>迭代式检索增强生成通过在检索和生成阶段反复循环来逐步优化结果，实际就是进行多轮操作</p>
+<p>RepoCoder采用迭代检索-生成方法进行代码补全，利用先前生成的代码优化查询，以更好地利用分散的信息并改善结果。</p>
+<p>ITER-RETGEN通过使用生成器的输出来确定知识缺口、检索必要信息并为未来的生成周期提供信息，从而迭代地提高内容质量。</p>
+<p>SelfMemory迭代地利用检索增强生成器来构建一个庞大的记忆池，记忆选择器从该池中挑选输出，为下一个生成周期提供信息。</p>
+<p>RAT首先由大语言模型通过零样本思维链提示生成内容，然后通过从外部知识库检索知识来修改每个思维步骤。</p>
+</section>
+</section>
 </section>
 <section id="rag的多跳多领域问题" class="level2">
-<h2 class="anchored" data-anchor-id="rag的多跳多领域问题">RAG的多跳多领域问题</h2>
+<h2 class="anchored" data-anchor-id="rag的多跳多领域问题">5 RAG的多跳多领域问题</h2>
 <p>在RAG中有一个非常经典的瓶颈问题：有些问题并不是在找某一段最相似的文本，而是在要求把分散在多篇文档、多个概念、甚至多个领域的线索串起来，形成综合结论。当回答需要沿着共享实体、属性或关系在不同信息片段间穿行，并在此基础上生成新的洞察时，单纯依赖向量相似度检索往往不够用。这就是RAG需要面对的多跳与多领域问题。</p>
 <p>GraphRAG（Graph Retrieval-Augmented Generation）可以被看作是为这两类问题准备的一条升级路线，它不只检索语义相近的文本块，而是把知识显式表示成图结构，例如从文本中抽取实体与关系形成知识图谱或图索引，并利用图中的关系结构来组织证据与推进推理。</p>
 <p>IBM对GraphRAG的定义很贴近工程实践：GraphRAG是一种引入图结构数据的高级RAG；不同于仅靠向量检索语义相似文本，它利用图的关系结构来检索与处理信息，尤其擅长多跳推理、关系上下文以及层级结构数据的组织与查询。</p>
 </section>
 <section id="多模态rag" class="level2">
-<h2 class="anchored" data-anchor-id="多模态rag">多模态RAG</h2>
-<p>随着多模态大模型的发展，研究者开始探索多模态检索增强生成（Multimodal RAG），即让系统不仅能检索文本，还能利用图像、音频、视频等多种数据源作为知识依据。多模态RAG的基本理念是：针对不同模态的数据，引入对应的编码器将它们映射到可比较的向量空间，从而支持跨模态检索。例如，系统可以将图像用视觉模型编码为向量、将文本用语言模型编码为向量，并建立统一或可对齐的检索索引。当用户以文本提出查询时，检索模块不仅可以返回相关文本片段，也可以返回相关图像、音频片段或视频片段作为补充信息。目前多模态检索最常见的是图文两种模态，更深入的细节往往与VLM相关，后面会进一步介绍。</p>
+<h2 class="anchored" data-anchor-id="多模态rag">6 多模态RAG</h2>
+<p>随着多模态大模型的发展，研究者开始探索多模态检索增强生成（Multimodal RAG），即让系统不仅能检索文本，还能利用图像、音频、视频以及代码等多种数据源作为知识依据。比较特殊的是，RAG的核心思想和流程在不同模态之间基本保持一致，不过需要在检索器、生成器和相关技术细节上进行调整。</p>
+<p>多模态RAG的基本理念是：针对不同模态的数据，引入对应的编码器将它们映射到可比较的向量空间，从而支持跨模态检索。例如，系统可以将图像用视觉模型编码为向量、将文本用语言模型编码为向量，并建立统一或可对齐的检索索引。当用户以文本提出查询时，检索模块不仅可以返回相关文本片段，也可以返回相关图像、音频片段或视频片段作为补充信息。目前多模态检索最常见的是图文两种模态，更深入的细节往往与VLM相关，后面会进一步介绍。</p>
 <p>多模态RAG在需要综合视觉与文本信息的任务中展现出独特价值。例如在跨媒体问答场景中，用户给出一张图片并提出与之相关的问题，系统可以先对图像内容进行理解，再结合检索到的外部知识文本回答更深入的问题，例如图片中的人物背景、地点信息或历史事件脉络等。又如在视频问答或多媒体搜索中，系统可以综合检索字幕文本、视频关键帧、片段摘要乃至音频线索来获得更全面的信息。一些研究将多模态RAG用于视觉问答任务，证明结合图像内容与外部知识能够回答一些仅凭图像本身难以回答的问题。业界也出现了支持多模态检索的开源工具与框架，例如使用CLIP类模型编码图文以实现跨模态搜索。总体而言，多模态RAG拓展了传统RAG只能处理纯文本的限制，为系统提供了面向多模态世界的外部证据通道，使生成结果更丰富且更可核验。</p>
 <p>实现多模态RAG需要解决多方面的难题。首先，不同模态的数据格式各异，如何对齐多模态表示是关键，常见做法是基于大规模图文对、音频与转写文本等进行对比学习，使不同模态向量落在语义一致的空间中。其次，检索过程可能需要在不同模态间跳转，例如以图搜文或以文搜图，这要求索引能够存储多模态信息并支持任意模态查询到任意模态内容。再次，多模态数据规模大且检索计算开销高，尤其是在海量图像或视频片段上做近似最近邻检索时，对成本与延迟都是挑战。一些系统会采用先转文本再检索的策略，例如对图片做OCR或生成描述后再进入文本检索流程，以兼容现有文本检索体系，但这可能丢失关键视觉细节。更偏前沿的方法倾向于保留原始模态信息，让检索结果直接返回图像或视频内容，并由多模态生成模型端到端完成理解与生成，从而减少中间表示带来的信息损失。</p>
 </section>
 <section id="rag的应用案例" class="level2">
-<h2 class="anchored" data-anchor-id="rag的应用案例">RAG的应用案例</h2>
+<h2 class="anchored" data-anchor-id="rag的应用案例">7 RAG的应用案例</h2>
+<section id="应用领域" class="level3">
+<h3 class="anchored" data-anchor-id="应用领域">7.1 应用领域</h3>
 <p>个人与企业内部知识库 这类应用致力于解决私有数据的检索与问答难题，它将公司内部文档、手册或个人笔记进行结构化处理与向量化索引，当用户提问时系统能够定位到文件中的相关段落并由大模型基于证据生成答案，从而在很多场景中替代传统关键词搜索并显著提升信息获取效率。</p>
 <p>学术论文深度阅读与溯源 针对科研人员需要处理海量文献且对准确性要求极高的场景，这类应用能够跨多篇论文检索证据并生成综述或回答，其核心特点是强调证据可追溯与引用对齐，尽可能让每一个关键结论都能回到原文依据，从而最大化降低幻觉带来的风险。</p>
 <p>超大规模代码库智能助手 为了解决传统大模型难以一次性读完完整项目代码的问题，这类应用会对代码仓库的结构、符号与依赖关系进行索引，让开发者能够用自然语言查询项目架构或具体函数实现细节，并在证据范围内给出解释与修改建议，从而更高效地理解与维护复杂的遗留代码。</p>
-<p><span style="color: inherit; background-color: rgba(183,237,177,0.8)">未完待续</span></p>
-
-
 </section>
+<section id="ima" class="level3">
+<h3 class="anchored" data-anchor-id="ima">7.2 Ima</h3>
+<p>ima是腾讯开发的Ai知识库工具，核心就是采用RAG，目前支持导入公众号文章构建知识库进行检索。</p>
+<p>在公众号中文章中点击转发，将文章导入知识库，之后可以通过AI进行相关问答。</p>
+<p><img src="../assets/images/allRag/image-2.jpg" alt="go" style="width: 80%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><span style="color: inherit; background-color: rgba(183,237,177,0.8)">未完待续</span></p>
+</section>
+</section>
+<section id="参考资料" class="level2">
+<h2 class="anchored" data-anchor-id="参考资料">参考资料</h2>
+<p><a href="https://mp.weixin.qq.com/s/4u6keOgLlsBhXI9Yi6MgRg">为什么大家都用RAG，这篇小白都看懂了</a></p>
+<p><a href="https://arxiv.org/abs/2402.19473">Retrieval-Augmented Generation for AI-Generated Content: A Survey</a></p>
+
+
 </section>
 
 </main> <!-- /main -->
