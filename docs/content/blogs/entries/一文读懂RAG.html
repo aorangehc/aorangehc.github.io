@@ -357,11 +357,15 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#rag的多跳多领域问题" id="toc-rag的多跳多领域问题" class="nav-link" data-scroll-target="#rag的多跳多领域问题">5 RAG的多跳多领域问题</a></li>
   <li><a href="#多模态rag" id="toc-多模态rag" class="nav-link" data-scroll-target="#多模态rag">6 多模态RAG</a></li>
-  <li><a href="#rag的应用案例" id="toc-rag的应用案例" class="nav-link" data-scroll-target="#rag的应用案例">7 RAG的应用案例</a>
+  <li><a href="#rag的应用" id="toc-rag的应用" class="nav-link" data-scroll-target="#rag的应用">7 RAG的应用</a>
   <ul class="collapse">
-  <li><a href="#应用领域" id="toc-应用领域" class="nav-link" data-scroll-target="#应用领域">7.1 应用领域</a></li>
-  <li><a href="#ima" id="toc-ima" class="nav-link" data-scroll-target="#ima">7.2 Ima</a></li>
+  <li><a href="#应用分类" id="toc-应用分类" class="nav-link" data-scroll-target="#应用分类">7.1 应用分类</a></li>
+  <li><a href="#应用领域" id="toc-应用领域" class="nav-link" data-scroll-target="#应用领域">7.2 应用领域</a></li>
+  <li><a href="#ima" id="toc-ima" class="nav-link" data-scroll-target="#ima">7.3 Ima</a></li>
+  <li><a href="#coze" id="toc-coze" class="nav-link" data-scroll-target="#coze">7.4 Coze</a></li>
+  <li><a href="#ragflow" id="toc-ragflow" class="nav-link" data-scroll-target="#ragflow">7.5 Ragflow</a></li>
   </ul></li>
+  <li><a href="#benchmark" id="toc-benchmark" class="nav-link" data-scroll-target="#benchmark">8 Benchmark</a></li>
   <li><a href="#参考资料" id="toc-参考资料" class="nav-link" data-scroll-target="#参考资料">参考资料</a></li>
   </ul>
 </nav>
@@ -429,7 +433,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="rag框架" class="level2">
 <h2 class="anchored" data-anchor-id="rag框架">3 RAG框架</h2>
-<p><img src="../assets/images/allRag/image-1.png" alt="go" style="width: 80%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/allRag/image-1.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
 <p><span style="color: rgb(143,149,158); background-color: inherit">图片引用自文献</span><a href="https://arxiv.org/abs/2402.19473"><span style="color: rgb(143,149,158); background-color: inherit">Retrieval-Augmented Generation for AI-Generated Content: A Survey</span></a></p>
 <p>典型RAG系统包含检索器与生成器两大核心组件。</p>
 <section id="检索器" class="level3">
@@ -615,26 +619,109 @@ ul.task-list li input[type="checkbox"] {
 <p>多模态RAG在需要综合视觉与文本信息的任务中展现出独特价值。例如在跨媒体问答场景中，用户给出一张图片并提出与之相关的问题，系统可以先对图像内容进行理解，再结合检索到的外部知识文本回答更深入的问题，例如图片中的人物背景、地点信息或历史事件脉络等。又如在视频问答或多媒体搜索中，系统可以综合检索字幕文本、视频关键帧、片段摘要乃至音频线索来获得更全面的信息。一些研究将多模态RAG用于视觉问答任务，证明结合图像内容与外部知识能够回答一些仅凭图像本身难以回答的问题。业界也出现了支持多模态检索的开源工具与框架，例如使用CLIP类模型编码图文以实现跨模态搜索。总体而言，多模态RAG拓展了传统RAG只能处理纯文本的限制，为系统提供了面向多模态世界的外部证据通道，使生成结果更丰富且更可核验。</p>
 <p>实现多模态RAG需要解决多方面的难题。首先，不同模态的数据格式各异，如何对齐多模态表示是关键，常见做法是基于大规模图文对、音频与转写文本等进行对比学习，使不同模态向量落在语义一致的空间中。其次，检索过程可能需要在不同模态间跳转，例如以图搜文或以文搜图，这要求索引能够存储多模态信息并支持任意模态查询到任意模态内容。再次，多模态数据规模大且检索计算开销高，尤其是在海量图像或视频片段上做近似最近邻检索时，对成本与延迟都是挑战。一些系统会采用先转文本再检索的策略，例如对图片做OCR或生成描述后再进入文本检索流程，以兼容现有文本检索体系，但这可能丢失关键视觉细节。更偏前沿的方法倾向于保留原始模态信息，让检索结果直接返回图像或视频内容，并由多模态生成模型端到端完成理解与生成，从而减少中间表示带来的信息损失。</p>
 </section>
-<section id="rag的应用案例" class="level2">
-<h2 class="anchored" data-anchor-id="rag的应用案例">7 RAG的应用案例</h2>
+<section id="rag的应用" class="level2">
+<h2 class="anchored" data-anchor-id="rag的应用">7 RAG的应用</h2>
+<section id="应用分类" class="level3">
+<h3 class="anchored" data-anchor-id="应用分类">7.1 应用分类</h3>
+<ul>
+<li><p>文本RAG</p>
+<ul>
+<li><p>问答：通过从海量且全面的文本资源集合中提取信息，对提出的问题做出回应。</p></li>
+<li><p>事实核查：通常是指判断给定的自然语言文本与相关的主张或断言是否与文本中的事实相符。</p></li>
+<li><p>常识推理：指的是机器利用所获取的外部知识及其应用，以类人的方式对问题或任务进行推断或做出决策的能力。</p></li>
+<li><p>人机对话：包括机器理解自然语言的能力，以及熟练运用这种技能与人类进行无缝交流的能力。</p></li>
+<li><p>神经机器翻译：将文本从源语言自动翻译为目标语言。</p></li>
+<li><p>事件抽取：这是自然语言处理中的一个过程，它涉及识别文本中的特定事件并对其进行分类，同时将这些事件与相关实体关联起来。</p></li>
+<li><p>摘要生成：从冗长的文本中提炼关键信息，并生成一个简洁、连贯的摘要，以概括主要主题。</p></li>
+</ul></li>
+<li><p>代码RAG</p>
+<ul>
+<li><p>代码生成：将自然语言描述转换为代码实现。</p></li>
+<li><p>代码摘要：将代码转换为自然语言描述。</p></li>
+<li><p>代码补全：代码补全类似于下一句预测任务的代码版本。</p></li>
+<li><p>自动程序修复：基于查询的RAG常用于自动程序修复中，以帮助生成模型修复有缺陷的代码</p></li>
+<li><p>Text2SQL和基于代码的语义解析：语义解析将自然语言转换为清晰的结构化表示，例如SQL或其他特定领域语言，通常会借助代码的帮助。</p></li>
+</ul></li>
+<li><p>知识RAG</p>
+<ul>
+<li><p>知识库问答：通常利用知识库来确定问题的正确答案。</p></li>
+<li><p>知识增强的开放域问答：主要是对结构化知识的应用。</p></li>
+<li><p>表格问答：表格作为另一种结构化知识形式，也有助于问答。</p></li>
+</ul></li>
+<li><p>3D RAG</p>
+<ul>
+<li>Text-2-3D：检索可用于增强3D资产生成。</li>
+</ul></li>
+<li><p>图像 RAG</p>
+<ul>
+<li><p>图像生成：指的是创建新图像的过程，通常运用人工智能和机器学习领域的算法。</p></li>
+<li><p>图像摘要： 是生成图像文本描述的过程。</p></li>
+</ul></li>
+<li><p>视频 RAG</p>
+<ul>
+<li><p>视频摘要：将视觉内容转化为描述性语句。</p></li>
+<li><p>视频问答和对话：视频问答与对话会生成与视频内容一致的单轮或多轮响应。</p></li>
+</ul></li>
+<li><p>音频 RAG</p>
+<ul>
+<li><p>音频字幕生成：音频 captioning 本质上是一项序列到序列任务，它为音频数据生成自然语言数据</p></li>
+<li><p>音频生成：通常根据自然语言提示合成音频。</p></li>
+</ul></li>
+<li><p>科学领域 RAG</p>
+<ul>
+<li><p>药物发现：药物发现的目标是生成能同时满足多种特性的分子。</p></li>
+<li><p>生物医学信息学增强：通过从生物医学领域特定数据库中检索信息，提高了大语言模型的表达能力，从而增强了模型为医疗领域的任务提供有价值指导的能力。</p></li>
+<li><p>数学问答：数学领域的检索增强生成技术简化了解题过程，促进了研究创新，并优化了教育策略。</p></li>
+</ul></li>
+</ul>
+</section>
 <section id="应用领域" class="level3">
-<h3 class="anchored" data-anchor-id="应用领域">7.1 应用领域</h3>
+<h3 class="anchored" data-anchor-id="应用领域">7.2 应用领域</h3>
 <p>个人与企业内部知识库 这类应用致力于解决私有数据的检索与问答难题，它将公司内部文档、手册或个人笔记进行结构化处理与向量化索引，当用户提问时系统能够定位到文件中的相关段落并由大模型基于证据生成答案，从而在很多场景中替代传统关键词搜索并显著提升信息获取效率。</p>
 <p>学术论文深度阅读与溯源 针对科研人员需要处理海量文献且对准确性要求极高的场景，这类应用能够跨多篇论文检索证据并生成综述或回答，其核心特点是强调证据可追溯与引用对齐，尽可能让每一个关键结论都能回到原文依据，从而最大化降低幻觉带来的风险。</p>
 <p>超大规模代码库智能助手 为了解决传统大模型难以一次性读完完整项目代码的问题，这类应用会对代码仓库的结构、符号与依赖关系进行索引，让开发者能够用自然语言查询项目架构或具体函数实现细节，并在证据范围内给出解释与修改建议，从而更高效地理解与维护复杂的遗留代码。</p>
 </section>
 <section id="ima" class="level3">
-<h3 class="anchored" data-anchor-id="ima">7.2 Ima</h3>
+<h3 class="anchored" data-anchor-id="ima">7.3 Ima</h3>
 <p>ima是腾讯开发的Ai知识库工具，核心就是采用RAG，目前支持导入公众号文章构建知识库进行检索。</p>
 <p>在公众号中文章中点击转发，将文章导入知识库，之后可以通过AI进行相关问答。</p>
-<p><img src="../assets/images/allRag/image-2.jpg" alt="go" style="width: 80%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
-<p><span style="color: inherit; background-color: rgba(183,237,177,0.8)">未完待续</span></p>
+<p><img src="../assets/images/allRag/image-6.jpg" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
 </section>
+<section id="coze" class="level3">
+<h3 class="anchored" data-anchor-id="coze">7.4 Coze</h3>
+<p>Coze空间是字节跳动旗下AI应用开发平台扣子，是一个多智能体协作开发环境，它允许开发者在一个统一的画布式界面中，将多个AI Agent、工具、数据源和工作流编排成复杂的自动化任务系统，实现从单一聊天机器人到多角色协同、多步骤执行的进阶AI应用构建。</p>
+<p>我们下面使用其中的Agent和知识库构建功能，构建一个八股问答姬。</p>
+<p>首先导入文本，构建知识库，然后创建智能体，并进行测试，测试能从知识库中检索对应信息，这是一个知识库RAG的应用。</p>
+<p><img src="../assets/images/allRag/image-2.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/allRag/image-3.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/allRag/image-4.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
+<section id="ragflow" class="level3">
+<h3 class="anchored" data-anchor-id="ragflow">7.5 Ragflow</h3>
+<p><a href="https://ragflow.io/">RAGFlow</a>是领先的开源检索增强生成（<a href="https://ragflow.io/basics/what-is-rag">RAG</a>）引擎，它融合了尖端的RAG与智能体功能，为大语言模型打造卓越的上下文层。它提供了精简的RAG工作流，适用于任何规模的企业。在融合的<a href="https://ragflow.io/basics/what-is-agent-context-engine">上下文引擎</a>和预制智能体模板的支持下，RAGFlow使开发者能够将复杂数据转化为高保真、可投入生产的人工智能系统，且效率和精度都极为出色。</p>
+<p>它可以进行本地部署和使用。</p>
+<p><img src="../assets/images/allRag/image-5.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
+</section>
+<section id="benchmark" class="level2">
+<h2 class="anchored" data-anchor-id="benchmark">8 Benchmark</h2>
+<ul>
+<li><p>噪声鲁棒性，测试大型语言模型能否从含噪声的文档中提取必要信息</p></li>
+<li><p>负例拒绝，评估大型语言模型在检索到的内容不足时能否拒绝回答</p></li>
+<li><p>信息整合，检查大型语言模型能否通过整合多个检索到的内容来获取知识并进行回答</p></li>
+<li><p>反事实鲁棒性，判断大型语言模型能否识别检索到的内容中的反事实错误</p></li>
+<li><p>忠实性，基于检索到的内容评估事实准确性</p></li>
+<li><p>答案相关性，判断结果是否针对查询</p></li>
+<li><p>上下文相关性，评估检索到的内容的相关性及其简洁性</p></li>
+<li><p>CRUD-RAG将RAG任务分为四种类型：创建、读取、更新和删除，并通过文本续写、问答、幻觉纠正和开放域多文档摘要来对其进行评估</p></li>
+<li><p>我之前用过的数据集<a href="https://huggingface.co/datasets/TreezzZ/WebQA">TreezzZ/WebQA</a>，测试多模态效果，这玩意本身就是一个benchmark，包含问答对，通过简单脚本处理就能使用</p></li>
+</ul>
 </section>
 <section id="参考资料" class="level2">
 <h2 class="anchored" data-anchor-id="参考资料">参考资料</h2>
 <p><a href="https://mp.weixin.qq.com/s/4u6keOgLlsBhXI9Yi6MgRg">为什么大家都用RAG，这篇小白都看懂了</a></p>
 <p><a href="https://arxiv.org/abs/2402.19473">Retrieval-Augmented Generation for AI-Generated Content: A Survey</a></p>
+<p><span style="color: inherit; background-color: rgba(183,237,177,0.8)">未完待续，后续我们会对文章进行优化，并提供相关图片、数据集、代码和文献链接等，这是一个长期不断优化的过程！</span></p>
 
 
 </section>
