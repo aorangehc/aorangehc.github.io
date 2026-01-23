@@ -35,7 +35,7 @@ quarto preview
 
 ### 发布网站
 ```sh
-./scripts/publish.sh   # 备份旧 docs/ 并同步 site/ -> docs/
+./scripts/publish.sh  # 备份旧 docs/ 并同步 site/ -> docs/
 ```
 
 ## 详细使用说明
