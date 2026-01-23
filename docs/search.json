@@ -1397,62 +1397,76 @@
     "href": "content/projects/entries/Gesture-Fireworks.html",
     "title": "Gesture-Fireworks",
     "section": "",
-    "text": "仓库地址：Gesture Fireworks（基于 MediaPipe 的手势烟花互动小工具）(GitHub)\n\n\n\n\n每年跨年、春节、烟花节，我们总会刷到各种烟花视频，但要么太吵，要么不环保，要么……钱包受不了 😅\n于是我做了一个轻量又好玩的实验项目：Gesture Fireworks（手势烟花）。 它的核心目标是——让你只用一台带摄像头的电脑 + 浏览器，就能用手势在空中「放烟花」。\n你对着摄像头比一个 ✊、✌️ 或比心 ❤️，画面中就会在你的手边绽放对应的烟花效果。 不需要安装客户端，不需要复杂硬件，打开网页、授权摄像头，就能玩。\n\n\n\n\n在目前的版本中，Gesture Fireworks 实现了这几类能力：\n\nAI 手势识别：基于 MediaPipe 的手势识别方案，支持多种不同手势\n绚丽烟花特效：精心设计了多种烟花，包括：\n\n爆炸烟花（FireworkBurst）\n圆环烟花（FireworkCircle）\n心形烟花（FireworkHeart）\n星形烟花（FireworkStar）\n螺旋烟花（FireworkSpiral）\n伞形烟花（FireworkUmbrella）\n等等\n\n多手同时触发：双手可以同时做不同手势，各自单独触发烟花，带有独立冷却机制\n高性能渲染：使用优化过的 Canvas 2D 粒子系统，可以同时渲染数千粒子而保持顺畅\n智能识别算法：多帧平滑、稳定帧判定、动态阈值、冷却机制，尽量减少误判抖动\n响应式页面：同时兼容桌面端 & 移动端\n\n\n\n\n\n为了让体验更「直觉」，我为常见手势设计了不同的烟花风格：\n\n\n\n\n\n\n\n\n\n手势\n识别名\n对应烟花\n视觉风格\n\n\n\n\n✊ 拳头\nFIST\nFireworkBurst\n金黄色多层圆形爆炸，冲击感强\n\n\n👌 OK 手势\nOK\nFireworkCircle\n红橙系双环高密度爆裂\n\n\n❤️ 比心\nHEART\nFireworkHeart\n粉色系心形烟花，氛围感拉满\n\n\n👍 竖拇指\nTHUMBS_UP\nFireworkStar\n金白色五角星爆炸，闪烁明显\n\n\n✌️ 剪刀手\nPEACE\nFireworkSpiral\n紫色螺旋扩散，有旋转轨迹\n\n\n👉 指向\nPOINTING\nFireworkUmbrella\n蓝色伞形烟花，拖尾柔和\n\n\n✋ 张开手掌\nOPEN_PALM\nFireworkA\n随机色环形爆裂 + 拖尾，基础通用款\n\n\n\n技术上，在入口逻辑里会根据识别到的手势类型，映射到不同的触发器函数，并传入不同的参数（粒子数量、配色、持续时间等），让每种手势都有明显区别的手感和视觉反馈。\n\n\n\n\n单纯做一个「能识别」的 Demo 很简单，但要做到「好玩、不烦人」，就必须控制误识别率和抖动。为此我做了几层处理逻辑：\n\n\n\n使用固定长度的历史帧（例如 smoothingFrames = 10）做平滑\n只有连续若干帧（例如 stableFrames = 6）都稳定识别为同一手势时，才视为「真正识别到」\n\n这样可以过滤掉短暂的抖动或过渡帧，让触发更可控。\n\n\n\n不同手势本身的易混淆程度不一样，所以采用了区分度更高的阈值设计：\n\n对于容易混的手势（拳头、OK、点赞、剪刀手、指向等），阈值设为 0.85\n对于张开手掌（OPEN_PALM），阈值略低一点 0.8\n\n同时，还会要求第一名和第二名手势的置信度差值 ≥ 0.12，避免「半斤八两」的两种手势乱跳。\n\n\n\n\n每个识别器有一个默认冷却时间 cooldownMs = 350ms\n只有当「稳定手势从 A 变为 B」且不在冷却期内，才会触发一次烟花\n\n这意味着你可以保持一个手势不动，烟花不会无限制连发，更像是「一次明确的动作 → 一次清晰的反馈」。\n\n\n\n\n\n视觉部分基于 Canvas 2D 实现了一个轻量的粒子系统：\n\n每个烟花本质上是大量粒子（位置、速度、加速度、颜色、透明度等属性）的集合\n每一帧进行：\n\n粒子位置更新（重力、阻尼、初速度方向等）\n透明度 & 尺寸衰减\n组合出光晕、拖尾、闪烁等效果\n\n\n为了保证性能，我做了几件事：\n\n批量更新 & 绘制，减少多余的状态切换\n针对不同烟花类型，限制最大粒子数量，避免堆爆内存\n在多发烟花场景下优先清理已经「看不见」的粒子\n\n在普通笔记本 + 现代浏览器环境下，同时存在数千个粒子仍可以保持比较流畅的体验。\n\n\n\n\n项目整体是一个很标准的前端小应用形态：\n\n技术栈\n\nJavaScript 为主（约 97.7%）\n少量 HTML 结构\nMediaPipe 手势检测（通过 vendor 依赖引入）\n\n主要目录\n\nsrc/hand：手势识别与高级逻辑（置信度、稳定性、冷却等）\nsrc/main.js：应用主入口，负责：\n\n摄像头采集与视频流\n调用识别模块\n根据手势触发不同烟花\n\nsrc/fireworks/*：不同烟花特效的实现\n\n\n目的就是：保持结构清晰，方便以后扩展新的手势 & 新的烟花类型。\n\n\n\n\n只要你对前端略有了解，就可以很快跑起来。\n\n\n\n现代浏览器（Chrome 88+、Firefox 85+、Safari 14+、Edge 88+）\n一台带摄像头的设备\n本地 HTTP 服务器（用于获取摄像头权限）\n网络连接（首次加载 MediaPipe 模型）\n\n\n\n\n# 1. 克隆项目\ngit clone https://github.com/your-username/Gesture-fireworks.git\ncd Gesture-fireworks\n\n# 2. 启动本地服务器（Python 3 示例）\npython -m http.server 8000\n# 或者使用 Node.js\nnpx http-server -p 8000 -a localhost\n然后在浏览器中访问：\nhttp://localhost:8000\n\n\n\n\n\n\n\n结合调试过程，总结了一些实用的小技巧：\n\n光线充足：正面光最好，避免背光和强阴影\n距离合适：人与摄像头保持 1–2 米，手部占画面约 1/4 效果最佳\n手势清晰稳定：\n\n比完手势后保持 1–2 秒\n手指要伸直 / 收紧到位，避免半吊子动作\n\n居中一点：手尽量在画面中央区域，边缘区域容易畸变、识别不准\n多手玩法：双手分别做不同手势，可以点亮「组合烟花」，非常适合多人一起玩\n\n\n如果你对这个项目有兴趣，欢迎来仓库看看源码、提 Issue 或一起玩"
+    "text": "「用手点燃烟花」——Gesture Fireworks ✨"
+  },
+  {
+    "objectID": "content/projects/entries/Gesture-Fireworks.html#项目地址",
+    "href": "content/projects/entries/Gesture-Fireworks.html#项目地址",
+    "title": "Gesture-Fireworks",
+    "section": "项目地址",
+    "text": "项目地址\n\n仓库地址：Gesture Fireworks（基于 MediaPipe 的手势烟花互动小工具）(GitHub)"
   },
   {
     "objectID": "content/projects/entries/Gesture-Fireworks.html#一这个小项目想解决什么",
     "href": "content/projects/entries/Gesture-Fireworks.html#一这个小项目想解决什么",
     "title": "Gesture-Fireworks",
-    "section": "",
-    "text": "每年跨年、春节、烟花节，我们总会刷到各种烟花视频，但要么太吵，要么不环保，要么……钱包受不了 😅\n于是我做了一个轻量又好玩的实验项目：Gesture Fireworks（手势烟花）。 它的核心目标是——让你只用一台带摄像头的电脑 + 浏览器，就能用手势在空中「放烟花」。\n你对着摄像头比一个 ✊、✌️ 或比心 ❤️，画面中就会在你的手边绽放对应的烟花效果。 不需要安装客户端，不需要复杂硬件，打开网页、授权摄像头，就能玩。"
+    "section": "一、这个小项目想解决什么？",
+    "text": "一、这个小项目想解决什么？\n每年跨年、春节、烟花节，我们总会刷到各种烟花视频，但要么太吵，要么不环保，要么……钱包受不了 😅\n于是我做了一个轻量又好玩的实验项目：Gesture Fireworks（手势烟花）。 它的核心目标是——让你只用一台带摄像头的电脑 + 浏览器，就能用手势在空中「放烟花」。\n你对着摄像头比一个 ✊、✌️ 或比心 ❤️，画面中就会在你的手边绽放对应的烟花效果。 不需要安装客户端，不需要复杂硬件，打开网页、授权摄像头，就能玩。"
   },
   {
     "objectID": "content/projects/entries/Gesture-Fireworks.html#二项目功能一览它到底能干嘛",
     "href": "content/projects/entries/Gesture-Fireworks.html#二项目功能一览它到底能干嘛",
     "title": "Gesture-Fireworks",
-    "section": "",
-    "text": "在目前的版本中，Gesture Fireworks 实现了这几类能力：\n\nAI 手势识别：基于 MediaPipe 的手势识别方案，支持多种不同手势\n绚丽烟花特效：精心设计了多种烟花，包括：\n\n爆炸烟花（FireworkBurst）\n圆环烟花（FireworkCircle）\n心形烟花（FireworkHeart）\n星形烟花（FireworkStar）\n螺旋烟花（FireworkSpiral）\n伞形烟花（FireworkUmbrella）\n等等\n\n多手同时触发：双手可以同时做不同手势，各自单独触发烟花，带有独立冷却机制\n高性能渲染：使用优化过的 Canvas 2D 粒子系统，可以同时渲染数千粒子而保持顺畅\n智能识别算法：多帧平滑、稳定帧判定、动态阈值、冷却机制，尽量减少误判抖动\n响应式页面：同时兼容桌面端 & 移动端"
+    "section": "二、项目功能一览：它到底能干嘛？",
+    "text": "二、项目功能一览：它到底能干嘛？\n在目前的版本中，Gesture Fireworks 实现了这几类能力：\n\nAI 手势识别：基于 MediaPipe 的手势识别方案，支持多种不同手势\n绚丽烟花特效：精心设计了多种烟花，包括：\n\n爆炸烟花（FireworkBurst）\n圆环烟花（FireworkCircle）\n心形烟花（FireworkHeart）\n星形烟花（FireworkStar）\n螺旋烟花（FireworkSpiral）\n伞形烟花（FireworkUmbrella）\n等等\n\n多手同时触发：双手可以同时做不同手势，各自单独触发烟花，带有独立冷却机制\n高性能渲染：使用优化过的 Canvas 2D 粒子系统，可以同时渲染数千粒子而保持顺畅\n智能识别算法：多帧平滑、稳定帧判定、动态阈值、冷却机制，尽量减少误判抖动\n响应式页面：同时兼容桌面端 & 移动端"
   },
   {
     "objectID": "content/projects/entries/Gesture-Fireworks.html#三手势和烟花的绑定关系",
     "href": "content/projects/entries/Gesture-Fireworks.html#三手势和烟花的绑定关系",
     "title": "Gesture-Fireworks",
-    "section": "",
-    "text": "为了让体验更「直觉」，我为常见手势设计了不同的烟花风格：\n\n\n\n\n\n\n\n\n\n手势\n识别名\n对应烟花\n视觉风格\n\n\n\n\n✊ 拳头\nFIST\nFireworkBurst\n金黄色多层圆形爆炸，冲击感强\n\n\n👌 OK 手势\nOK\nFireworkCircle\n红橙系双环高密度爆裂\n\n\n❤️ 比心\nHEART\nFireworkHeart\n粉色系心形烟花，氛围感拉满\n\n\n👍 竖拇指\nTHUMBS_UP\nFireworkStar\n金白色五角星爆炸，闪烁明显\n\n\n✌️ 剪刀手\nPEACE\nFireworkSpiral\n紫色螺旋扩散，有旋转轨迹\n\n\n👉 指向\nPOINTING\nFireworkUmbrella\n蓝色伞形烟花，拖尾柔和\n\n\n✋ 张开手掌\nOPEN_PALM\nFireworkA\n随机色环形爆裂 + 拖尾，基础通用款\n\n\n\n技术上，在入口逻辑里会根据识别到的手势类型，映射到不同的触发器函数，并传入不同的参数（粒子数量、配色、持续时间等），让每种手势都有明显区别的手感和视觉反馈。"
+    "section": "三、手势和烟花的「绑定关系」",
+    "text": "三、手势和烟花的「绑定关系」\n为了让体验更「直觉」，我为常见手势设计了不同的烟花风格：\n\n\n\n\n\n\n\n\n\n手势\n识别名\n对应烟花\n视觉风格\n\n\n\n\n✊ 拳头\nFIST\nFireworkBurst\n金黄色多层圆形爆炸，冲击感强\n\n\n👌 OK 手势\nOK\nFireworkCircle\n红橙系双环高密度爆裂\n\n\n❤️ 比心\nHEART\nFireworkHeart\n粉色系心形烟花，氛围感拉满\n\n\n👍 竖拇指\nTHUMBS_UP\nFireworkStar\n金白色五角星爆炸，闪烁明显\n\n\n✌️ 剪刀手\nPEACE\nFireworkSpiral\n紫色螺旋扩散，有旋转轨迹\n\n\n👉 指向\nPOINTING\nFireworkUmbrella\n蓝色伞形烟花，拖尾柔和\n\n\n✋ 张开手掌\nOPEN_PALM\nFireworkA\n随机色环形爆裂 + 拖尾，基础通用款\n\n\n\n技术上，在入口逻辑里会根据识别到的手势类型，映射到不同的触发器函数，并传入不同的参数（粒子数量、配色、持续时间等），让每种手势都有明显区别的手感和视觉反馈。"
   },
   {
     "objectID": "content/projects/entries/Gesture-Fireworks.html#四手势识别怎么尽量识别得准一点",
     "href": "content/projects/entries/Gesture-Fireworks.html#四手势识别怎么尽量识别得准一点",
     "title": "Gesture-Fireworks",
-    "section": "",
-    "text": "单纯做一个「能识别」的 Demo 很简单，但要做到「好玩、不烦人」，就必须控制误识别率和抖动。为此我做了几层处理逻辑：\n\n\n\n使用固定长度的历史帧（例如 smoothingFrames = 10）做平滑\n只有连续若干帧（例如 stableFrames = 6）都稳定识别为同一手势时，才视为「真正识别到」\n\n这样可以过滤掉短暂的抖动或过渡帧，让触发更可控。\n\n\n\n不同手势本身的易混淆程度不一样，所以采用了区分度更高的阈值设计：\n\n对于容易混的手势（拳头、OK、点赞、剪刀手、指向等），阈值设为 0.85\n对于张开手掌（OPEN_PALM），阈值略低一点 0.8\n\n同时，还会要求第一名和第二名手势的置信度差值 ≥ 0.12，避免「半斤八两」的两种手势乱跳。\n\n\n\n\n每个识别器有一个默认冷却时间 cooldownMs = 350ms\n只有当「稳定手势从 A 变为 B」且不在冷却期内，才会触发一次烟花\n\n这意味着你可以保持一个手势不动，烟花不会无限制连发，更像是「一次明确的动作 → 一次清晰的反馈」。"
+    "section": "四、手势识别：怎么尽量识别得「准一点」？",
+    "text": "四、手势识别：怎么尽量识别得「准一点」？\n单纯做一个「能识别」的 Demo 很简单，但要做到「好玩、不烦人」，就必须控制误识别率和抖动。为此我做了几层处理逻辑：\n\n1. 多帧平滑 + 稳定帧判定\n\n使用固定长度的历史帧（例如 smoothingFrames = 10）做平滑\n只有连续若干帧（例如 stableFrames = 6）都稳定识别为同一手势时，才视为「真正识别到」\n\n这样可以过滤掉短暂的抖动或过渡帧，让触发更可控。\n\n\n2. 动态置信度阈值\n不同手势本身的易混淆程度不一样，所以采用了区分度更高的阈值设计：\n\n对于容易混的手势（拳头、OK、点赞、剪刀手、指向等），阈值设为 0.85\n对于张开手掌（OPEN_PALM），阈值略低一点 0.8\n\n同时，还会要求第一名和第二名手势的置信度差值 ≥ 0.12，避免「半斤八两」的两种手势乱跳。\n\n\n3. 冷却机制 + 上升沿触发\n\n每个识别器有一个默认冷却时间 cooldownMs = 350ms\n只有当「稳定手势从 A 变为 B」且不在冷却期内，才会触发一次烟花\n\n这意味着你可以保持一个手势不动，烟花不会无限制连发，更像是「一次明确的动作 → 一次清晰的反馈」。"
   },
   {
     "objectID": "content/projects/entries/Gesture-Fireworks.html#五渲染层canvas-粒子系统的设计思路",
     "href": "content/projects/entries/Gesture-Fireworks.html#五渲染层canvas-粒子系统的设计思路",
     "title": "Gesture-Fireworks",
-    "section": "",
-    "text": "视觉部分基于 Canvas 2D 实现了一个轻量的粒子系统：\n\n每个烟花本质上是大量粒子（位置、速度、加速度、颜色、透明度等属性）的集合\n每一帧进行：\n\n粒子位置更新（重力、阻尼、初速度方向等）\n透明度 & 尺寸衰减\n组合出光晕、拖尾、闪烁等效果\n\n\n为了保证性能，我做了几件事：\n\n批量更新 & 绘制，减少多余的状态切换\n针对不同烟花类型，限制最大粒子数量，避免堆爆内存\n在多发烟花场景下优先清理已经「看不见」的粒子\n\n在普通笔记本 + 现代浏览器环境下，同时存在数千个粒子仍可以保持比较流畅的体验。"
+    "section": "五、渲染层：Canvas 粒子系统的设计思路",
+    "text": "五、渲染层：Canvas 粒子系统的设计思路\n视觉部分基于 Canvas 2D 实现了一个轻量的粒子系统：\n\n每个烟花本质上是大量粒子（位置、速度、加速度、颜色、透明度等属性）的集合\n每一帧进行：\n\n粒子位置更新（重力、阻尼、初速度方向等）\n透明度 & 尺寸衰减\n组合出光晕、拖尾、闪烁等效果\n\n\n为了保证性能，我做了几件事：\n\n批量更新 & 绘制，减少多余的状态切换\n针对不同烟花类型，限制最大粒子数量，避免堆爆内存\n在多发烟花场景下优先清理已经「看不见」的粒子\n\n在普通笔记本 + 现代浏览器环境下，同时存在数千个粒子仍可以保持比较流畅的体验。"
   },
   {
     "objectID": "content/projects/entries/Gesture-Fireworks.html#六项目结构-技术栈简述",
     "href": "content/projects/entries/Gesture-Fireworks.html#六项目结构-技术栈简述",
     "title": "Gesture-Fireworks",
-    "section": "",
-    "text": "项目整体是一个很标准的前端小应用形态：\n\n技术栈\n\nJavaScript 为主（约 97.7%）\n少量 HTML 结构\nMediaPipe 手势检测（通过 vendor 依赖引入）\n\n主要目录\n\nsrc/hand：手势识别与高级逻辑（置信度、稳定性、冷却等）\nsrc/main.js：应用主入口，负责：\n\n摄像头采集与视频流\n调用识别模块\n根据手势触发不同烟花\n\nsrc/fireworks/*：不同烟花特效的实现\n\n\n目的就是：保持结构清晰，方便以后扩展新的手势 & 新的烟花类型。"
+    "section": "六、项目结构 & 技术栈简述",
+    "text": "六、项目结构 & 技术栈简述\n项目整体是一个很标准的前端小应用形态：\n\n技术栈\n\nJavaScript 为主（约 97.7%）\n少量 HTML 结构\nMediaPipe 手势检测（通过 vendor 依赖引入）\n\n主要目录\n\nsrc/hand：手势识别与高级逻辑（置信度、稳定性、冷却等）\nsrc/main.js：应用主入口，负责：\n\n摄像头采集与视频流\n调用识别模块\n根据手势触发不同烟花\n\nsrc/fireworks/*：不同烟花特效的实现\n\n\n目的就是：保持结构清晰，方便以后扩展新的手势 & 新的烟花类型。"
   },
   {
     "objectID": "content/projects/entries/Gesture-Fireworks.html#七如何本地跑起来",
     "href": "content/projects/entries/Gesture-Fireworks.html#七如何本地跑起来",
     "title": "Gesture-Fireworks",
-    "section": "",
-    "text": "只要你对前端略有了解，就可以很快跑起来。\n\n\n\n现代浏览器（Chrome 88+、Firefox 85+、Safari 14+、Edge 88+）\n一台带摄像头的设备\n本地 HTTP 服务器（用于获取摄像头权限）\n网络连接（首次加载 MediaPipe 模型）\n\n\n\n\n# 1. 克隆项目\ngit clone https://github.com/your-username/Gesture-fireworks.git\ncd Gesture-fireworks\n\n# 2. 启动本地服务器（Python 3 示例）\npython -m http.server 8000\n# 或者使用 Node.js\nnpx http-server -p 8000 -a localhost\n然后在浏览器中访问：\nhttp://localhost:8000"
+    "section": "七、如何本地跑起来？",
+    "text": "七、如何本地跑起来？\n只要你对前端略有了解，就可以很快跑起来。\n\n1. 环境准备\n\n现代浏览器（Chrome 88+、Firefox 85+、Safari 14+、Edge 88+）\n一台带摄像头的设备\n本地 HTTP 服务器（用于获取摄像头权限）\n网络连接（首次加载 MediaPipe 模型）\n\n\n\n2. 启动步骤（示例）\n# 1. 克隆项目\ngit clone https://github.com/your-username/Gesture-fireworks.git\ncd Gesture-fireworks\n\n# 2. 启动本地服务器（Python 3 示例）\npython -m http.server 8000\n# 或者使用 Node.js\nnpx http-server -p 8000 -a localhost\n然后在浏览器中访问：\nhttp://localhost:8000"
+  },
+  {
+    "objectID": "content/projects/entries/Gesture-Fireworks.html#浏览器会弹出摄像头授权请求点击允许即可开始体验",
+    "href": "content/projects/entries/Gesture-Fireworks.html#浏览器会弹出摄像头授权请求点击允许即可开始体验",
+    "title": "Gesture-Fireworks",
+    "section": "浏览器会弹出摄像头授权请求，点击「允许」即可开始体验。",
+    "text": "浏览器会弹出摄像头授权请求，点击「允许」即可开始体验。"
   },
   {
     "objectID": "content/projects/entries/Gesture-Fireworks.html#八实际体验怎么玩得更爽",
     "href": "content/projects/entries/Gesture-Fireworks.html#八实际体验怎么玩得更爽",
     "title": "Gesture-Fireworks",
-    "section": "",
-    "text": "结合调试过程，总结了一些实用的小技巧：\n\n光线充足：正面光最好，避免背光和强阴影\n距离合适：人与摄像头保持 1–2 米，手部占画面约 1/4 效果最佳\n手势清晰稳定：\n\n比完手势后保持 1–2 秒\n手指要伸直 / 收紧到位，避免半吊子动作\n\n居中一点：手尽量在画面中央区域，边缘区域容易畸变、识别不准\n多手玩法：双手分别做不同手势，可以点亮「组合烟花」，非常适合多人一起玩\n\n\n如果你对这个项目有兴趣，欢迎来仓库看看源码、提 Issue 或一起玩"
+    "section": "八、实际体验：怎么玩得更爽？",
+    "text": "八、实际体验：怎么玩得更爽？\n结合调试过程，总结了一些实用的小技巧：\n\n光线充足：正面光最好，避免背光和强阴影\n距离合适：人与摄像头保持 1–2 米，手部占画面约 1/4 效果最佳\n手势清晰稳定：\n\n比完手势后保持 1–2 秒\n手指要伸直 / 收紧到位，避免半吊子动作\n\n居中一点：手尽量在画面中央区域，边缘区域容易畸变、识别不准\n多手玩法：双手分别做不同手势，可以点亮「组合烟花」，非常适合多人一起玩\n\n\n如果你对这个项目有兴趣，欢迎来仓库看看源码、提 Issue 或一起玩"
   }
 ]
