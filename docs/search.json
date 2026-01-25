@@ -718,7 +718,7 @@
     "href": "content/blogs/entries/pc的快捷指令.html#mac",
     "title": "PC的快捷指令",
     "section": "Mac",
-    "text": "Mac\n\n删除\n\n清空废纸篓：Cmd + Shift + Delete\n直接删除不经过废纸篓：Option + Cmd + Delete\n反向删除：Fn + Delete"
+    "text": "Mac\n\n删除\n\n清空废纸篓：Cmd + Shift + Delete\n直接删除不经过废纸篓：Option + Cmd + Delete\n反向删除：Fn + Delete\n\n\n\n命令行指令提示插件\n# 安装插件\nmkdir -p ~/.oh-my-zsh/custom/plugins\n\ngit clone https://github.com/zsh-users/zsh-autosuggestions \\\n  ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions\n\ngit clone https://github.com/zsh-users/zsh-syntax-highlighting \\\n  ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting\n\n# 注册插件生效\ncode ~/.zshrc\n\n# 找到 plugins=()\n# 改成 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)\n\nsource ~/.zshrc # 配置生效"
   },
   {
     "objectID": "content/blogs/entries/pc的快捷指令.html#linux",
