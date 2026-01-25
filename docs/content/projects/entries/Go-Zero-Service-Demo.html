@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-01-11">
 
-<title>如何使用git</title>
+<title>go-zero框架下简单微服务实现</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -364,26 +329,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#git提交规范" id="toc-git提交规范" class="nav-link active" data-scroll-target="#git提交规范">git提交规范</a>
-  <ul class="collapse">
-  <li><a href="#提交信息格式" id="toc-提交信息格式" class="nav-link" data-scroll-target="#提交信息格式">提交信息格式</a></li>
-  <li><a href="#提交信息示例" id="toc-提交信息示例" class="nav-link" data-scroll-target="#提交信息示例">提交信息示例</a></li>
-  <li><a href="#提交时的注意事项" id="toc-提交时的注意事项" class="nav-link" data-scroll-target="#提交时的注意事项">提交时的注意事项</a></li>
-  <li><a href="#demo" id="toc-demo" class="nav-link" data-scroll-target="#demo">demo</a></li>
-  </ul></li>
-  <li><a href="#git常用指令" id="toc-git常用指令" class="nav-link" data-scroll-target="#git常用指令">git常用指令</a>
-  <ul class="collapse">
-  <li><a href="#修改远程仓库地址" id="toc-修改远程仓库地址" class="nav-link" data-scroll-target="#修改远程仓库地址">修改远程仓库地址</a></li>
-  <li><a href="#同步远程仓库分支" id="toc-同步远程仓库分支" class="nav-link" data-scroll-target="#同步远程仓库分支">同步远程仓库分支</a></li>
-  </ul></li>
-  <li><a href="#参考资料" id="toc-参考资料" class="nav-link" data-scroll-target="#参考资料">参考资料</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -391,11 +338,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">如何使用git</h1>
+<h1 class="title">go-zero框架下简单微服务实现</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">技术</div>
-    <div class="quarto-category">git</div>
-    <div class="quarto-category">指令</div>
+    <div class="quarto-category">golang</div>
+    <div class="quarto-category">微服务</div>
+    <div class="quarto-category">demo</div>
   </div>
   </div>
 
@@ -419,102 +366,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><img src="../assets/images/如何使用git/git.png" alt="go" style="width: 40%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
-<p><strong>记录一下自己使用git容易忘记的指令和要学习遵守提交规范</strong></p>
-<section id="git提交规范" class="level2">
-<h2 class="anchored" data-anchor-id="git提交规范">git提交规范</h2>
-<p><img src="../assets/images/如何使用git/git-commit规范.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
-<section id="提交信息格式" class="level3">
-<h3 class="anchored" data-anchor-id="提交信息格式">提交信息格式</h3>
-<p>每次提交应遵循以下格式：</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>类型<span class="op">&gt;(&lt;</span>范围<span class="op">&gt;)</span><span class="bu">:</span> <span class="op">&lt;</span>简短描述<span class="op">&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>更详细的描述<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li><p><strong>类型</strong>：提交的类型，表示本次提交的目的或类别，常见的类型包括：</p>
-<ul>
-<li><p><code>feat</code>：新特性（feature）</p></li>
-<li><p><code>fix</code>：修复 bug</p></li>
-<li><p><code>docs</code>：文档相关更新</p></li>
-<li><p><code>style</code>：代码风格的调整（空格、格式化等，不影响代码功能）</p></li>
-<li><p><code>refactor</code>：重构（既不修复 bug 也不添加新特性）</p></li>
-<li><p><code>test</code>：增加或修改测试代码</p></li>
-<li><p><code>ci</code>：持续集成相关的修改</p></li>
-<li><p><code>build</code>：构建系统（如打包工具等）</p></li>
-<li><p><code>revert</code>：回退提交</p></li>
-</ul></li>
-<li><p><strong>范围</strong>：提交影响的模块或功能范围，对项目的哪个模块或者功能进行了修改，用圆括号括起来。例如：<code>feat(api)</code>, <code>fix(login)</code>。</p></li>
-<li><p><strong>简短描述</strong>：简洁明了地描述本次提交的目的，首字母小写，不超过 50 个字符。</p></li>
-<li><p><strong>详细描述</strong>：对提交的详细描述，包括原因、解决方案、关键点等。详细描述与简短描述之间空一行，内容可选但推荐提供，最大长度可以是 72 字符。</p></li>
-</ul>
-</section>
-<section id="提交信息示例" class="level3">
-<h3 class="anchored" data-anchor-id="提交信息示例">提交信息示例</h3>
-<ul>
-<li><p><code>feat(user-auth): add login API</code></p></li>
-<li><p><code>fix(api): fix invalid username validation</code></p></li>
-<li><p><code>docs(readme): update setup instructions</code></p></li>
-<li><p><code>refactor(auth): improve password hashing algorithm</code></p></li>
-<li><p><code>test(user): add unit tests for login functionality</code></p></li>
-<li><p><code>chore(deps): update dependency versions</code></p></li>
-</ul>
-</section>
-<section id="提交时的注意事项" class="level3">
-<h3 class="anchored" data-anchor-id="提交时的注意事项">提交时的注意事项</h3>
-<ul>
-<li><p><strong>避免</strong>：</p>
-<ul>
-<li><p>使用模糊不清的提交信息，如 <code>fix</code>, <code>update</code>, <code>change</code> 等。</p></li>
-<li><p>提交过大的改动，建议将大改动拆分成多个小的提交。</p></li>
-<li><p>直接修改代码逻辑的提交没有详细描述。</p></li>
-</ul></li>
-<li><p><strong>务必</strong>：</p>
-<ul>
-<li><p>保持提交信息简洁且有意义，能清晰地告诉他人此次修改的意图。</p></li>
-<li><p>每次提交前，请确保代码能够成功编译并通过测试，避免提交未通过测试的代码。</p></li>
-</ul></li>
-</ul>
-</section>
-<section id="demo" class="level3">
-<h3 class="anchored" data-anchor-id="demo">demo</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add . <span class="co"># 添加修改的文件到暂存区</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"feat(user-auth): add login API"</span> <span class="co"># 提交代码并写简短描述</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main <span class="co"># 推送到远程仓库</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 新特性</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"feat(auth): 添加用户api"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 修复 bug</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"fix(validation): ..."</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 代码重构</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"refactor(user): ...."</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加测试</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"test(user): 为登录添加单元测试"</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 文档更新</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"docs(readme): 更新安装指南"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-<section id="git常用指令" class="level2">
-<h2 class="anchored" data-anchor-id="git常用指令">git常用指令</h2>
-<section id="修改远程仓库地址" class="level3">
-<h3 class="anchored" data-anchor-id="修改远程仓库地址">修改远程仓库地址</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote set-url origin <span class="op">&lt;</span>new-url<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img src="../assets/images/如何使用git/git-remote-change.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
-</section>
-<section id="同步远程仓库分支" class="level3">
-<h3 class="anchored" data-anchor-id="同步远程仓库分支">同步远程仓库分支</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 同步远程仓库到main分支</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-<section id="参考资料" class="level2">
-<h2 class="anchored" data-anchor-id="参考资料">参考资料</h2>
-<p><a href="https://my.feishu.cn/docx/COrVd46PDoPf7TxB1tZc0rcInTg">Git 提交规范</a></p>
+<p>实现一个简单的用户订单系统</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <button id="lang-toggle" type="button" aria-label="Toggle language"></button>
