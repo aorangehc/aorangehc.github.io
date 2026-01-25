@@ -1547,10 +1547,101 @@
     "text": "推荐使用最新版 Chrome/Edge/Firefox。\n在极端超长内容下，截图耗时与内存占用会增加；如遇问题，可尝试降低 scale 值或分段导出。"
   },
   {
-    "objectID": "content/projects/entries/Go-Zero-Service-Demo.html",
-    "href": "content/projects/entries/Go-Zero-Service-Demo.html",
+    "objectID": "content/projects/entries/Go-Zero-Service-Demo.html#项目设计",
+    "href": "content/projects/entries/Go-Zero-Service-Demo.html#项目设计",
     "title": "go-zero框架下简单微服务实现",
-    "section": "",
-    "text": "实现一个简单的用户订单系统"
+    "section": "项目设计",
+    "text": "项目设计\n\n说明\n项目是通过 zo-zero 框架实现一个简单的用户订单系统，包括两个微服务用户服务和订单服务，通过 API 接口能够分别调用两个服务的接口，用户服务暴露 RPC 服务接口供订单服务进行调用。下面截图是我的操作过程\n\n\n\n\nAPI\ngoctl指令\ngoctl api go -api user.api -dir . -style goZero  \ngoctl api go -api order.api -dir . -style goZero\nUser\nsyntax = \"v1\"\n\n// 进行项目的简单说明\ninfo (\n    title:   \"实现简单的用户服务\"\n    author:  \"aorangehc\"\n    date:    \"2025年 11 月 11 日\"\n    version: \"v1\"\n)\n\n// 注册需要用户名、密码、手机号码，要做唯一性检测\ntype RegisterReq {\n    UserName string `json:\"username\"`\n    Password string `json:\"password\"`\n    Mobile   string `json:\"mobile\"`\n    Gender   string `json:\"gender\"` // male|female|unknown\n    NickName string `json:\"nickname\"`\n}\n\ntype RegisterResp {\n    success bool   `json:\"success\"` // 注册是否成功\n    Message string `json:\"message\"` // 注册报错信息\n    Id      int64  `json:\"id\"` // 成功注册返回的 id\n}\n\ntype LoginReq {\n    UserName string `json:\"username\"`\n    Password string `json:\"password\"`\n}\n\ntype LoginResp {\n    Token string `json:\"token\"`\n}\n\ntype UserInfoReq {\n    Id int64 `json:\"id\"`\n    Id int64 `json:\"token\"`\n}\n\ntype UserInfoResp {\n    Id       int64  `json:\"id\"`\n    Token    string `json:\"token\"`\n    UserName string `json:\"username\"`\n    Mobile   string `json:\"mobile\"`\n    Gender   string `json:\"gender\"`\n    NickName string `json:\"nickname\"`\n    CreateAt string `json:\"createAt\"` // 注册时间\n    UpdateAt string `json:\"updateAt\"` // 最后更新时间\n}\n\n// 用户信息更新\ntype UserUpdateReq {\n    Id       int64  `json:\"id\"`\n    UserName string `json:\"username\"`\n    Password string `json:\"password\"`\n    Mobile   string `json:\"mobile\"`\n    Gender   string `json:\"gender\"` // male|female|unknown\n    NickName string `json:\"nickname\"`\n}\n\ntype UserUpdateResp {\n    success bool   `json:\"success\"`\n    Message string `json:\"message\"` // 更新报错信息\n}\n\n// 定义用户服务的 Api\nservice user-api {\n    @handler register\n    post /api/user/register (RegisterReq) returns (RegisterResp)\n\n    @handler login\n    post /api/user/login (LoginReq) returns (LoginResp)\n\n    @handler userInfo // 获取用户信息\n    get /api/user/:id (UserInfoReq) returns (UserInfoResp)\n}\nOrder\nsyntax = \"v1\"\n\ninfo (\n    title:   \"订单服务简单 demo\"\n    author:  \"aorangehc\"\n    date:    \"2025年 11 月 11 日\"\n    version: \"v1\"\n)\n\n// 创建订单\ntype CreateReq {\n    UserId  int64 `json:\"userId\"`\n    GoodsId int64 `json:\"goodsId\"`\n    Num     int64 `json:\"num\"`\n    Amount  int64 `json:\"amount\"`\n}\n\ntype CreateResp {\n    OrderSn string `json:\"orderSn\"`\n}\n\n// 查看订单详情\ntype DetailReq {\n    OrderSn string `json:\"orderSn\"`\n}\n\ntype DetailResp {\n    OrderSn  string `json:\"orderSn\"`\n    UserId   int64  `json:\"userId\"`\n    GoodsId  int64  `json:\"goodsid\"`\n    Num      int64  `json:\"num\"`\n    Amount   int64  `json:\"amount\"`\n    Status   int64  `json:\"status\"`\n    CreateAt string `json:\"createAt\"`\n}\n\n// 删除订单\ntype DeleteReq {\n    userId  int64  `json:\"userId\"`\n    OrderSn string `json:\"orderSn\"`\n}\n\ntype DeleteResp {\n    success bool   `json:\"success\"`\n    Message string `json:\"message\"`\n}\n\nservice order-api {\n    @handler create\n    post /api/order/create (CreateReq) returns (CreateResp)\n\n    @handler detail\n    get /api/order/:orderSn (DetailReq) returns (DetailResp)\n\n    @handler delete\n    delete /api/order/delete (DeleteReq) returns (DeleteResp)\n}\n\n\nRPC\ngoctl指令\ngoctl rpc protoc user.proto --go_out=. --go-grpc_out=. --zrpc_out=.\nUser\n// 暴露一个 user 服务对外接口，获取用户信息\n\nsyntax = \"proto3\";\n\noption go_package = \"./user\";\n\n// 定义请求结构体\nmessage GetUserInfoRequest {\n    int64 user_id = 1; // 用户ID\n}\n\n// 定义响应结构体\nmessage GetUserInfoResponse {\n    int64 user_id = 1; // 用户ID\n    string user_name = 2; // 用户名\n    int64 gender = 3; // 用户性别\n}\n\n// 定义 UserService 服务\nservice UserService {\n    // 获取用户信息\n    rpc GetUserInfo(GetUserInfoRequest) returns (GetUserInfoResponse); \n}\n\n\nMySQL\ngoctl指令\ngoctl model mysql ddl -src=\"./user.sql\" -dir=\"./sql/model\" -c  \ngoctl model mysql ddl -src=\"./order.sql\" --dir=\"./sql/model\" -c\nUser\nCREATE TABLE user (\n    id bigint AUTO_INCREMENT,\n    name varchar(255) NULL COMMENT '用户名',\n    password varchar(255) NOT NULL DEFAULT '' COMMENT '密码',\n    mobile varchar(255) NOT NULL DEFAULT '' COMMENT '手机号码',\n    gender char(10) NOT NULL DEFAULT 'male' COMMENT '性别,male|female|unknown',\n    nickname varchar(255) NULL DEFAULT '' COMMENT '昵称',\n    type tinyint(1) NULL DEFAULT 0 COMMENT '用户类型, 0:普通用户,1:VIP用户,用于测试golang关键字',\n    create_at timestamp NULL,\n    update_at timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n    UNIQUE mobile_index (mobile),\n    UNIQUE name_index (name),\n    PRIMARY KEY (id)\n) ENGINE = InnoDB COLLATE utf8mb4_general_ci COMMENT '用户表';\nOrder\nCREATE TABLE `order` (\n    `order_sn` VARCHAR(64) NOT NULL COMMENT '订单号',\n    `user_id` BIGINT NOT NULL DEFAULT 0 COMMENT '用户ID',\n    `goods_id` BIGINT NOT NULL DEFAULT 0 COMMENT '商品ID',\n    `num` BIGINT NOT NULL DEFAULT 0 COMMENT '数量',\n    `amount` BIGINT NOT NULL DEFAULT 0 COMMENT '金额',\n    `status` INT NOT NULL DEFAULT 0 COMMENT '状态',\n    `create_at` DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',\n    `delete_at` DATETIME DEFAULT NULL COMMENT '删除时间',\n    PRIMARY KEY (`order_sn`)\n) ENGINE=InnoDB COLLATE utf8mb4_general_ci COMMENT='订单表';"
+  },
+  {
+    "objectID": "content/projects/entries/Go-Zero-Service-Demo.html#mysql配置和model操作",
+    "href": "content/projects/entries/Go-Zero-Service-Demo.html#mysql配置和model操作",
+    "title": "go-zero框架下简单微服务实现",
+    "section": "MySQL配置和model操作",
+    "text": "MySQL配置和model操作"
+  },
+  {
+    "objectID": "content/projects/entries/Go-Zero-Service-Demo.html#注册",
+    "href": "content/projects/entries/Go-Zero-Service-Demo.html#注册",
+    "title": "go-zero框架下简单微服务实现",
+    "section": "注册",
+    "text": "注册"
+  },
+  {
+    "objectID": "content/projects/entries/Go-Zero-Service-Demo.html#缓存",
+    "href": "content/projects/entries/Go-Zero-Service-Demo.html#缓存",
+    "title": "go-zero框架下简单微服务实现",
+    "section": "缓存",
+    "text": "缓存"
+  },
+  {
+    "objectID": "content/projects/entries/Go-Zero-Service-Demo.html#日志",
+    "href": "content/projects/entries/Go-Zero-Service-Demo.html#日志",
+    "title": "go-zero框架下简单微服务实现",
+    "section": "日志",
+    "text": "日志"
+  },
+  {
+    "objectID": "content/projects/entries/Go-Zero-Service-Demo.html#login-接口",
+    "href": "content/projects/entries/Go-Zero-Service-Demo.html#login-接口",
+    "title": "go-zero框架下简单微服务实现",
+    "section": "login 接口",
+    "text": "login 接口"
+  },
+  {
+    "objectID": "content/projects/entries/Go-Zero-Service-Demo.html#jwt-鉴权",
+    "href": "content/projects/entries/Go-Zero-Service-Demo.html#jwt-鉴权",
+    "title": "go-zero框架下简单微服务实现",
+    "section": "JWT 鉴权",
+    "text": "JWT 鉴权"
+  },
+  {
+    "objectID": "content/projects/entries/Go-Zero-Service-Demo.html#中间件",
+    "href": "content/projects/entries/Go-Zero-Service-Demo.html#中间件",
+    "title": "go-zero框架下简单微服务实现",
+    "section": "中间件",
+    "text": "中间件"
+  },
+  {
+    "objectID": "content/projects/entries/Go-Zero-Service-Demo.html#rpc服务和调用",
+    "href": "content/projects/entries/Go-Zero-Service-Demo.html#rpc服务和调用",
+    "title": "go-zero框架下简单微服务实现",
+    "section": "RPC服务和调用",
+    "text": "RPC服务和调用"
+  },
+  {
+    "objectID": "content/projects/entries/Go-Zero-Service-Demo.html#注册中心-consul",
+    "href": "content/projects/entries/Go-Zero-Service-Demo.html#注册中心-consul",
+    "title": "go-zero框架下简单微服务实现",
+    "section": "注册中心-consul",
+    "text": "注册中心-consul"
+  },
+  {
+    "objectID": "content/projects/entries/Go-Zero-Service-Demo.html#rpc-拦截器",
+    "href": "content/projects/entries/Go-Zero-Service-Demo.html#rpc-拦截器",
+    "title": "go-zero框架下简单微服务实现",
+    "section": "RPC 拦截器",
+    "text": "RPC 拦截器"
+  },
+  {
+    "objectID": "content/projects/entries/Go-Zero-Service-Demo.html#错误处理",
+    "href": "content/projects/entries/Go-Zero-Service-Demo.html#错误处理",
+    "title": "go-zero框架下简单微服务实现",
+    "section": "错误处理",
+    "text": "错误处理"
+  },
+  {
+    "objectID": "content/projects/entries/Go-Zero-Service-Demo.html#修改模板生成自定义代码",
+    "href": "content/projects/entries/Go-Zero-Service-Demo.html#修改模板生成自定义代码",
+    "title": "go-zero框架下简单微服务实现",
+    "section": "修改模板生成自定义代码",
+    "text": "修改模板生成自定义代码"
+  },
+  {
+    "objectID": "content/projects/entries/Go-Zero-Service-Demo.html#参考资料",
+    "href": "content/projects/entries/Go-Zero-Service-Demo.html#参考资料",
+    "title": "go-zero框架下简单微服务实现",
+    "section": "参考资料",
+    "text": "参考资料"
   }
 ]
