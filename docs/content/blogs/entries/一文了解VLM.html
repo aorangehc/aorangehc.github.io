@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-01-01">
 
-<title>Blogs博客</title>
+<title>一文了解VLM</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,30 +24,28 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,68 +72,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      page: 9,
-    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -312,21 +252,21 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../pages/index.html"> 
+    <a class="nav-link" href="../../../pages/index.html"> 
 <span class="menu-text"><span class="lang-en">About Me</span><span class="lang-zh">关于我</span></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../pages/home.html"> 
+    <a class="nav-link" href="../../../pages/home.html"> 
 <span class="menu-text"><span class="lang-en">Home</span><span class="lang-zh">主页</span></span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../content/blogs/index.html" aria-current="page"> 
+    <a class="nav-link" href="../../../content/blogs/index.html"> 
 <span class="menu-text"><span class="lang-en">Blogs</span><span class="lang-zh">博客</span></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../content/projects/index.html"> 
+    <a class="nav-link" href="../../../content/projects/index.html"> 
 <span class="menu-text"><span class="lang-en">Projects</span><span class="lang-zh">项目</span></span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -335,15 +275,15 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-span-classlang-enpapersreportsspanspan-classlang-zh论文和技术报告span">    
         <li>
-    <a class="dropdown-item" href="../../content/papers/index.html">
+    <a class="dropdown-item" href="../../../content/papers/index.html">
  <span class="dropdown-text">Overview</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/papers/deepseek/index.html">
+    <a class="dropdown-item" href="../../../content/papers/deepseek/index.html">
  <span class="dropdown-text">DeepSeek</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/papers/labnotes/index.html">
+    <a class="dropdown-item" href="../../../content/papers/labnotes/index.html">
  <span class="dropdown-text">LabNotes</span></a>
   </li>  
     </ul>
@@ -354,23 +294,23 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-span-classlang-enlearning-notesspanspan-classlang-zh学习笔记span">    
         <li>
-    <a class="dropdown-item" href="../../content/learning-notes/index.html">
+    <a class="dropdown-item" href="../../../content/learning-notes/index.html">
  <span class="dropdown-text">Overview</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/learning-notes/golang/index.html">
+    <a class="dropdown-item" href="../../../content/learning-notes/golang/index.html">
  <span class="dropdown-text">golang基础</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/learning-notes/microservices/index.html">
+    <a class="dropdown-item" href="../../../content/learning-notes/microservices/index.html">
  <span class="dropdown-text">微服务(golang)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/learning-notes/infrastructure/index.html">
+    <a class="dropdown-item" href="../../../content/learning-notes/infrastructure/index.html">
  <span class="dropdown-text">基础设施(golang)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/learning-notes/deepL/index.html">
+    <a class="dropdown-item" href="../../../content/learning-notes/deepL/index.html">
  <span class="dropdown-text">深度学习</span></a>
   </li>  
     </ul>
@@ -389,23 +329,33 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(12)</span></div><div class="category" data-category="JUU5JTgzJUE4JUU3JUJEJUIy">部署 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUU1JUE0JUE3JUU2JUE4JUExJUU1JTlFJThC">大模型 <span class="quarto-category-count">(2)</span></div><div class="category" data-category="JUU2JThBJTgwJUU2JTlDJUFG">技术 <span class="quarto-category-count">(4)</span></div><div class="category" data-category="JUU2JThBJTgwJUU2JTlDJUFGJUU3JTkwJTg2JUU4JUFFJUJB">技术理论 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUU2JThBJTgwJUU2JTlDJUFGJUU1JUFFJTlFJUU4JUI3JUI1">技术实践 <span class="quarto-category-count">(2)</span></div><div class="category" data-category="JUU3JUJEJTkxJUU3JUJCJTlD">网络 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUU0JUJGJUExJUU2JTgxJUFGJUU2JUEzJTgwJUU3JUI0JUEy">信息检索 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUU2JThDJTg3JUU0JUJCJUE0">指令 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUU2JTk5JUJBJUU4JTgzJUJEJUU1JThBJUE5JUU2JTg5JThC">智能助手 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QmxvZw==">Blog <span class="quarto-category-count">(3)</span></div><div class="category" data-category="RGVlcHNlZWs=">Deepseek <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z2l0">git <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R2l0SHVi">GitHub <span class="quarto-category-count">(3)</span></div><div class="category" data-category="SW5zdHJ1Y3Rpb24=">Instruction <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SmVreWxs">Jekyll <span class="quarto-category-count">(3)</span></div><div class="category" data-category="TGludXg=">Linux <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TExN">LLM <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TWFj">Mac <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UkFH">RAG <span class="quarto-category-count">(2)</span></div><div class="category" data-category="c3No">ssh <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VkxN">VLM <span class="quarto-category-count">(1)</span></div><div class="category" data-category="V2luZG93cw==">Windows <span class="quarto-category-count">(1)</span></div></div></div>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="lang-en">Blogs</span><span class="lang-zh">博客</span></h1>
-</div>
+<h1 class="title">一文了解VLM</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">VLM</div>
+    <div class="quarto-category">LLM</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 1, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -415,389 +365,12 @@ window.Quarto = {
 </header>
 
 
-<p>Short essays, reviews, and research notes.</p>
+<p><img src="../assets/images/allVLM/image.png" alt="fork" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p>VLM（Vision-Language Model）: 视觉语言大模型</p>
 
 
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="UkFHJTJDTExN" data-listing-date-sort="1767232719000" data-listing-file-modified-sort="1769094192532" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1193">
-<div class="thumbnail"><a href="../../content/blogs/entries/一文了解RAG.html" class="no-external">
-
-<p class="card-img-top"><img src="assets/images/allRag/image.png" alt="go" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../content/blogs/entries/一文了解RAG.html" class="no-external">一文了解RAG</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('UkFH'); return false;">RAG</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TExN'); return false;">LLM</div>
-
-</div>
-<div class="delink listing-description"><a href="../../content/blogs/entries/一文了解RAG.html" class="no-external">
-RAG（Retrieval Augmented Generation）：检索增强生成
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../content/blogs/entries/一文了解RAG.html" class="no-external">
-<div class="listing-date">
-Jan 1, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="VkxNJTJDTExN" data-listing-date-sort="1767232719000" data-listing-file-modified-sort="1769425485233" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="15">
-<div class="thumbnail"><a href="../../content/blogs/entries/一文了解VLM.html" class="no-external">
-
-<p class="card-img-top"><img src="assets/images/allVLM/image.png" alt="fork" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../content/blogs/entries/一文了解VLM.html" class="no-external">一文了解VLM</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('VkxN'); return false;">VLM</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TExN'); return false;">LLM</div>
-
-</div>
-<div class="delink listing-description"><a href="../../content/blogs/entries/一文了解VLM.html" class="no-external">
-VLM（Vision-Language Model）: 视觉语言大模型
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../content/blogs/entries/一文了解VLM.html" class="no-external">
-<div class="listing-date">
-Jan 1, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="JUU2JThBJTgwJUU2JTlDJUFGJTJDJUU2JThBJTgwJUU2JTlDJUFGJUU1JUFFJTlFJUU4JUI3JUI1JTJDc3NoJTJDJUU3JUJEJTkxJUU3JUJCJTlD" data-listing-date-sort="1765446914000" data-listing-file-modified-sort="1768896596769" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="176">
-<div class="thumbnail"><a href="../../content/blogs/entries/本地服务器低速传输解决方案.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" style="height: 140px;">&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../content/blogs/entries/本地服务器低速传输解决方案.html" class="no-external">本地服务器低速传输解决方案</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU2JThBJTgwJUU2JTlDJUFG'); return false;">技术</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU2JThBJTgwJUU2JTlDJUFGJUU1JUFFJTlFJUU4JUI3JUI1'); return false;">技术实践</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c3No'); return false;">ssh</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU3JUJEJTkxJUU3JUJCJTlD'); return false;">网络</div>
-
-</div>
-<div class="delink listing-description"><a href="../../content/blogs/entries/本地服务器低速传输解决方案.html" class="no-external">
-最近在给一台远程 Linux 服务器部署项目，遇到在一个极其离谱的网络环境：
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../content/blogs/entries/本地服务器低速传输解决方案.html" class="no-external">
-<div class="listing-date">
-Dec 11, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="R2l0SHViJTJDQmxvZyUyQ0pla3lsbA==" data-listing-date-sort="1761311471000" data-listing-file-modified-sort="1768896870055" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="95">
-<div class="thumbnail"><a href="../../content/blogs/entries/Mac安装Jekyll.html" class="no-external">
-
-<p class="card-img-top"><img src="assets/images/2025-10-24-Mac-install-Jekyll/run_success.png" alt="mac_jekyll" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../content/blogs/entries/Mac安装Jekyll.html" class="no-external">Mac安装Jekyll</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('R2l0SHVi'); return false;">GitHub</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QmxvZw=='); return false;">Blog</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SmVreWxs'); return false;">Jekyll</div>
-
-</div>
-<div class="delink listing-description"><a href="../../content/blogs/entries/Mac安装Jekyll.html" class="no-external">
-更新了在Windows的Jekyll教程。顺便把环境在Mac上重新配置了一遍，把完整流程记录下来，给正在折腾博客的你一份可直接照做的macOS安装指南。
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../content/blogs/entries/Mac安装Jekyll.html" class="no-external">
-<div class="listing-date">
-Oct 24, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="V2luZG93cyUyQ01hYyUyQ0xpbnV4JTJDSW5zdHJ1Y3Rpb24=" data-listing-date-sort="1761311471000" data-listing-file-modified-sort="1769353690093" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="67">
-<div class="thumbnail"><a href="../../content/blogs/entries/pc的快捷指令.html" class="no-external">
-
-<p class="card-img-top"><img src="assets/images/makePcGreatAgain/image-2.png" alt="fork" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../content/blogs/entries/pc的快捷指令.html" class="no-external">PC的快捷指令</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('V2luZG93cw=='); return false;">Windows</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWFj'); return false;">Mac</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('TGludXg='); return false;">Linux</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SW5zdHJ1Y3Rpb24='); return false;">Instruction</div>
-
-</div>
-<div class="delink listing-description"><a href="../../content/blogs/entries/pc的快捷指令.html" class="no-external">
-记录一下常见PC的快捷指令，主要是博主经常忘记，这里记录一下，方便后续查看。
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../content/blogs/entries/pc的快捷指令.html" class="no-external">
-<div class="listing-date">
-Oct 24, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="R2l0SHViJTJDQmxvZyUyQ0pla3lsbA==" data-listing-date-sort="1761292021000" data-listing-file-modified-sort="1768896849180" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="124">
-<div class="thumbnail"><a href="../../content/blogs/entries/Windows安装Jekyll.html" class="no-external">
-
-<p class="card-img-top"><img src="assets/images/2025-10-24-win-install-Jekyll/rubyinstaller_download.png" alt="win_jekyll" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../content/blogs/entries/Windows安装Jekyll.html" class="no-external">Windows安装Jekyll</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('R2l0SHVi'); return false;">GitHub</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QmxvZw=='); return false;">Blog</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SmVreWxs'); return false;">Jekyll</div>
-
-</div>
-<div class="delink listing-description"><a href="../../content/blogs/entries/Windows安装Jekyll.html" class="no-external">
-之前分享了如何在GitHub上搭建个人博客，但缺少Jekyll的安装教程。最近换了新电脑，正好借此机会补上这个重要的环节，为想要搭建技术博客的朋友们提供一份详细的Windows安装指南。
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../content/blogs/entries/Windows安装Jekyll.html" class="no-external">
-<div class="listing-date">
-Oct 24, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="JUU1JUE0JUE3JUU2JUE4JUExJUU1JTlFJThCJTJDUkFHJTJDJUU0JUJGJUExJUU2JTgxJUFGJUU2JUEzJTgwJUU3JUI0JUEyJTJDJUU2JTk5JUJBJUU4JTgzJUJEJUU1JThBJUE5JUU2JTg5JThC" data-listing-date-sort="1741658781000" data-listing-file-modified-sort="1768896608713" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="457">
-<div class="thumbnail"><a href="../../content/blogs/entries/基于BM25检索算法构建RAG智能文档问答助手--学习和实践.html" class="no-external">
-
-<p class="card-img-top"><img src="assets/images/BM25_RAG/创建env文件.png" alt="bm25_rag" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../content/blogs/entries/基于BM25检索算法构建RAG智能文档问答助手--学习和实践.html" class="no-external">基于BM25检索算法构建RAG智能文档问答助手–学习和实践</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU1JUE0JUE3JUU2JUE4JUExJUU1JTlFJThC'); return false;">大模型</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UkFH'); return false;">RAG</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU0JUJGJUExJUU2JTgxJUFGJUU2JUEzJTgwJUU3JUI0JUEy'); return false;">信息检索</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU2JTk5JUJBJUU4JTgzJUJEJUU1JThBJUE5JUU2JTg5JThC'); return false;">智能助手</div>
-
-</div>
-<div class="delink listing-description"><a href="../../content/blogs/entries/基于BM25检索算法构建RAG智能文档问答助手--学习和实践.html" class="no-external">
-本篇文章记录DataWhale微学习中课程–从零打造RAG检索系统
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../content/blogs/entries/基于BM25检索算法构建RAG智能文档问答助手--学习和实践.html" class="no-external">
-<div class="listing-date">
-Mar 11, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-categories="JUU1JUE0JUE3JUU2JUE4JUExJUU1JTlFJThCJTJDJUU5JTgzJUE4JUU3JUJEJUIyJTJDRGVlcHNlZWs=" data-listing-date-sort="1737778482000" data-listing-file-modified-sort="1768897139847" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1616">
-<div class="thumbnail"><a href="../../content/blogs/entries/Deepseek-R1-32B模型部署.html" class="no-external">
-
-<p class="card-img-top"><img src="assets/images/deepseek-R1-32B-vllm/free_aliyun.png" alt="go" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../content/blogs/entries/Deepseek-R1-32B模型部署.html" class="no-external">Deepseek-R1-32B模型部署</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU1JUE0JUE3JUU2JUE4JUExJUU1JTlFJThC'); return false;">大模型</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU5JTgzJUE4JUU3JUJEJUIy'); return false;">部署</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGVlcHNlZWs='); return false;">Deepseek</div>
-
-</div>
-<div class="delink listing-description"><a href="../../content/blogs/entries/Deepseek-R1-32B模型部署.html" class="no-external">
-这段时间国产大模型deepseek受到广泛关注，deepseek也开源了他们模型的参数，在huggingface上，提供了原始模型和经过不同程度蒸馏的模型
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../content/blogs/entries/Deepseek-R1-32B模型部署.html" class="no-external">
-<div class="listing-date">
-Jan 25, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="8" data-categories="JUU2JThBJTgwJUU2JTlDJUFGJTJDZ2l0JTJDJUU2JThDJTg3JUU0JUJCJUE0" data-listing-date-sort="1736560719000" data-listing-file-modified-sort="1769311803773" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="187">
-<div class="thumbnail"><a href="../../content/blogs/entries/如何使用git.html" class="no-external">
-
-<p class="card-img-top"><img src="assets/images/如何使用git/git.png" alt="go" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../content/blogs/entries/如何使用git.html" class="no-external">如何使用git</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU2JThBJTgwJUU2JTlDJUFG'); return false;">技术</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z2l0'); return false;">git</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU2JThDJTg3JUU0JUJCJUE0'); return false;">指令</div>
-
-</div>
-<div class="delink listing-description"><a href="../../content/blogs/entries/如何使用git.html" class="no-external">
-<strong>记录一下自己使用git容易忘记的指令和要学习遵守提交规范</strong>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../content/blogs/entries/如何使用git.html" class="no-external">
-<div class="listing-date">
-Jan 11, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="9" data-categories="JUU2JThBJTgwJUU2JTlDJUFGJTJDJUU2JThBJTgwJUU2JTlDJUFGJUU3JTkwJTg2JUU4JUFFJUJB" data-listing-date-sort="1736560719000" data-listing-file-modified-sort="1768896617275" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="64">
-<div class="thumbnail"><a href="../../content/blogs/entries/开源协议.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" style="height: 140px;">&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../content/blogs/entries/开源协议.html" class="no-external">开源协议</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU2JThBJTgwJUU2JTlDJUFG'); return false;">技术</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU2JThBJTgwJUU2JTlDJUFGJUU3JTkwJTg2JUU4JUFFJUJB'); return false;">技术理论</div>
-
-</div>
-<div class="delink listing-description"><a href="../../content/blogs/entries/开源协议.html" class="no-external">
-开源协议是软件开发与分发中的重要组成部分。它们不仅影响软件的使用方式，还影响开发者、用户及整个社区的权利与责任。本文将深入探讨开源协议的定义、类型、重要性及其对软件生态的影响。
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../content/blogs/entries/开源协议.html" class="no-external">
-<div class="listing-date">
-Jan 11, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="10" data-categories="JUU2JThBJTgwJUU2JTlDJUFGJTJDJUU2JThBJTgwJUU2JTlDJUFGJUU1JUFFJTlFJUU4JUI3JUI1" data-listing-date-sort="1736560641000" data-listing-file-modified-sort="1768897146733" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="208">
-<div class="thumbnail"><a href="../../content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html" class="no-external">
-
-<p class="card-img-top"><img data-src="assets/images/a-magical-remote-solution/电脑远程方案原理.png" alt="remote" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html" class="no-external">一种免费、高清、安全、但是很麻烦的远程桌面连接方案</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU2JThBJTgwJUU2JTlDJUFG'); return false;">技术</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU2JThBJTgwJUU2JTlDJUFGJUU1JUFFJTlFJUU4JUI3JUI1'); return false;">技术实践</div>
-
-</div>
-<div class="delink listing-description"><a href="../../content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html" class="no-external">
-该方案能够解决的问题
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html" class="no-external">
-<div class="listing-date">
-Jan 11, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="11" data-categories="R2l0SHViJTJDQmxvZyUyQ0pla3lsbA==" data-listing-date-sort="1726365664000" data-listing-file-modified-sort="1768896519508" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="588">
-<div class="thumbnail"><a href="../../content/blogs/entries/保姆教程如何创建自己的“个人网站”.html" class="no-external">
-
-<p class="card-img-top"><img data-src="assets/images/2024-09-15-how-to-build-homepage/0.png" alt="fork" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../content/blogs/entries/保姆教程如何创建自己的“个人网站”.html" class="no-external">保姆教程如何创建自己的“个人网站”</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('R2l0SHVi'); return false;">GitHub</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('QmxvZw=='); return false;">Blog</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SmVreWxs'); return false;">Jekyll</div>
-
-</div>
-<div class="delink listing-description"><a href="../../content/blogs/entries/保姆教程如何创建自己的“个人网站”.html" class="no-external">
-文章主要介绍如何使用 Jekyll 和 GitHub 创建一个属于自己的个人网站，通过网站可以记录自己的学习笔记，技术收获，同时也可以更好地展示自己，养成笔记的好习惯（21天轻松养成好习惯，哈哈哈）。
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../content/blogs/entries/保姆教程如何创建自己的“个人网站”.html" class="no-external">
-<div class="listing-date">
-Sep 15, 2024
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-<nav id="listing-pagination" class="listing-pagination" aria-label="Page Navigation">
-  <ul class="pagination"></ul>
-</nav>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <button id="lang-toggle" type="button" aria-label="Toggle language"></button>
 <script>
   (() => {
