@@ -369,11 +369,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#windows" id="toc-windows" class="nav-link active" data-scroll-target="#windows">Windows</a></li>
+  <li><a href="#windows" id="toc-windows" class="nav-link active" data-scroll-target="#windows">Windows</a>
+  <ul class="collapse">
+  <li><a href="#终端配置" id="toc-终端配置" class="nav-link" data-scroll-target="#终端配置">终端配置</a></li>
+  </ul></li>
   <li><a href="#mac" id="toc-mac" class="nav-link" data-scroll-target="#mac">Mac</a>
   <ul class="collapse">
   <li><a href="#删除" id="toc-删除" class="nav-link" data-scroll-target="#删除">删除</a></li>
   <li><a href="#命令行指令提示插件" id="toc-命令行指令提示插件" class="nav-link" data-scroll-target="#命令行指令提示插件">命令行指令提示插件</a></li>
+  <li><a href="#命令行快速到行首尾" id="toc-命令行快速到行首尾" class="nav-link" data-scroll-target="#命令行快速到行首尾">命令行快速到行首尾</a></li>
   </ul></li>
   <li><a href="#linux" id="toc-linux" class="nav-link" data-scroll-target="#linux">Linux</a></li>
   </ul>
@@ -418,6 +422,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>记录一下常见PC的快捷指令，主要是博主经常忘记，这里记录一下，方便后续查看。</p>
 <section id="windows" class="level2">
 <h2 class="anchored" data-anchor-id="windows">Windows</h2>
+<section id="终端配置" class="level3">
+<h3 class="anchored" data-anchor-id="终端配置">终端配置</h3>
+<p><strong>Windows 终端增强配置速查</strong></p>
+<section id="基础环境" class="level4">
+<h4 class="anchored" data-anchor-id="基础环境">基础环境</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 安装 PowerShell 7（管理员）</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>winget install Microsoft<span class="op">.</span><span class="fu">PowerShell</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建配置文件</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(!(</span><span class="fu">Test-Path</span> <span class="va">$PROFILE</span><span class="op">))</span> <span class="op">{</span> <span class="fu">New-Item</span> <span class="op">-</span>Path <span class="va">$PROFILE</span> <span class="op">-</span>ItemType File <span class="op">-</span>Force <span class="op">}</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>notepad <span class="va">$PROFILE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="核心配置" class="level4">
+<h4 class="anchored" data-anchor-id="核心配置">核心配置</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 历史预测与提示</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Set-PSReadLineOption</span> <span class="op">-</span>PredictionSource <span class="fu">History</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Set-PSReadLineOption</span> <span class="op">-</span>PredictionViewStyle InlineView</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 快捷键：Ctrl+A/E 跳转行首行尾</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">Set-PSReadLineKeyHandler</span> <span class="op">-</span>Key Ctrl<span class="op">+</span>a <span class="op">-</span>Function BeginningOfLine</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">Set-PSReadLineKeyHandler</span> <span class="op">-</span>Key Ctrl<span class="op">+</span>e <span class="op">-</span>Function EndOfLine</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 上下箭头匹配前缀</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">Set-PSReadLineKeyHandler</span> <span class="op">-</span>Key UpArrow <span class="op">-</span>Function HistorySearchBackward</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">Set-PSReadLineKeyHandler</span> <span class="op">-</span>Key DownArrow <span class="op">-</span>Function HistorySearchForward</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 默认 UTF-8</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="va">$PSDefaultParameterValues</span><span class="op">[</span><span class="st">'*:Encoding'</span><span class="op">]</span> <span class="op">=</span> <span class="st">'UTF8'</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="op">[</span>Console<span class="op">]::</span>OutputEncoding <span class="op">=</span> <span class="op">[</span>System<span class="op">.</span><span class="fu">Text</span><span class="op">.</span><span class="fu">Encoding</span><span class="op">]::</span>UTF8</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="工具安装" class="level4">
+<h4 class="anchored" data-anchor-id="工具安装">工具安装</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 安装（PowerShell 7 中执行）</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>winget install lsd</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>winget install sharkdp<span class="op">.</span><span class="fu">bat</span> <span class="op">--</span>name bat</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 若提示找不到命令，修复 Path（执行后重启终端）</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="va">$lsdPath</span> <span class="op">=</span> <span class="st">"</span><span class="pp">${</span><span class="va">env:LOCALAPPDATA</span><span class="pp">}</span><span class="st">\Microsoft\WinGet\Packages\lsd-rs.lsd_Microsoft.Winget.Source_8wekyb3d8bbwe"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="va">$batPath</span> <span class="op">=</span> <span class="op">(</span><span class="fu">Get-ChildItem</span> <span class="st">"</span><span class="pp">${</span><span class="va">env:LOCALAPPDATA</span><span class="pp">}</span><span class="st">\Microsoft\WinGet\Packages"</span> <span class="op">-</span>Recurse <span class="op">-</span>Filter <span class="st">"bat.exe"</span> <span class="op">|</span> <span class="fu">Select-Object</span> <span class="op">-</span>First <span class="dv">1</span><span class="op">).</span><span class="fu">DirectoryName</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="va">$userPath</span> <span class="op">=</span> <span class="op">[</span>Environment<span class="op">]::</span>GetEnvironmentVariable<span class="op">(</span><span class="st">"Path"</span><span class="op">,</span> <span class="st">"User"</span><span class="op">)</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="op">[</span>Environment<span class="op">]::</span>SetEnvironmentVariable<span class="op">(</span><span class="st">"Path"</span><span class="op">,</span> <span class="st">"</span><span class="va">$userPath</span><span class="st">;</span><span class="va">$lsdPath</span><span class="st">;</span><span class="va">$batPath</span><span class="st">"</span><span class="op">,</span> <span class="st">"User"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="别名设置" class="level4">
+<h4 class="anchored" data-anchor-id="别名设置">别名设置</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">ls</span> <span class="op">{</span> lsd <span class="va">$args</span> <span class="op">}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> ll <span class="op">{</span> lsd <span class="op">-</span>la <span class="va">$args</span> <span class="op">}</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> la <span class="op">{</span> lsd <span class="op">-</span>a <span class="va">$args</span> <span class="op">}</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">cat</span> <span class="op">{</span> bat <span class="op">-</span>p <span class="va">$args</span> <span class="op">}</span>      <span class="co"># 纯文本兼容</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> catl <span class="op">{</span> bat <span class="va">$args</span> <span class="op">}</span>         <span class="co"># 带高亮行号</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="验证指令" class="level4">
+<h4 class="anchored" data-anchor-id="验证指令">验证指令</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>lsd <span class="op">--</span>version        <span class="co"># 显示版本即成功</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>bat README<span class="op">.</span><span class="fu">md</span>        <span class="co"># 高亮显示文件</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Get-PSReadLineOption</span> <span class="op">|</span> <span class="fu">Select-Object</span> PredictionSource  <span class="co"># 检查预测开启</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
 </section>
 <section id="mac" class="level2">
 <h2 class="anchored" data-anchor-id="mac">Mac</h2>
@@ -431,23 +492,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="命令行指令提示插件" class="level3">
 <h3 class="anchored" data-anchor-id="命令行指令提示插件">命令行指令提示插件</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 安装插件</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/.oh-my-zsh/custom/plugins</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/zsh-users/zsh-autosuggestions <span class="dt">\</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/zsh-users/zsh-syntax-highlighting <span class="dt">\</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 注册插件生效</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> ~/.zshrc</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 找到 plugins=()</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 改成 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.zshrc <span class="co"># 配置生效</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 安装插件</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> ~/.oh-my-zsh/custom/plugins</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/zsh-users/zsh-autosuggestions <span class="dt">\</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/zsh-users/zsh-syntax-highlighting <span class="dt">\</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 注册插件生效</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> ~/.zshrc</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 找到 plugins=()</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 改成 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.zshrc <span class="co"># 配置生效</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="../assets/images/makePcGreatAgain/image.png" alt="fork" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
+<section id="命令行快速到行首尾" class="level3">
+<h3 class="anchored" data-anchor-id="命令行快速到行首尾">命令行快速到行首尾</h3>
+<p>快速把光标跳到行首的默认快捷键是：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + A</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>快速把光标跳到行首的默认快捷键是：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + E</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="linux" class="level2">
