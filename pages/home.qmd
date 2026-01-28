@@ -1,0 +1,47 @@
+---
+title: "<span class=\"lang-en\">Home</span><span class=\"lang-zh\">主页</span>"
+# subtitle: "Research notes, projects, and learning logs"
+page-layout: full
+toc: false
+body-class: home-page
+listing:
+  - id: home-blogs
+    contents:
+      - ../content/blogs/entries/**/*.qmd
+      - ../content/blogs/entries/**/*.md
+    sort: "date desc"
+    type: default
+    categories: true
+    max-items: 3
+    image-height: 120px
+  - id: home-projects
+    contents:
+      - ../content/projects/entries/**/*.qmd
+      - ../content/projects/entries/**/*.md
+    sort: "date desc"
+    type: grid
+    categories: true
+    max-items: 3
+    grid-columns: 3
+    image-height: 160px
+  - id: home-papers
+    contents:
+      - ../content/papers/**/entries/**/*.qmd
+      - ../content/papers/**/entries/**/*.md
+    sort: "date desc"
+    type: default
+    categories: true
+    max-items: 3
+    image-height: 120px
+  - id: home-learning
+    contents:
+      - ../content/learning-notes/**/entries/**/*.qmd
+      - ../content/learning-notes/**/entries/**/*.md
+    sort: "date desc"
+    type: default
+    categories: true
+    max-items: 3
+    image-height: 120px
+---
+
+{{< include ../content/home.md >}}

@@ -1,0 +1,16 @@
+---
+title: "<span class=\"lang-en\">Learning Notes</span><span class=\"lang-zh\">学习笔记</span>"
+listing:
+  contents:
+    - golang/entries
+    - microservices/entries
+    - infrastructure/entries
+    - deepL/entries
+  sort: "date desc"
+  type: default
+  categories: true
+  page-size: 12
+  image-height: 140px
+---
+
+课程学习笔记.

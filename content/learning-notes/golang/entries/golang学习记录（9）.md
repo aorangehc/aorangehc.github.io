@@ -1,0 +1,210 @@
+---
+title: golang学习记录（9）
+date: 2024-10-19 15:56:07  +0800
+categories: [golang, golang基础学习]
+---
+
+# 结构体
+
+## 1、type关键字
+
+> type关键字常用于
+> 
+> 定义结构体
+> 
+> 定义接口
+> 
+> 定义类型别名
+>
+> 类型定义
+>
+> 类型判断
+
+### 1.1、类型别名
+
+> 别名可以让使用者更好理解代码，提高代码的可读性和可维护性，在编译的时候，会将别名编译为原来的类型
+>
+
+```go
+//以定义int的别名举例
+type MyInt = int
+var i MyInt
+fmt.Println("%T\n", i)
+//上面代码输出的结果为int，相当一给int取了一个小名，MyInt本质上还是int
+```
+
+### 1.2、自定义类型
+
+> 自定义类型是一种新的数据类型，它是基于已有的类型（如int、string等）创建的，它可以包含多个字段，每个字段都有自己的名称和类型。自定义类型可以用于创建更复杂的数据结构，以满足特定的需求。
+>
+
+```go
+type MyInt int // 相比于类型别名，没有等号
+var i MyInt
+fmt.Println("%T\n", i)
+//上面代码输出的结果为xxxx.MyInt
+```
+
+自定义类型有什么意义？
+
+可以给数据类型增加方法，使用更加灵活
+
+```go
+func (mi MyInt) string() string{
+    return strconv.Itoa(int(mi))
+}
+
+func main(){
+    var i MyInt = 10
+    fmt.Println(i.string())
+}
+// 上面的代码给MyInt增加了一个string方法，这样就可以将MyInt类型转换为string类型
+```
+
+## 2、结构体的定义和初始化
+
+> go中的结构体借鉴了面向对象的特性和C语言结构体的简洁性
+
+假设要设计一个结构体存储个人信息，包括name、age、address、mobile等，那么可以使用如下方式定义结构体：
+
+```go
+type Person struct{
+    name string
+    age int
+    address string
+    mobile string
+}
+
+func main(){
+    //结构体的初始化方式
+    p1 := Person{"小明", 18, "北京", "13812345678"} //省略写法每个元素都要写
+    p2 := Person{name: "小红", age: 19, address: "上海", mobile: "13812345679"} //能够填部分元素，更灵活
+    var p3 Person
+    p3.name = "小刚"
+
+    var persons []Person
+    persons = append(persons, p1)
+    persons = append(persons, Person{"小刚", 20, "广州", "13812345680"})
+}
+```
+
+## 3、匿名结构体
+
+> 定义临时的一次性的结构体
+>
+
+```go
+address := struct{
+    province string
+    city string
+    district string
+}{
+    "北京",
+     "北京", 
+     "海淀区"
+}
+fmt.Println(address.city)
+
+```
+
+## 4、结构体嵌套
+
+> 结构体可以在一个结构体中嵌套另一个结构体
+>
+
+```go
+type Person struct{
+    name string
+    age int
+}
+// 可以不用重复定义
+type Student struct{
+    // 第一种嵌套方式
+    p Person
+    score float32
+}
+
+func main() {
+    // 第一种初始化方式
+    s := Student{
+        p: Person{
+            name: "小明",
+            age: 18,
+        },
+        score: 90,
+    }
+    fmt.Println(s.p.name)
+
+    // 第二种初始化方式
+    s := Student{}
+    s.p.name = "小明"
+}
+```
+
+匿名嵌套
+```go
+type Person struct{
+    name string
+    age int
+}
+// 可以不用重复定义
+type Student struct{
+    // 第二种嵌套方式--匿名嵌套
+    Person
+    score float32
+}
+
+func main() {
+    // 初始化方式
+    s.name = "小明"
+}
+```
+
+## 5、结构体 定义 "方法"
+
+> 给结构体定义一个方法
+>
+> 在go中定义结构体的方法是在结构体外进行定义的
+> 
+
+```go
+type Person struct{
+    name string
+    age int
+}
+
+func (p Person) print(){
+    fmt.Printf("姓名：%s， 年龄：%d\r\n", p.name, p.age)
+}
+
+func main() {
+    p := Person{
+        name: "小明",
+        age: 18,
+    }
+    p.print()
+}
+```
+
+想要在结构体方法中修改结构体的属性，需要使用指针类型的结构体
+
+```go
+type Person struct{
+    name string
+    age int
+}
+
+func (p *Person) print(){
+    p.age = 19
+    fmt.Printf("姓名：%s， 年龄：%d\r\n", p.name, p.age)
+}
+
+func main() {
+    p := Person{
+        name: "小明",
+        age: 18,
+    }
+    p.print()
+}
+//此时输出的结果为：姓名：小明， 年龄：19
+```

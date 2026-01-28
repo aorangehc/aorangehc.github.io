@@ -1,0 +1,14 @@
+---
+title: "<span class=\"lang-en\">Paper&Report</span><span class=\"lang-zh\">论文和技术报告</span>"
+listing:
+  contents:
+    - deepseek/entries
+    - labnotes/entries
+  sort: "date desc"
+  type: default
+  categories: true
+  page-size: 12
+  image-height: 140px
+---
+
+记录论文和技术报告阅读

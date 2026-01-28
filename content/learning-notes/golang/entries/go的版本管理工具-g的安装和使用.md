@@ -1,0 +1,109 @@
+---
+title: go的版本管理工具-g的安装和使用
+date: 2025-01-16 21:15:06  +0800
+categories: [golang, g, golang版本管理]
+---
+
+# Golang的版本管理工具--g
+
+> 最近在进行go的实践，要做go的项目，运行一些项目的时候可能要用到不同的go环境，想到go有没有和python一样的环境管理工具（做实验还是用python比较多），然后查了一下，还是有的，比如gvm、g等等，最终选择了g，感觉找到的博客不够“保姆”就自己写一遍，进行记录，供小白参考。
+
+## Step1-g的下载和安装
+
+### 下载
+我是用的操作系统是Windows11，安装的话使用的已经编译好的版本
+
+g的下载地址-->[点击跳转](https://github.com/voidint/g/releases/tag/v1.7.0)
+
+我选择得是当前最新的1.7.0版本，也可以选择其他版本-->[点击跳转](https://github.com/voidint/g/tags)
+
+因为是用的64位Windows操作系统，选择**g1.7.0.windows-amd64**,然后解压
+
+<img src="../assets/images/go/版本管理工具--g/package_download.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+
+下载完成后可以解压这个压缩包，里面已有一个名字叫**g**的应用程序，这个就是我们要用的版本管理工具，已经编译好了
+
+<img src="../assets/images/go/版本管理工具--g/g-exe.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+
+### 环境变量配置
+
+g的使用过程中，最难的一步就是环境变量的配置
+
+如果在使用g之前已经安装过go，配置过环境变量，需要删相关的环境变量，不然可能会有冲突
+
+然后，我们开始自己的环境变量的配置
+|环境变量名称	|路径	|说明|
+|-------|-------|-------|
+|G_HOME       |       C:\Users\lier\.g    |    这个是用于下载go安装包个安装go的目录|
+|GOPATH     |         %G_HOME%\go    |         这个是g中配置的要使用的go版本的目录|
+|Path       |         D:\go-env       |        这个是g.exe所在的目录|
+|Path        |        %GOROOT%\bin        |    这个是go.exe所在的目录|
+
+<img src="../assets/images/go/版本管理工具--g/gohome.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+
+<img src="../assets/images/go/版本管理工具--g/groot.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+
+大家可以根据自己的需要进行修改：
+
+> 将lier改成自己的用户名
+> 将g.exe放到自己设置的目录下
+
+
+## Step2-g的使用
+
+### 查看是否安装是否成功
+
+可以在**cmd**或者**power shell**中使用
+
+打开一个新的cmd，输入**g --version**，查看结果
+
+<img src="../assets/images/go/版本管理工具--g/g-version.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+
+### g的命令
+
+#### 1、g ls-remote stable
+
+> 查询当前可供安装的stable状态的 go 版本
+
+#### 2、g ls-remote
+
+> 查询可供安装的所有 go 版本
+
+#### 3、g install 版本号
+
+> 安装目标 go 版本
+
+#### 4、g ls
+
+> 查询已安装的 go 版本
+
+#### 5、g use 版本号
+
+> 切换到另一个已安装的 go 版本
+
+#### 6、g uninstall 版本号
+
+> 卸载一个已安装的 go 版本
+
+#### 7、g clean
+
+> 清空 go 安装包文件缓存
+
+#### 8、g --version
+
+> 查看 g 版本信息
+
+#### 9、g self update
+
+> 更新 g 软件本身，要1.5.0及以上版本才能更新
+
+#### 10、g self uninstall
+
+> 卸载 g 软件本身
+
+
+## 总结
+
+> 通过上面的步骤基本就可以顺利安装并使用g进行go的版本管理
+
+> 谢谢阅读！！！

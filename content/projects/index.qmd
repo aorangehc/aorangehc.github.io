@@ -1,0 +1,11 @@
+---
+title: "<span class=\"lang-en\">Projects</span><span class=\"lang-zh\">项目</span>"
+listing:
+  contents: entries
+  sort: "date desc"
+  type: grid
+  categories: true
+  page-size: 9
+---
+
+Project write-ups, demos, and technical summaries.

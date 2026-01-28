@@ -1,0 +1,76 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - pages/index.qmd
+    - pages/home.qmd
+    - content/**/index.qmd
+    - content/**/entries/**/*.qmd
+    - content/**/entries/**/*.md
+  resources:
+    - assets/**
+    - content/assets/**
+  post-render:
+    - scripts/post-render-clean.sh
+
+website:
+  description: "AI research notes, projects, and paper reviews."
+  search:
+    location: navbar
+  navbar:
+    title: false
+    left:
+      - href: pages/index.qmd
+        text: "<span class=\"lang-en\">About Me</span><span class=\"lang-zh\">关于我</span>"
+      - href: pages/home.qmd
+        text: "<span class=\"lang-en\">Home</span><span class=\"lang-zh\">主页</span>"
+    right:
+      - href: content/blogs/index.qmd
+        text: "<span class=\"lang-en\">Blogs</span><span class=\"lang-zh\">博客</span>"
+      - href: content/projects/index.qmd
+        text: "<span class=\"lang-en\">Projects</span><span class=\"lang-zh\">项目</span>"
+      - text: "<span class=\"lang-en\">Papers&Reports</span><span class=\"lang-zh\">论文和技术报告</span>"
+        menu:
+          - href: content/papers/index.qmd
+            text: Overview
+          - href: content/papers/deepseek/index.qmd
+            text: DeepSeek
+          - href: content/papers/labnotes/index.qmd
+            text: LabNotes
+      - text: "<span class=\"lang-en\">Learning Notes</span><span class=\"lang-zh\">学习笔记</span>"
+        menu:
+          - href: content/learning-notes/index.qmd
+            text: Overview
+          - href: content/learning-notes/golang/index.qmd
+            text: golang基础
+          - href: content/learning-notes/microservices/index.qmd
+            text: 微服务(golang)
+          - href: content/learning-notes/infrastructure/index.qmd
+            text: 基础设施(golang)
+          - href: content/learning-notes/deepL/index.qmd
+            text: 深度学习
+          # - href: content/learning-notes/lesson2/index.qmd
+          #   text: lesson2
+          # - href: content/learning-notes/lesson3/index.qmd
+          #   text: lesson3
+    tools:
+      - icon: github
+        href: https://github.com/aorangehc
+        aria-label: GitHub
+      - icon: envelope
+        href: mailto:morange0205@gmail.com
+        aria-label: Email
+  page-footer:
+    left: "© 2026"
+    right: "Built with Quarto"
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    css: styles.css
+    toc: true
+    smooth-scroll: true
+    highlight-style: github
+    include-after-body: includes/lang-toggle.html

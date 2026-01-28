@@ -1,0 +1,12 @@
+---
+title: "<span class=\"lang-en\">Blogs</span><span class=\"lang-zh\">博客</span>"
+listing:
+  contents: entries
+  sort: "date desc"
+  type: default
+  categories: true
+  page-size: 9
+  image-height: 140px
+---
+
+Short essays, reviews, and research notes.
