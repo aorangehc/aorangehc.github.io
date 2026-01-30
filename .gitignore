@@ -3,6 +3,5 @@
 !docs/
 !docs/*
 !docs/**/*
-/.quarto/
-**/*.quarto_ipynb
-scripts/
+
+.DS_Store
