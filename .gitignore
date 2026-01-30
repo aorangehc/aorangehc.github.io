@@ -1,10 +1,18 @@
+# Ignore everything
 *
+# But not these
 !/.gitignore
 !docs/
 !docs/*
 !docs/**/*
+!_quarto.yml
+!styles.css
+!content/
+!content/**/*
+!pages/
+!pages/**/*
+!scripts/
+!scripts/**/*
 
 /.quarto/
 **/*.quarto_ipynb
-
-.DS_Store
