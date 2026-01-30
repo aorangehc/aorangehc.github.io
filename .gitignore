@@ -3,5 +3,8 @@
 !docs/
 !docs/*
 !docs/**/*
+!README.md
 
 .DS_Store
+/.quarto/
+**/*.quarto_ipynb
