@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-01-01">
+
+<title>Prompt-&gt;Context-&gt;Skills</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-3bbbbd466991e281563892c5dce73c3d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-4990a151d59038663a44b02348f88d08.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-3bbbbd466991e281563892c5dce73c3d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../pages/index.html"> 
+<span class="menu-text"><span class="lang-en">About Me</span><span class="lang-zh">关于我</span></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../pages/home.html"> 
+<span class="menu-text"><span class="lang-en">Home</span><span class="lang-zh">主页</span></span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/blogs/index.html"> 
+<span class="menu-text"><span class="lang-en">Blogs</span><span class="lang-zh">博客</span></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/projects/index.html"> 
+<span class="menu-text"><span class="lang-en">Projects</span><span class="lang-zh">项目</span></span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-span-classlang-enpapersreportsspanspan-classlang-zh论文和技术报告span" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><span class="lang-en">Papers&amp;Reports</span><span class="lang-zh">论文和技术报告</span></span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-span-classlang-enpapersreportsspanspan-classlang-zh论文和技术报告span">    
+        <li>
+    <a class="dropdown-item" href="../../../content/papers/index.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../content/papers/deepseek/index.html">
+ <span class="dropdown-text">DeepSeek</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../content/papers/labnotes/index.html">
+ <span class="dropdown-text">LabNotes</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-span-classlang-enlearning-notesspanspan-classlang-zh学习笔记span" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><span class="lang-en">Learning Notes</span><span class="lang-zh">学习笔记</span></span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-span-classlang-enlearning-notesspanspan-classlang-zh学习笔记span">    
+        <li>
+    <a class="dropdown-item" href="../../../content/learning-notes/index.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../content/learning-notes/golang/index.html">
+ <span class="dropdown-text">golang基础</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../content/learning-notes/microservices/index.html">
+ <span class="dropdown-text">微服务(golang)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../content/learning-notes/infrastructure/index.html">
+ <span class="dropdown-text">基础设施(golang)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../content/learning-notes/deepL/index.html">
+ <span class="dropdown-text">深度学习</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="https://github.com/aorangehc" title="" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+    <a href="mailto:morange0205@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label="Email"><i class="bi bi-envelope"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#引言ai-交互的三次革命" id="toc-引言ai-交互的三次革命" class="nav-link active" data-scroll-target="#引言ai-交互的三次革命">引言：AI 交互的三次革命</a></li>
+  <li><a href="#第一章prompt-engineering-与-ai-对话的艺术" id="toc-第一章prompt-engineering-与-ai-对话的艺术" class="nav-link" data-scroll-target="#第一章prompt-engineering-与-ai-对话的艺术">第一章：Prompt Engineering —— 与 AI 对话的艺术</a>
+  <ul class="collapse">
+  <li><a href="#什么是-prompt-engineering" id="toc-什么是-prompt-engineering" class="nav-link" data-scroll-target="#什么是-prompt-engineering">1.1 什么是 Prompt Engineering？</a></li>
+  <li><a href="#核心技术技法" id="toc-核心技术技法" class="nav-link" data-scroll-target="#核心技术技法">1.2 核心技术技法</a></li>
+  <li><a href="#年的前沿技术" id="toc-年的前沿技术" class="nav-link" data-scroll-target="#年的前沿技术">1.3 2025 年的前沿技术</a></li>
+  <li><a href="#prompt-engineering-的局限性" id="toc-prompt-engineering-的局限性" class="nav-link" data-scroll-target="#prompt-engineering-的局限性">1.4 Prompt Engineering 的局限性</a></li>
+  </ul></li>
+  <li><a href="#第二章context-engineering-构建-ai-的操作环境" id="toc-第二章context-engineering-构建-ai-的操作环境" class="nav-link" data-scroll-target="#第二章context-engineering-构建-ai-的操作环境">第二章：Context Engineering —— 构建 AI 的操作环境</a>
+  <ul class="collapse">
+  <li><a href="#从-prompt-到-context-的范式转移" id="toc-从-prompt-到-context-的范式转移" class="nav-link" data-scroll-target="#从-prompt-到-context-的范式转移">2.1 从 Prompt 到 Context 的范式转移</a></li>
+  <li><a href="#rag检索增强生成" id="toc-rag检索增强生成" class="nav-link" data-scroll-target="#rag检索增强生成">2.2 RAG：检索增强生成</a></li>
+  <li><a href="#上下文工程的技术支柱" id="toc-上下文工程的技术支柱" class="nav-link" data-scroll-target="#上下文工程的技术支柱">2.3 上下文工程的技术支柱</a></li>
+  <li><a href="#prompt-engineering-vs-context-engineering" id="toc-prompt-engineering-vs-context-engineering" class="nav-link" data-scroll-target="#prompt-engineering-vs-context-engineering">2.4 Prompt Engineering vs Context Engineering</a></li>
+  </ul></li>
+  <li><a href="#第三章skillstool-use-与-agentic-ai-从说话到行动" id="toc-第三章skillstool-use-与-agentic-ai-从说话到行动" class="nav-link" data-scroll-target="#第三章skillstool-use-与-agentic-ai-从说话到行动">第三章：Skills、Tool Use 与 Agentic AI —— 从说话到行动</a>
+  <ul class="collapse">
+  <li><a href="#工具调用ai-的手和脚" id="toc-工具调用ai-的手和脚" class="nav-link" data-scroll-target="#工具调用ai-的手和脚">3.1 工具调用：AI 的”手”和”脚”</a></li>
+  <li><a href="#function-calling-实战示例" id="toc-function-calling-实战示例" class="nav-link" data-scroll-target="#function-calling-实战示例">3.2 Function Calling 实战示例</a></li>
+  <li><a href="#mcp模型上下文协议-ai-的usb-c" id="toc-mcp模型上下文协议-ai-的usb-c" class="nav-link" data-scroll-target="#mcp模型上下文协议-ai-的usb-c">3.3 MCP：模型上下文协议 —— AI 的”USB-C”</a></li>
+  <li><a href="#a2aagent-to-agent-协议-ai-的社交语言" id="toc-a2aagent-to-agent-协议-ai-的社交语言" class="nav-link" data-scroll-target="#a2aagent-to-agent-协议-ai-的社交语言">3.4 A2A：Agent-to-Agent 协议 —— AI 的”社交语言”</a></li>
+  <li><a href="#现代-agent-架构" id="toc-现代-agent-架构" class="nav-link" data-scroll-target="#现代-agent-架构">3.5 现代 Agent 架构</a></li>
+  </ul></li>
+  <li><a href="#第四章vibe-coding-编程范式的颠覆" id="toc-第四章vibe-coding-编程范式的颠覆" class="nav-link" data-scroll-target="#第四章vibe-coding-编程范式的颠覆">第四章：Vibe Coding —— 编程范式的颠覆</a>
+  <ul class="collapse">
+  <li><a href="#什么是-vibe-coding" id="toc-什么是-vibe-coding" class="nav-link" data-scroll-target="#什么是-vibe-coding">4.1 什么是 Vibe Coding？</a></li>
+  <li><a href="#vibe-coding-的起源与演进" id="toc-vibe-coding-的起源与演进" class="nav-link" data-scroll-target="#vibe-coding-的起源与演进">4.2 Vibe Coding 的起源与演进</a></li>
+  <li><a href="#vibe-coding-的工具生态" id="toc-vibe-coding-的工具生态" class="nav-link" data-scroll-target="#vibe-coding-的工具生态">4.3 Vibe Coding 的工具生态</a></li>
+  <li><a href="#vibe-coding-实战示例" id="toc-vibe-coding-实战示例" class="nav-link" data-scroll-target="#vibe-coding-实战示例">4.4 Vibe Coding 实战示例</a></li>
+  <li><a href="#vibe-coding-的核心理念" id="toc-vibe-coding-的核心理念" class="nav-link" data-scroll-target="#vibe-coding-的核心理念">4.5 Vibe Coding 的核心理念</a></li>
+  <li><a href="#vibe-coding-的优势与风险" id="toc-vibe-coding-的优势与风险" class="nav-link" data-scroll-target="#vibe-coding-的优势与风险">4.6 Vibe Coding 的优势与风险</a></li>
+  </ul></li>
+  <li><a href="#第五章整合与展望-四层架构的统一视图" id="toc-第五章整合与展望-四层架构的统一视图" class="nav-link" data-scroll-target="#第五章整合与展望-四层架构的统一视图">第五章：整合与展望 —— 四层架构的统一视图</a>
+  <ul class="collapse">
+  <li><a href="#四个层次的演进关系" id="toc-四个层次的演进关系" class="nav-link" data-scroll-target="#四个层次的演进关系">5.1 四个层次的演进关系</a></li>
+  <li><a href="#各层之间的依赖关系" id="toc-各层之间的依赖关系" class="nav-link" data-scroll-target="#各层之间的依赖关系">5.2 各层之间的依赖关系</a></li>
+  <li><a href="#年的关键趋势" id="toc-年的关键趋势" class="nav-link" data-scroll-target="#年的关键趋势">5.3 2025-2026 年的关键趋势</a></li>
+  <li><a href="#给初学者的学习路径" id="toc-给初学者的学习路径" class="nav-link" data-scroll-target="#给初学者的学习路径">5.4 给初学者的学习路径</a></li>
+  <li><a href="#给技术从业者的深度建议" id="toc-给技术从业者的深度建议" class="nav-link" data-scroll-target="#给技术从业者的深度建议">5.5 给技术从业者的深度建议</a></li>
+  </ul></li>
+  <li><a href="#结语人机协作的新纪元" id="toc-结语人机协作的新纪元" class="nav-link" data-scroll-target="#结语人机协作的新纪元">结语：人机协作的新纪元</a></li>
+  <li><a href="#参考资源" id="toc-参考资源" class="nav-link" data-scroll-target="#参考资源">参考资源</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Prompt-&gt;Context-&gt;Skills</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Prompt</div>
+    <div class="quarto-category">Context</div>
+    <div class="quarto-category">Skills</div>
+    <div class="quarto-category">Vibe-Coding</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 1, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><img src="../assets/images/Prompt2Skills/image.png" alt="fork" style="width: 80%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p>从 Prompt 到上下文工程到 Skills：AI 交互范式的演进与 Vibe Coding 的崛起</p>
+<section id="引言ai-交互的三次革命" class="level2">
+<h2 class="anchored" data-anchor-id="引言ai-交互的三次革命">引言：AI 交互的三次革命</h2>
+<p>2022 年底，ChatGPT 的横空出世标志着人工智能进入了一个全新的时代。短短两年多时间，我们与 AI 的交互方式已经经历了三次深刻的范式转变：</p>
+<p><strong>第一次革命：Prompt Engineering（提示工程）</strong> —— 我们学会了如何与 AI 对话，用精心设计的提示词来引导模型输出。</p>
+<p><strong>第二次革命：Context Engineering（上下文工程）</strong> —— 我们意识到 AI 的能力不仅取决于提示词本身，更取决于提供给它的上下文环境。RAG、记忆系统、外部知识库的引入，让 AI 从”闭卷考试”变成了”开卷考试”。</p>
+<p><strong>第三次革命：Skills &amp; Agentic AI（技能与智能体）</strong> —— AI 不再只是被动回答问题，而是能够主动调用工具、执行动作、与其他 Agent 协作，成为真正的”数字工作者”。</p>
+<p>与此同时，一种全新的编程范式正在悄然兴起 —— <strong>Vibe Coding（氛围编程）</strong>，它正在重新定义人类与 AI 在软件开发中的协作关系。</p>
+<p>本文将带你完整走过这段演进历程，无论你是刚接触 AI 的初学者，还是希望深入理解底层逻辑的技术从业者，都能从中获得系统性的认知提升。</p>
+<hr>
+</section>
+<section id="第一章prompt-engineering-与-ai-对话的艺术" class="level2">
+<h2 class="anchored" data-anchor-id="第一章prompt-engineering-与-ai-对话的艺术">第一章：Prompt Engineering —— 与 AI 对话的艺术</h2>
+<section id="什么是-prompt-engineering" class="level3">
+<h3 class="anchored" data-anchor-id="什么是-prompt-engineering">1.1 什么是 Prompt Engineering？</h3>
+<p>Prompt Engineering（提示工程）是指通过设计和优化输入提示（prompt），来引导大型语言模型（LLM）产生更准确、更有用输出的技术。它是最基础、最直观的 AI 交互方式 —— 你输入文字，AI 返回文字。</p>
+<p>但Prompt Engineering 远不止是”问问题”这么简单。正如 2025 年的最佳实践所强调的：“<strong>Specific prompts are better prompts</strong>”（具体的提示才是好提示）。</p>
+<p><strong>一个糟糕的例子：</strong></p>
+<pre><code>"解释气候变化"</code></pre>
+<p><strong>一个优秀的例子：</strong></p>
+<pre><code>"为高中生撰写一段关于气候变化的三段式总结，使用项目符号，
+保持中立语气，控制在 300 字以内。"</code></pre>
+</section>
+<section id="核心技术技法" class="level3">
+<h3 class="anchored" data-anchor-id="核心技术技法">1.2 核心技术技法</h3>
+<section id="zero-shot-prompting零样本提示" class="level4">
+<h4 class="anchored" data-anchor-id="zero-shot-prompting零样本提示">Zero-Shot Prompting（零样本提示）</h4>
+<p>直接向模型提出任务，不提供任何示例。这是最简单的方式，适用于模型已经具备相关知识的任务。</p>
+<pre><code>将以下英文翻译成中文：
+"The quick brown fox jumps over the lazy dog."</code></pre>
+</section>
+<section id="few-shot-prompting少样本提示" class="level4">
+<h4 class="anchored" data-anchor-id="few-shot-prompting少样本提示">Few-Shot Prompting（少样本提示）</h4>
+<p>提供 3-5 个高质量的示例，让模型学习模式和格式。研究表明，这是提升输出质量最有效的方法之一。</p>
+<pre><code>将情感分类为正面、负面或中性。
+
+示例 1：
+文本："这部电影太棒了！"
+情感：正面
+
+示例 2：
+文本："服务态度很差"
+情感：负面
+
+示例 3：
+文本："今天天气晴朗"
+情感：中性
+
+待分类文本："这个产品完全不符合预期"
+情感：</code></pre>
+</section>
+<section id="chain-of-thought-cot-思维链" class="level4">
+<h4 class="anchored" data-anchor-id="chain-of-thought-cot-思维链">Chain-of-Thought (CoT) 思维链</h4>
+<p>要求模型展示推理过程，而非直接给出答案。这对数学问题、逻辑推理尤其有效。</p>
+<pre><code>问题：一个农场有 35 只鸡和 28 只兔子。农场主卖掉了一半的鸡和 
+三分之一的兔子。还剩多少只动物？
+
+请一步一步思考：</code></pre>
+<p>模型会输出：</p>
+<pre><code>1. 初始鸡的数量：35 只
+2. 卖掉一半的鸡：35 ÷ 2 = 17.5，取整为 17 只
+3. 剩余鸡：35 - 17 = 18 只
+4. 初始兔子数量：28 只
+5. 卖掉三分之一的兔子：28 ÷ 3 ≈ 9 只
+6. 剩余兔子：28 - 9 = 19 只
+7. 总共剩余：18 + 19 = 37 只</code></pre>
+</section>
+<section id="react-reasoning-acting-推理行动" class="level4">
+<h4 class="anchored" data-anchor-id="react-reasoning-acting-推理行动">ReAct (Reasoning + Acting) 推理+行动</h4>
+<p>结合推理和工具调用的先进技法。模型不仅思考，还能决定何时使用外部工具。</p>
+<pre><code>你需要搜索最新信息来回答用户问题。
+
+问题：苹果公司今天的股价是多少？
+
+思考：我需要搜索苹果的最新股价
+行动：搜索 "Apple stock price today"
+观察：[搜索结果：AAPL $182.50, +1.2%]
+思考：我已经获得了股价信息
+最终答案：苹果公司今天股价为 182.50 美元，上涨 1.2%</code></pre>
+</section>
+</section>
+<section id="年的前沿技术" class="level3">
+<h3 class="anchored" data-anchor-id="年的前沿技术">1.3 2025 年的前沿技术</h3>
+<section id="recursive-self-improvement-prompting-rsip-递归自改进提示" class="level4">
+<h4 class="anchored" data-anchor-id="recursive-self-improvement-prompting-rsip-递归自改进提示">Recursive Self-Improvement Prompting (RSIP) 递归自改进提示</h4>
+<p>让 AI 批判并改进自己的输出，通过多轮迭代达到更高质量。</p>
+<p><strong>流程：</strong> 1. <strong>生成</strong>：创建初始输出 2. <strong>批判性评估</strong>：让模型使用特定标准识别弱点 3. <strong>改进</strong>：基于批评生成增强版本</p>
+<p>实践表明，这种方法可以减少约 60% 的修改周期。</p>
+</section>
+<section id="multi-perspective-simulation-mps-多视角模拟" class="level4">
+<h4 class="anchored" data-anchor-id="multi-perspective-simulation-mps-多视角模拟">Multi-Perspective Simulation (MPS) 多视角模拟</h4>
+<p>在单次对话中运行”虚拟专家小组”，让模型从不同角度分析问题。</p>
+<pre><code>请从以下三个角度分析这个商业决策：
+1. 财务总监（关注成本与 ROI）
+2. 技术总监（关注可行性与技术债务）
+3. 市场总监（关注用户体验与竞争优势）
+
+每个视角都需要：
+- 阐述核心观点
+- 提出潜在风险
+- 给出具体建议
+
+最后，请综合三个视角给出整体评估。</code></pre>
+</section>
+</section>
+<section id="prompt-engineering-的局限性" class="level3">
+<h3 class="anchored" data-anchor-id="prompt-engineering-的局限性">1.4 Prompt Engineering 的局限性</h3>
+<p>尽管 Prompt Engineering 强大，但它存在根本性限制：</p>
+<ol type="1">
+<li><p><strong>Fragility（脆弱性）</strong>：输入的微小变化、系统版本更新，甚至模型的随机性，都可能导致输出质量波动</p></li>
+<li><p><strong>Limited Context（上下文限制）</strong>：模型的上下文窗口有限，无法处理大量外部信息</p></li>
+<li><p><strong>No Real-Time Knowledge（无实时知识）</strong>：模型只能依赖训练数据，无法获取最新信息</p></li>
+<li><p><strong>No Action Capability（无行动能力）</strong>：模型只能生成文本，无法执行实际操作</p></li>
+</ol>
+<p>这些限制催生了下一个演进阶段 —— Context Engineering。</p>
+<hr>
+</section>
+</section>
+<section id="第二章context-engineering-构建-ai-的操作环境" class="level2">
+<h2 class="anchored" data-anchor-id="第二章context-engineering-构建-ai-的操作环境">第二章：Context Engineering —— 构建 AI 的操作环境</h2>
+<section id="从-prompt-到-context-的范式转移" class="level3">
+<h3 class="anchored" data-anchor-id="从-prompt-到-context-的范式转移">2.1 从 Prompt 到 Context 的范式转移</h3>
+<p>Context Engineering（上下文工程）是 2024-2025 年兴起的新 discipline。如果说 Prompt Engineering 是”写好问题”，Context Engineering 就是”构建完整的操作环境”。</p>
+<p><strong>核心定义：</strong> &gt; Context Engineering 是系统地设计和管理提供给 LLM 的所有信息 —— 包括提示、检索结果、对话历史、元数据、工具状态 —— 以控制模型的推理和输出，而无需修改模型权重。</p>
+<p>简单来说，Context Engineering = Prompt Engineering + RAG + 记忆管理 + 工具状态 + 环境配置</p>
+</section>
+<section id="rag检索增强生成" class="level3">
+<h3 class="anchored" data-anchor-id="rag检索增强生成">2.2 RAG：检索增强生成</h3>
+<p>RAG（Retrieval-Augmented Generation）是 Context Engineering 的核心组件。它解决了 LLM 无法访问私有数据、无法获取实时信息的问题。</p>
+<p><strong>RAG 工作流程：</strong></p>
+<pre><code>用户查询 → 嵌入向量 → 向量数据库检索 → 获取 Top-K 相关文档 
+→ 将文档注入提示上下文 → LLM 生成回答</code></pre>
+<p><strong>实际应用场景：</strong></p>
+<p><strong>场景 1：企业知识库问答</strong></p>
+<pre><code>基于以下公司内部文档回答问题：
+&lt;documents&gt;
+[从向量数据库检索的相关文档片段]
+&lt;/documents&gt;
+
+问题：我们的年假政策是什么？
+请引用相关文档的具体章节并标注页码。</code></pre>
+<p><strong>场景 2：客服机器人</strong></p>
+<pre><code>你是一个客服助手。以下是相关的产品文档和历史对话：
+&lt;context&gt;
+[产品手册片段]
+[用户之前的工单记录]
+[常见问题解答]
+&lt;/context&gt;
+
+用户问题：我的订单什么时候能到？
+订单号：#12345</code></pre>
+</section>
+<section id="上下文工程的技术支柱" class="level3">
+<h3 class="anchored" data-anchor-id="上下文工程的技术支柱">2.3 上下文工程的技术支柱</h3>
+<section id="prompt-design提示设计" class="level4">
+<h4 class="anchored" data-anchor-id="prompt-design提示设计">1. Prompt Design（提示设计）</h4>
+<p>动态提示模板，根据用户、任务和系统状态组装不同的提示。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 动态提示模板示例</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_prompt(user_type, task, context):</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    system_prompt <span class="op">=</span> <span class="ss">f"你是一个</span><span class="sc">{</span>user_type<span class="sc">}</span><span class="ss">专家助手。"</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    user_prompt <span class="op">=</span> <span class="ss">f"任务：</span><span class="sc">{</span>task<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">上下文：</span><span class="sc">{</span>context<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> system_prompt <span class="op">+</span> user_prompt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="context-composition上下文组合" class="level4">
+<h4 class="anchored" data-anchor-id="context-composition上下文组合">2. Context Composition（上下文组合）</h4>
+<p>现代 AI 系统需要组合多层上下文：</p>
+<ul>
+<li><strong>对话历史</strong>：保持对话连贯性</li>
+<li><strong>检索结果</strong>：外部知识注入</li>
+<li><strong>当前工具状态</strong>：告诉 AI 有哪些工具可用</li>
+<li><strong>Agent 目标与计划</strong>：长期任务的状态跟踪</li>
+<li><strong>用户画像/偏好</strong>：个性化设置</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>context_stack <span class="op">=</span> {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"system_instructions"</span>: <span class="st">"你是一个研究助手..."</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"user_profile"</span>: {<span class="st">"role"</span>: <span class="st">"研究员"</span>, <span class="st">"expertise"</span>: <span class="st">"AI"</span>},</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"conversation_history"</span>: [...],</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"retrieved_documents"</span>: [...],</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"available_tools"</span>: [<span class="st">"search"</span>, <span class="st">"calculator"</span>, <span class="st">"code_runner"</span>],</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"current_task_state"</span>: {<span class="st">"step"</span>: <span class="dv">3</span>, <span class="st">"goal"</span>: <span class="st">"完成报告"</span>}</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="memory-systems记忆系统" class="level4">
+<h4 class="anchored" data-anchor-id="memory-systems记忆系统">3. Memory Systems（记忆系统）</h4>
+<p>生产级 Agent 需要四层记忆架构：</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 25%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>记忆类型</th>
+<th>描述</th>
+<th>技术实现</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Short-Term Memory (STM)</strong></td>
+<td>当前对话的短期上下文</td>
+<td>滑动窗口，保留最近 N 轮对话</td>
+</tr>
+<tr class="even">
+<td><strong>Working Memory</strong></td>
+<td>当前任务的临时状态</td>
+<td>变量存储，任务完成即清除</td>
+</tr>
+<tr class="odd">
+<td><strong>Long-Term Memory (LTM)</strong></td>
+<td>用户偏好、历史交互</td>
+<td>向量数据库持久化存储</td>
+</tr>
+<tr class="even">
+<td><strong>Episodic Memory</strong></td>
+<td>特定事件/经验的记忆</td>
+<td>结构化存储，支持语义检索</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="prompt-engineering-vs-context-engineering" class="level3">
+<h3 class="anchored" data-anchor-id="prompt-engineering-vs-context-engineering">2.4 Prompt Engineering vs Context Engineering</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>维度</th>
+<th>Prompt Engineering</th>
+<th>Context Engineering</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>关注点</strong></td>
+<td>提示词的措辞和结构</td>
+<td>完整的输入环境设计</td>
+</tr>
+<tr class="even">
+<td><strong>范围</strong></td>
+<td>单次交互</td>
+<td>多轮对话 + 外部系统</td>
+</tr>
+<tr class="odd">
+<td><strong>技术栈</strong></td>
+<td>自然语言 + 模板</td>
+<td>RAG + 向量DB + 记忆系统</td>
+</tr>
+<tr class="even">
+<td><strong>目标</strong></td>
+<td>优化单次输出</td>
+<td>塑造持续可靠的行为</td>
+</tr>
+<tr class="odd">
+<td><strong>适用场景</strong></td>
+<td>简单问答、内容生成</td>
+<td>复杂应用、生产系统</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键洞察：</strong> &gt; “Prompt Engineering 优化即时输出，Context Engineering 治理模型在推理前看到的所有上下文，塑造生产系统中的持续行为。”</p>
+<hr>
+</section>
+</section>
+<section id="第三章skillstool-use-与-agentic-ai-从说话到行动" class="level2">
+<h2 class="anchored" data-anchor-id="第三章skillstool-use-与-agentic-ai-从说话到行动">第三章：Skills、Tool Use 与 Agentic AI —— 从说话到行动</h2>
+<section id="工具调用ai-的手和脚" class="level3">
+<h3 class="anchored" data-anchor-id="工具调用ai-的手和脚">3.1 工具调用：AI 的”手”和”脚”</h3>
+<p>如果说 Context Engineering 给了 AI “眼睛”（看外部信息），那么 Tool Use（工具调用）就给了 AI “手”和”脚”（执行动作）。</p>
+<p><strong>Tool Calling 的定义：</strong> &gt; 工具调用是 LLM 决定使用外部功能（运行代码、调用 API、搜索网页、操作数据库）来完成模型自身无法独立完成的任务的过程。</p>
+<p><strong>工具调用的决策流程：</strong></p>
+<pre><code>1. 解析用户查询 → 理解用户想要什么
+2. 映射意图到工具模式 → 对比可用工具描述
+3. 决定是否需要工具 → 纯推理 vs 需要执行
+4. 生成结构化工具调用 → JSON 格式的函数调用
+5. 在外部执行工具 → Python/API/数据库查询
+6. 将输出返回给 LLM → 工具执行结果
+7. LLM 决定下一步 → 继续调用工具或直接回答</code></pre>
+</section>
+<section id="function-calling-实战示例" class="level3">
+<h3 class="anchored" data-anchor-id="function-calling-实战示例">3.2 Function Calling 实战示例</h3>
+<p><strong>示例：天气查询 Agent</strong></p>
+<p>首先，定义工具的模式（Schema）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"get_weather"</span><span class="fu">,</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"获取指定城市的当前天气"</span><span class="fu">,</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"parameters"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"object"</span><span class="fu">,</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"properties"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"city"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"string"</span><span class="fu">,</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"城市名称，如 '北京'、'上海'"</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">},</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"unit"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"string"</span><span class="fu">,</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"enum"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"celsius"</span><span class="ot">,</span> <span class="st">"fahrenheit"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"温度单位"</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"required"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"city"</span><span class="ot">]</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>用户输入：“北京今天天气怎么样？”</p>
+<p>LLM 的决策过程：</p>
+<pre><code>思考：用户询问北京天气，我需要调用 get_weather 工具
+工具调用：{"tool": "get_weather", "arguments": {"city": "北京", "unit": "celsius"}}</code></pre>
+<p>后端执行工具，返回：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"temperature"</span><span class="fu">:</span> <span class="dv">22</span><span class="fu">,</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"condition"</span><span class="fu">:</span> <span class="st">"晴朗"</span><span class="fu">,</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"humidity"</span><span class="fu">:</span> <span class="st">"45%"</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>LLM 生成最终回答：</p>
+<pre><code>北京今天天气晴朗，气温 22°C，湿度 45%，是个出行的好天气！</code></pre>
+</section>
+<section id="mcp模型上下文协议-ai-的usb-c" class="level3">
+<h3 class="anchored" data-anchor-id="mcp模型上下文协议-ai-的usb-c">3.3 MCP：模型上下文协议 —— AI 的”USB-C”</h3>
+<p>2024 年底，Anthropic 推出了 <strong>MCP（Model Context Protocol）</strong>，这是一个开放标准协议，旨在标准化 AI 系统与外部工具和数据源的交互方式。</p>
+<p><strong>MCP 的核心愿景：</strong> &gt; “就像 USB-C 为各种设备提供通用连接一样，MCP 为 AI 模型提供统一的接口来连接不同的工具和数据源。”</p>
+<p><strong>MCP 架构：</strong></p>
+<p><img src="../assets/images/Prompt2Skills/image2.png" alt="fork" style="width: 70%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><strong>MCP 2025 年路线图包括：</strong></p>
+<ol type="1">
+<li><strong>远程 MCP 连接</strong>：支持 OAuth 2.0 认证与授权</li>
+<li><strong>分发与发现</strong>：包管理、安装工具、服务器注册</li>
+<li><strong>Agent 支持</strong>：分层 Agent 系统、交互式工作流、流式结果</li>
+</ol>
+<p>MCP 正在快速成为行业标准，类似于当年的 LSP（Language Server Protocol）。</p>
+</section>
+<section id="a2aagent-to-agent-协议-ai-的社交语言" class="level3">
+<h3 class="anchored" data-anchor-id="a2aagent-to-agent-协议-ai-的社交语言">3.4 A2A：Agent-to-Agent 协议 —— AI 的”社交语言”</h3>
+<p>如果说 MCP 是 AI 与工具的通用接口，那么 <strong>A2A（Agent-to-Agent Protocol）</strong> 就是 AI 与 AI 之间的通用语言。</p>
+<p>2025 年 4 月，Google 推出了 A2A 协议，这是一个开放标准，旨在让不同框架、不同厂商的 AI Agent 能够发现彼此、协商任务、协作完成复杂工作流。</p>
+<p><strong>A2A 的五大设计原则：</strong></p>
+<ol type="1">
+<li><strong>拥抱自然 Agent 能力</strong>：不强制改变 Agent 的工作方式</li>
+<li><strong>基于现有标准</strong>：使用 HTTP、JSON-RPC 等成熟技术</li>
+<li><strong>企业级安全</strong>：内置认证、授权、加密</li>
+<li><strong>支持长时间任务</strong>：异步执行、状态更新、推送通知</li>
+<li><strong>模态无关</strong>：支持文本、音频、视频、结构化数据</li>
+</ol>
+<p><strong>A2A 的核心概念：</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>组件</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Agent Cards</strong></td>
+<td>JSON 元数据文件，描述 Agent 的能力、身份、端点</td>
+</tr>
+<tr class="even">
+<td><strong>Task Management</strong></td>
+<td>任务生命周期管理：发起、状态更新、完成通知</td>
+</tr>
+<tr class="odd">
+<td><strong>Collaboration</strong></td>
+<td>Agent 间交换上下文、协商执行方式</td>
+</tr>
+<tr class="even">
+<td><strong>UX Negotiation</strong></td>
+<td>协商内容类型和格式，适应不同 UI 能力</td>
+</tr>
+</tbody>
+</table>
+<p><strong>实际应用场景：</strong></p>
+<p><strong>招聘流程自动化：</strong></p>
+<pre><code>招聘经理 Agent → 发布招聘需求
+       ↓
+猎头 Agent A → 搜索候选人
+       ↓
+猎头 Agent B → 安排面试
+       ↓
+背景调查 Agent → 执行背景核查
+       ↓
+所有结果汇总 → 招聘经理 Agent</code></pre>
+<p>每个 Agent 可能来自不同厂商、使用不同框架，但通过 A2A 协议可以无缝协作。</p>
+</section>
+<section id="现代-agent-架构" class="level3">
+<h3 class="anchored" data-anchor-id="现代-agent-架构">3.5 现代 Agent 架构</h3>
+<p>一个生产级的 AI Agent 可以形式化定义为：</p>
+<pre><code>Agent := &lt;Perception, Memory, Reasoning, Planning, Action, Feedback&gt;</code></pre>
+<p><strong>各组件详解：</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>组件</th>
+<th>功能</th>
+<th>技术实现</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Perception</strong></td>
+<td>接收输入</td>
+<td>文本解析、API 适配器、日志读取</td>
+</tr>
+<tr class="even">
+<td><strong>Memory</strong></td>
+<td>存储状态</td>
+<td>向量 DB、文档存储、短期上下文</td>
+</tr>
+<tr class="odd">
+<td><strong>Reasoning</strong></td>
+<td>推理决策</td>
+<td>LLM 推理 + CoT/ReAct/ToT</td>
+</tr>
+<tr class="even">
+<td><strong>Planning</strong></td>
+<td>任务规划</td>
+<td>任务分解、工具选择、执行图</td>
+</tr>
+<tr class="odd">
+<td><strong>Action</strong></td>
+<td>执行动作</td>
+<td>工具调用、API 请求、代码执行</td>
+</tr>
+<tr class="even">
+<td><strong>Feedback</strong></td>
+<td>反馈学习</td>
+<td>错误分析、自我批评、记忆更新</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2025 年的 Agent 类型：</strong></p>
+<ol type="1">
+<li><strong>Deep Research Agents</strong>：自主进行深度研究，如 Perplexity、Grok</li>
+<li><strong>Coding Agents</strong>：Devin、Cursor IDE Agents，自主编写、调试、测试代码</li>
+<li><strong>CUA (Computer-Using Agents)</strong>：模拟人类操作电脑界面，如 AutoGPT、SIMA</li>
+<li><strong>Multi-Agent Systems</strong>：多个专业 Agent 协作，如 CrewAI、AutoGen</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="第四章vibe-coding-编程范式的颠覆" class="level2">
+<h2 class="anchored" data-anchor-id="第四章vibe-coding-编程范式的颠覆">第四章：Vibe Coding —— 编程范式的颠覆</h2>
+<section id="什么是-vibe-coding" class="level3">
+<h3 class="anchored" data-anchor-id="什么是-vibe-coding">4.1 什么是 Vibe Coding？</h3>
+<p><strong>Vibe Coding</strong> 是 2024-2025 年兴起的一种全新编程范式。它不关注代码的具体语法，而是关注”氛围”——开发者用自然语言描述想要的功能和感觉，AI 负责生成具体的代码实现。</p>
+<p><strong>核心定义：</strong> &gt; Vibe Coding 是一种开发方法，开发者使用自然语言提示 AI 工具生成软件代码。它将重点从手动编码转移到 AI 引导的构建方式。</p>
+<p><strong>Vibe Coding 的工作流程：</strong></p>
+<p><img src="../assets/images/Prompt2Skills/image3.png" alt="fork" style="width: 80%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
+<section id="vibe-coding-的起源与演进" class="level3">
+<h3 class="anchored" data-anchor-id="vibe-coding-的起源与演进">4.2 Vibe Coding 的起源与演进</h3>
+<p><strong>2023 年</strong>：Reddit 上的开发者开玩笑说他们在用 ChatGPT “vibe” 功能到现实中 —— 这只是一个梗。</p>
+<p><strong>2024 年底</strong>：OpenAI 创始成员 Andrej Karpathy 认真对待这个概念，称之为”AI 原生开发的下一个演进”。</p>
+<p><strong>2025 年初</strong>：《华尔街日报》确认企业开始在实际开发工作流中采用 Vibe Coding。</p>
+<p><strong>今天</strong>：Vibe Coding 已经从梗变成了严肃的方法论。</p>
+</section>
+<section id="vibe-coding-的工具生态" class="level3">
+<h3 class="anchored" data-anchor-id="vibe-coding-的工具生态">4.3 Vibe Coding 的工具生态</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>工具</th>
+<th>特点</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Cursor</strong></td>
+<td>AI 原生代码编辑器，对话式开发</td>
+<td>专业开发，复杂项目</td>
+</tr>
+<tr class="even">
+<td><strong>GitHub Copilot X</strong></td>
+<td>IDE 内实时代码建议</td>
+<td>日常编码，快速补全</td>
+</tr>
+<tr class="odd">
+<td><strong>Replit Ghostwriter</strong></td>
+<td>浏览器内多模态构建</td>
+<td>快速原型，教育</td>
+</tr>
+<tr class="even">
+<td><strong>Claude 3/4</strong></td>
+<td>长上下文理解</td>
+<td>复杂逻辑，代码审查</td>
+</tr>
+<tr class="odd">
+<td><strong>ChatGPT-4/4.5</strong></td>
+<td>自然语言优先</td>
+<td>快速原型，学习</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="vibe-coding-实战示例" class="level3">
+<h3 class="anchored" data-anchor-id="vibe-coding-实战示例">4.4 Vibe Coding 实战示例</h3>
+<p><strong>场景：创建一个待办事项应用</strong></p>
+<p><strong>传统方式：</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 需要手动编写所有代码</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> React<span class="op">,</span> { useState } <span class="im">from</span> <span class="st">'react'</span><span class="op">;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">TodoApp</span>() {</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> [todos<span class="op">,</span> setTodos] <span class="op">=</span> <span class="fu">useState</span>([])<span class="op">;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> [input<span class="op">,</span> setInput] <span class="op">=</span> <span class="fu">useState</span>(<span class="st">''</span>)<span class="op">;</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> addTodo <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (input<span class="op">.</span><span class="fu">trim</span>()) {</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">setTodos</span>([<span class="op">...</span>todos<span class="op">,</span> { <span class="dt">id</span><span class="op">:</span> <span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>()<span class="op">,</span> <span class="dt">text</span><span class="op">:</span> input<span class="op">,</span> <span class="dt">done</span><span class="op">:</span> <span class="kw">false</span> }])<span class="op">;</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">setInput</span>(<span class="st">''</span>)<span class="op">;</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ... 还需要写 toggle、delete、filter 等功能</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ... JSX 代码</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Vibe Coding 方式：</strong></p>
+<pre><code>用户："创建一个漂亮的待办事项应用，要有：
+- 添加任务的功能
+- 标记完成/未完成
+- 删除任务
+- 按状态筛选（全部/进行中/已完成）
+- 使用现代简洁的设计风格
+- 数据保存在 localStorage"
+
+AI：（生成完整可运行的代码）
+
+用户："把完成任务的动画做得更流畅一些，
+再加一个进度统计在顶部"
+
+AI：（更新代码）</code></pre>
+</section>
+<section id="vibe-coding-的核心理念" class="level3">
+<h3 class="anchored" data-anchor-id="vibe-coding-的核心理念">4.5 Vibe Coding 的核心理念</h3>
+<ol type="1">
+<li><strong>设计优先，快速原型</strong>：先描述想要的感觉和体验，再迭代细节</li>
+<li><strong>对话式调试</strong>：用自然语言问”为什么这个会失败？“而不是查文档一小时</li>
+<li><strong>关注产品而非语法</strong>：把精力集中在用户体验和业务逻辑上</li>
+<li><strong>迭代速度至上</strong>：快速实验，快速验证，快速调整</li>
+</ol>
+</section>
+<section id="vibe-coding-的优势与风险" class="level3">
+<h3 class="anchored" data-anchor-id="vibe-coding-的优势与风险">4.6 Vibe Coding 的优势与风险</h3>
+<p><strong>优势：</strong> - ✅ 极大提升开发速度（10倍加速在 build-test 周期） - ✅ 降低编程门槛，非技术人员也能构建原型 - ✅ 减少样板代码的编写 - ✅ 加速学习和实验</p>
+<p><strong>风险与争议：</strong> - ⚠️ <strong>安全漏洞</strong>：AI 生成的代码可能存在安全隐患，需要人工审查 - ⚠️ <strong>技术债务</strong>：快速生成的代码可能缺乏长期可维护性 - ⚠️ <strong>理解深度</strong>：开发者可能不完全理解 AI 生成的代码 - ⚠️ <strong>调试困难</strong>：当 AI 生成的代码出错时，定位问题可能更困难</p>
+<p><strong>最佳实践：</strong> &gt; “Vibe Coding 不是完全替代传统开发，而是改变开发者的角色 —— 从逐行编写代码，转变为指导、测试和优化 AI 生成的输出。开发者成为 AI 的导师，确保生成的代码符合项目需求和最佳实践。”</p>
+<hr>
+</section>
+</section>
+<section id="第五章整合与展望-四层架构的统一视图" class="level2">
+<h2 class="anchored" data-anchor-id="第五章整合与展望-四层架构的统一视图">第五章：整合与展望 —— 四层架构的统一视图</h2>
+<section id="四个层次的演进关系" class="level3">
+<h3 class="anchored" data-anchor-id="四个层次的演进关系">5.1 四个层次的演进关系</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                    第四层：Vibe Coding                           │
+│              （人类与 AI 协作的最高形态）                          │
+│         开发者描述意图 → AI 生成完整应用 → 迭代优化               │
+├─────────────────────────────────────────────────────────────────┤
+│                    第三层：Skills &amp; Agentic AI                   │
+│              （AI 的行动能力和协作能力）                           │
+│    MCP（工具连接） + A2A（Agent 协作） + Function Calling        │
+├─────────────────────────────────────────────────────────────────┤
+│                    第二层：Context Engineering                   │
+│              （AI 的知识环境和记忆系统）                           │
+│         RAG + 记忆管理 + 上下文组合 + 外部数据注入                │
+├─────────────────────────────────────────────────────────────────┤
+│                    第一层：Prompt Engineering                    │
+│              （与 AI 对话的基础能力）                              │
+│         Zero/Few-Shot + CoT + ReAct + 结构化输出                │
+└─────────────────────────────────────────────────────────────────┘</code></pre>
+</section>
+<section id="各层之间的依赖关系" class="level3">
+<h3 class="anchored" data-anchor-id="各层之间的依赖关系">5.2 各层之间的依赖关系</h3>
+<ul>
+<li><strong>Prompt Engineering 是基础</strong>：所有上层都依赖于如何有效地与模型沟通</li>
+<li><strong>Context Engineering 是增强</strong>：让模型能够访问更多信息和知识</li>
+<li><strong>Skills/Agentic AI 是跃迁</strong>：让模型从”说话”到”行动”</li>
+<li><strong>Vibe Coding 是融合</strong>：重新定义人类在 AI 时代的角色</li>
+</ul>
+</section>
+<section id="年的关键趋势" class="level3">
+<h3 class="anchored" data-anchor-id="年的关键趋势">5.3 2025-2026 年的关键趋势</h3>
+<section id="趋势-1协议标准化" class="level4">
+<h4 class="anchored" data-anchor-id="趋势-1协议标准化">趋势 1：协议标准化</h4>
+<p>MCP 和 A2A 正在快速成为行业标准，类似于： - <strong>MCP ≈ USB-C</strong>：统一 AI 与工具的连接方式 - <strong>A2A ≈ HTTP</strong>：统一 AI 与 AI 的通信方式</p>
+</section>
+<section id="趋势-2agent-经济崛起" class="level4">
+<h4 class="anchored" data-anchor-id="趋势-2agent-经济崛起">趋势 2：Agent 经济崛起</h4>
+<p>据 2025 年全球 AI 调查： - 29% 的企业已经在生产环境运行 Agentic AI - 44% 计划在未来一年内加入 - 88% 的早期采用者报告了正向 ROI</p>
+</section>
+<section id="趋势-3开发者角色转型" class="level4">
+<h4 class="anchored" data-anchor-id="趋势-3开发者角色转型">趋势 3：开发者角色转型</h4>
+<p>开发者的工作正在从：</p>
+<pre><code>编写代码 → 架构设计 + AI 协作 + 代码审查</code></pre>
+</section>
+<section id="趋势-4多-agent-协作成为常态" class="level4">
+<h4 class="anchored" data-anchor-id="趋势-4多-agent-协作成为常态">趋势 4：多 Agent 协作成为常态</h4>
+<p>复杂任务将由多个专业 Agent 协作完成： - 研究 Agent + 写作 Agent + 审查 Agent - 前端 Agent + 后端 Agent + 测试 Agent - 数据分析 Agent + 可视化 Agent + 报告 Agent</p>
+</section>
+</section>
+<section id="给初学者的学习路径" class="level3">
+<h3 class="anchored" data-anchor-id="给初学者的学习路径">5.4 给初学者的学习路径</h3>
+<p><strong>阶段 1：掌握 Prompt Engineering（1-2 周）</strong> - 学习 Zero/Few-Shot、CoT、ReAct 等基础技术 - 练习编写清晰、具体的提示 - 理解模型的能力和局限性</p>
+<p><strong>阶段 2：理解 Context Engineering（2-3 周）</strong> - 学习 RAG 原理和实现 - 了解向量数据库（Pinecone、Weaviate、Chroma） - 实践构建有记忆的对话系统</p>
+<p><strong>阶段 3：探索 Tool Use &amp; Agents（3-4 周）</strong> - 学习 Function Calling - 了解 MCP 协议 - 尝试构建简单的 Agent</p>
+<p><strong>阶段 4：实践 Vibe Coding（持续）</strong> - 使用 Cursor、Copilot 等工具 - 从小项目开始，逐步建立信任 - 保持批判性思维，审查 AI 生成的代码</p>
+</section>
+<section id="给技术从业者的深度建议" class="level3">
+<h3 class="anchored" data-anchor-id="给技术从业者的深度建议">5.5 给技术从业者的深度建议</h3>
+<ol type="1">
+<li><strong>深入理解协议层</strong>：MCP 和 A2A 将成为基础设施，理解它们的设计哲学</li>
+<li><strong>关注 Agent 架构</strong>：学习 ReAct、ToT、Reflexion 等推理模式</li>
+<li><strong>掌握编排能力</strong>：多 Agent 系统的协调、状态管理、错误恢复</li>
+<li><strong>保持工程纪律</strong>：AI 再强大，软件工程的基本原则依然适用</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="结语人机协作的新纪元" class="level2">
+<h2 class="anchored" data-anchor-id="结语人机协作的新纪元">结语：人机协作的新纪元</h2>
+<p>从 Prompt Engineering 到 Context Engineering，从 Tool Use 到 Vibe Coding，我们正见证着人机协作方式的根本性转变。</p>
+<p>这不仅仅是技术的演进，更是<strong>认知范式的转移</strong>：</p>
+<ul>
+<li><strong>过去</strong>：人类告诉计算机”如何做”（How）</li>
+<li><strong>现在</strong>：人类告诉 AI”做什么”（What）</li>
+<li><strong>未来</strong>：人类与 AI 共同探索”为什么做”（Why）</li>
+</ul>
+<p>在这个新时代，最宝贵的技能不再是记住最多的 API 或写出最优雅的算法，而是：</p>
+<ol type="1">
+<li><strong>清晰表达意图的能力</strong> —— 知道你想要什么</li>
+<li><strong>批判性评估的能力</strong> —— 判断 AI 输出是否正确</li>
+<li><strong>系统思考的能力</strong> —— 理解各部分如何协同工作</li>
+<li><strong>持续学习的能力</strong> —— 适应快速变化的技术 landscape</li>
+</ol>
+<p>正如 Vibe Coding 所揭示的，未来的开发者可能不再是”代码的编写者”，而是”智能的编排者”。而 Prompt Engineering、Context Engineering、Skills 这些层次，正是构建这个新世界的基石。</p>
+<p>无论你是初学者还是资深工程师，现在都是最好的入场时机。因为在这个领域，每个人都在学习，每天都有新发现，每个参与者都有机会塑造未来。</p>
+<hr>
+</section>
+<section id="参考资源" class="level2">
+<h2 class="anchored" data-anchor-id="参考资源">参考资源</h2>
+<p><strong>Prompt Engineering：</strong> - <a href="https://codesignal.com/blog/prompt-engineering-best-practices-2025/">Prompt Engineering Best Practices 2025</a> - <a href="https://aloaguilar20.medium.com/the-complete-prompt-engineering-guide-for-2025-mastering-cutting-edge-techniques-dfe0591b1d31">The Complete Prompt Engineering Guide for 2025</a></p>
+<p><strong>Context Engineering：</strong> - <a href="https://medium.com/towards-generative-ai/what-is-context-engineering-and-why-is-everyone-talking-about-it-9138b8556af4">What is Context Engineering?</a> - <a href="https://www.mezmo.com/learn-observability/context-engineering-for-observability-how-to-deliver-the-right-data-to-llms">Context Engineering: Best Practices &amp; Examples</a></p>
+<p><strong>Agentic AI &amp; Protocols：</strong> - <a href="https://www.anthropic.com/news/model-context-protocol">Model Context Protocol</a> - Anthropic - <a href="https://developers.google.com/agent-to-agent">Agent2Agent Protocol</a> - Google - <a href="https://medium.com/@harshalsant0/the-rise-of-autonomous-ai-agents-architecture-internal-mechanics-production-engineering-2025-afcbcce91192">The Rise of Autonomous AI Agents</a></p>
+<p><strong>Vibe Coding：</strong> - <a href="https://skywinds.tech/vibe-coding-custom-software-2025/">Vibe Coding in 2025</a> - <a href="https://www.tanium.com/blog/what-is-vibe-coding/">What is Vibe Coding?</a> - <a href="https://www.sashido.io/en/blog/vibe-coding-fun-ai-assisted-programming">Vibe Coding: Fun, AI-Assisted Programming</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<button id="lang-toggle" type="button" aria-label="Toggle language"></button>
+<script>
+  (() => {
+    const storageKey = "site-lang";
+    const defaultLang = "zh";
+    const button = document.getElementById("lang-toggle");
+    if (!button) {
+      return;
+    }
+
+    const applyLang = (lang) => {
+      document.body.dataset.lang = lang;
+      button.textContent = lang === "zh" ? "EN" : "中文";
+      button.setAttribute("aria-label", lang === "zh" ? "Switch to English" : "切换中文");
+      window.localStorage.setItem(storageKey, lang);
+    };
+
+    const stored = window.localStorage.getItem(storageKey);
+    applyLang(stored || defaultLang);
+
+    button.addEventListener("click", () => {
+      const next = document.body.dataset.lang === "zh" ? "en" : "zh";
+      applyLang(next);
+    });
+  })();
+</script>
+<script>
+  (() => {
+    const storageKey = "theme-preference";
+    const getStored = () => {
+      try {
+        return window.localStorage.getItem(storageKey);
+      } catch {
+        return null;
+      }
+    };
+    const setStored = (value) => {
+      try {
+        window.localStorage.setItem(storageKey, value);
+      } catch {}
+    };
+    const currentTheme = () =>
+      document.body.classList.contains("quarto-dark") ? "dark" : "light";
+
+    const applyStored = () => {
+      const stored = getStored();
+      if (!stored) {
+        return;
+      }
+      if (stored !== currentTheme() && window.quartoToggleColorScheme) {
+        window.quartoToggleColorScheme();
+      }
+    };
+
+    const bindToggle = () => {
+      const toggles = document.querySelectorAll(".quarto-color-scheme-toggle");
+      toggles.forEach((toggle) => {
+        toggle.addEventListener("click", () => {
+          window.setTimeout(() => setStored(currentTheme()), 0);
+        });
+      });
+    };
+
+    applyStored();
+    bindToggle();
+  })();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with Quarto</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
