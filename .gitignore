@@ -3,7 +3,6 @@
 !docs/
 !docs/*
 !docs/**/*
-!README.md
 
 .DS_Store
 /.quarto/
