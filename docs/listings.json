@@ -61,7 +61,7 @@
   {
     "listing": "/content/blogs/index.html",
     "items": [
-      "/content/blogs/entries/Prompt->Context->Skills.html",
+      "/content/blogs/entries/PromptContextSkills.html",
       "/content/blogs/entries/一文了解RAG.html",
       "/content/blogs/entries/一文了解VLM.html",
       "/content/blogs/entries/本地服务器低速传输解决方案.html",
@@ -79,7 +79,7 @@
   {
     "listing": "/pages/home.html",
     "items": [
-      "/content/blogs/entries/Prompt->Context->Skills.html",
+      "/content/blogs/entries/PromptContextSkills.html",
       "/content/blogs/entries/一文了解RAG.html",
       "/content/blogs/entries/一文了解VLM.html",
       "/content/blogs/entries/本地服务器低速传输解决方案.html",
