@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -73,14 +73,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f1aadacce99040138bbb613f9330654f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-60d4398d82fec002ccec76571ed06d15.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-6c9d4b6e8397689ef559897df4fbe577.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../site_libs/bootstrap/bootstrap-60d4398d82fec002ccec76571ed06d15.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-3bbbbd466991e281563892c5dce73c3d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-4990a151d59038663a44b02348f88d08.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-3bbbbd466991e281563892c5dce73c3d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -377,16 +377,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#rpc" id="toc-rpc" class="nav-link" data-scroll-target="#rpc">RPC</a></li>
   <li><a href="#mysql" id="toc-mysql" class="nav-link" data-scroll-target="#mysql">MySQL</a></li>
   </ul></li>
-  <li><a href="#mysql配置和model操作" id="toc-mysql配置和model操作" class="nav-link" data-scroll-target="#mysql配置和model操作">MySQL配置和model操作</a></li>
+  <li><a href="#mysql配置和model操作" id="toc-mysql配置和model操作" class="nav-link" data-scroll-target="#mysql配置和model操作">MySQL配置和model操作</a>
+  <ul class="collapse">
+  <li><a href="#创建-mysql-数据库和表" id="toc-创建-mysql-数据库和表" class="nav-link" data-scroll-target="#创建-mysql-数据库和表">创建 MySQL 数据库和表</a></li>
+  <li><a href="#项目连接数据库" id="toc-项目连接数据库" class="nav-link" data-scroll-target="#项目连接数据库">项目连接数据库</a></li>
+  </ul></li>
   <li><a href="#注册" id="toc-注册" class="nav-link" data-scroll-target="#注册">注册</a></li>
-  <li><a href="#缓存" id="toc-缓存" class="nav-link" data-scroll-target="#缓存">缓存</a></li>
+  <li><a href="#缓存" id="toc-缓存" class="nav-link" data-scroll-target="#缓存">缓存</a>
+  <ul class="collapse">
+  <li><a href="#go-zero缓存" id="toc-go-zero缓存" class="nav-link" data-scroll-target="#go-zero缓存">go-zero缓存</a></li>
+  <li><a href="#docker使用-redis" id="toc-docker使用-redis" class="nav-link" data-scroll-target="#docker使用-redis">docker使用 redis</a></li>
+  <li><a href="#测试" id="toc-测试" class="nav-link" data-scroll-target="#测试">测试</a></li>
+  </ul></li>
   <li><a href="#日志" id="toc-日志" class="nav-link" data-scroll-target="#日志">日志</a></li>
-  <li><a href="#login-接口" id="toc-login-接口" class="nav-link" data-scroll-target="#login-接口">login 接口</a></li>
-  <li><a href="#jwt-鉴权" id="toc-jwt-鉴权" class="nav-link" data-scroll-target="#jwt-鉴权">JWT 鉴权</a></li>
-  <li><a href="#中间件" id="toc-中间件" class="nav-link" data-scroll-target="#中间件">中间件</a></li>
-  <li><a href="#rpc服务和调用" id="toc-rpc服务和调用" class="nav-link" data-scroll-target="#rpc服务和调用">RPC服务和调用</a></li>
+  <li><a href="#login-和userinfo接口" id="toc-login-和userinfo接口" class="nav-link" data-scroll-target="#login-和userinfo接口">login 和userInfo接口</a></li>
+  <li><a href="#jwt-鉴权" id="toc-jwt-鉴权" class="nav-link" data-scroll-target="#jwt-鉴权">JWT 鉴权</a>
+  <ul class="collapse">
+  <li><a href="#jwt的主要流程" id="toc-jwt的主要流程" class="nav-link" data-scroll-target="#jwt的主要流程">JWT的主要流程</a></li>
+  <li><a href="#简单实现和测试" id="toc-简单实现和测试" class="nav-link" data-scroll-target="#简单实现和测试">简单实现和测试</a></li>
+  </ul></li>
+  <li><a href="#中间件" id="toc-中间件" class="nav-link" data-scroll-target="#中间件">中间件</a>
+  <ul class="collapse">
+  <li><a href="#中间件定义" id="toc-中间件定义" class="nav-link" data-scroll-target="#中间件定义">中间件定义</a></li>
+  <li><a href="#demo-和测试" id="toc-demo-和测试" class="nav-link" data-scroll-target="#demo-和测试">Demo 和测试</a></li>
+  </ul></li>
+  <li><a href="#rpc服务和调用" id="toc-rpc服务和调用" class="nav-link" data-scroll-target="#rpc服务和调用">RPC服务和调用</a>
+  <ul class="collapse">
+  <li><a href="#rpc-服务实现流程" id="toc-rpc-服务实现流程" class="nav-link" data-scroll-target="#rpc-服务实现流程">RPC 服务实现流程</a></li>
+  <li><a href="#rpc-调用" id="toc-rpc-调用" class="nav-link" data-scroll-target="#rpc-调用">RPC 调用</a></li>
+  </ul></li>
   <li><a href="#注册中心-consul" id="toc-注册中心-consul" class="nav-link" data-scroll-target="#注册中心-consul">注册中心-consul</a></li>
-  <li><a href="#rpc-拦截器" id="toc-rpc-拦截器" class="nav-link" data-scroll-target="#rpc-拦截器">RPC 拦截器</a></li>
+  <li><a href="#rpc-调用传递-metadata" id="toc-rpc-调用传递-metadata" class="nav-link" data-scroll-target="#rpc-调用传递-metadata">RPC 调用传递 metadata</a></li>
+  <li><a href="#rpc-拦截器" id="toc-rpc-拦截器" class="nav-link" data-scroll-target="#rpc-拦截器">RPC 拦截器</a>
+  <ul class="collapse">
+  <li><a href="#客户端拦截器" id="toc-客户端拦截器" class="nav-link" data-scroll-target="#客户端拦截器">客户端拦截器</a></li>
+  <li><a href="#服务端拦截器" id="toc-服务端拦截器" class="nav-link" data-scroll-target="#服务端拦截器">服务端拦截器</a></li>
+  </ul></li>
   <li><a href="#错误处理" id="toc-错误处理" class="nav-link" data-scroll-target="#错误处理">错误处理</a></li>
   <li><a href="#修改模板生成自定义代码" id="toc-修改模板生成自定义代码" class="nav-link" data-scroll-target="#修改模板生成自定义代码">修改模板生成自定义代码</a></li>
   <li><a href="#参考资料" id="toc-参考资料" class="nav-link" data-scroll-target="#参考资料">参考资料</a></li>
@@ -427,14 +453,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-2.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
 <section id="项目设计" class="level2">
 <h2 class="anchored" data-anchor-id="项目设计">项目设计</h2>
 <section id="说明" class="level3">
 <h3 class="anchored" data-anchor-id="说明">说明</h3>
 <p>项目是通过 zo-zero 框架实现一个简单的用户订单系统，包括两个微服务用户服务和订单服务，通过 API 接口能够分别调用两个服务的接口，用户服务暴露 RPC 服务接口供订单服务进行调用。下面截图是我的操作过程</p>
-<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image.png" alt="daily" style="width: 75%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
-<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-1.png" alt="daily" style="width: 75%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-1.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-2.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
 </section>
 <section id="api" class="level3">
 <h3 class="anchored" data-anchor-id="api">API</h3>
@@ -454,70 +480,82 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">// 注册需要用户名、密码、手机号码，要做唯一性检测</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> RegisterReq <span class="op">{</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    UserName <span class="dt">string</span> <span class="st">`json:"username"`</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    Password <span class="dt">string</span> <span class="st">`json:"password"`</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    Mobile   <span class="dt">string</span> <span class="st">`json:"mobile"`</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    Gender   <span class="dt">string</span> <span class="st">`json:"gender"`</span> <span class="co">// male|female|unknown</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    NickName <span class="dt">string</span> <span class="st">`json:"nickname"`</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> RegisterResp <span class="op">{</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    success <span class="dt">bool</span>   <span class="st">`json:"success"`</span> <span class="co">// 注册是否成功</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    Message <span class="dt">string</span> <span class="st">`json:"message"`</span> <span class="co">// 注册报错信息</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    Id      <span class="dt">int64</span>  <span class="st">`json:"id"`</span> <span class="co">// 成功注册返回的 id</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> LoginReq <span class="op">{</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    UserName <span class="dt">string</span> <span class="st">`json:"username"`</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    Password <span class="dt">string</span> <span class="st">`json:"password"`</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> LoginResp <span class="op">{</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    Token <span class="dt">string</span> <span class="st">`json:"token"`</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> UserInfoReq <span class="op">{</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    Id <span class="dt">int64</span> <span class="st">`json:"id"`</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    Id <span class="dt">int64</span> <span class="st">`json:"token"`</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> UserInfoResp <span class="op">{</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    Id       <span class="dt">int64</span>  <span class="st">`json:"id"`</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    Token    <span class="dt">string</span> <span class="st">`json:"token"`</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    UserName <span class="dt">string</span> <span class="st">`json:"username"`</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    Mobile   <span class="dt">string</span> <span class="st">`json:"mobile"`</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    Gender   <span class="dt">string</span> <span class="st">`json:"gender"`</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    NickName <span class="dt">string</span> <span class="st">`json:"nickname"`</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    CreateAt <span class="dt">string</span> <span class="st">`json:"createAt"`</span> <span class="co">// 注册时间</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    UpdateAt <span class="dt">string</span> <span class="st">`json:"updateAt"`</span> <span class="co">// 最后更新时间</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="co">// 用户信息更新</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> UserUpdateReq <span class="op">{</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    Id       <span class="dt">int64</span>  <span class="st">`json:"id"`</span></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    UserName <span class="dt">string</span> <span class="st">`json:"username"`</span></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    Password <span class="dt">string</span> <span class="st">`json:"password"`</span></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    Mobile   <span class="dt">string</span> <span class="st">`json:"mobile"`</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    Gender   <span class="dt">string</span> <span class="st">`json:"gender"`</span> <span class="co">// male|female|unknown</span></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    NickName <span class="dt">string</span> <span class="st">`json:"nickname"`</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> UserUpdateResp <span class="op">{</span></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    success <span class="dt">bool</span>   <span class="st">`json:"success"`</span></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    Message <span class="dt">string</span> <span class="st">`json:"message"`</span> <span class="co">// 更新报错信息</span></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="co">// 定义用户服务的 Api</span></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>service user<span class="op">-</span>api <span class="op">{</span></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>    @handler register</span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>    post <span class="op">/</span>api<span class="op">/</span>user<span class="op">/</span>register <span class="op">(</span>RegisterReq<span class="op">)</span> returns <span class="op">(</span>RegisterResp<span class="op">)</span></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    @handler login</span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    post <span class="op">/</span>api<span class="op">/</span>user<span class="op">/</span>login <span class="op">(</span>LoginReq<span class="op">)</span> returns <span class="op">(</span>LoginResp<span class="op">)</span></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    @handler userInfo <span class="co">// 获取用户信息</span></span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>    get <span class="op">/</span>api<span class="op">/</span>user<span class="op">/:</span>id <span class="op">(</span>UserInfoReq<span class="op">)</span> returns <span class="op">(</span>UserInfoResp<span class="op">)</span></span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    UserName   <span class="dt">string</span> <span class="st">`json:"username"`</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    Password   <span class="dt">string</span> <span class="st">`json:"password"`</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    Repassword <span class="dt">string</span> <span class="st">`json:"re_password"`</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    Mobile     <span class="dt">string</span> <span class="st">`json:"mobile"`</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    Gender     <span class="dt">int</span>    <span class="st">`json:"gender,options=0|1|2,default=0"`</span> <span class="co">// male|female|unknown</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    NickName   <span class="dt">string</span> <span class="st">`json:"nickname"`</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> RegisterResp <span class="op">{</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    success <span class="dt">bool</span>   <span class="st">`json:"success"`</span> <span class="co">// 注册是否成功</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    Message <span class="dt">string</span> <span class="st">`json:"message"`</span> <span class="co">// 注册报错信息</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    Id      <span class="dt">int64</span>  <span class="st">`json:"id"`</span> <span class="co">// 成功注册返回的 id</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> LoginReq <span class="op">{</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    UserName <span class="dt">string</span> <span class="st">`json:"username"`</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    Password <span class="dt">string</span> <span class="st">`json:"password"`</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> LoginResp <span class="op">{</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    Message      <span class="dt">string</span> <span class="st">`json:"message"`</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    AccessToken  <span class="dt">string</span> <span class="st">`json:"accessToken"`</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    AccessExpire <span class="dt">int64</span>  <span class="st">`json:"accessExpire"`</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    RefreshAfter <span class="dt">int64</span>  <span class="st">`json:"refreshAfter"`</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> UserInfoReq <span class="op">{</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    Id <span class="dt">int64</span> <span class="st">`json:"id"`</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> UserInfoResp <span class="op">{</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    Id       <span class="dt">int64</span>  <span class="st">`json:"id"`</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    Token    <span class="dt">string</span> <span class="st">`json:"token"`</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    UserName <span class="dt">string</span> <span class="st">`json:"username"`</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    Mobile   <span class="dt">string</span> <span class="st">`json:"mobile"`</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    Gender   <span class="dt">int</span>    <span class="st">`json:"gender,options=0|1|2,default=0"`</span> <span class="co">// male|female|unknown</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    NickName <span class="dt">string</span> <span class="st">`json:"nickname"`</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    CreateAt <span class="dt">string</span> <span class="st">`json:"createAt"`</span> <span class="co">// 注册时间</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    UpdateAt <span class="dt">string</span> <span class="st">`json:"updateAt"`</span> <span class="co">// 最后更新时间</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="co">// 用户信息更新</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> UserUpdateReq <span class="op">{</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    Id       <span class="dt">int64</span>  <span class="st">`json:"id"`</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    UserName <span class="dt">string</span> <span class="st">`json:"username"`</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    Password <span class="dt">string</span> <span class="st">`json:"password"`</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    Mobile   <span class="dt">string</span> <span class="st">`json:"mobile"`</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    Gender   <span class="dt">int</span>    <span class="st">`json:"gender,options=0|1|2,default=0"`</span> <span class="co">// male|female|unknown</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    NickName <span class="dt">string</span> <span class="st">`json:"nickname"`</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> UserUpdateResp <span class="op">{</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    success <span class="dt">bool</span>   <span class="st">`json:"success"`</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>    Message <span class="dt">string</span> <span class="st">`json:"message"`</span> <span class="co">// 更新报错信息</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="co">// 定义用户服务的 Api</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>@server <span class="op">(</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    prefix<span class="op">:</span> api</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>service user<span class="op">-</span>api <span class="op">{</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    @handler register</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>    post <span class="op">/</span>user<span class="op">/</span>register <span class="op">(</span>RegisterReq<span class="op">)</span> returns <span class="op">(</span>RegisterResp<span class="op">)</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>    @handler login</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>    post <span class="op">/</span>user<span class="op">/</span>login <span class="op">(</span>LoginReq<span class="op">)</span> returns <span class="op">(</span>LoginResp<span class="op">)</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>@server <span class="op">(</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>    prefix<span class="op">:</span> api</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>    jwt<span class="op">:</span>    Auth</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>service user<span class="op">-</span>api <span class="op">{</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>    @handler userInfo <span class="co">// 获取用户信息</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    get <span class="op">/</span>user<span class="op">/:</span>id <span class="op">(</span>UserInfoReq<span class="op">)</span> returns <span class="op">(</span>UserInfoResp<span class="op">)</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Order</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>syntax <span class="op">=</span> <span class="st">"v1"</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -609,8 +647,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="mysql" class="level3">
 <h3 class="anchored" data-anchor-id="mysql">MySQL</h3>
 <p><strong>goctl指令</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">goctl</span> model mysql ddl <span class="at">-src</span><span class="op">=</span><span class="st">"./user.sql"</span> <span class="at">-dir</span><span class="op">=</span><span class="st">"./sql/model"</span> <span class="at">-c</span>  </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">goctl</span> model mysql ddl <span class="at">-src</span><span class="op">=</span><span class="st">"./order.sql"</span> <span class="at">--dir</span><span class="op">=</span><span class="st">"./sql/model"</span> <span class="at">-c</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">goctl</span> model mysql ddl <span class="at">-src</span><span class="op">=</span><span class="st">"./user.sql"</span> <span class="at">-dir</span><span class="op">=</span><span class="st">"./sql/model"</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">goctl</span> model mysql ddl <span class="at">-src</span><span class="op">=</span><span class="st">"./order.sql"</span> <span class="at">--dir</span><span class="op">=</span><span class="st">"./sql/model"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>User</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="fu">user</span> (</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span> bigint AUTO_INCREMENT,</span>
@@ -642,42 +680,587 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="mysql配置和model操作" class="level2">
 <h2 class="anchored" data-anchor-id="mysql配置和model操作">MySQL配置和model操作</h2>
+<p>已经完成了项目结构的初步搭建，下一步我们进行数据库的配置，这里我们从头开始，使用 docker 创建表。下面是相关的指令。</p>
+<section id="创建-mysql-数据库和表" class="level3">
+<h3 class="anchored" data-anchor-id="创建-mysql-数据库和表">创建 MySQL 数据库和表</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 docker 拉取 docekr 的镜像</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull mysql:8.0 </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用镜像创建容器</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">--name</span> testMySQl <span class="dt">\ </span># 容器名称</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-e</span> MYSQL_ROOT_PASSWORD=123456 <span class="dt">\ </span># 数据库密码</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-e</span> MYSQL_DATABASE=goframework <span class="dt">\ </span># 数据库名称</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-p</span> 3307:3306 <span class="dt">\ </span># 容器内 3306 端口映射到 3307，因为我的 3306 被占用了</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-v</span> <span class="va">$PWD</span>/mysql-data:/var/lib/mysql <span class="dt">\ </span># 将存储映射到外部</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mysql:8.0</span> <span class="at">--default-authentication-plugin</span><span class="op">=</span>mysql_native_password</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 进入容器</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> exec <span class="at">-it</span> testMySQl /bin/sh</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 进入数据库</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">-uroot</span> <span class="at">-p123456</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 看一下已有的数据库</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="ex">show</span> databases<span class="kw">;</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个数据库</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="ex">create</span> database user_order<span class="kw">;</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用数据库</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="ex">use</span> user_order<span class="kw">;;</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co"># 看一下表</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="ex">show</span> tables<span class="kw">;</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个用户表</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="ex">CREATE</span> TABLE <span class="kw">`</span><span class="ex">user</span><span class="kw">`</span> <span class="er">(</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">id</span> bigint AUTO_INCREMENT,</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    <span class="ex">name</span> varchar<span class="er">(</span><span class="ex">255</span><span class="kw">)</span> <span class="ex">NULL</span> COMMENT <span class="st">'用户名'</span>,</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    <span class="ex">password</span> varchar<span class="er">(</span><span class="ex">255</span><span class="kw">)</span> <span class="ex">NOT</span> NULL DEFAULT <span class="st">''</span> COMMENT <span class="st">'密码'</span>,</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    <span class="ex">mobile</span> varchar<span class="er">(</span><span class="ex">255</span><span class="kw">)</span> <span class="ex">NOT</span> NULL DEFAULT <span class="st">''</span> COMMENT <span class="st">'手机号码'</span>,</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    <span class="ex">gender</span> char<span class="er">(</span><span class="ex">10</span><span class="kw">)</span> <span class="ex">NOT</span> NULL DEFAULT <span class="st">'male'</span> COMMENT <span class="st">'性别,male|female|unknown'</span>,</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    <span class="ex">nickname</span> varchar<span class="er">(</span><span class="ex">255</span><span class="kw">)</span> <span class="ex">NULL</span> DEFAULT <span class="st">''</span> COMMENT <span class="st">'昵称'</span>,</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span> tinyint<span class="er">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">NULL</span> DEFAULT 0 COMMENT <span class="st">'用户类型, 0:普通用户,1:VIP用户,用于测试golang关键字'</span>,</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    <span class="ex">create_at</span> timestamp NULL,</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    <span class="ex">update_at</span> timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    <span class="ex">UNIQUE</span> mobile_index <span class="er">(</span><span class="ex">mobile</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    <span class="ex">UNIQUE</span> name_index <span class="er">(</span><span class="ex">name</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>    <span class="ex">PRIMARY</span> KEY <span class="er">(</span><span class="fu">id</span><span class="kw">)</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span> <span class="ex">ENGINE</span> = InnoDB COLLATE utf8mb4_general_ci COMMENT <span class="st">'用户表'</span><span class="kw">;</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建订单表</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="ex">CREATE</span> TABLE <span class="kw">`</span><span class="ex">order</span><span class="kw">`</span> <span class="er">(</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">`</span><span class="ex">order_sn</span><span class="kw">`</span> VARCHAR<span class="er">(</span><span class="ex">64</span><span class="kw">)</span> <span class="ex">NOT</span> NULL COMMENT <span class="st">'订单号'</span>,</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>    <span class="kw">`</span><span class="ex">user_id</span><span class="kw">`</span> BIGINT NOT NULL DEFAULT 0 COMMENT <span class="st">'用户ID'</span>,</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>    <span class="kw">`</span><span class="ex">goods_id</span><span class="kw">`</span> BIGINT NOT NULL DEFAULT 0 COMMENT <span class="st">'商品ID'</span>,</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    <span class="kw">`</span><span class="ex">num</span><span class="kw">`</span> BIGINT NOT NULL DEFAULT 0 COMMENT <span class="st">'数量'</span>,</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>    <span class="kw">`</span><span class="ex">amount</span><span class="kw">`</span> BIGINT NOT NULL DEFAULT 0 COMMENT <span class="st">'金额'</span>,</span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>    <span class="kw">`</span><span class="ex">status</span><span class="kw">`</span> INT NOT NULL DEFAULT 0 COMMENT <span class="st">'状态'</span>,</span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>    <span class="kw">`</span><span class="ex">create_at</span><span class="kw">`</span> DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT <span class="st">'创建时间'</span>,</span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>    <span class="kw">`</span><span class="ex">delete_at</span><span class="kw">`</span> DATETIME DEFAULT NULL COMMENT <span class="st">'删除时间'</span>,</span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>    <span class="ex">PRIMARY</span> KEY <span class="er">(</span><span class="kw">`</span><span class="ex">order_sn</span><span class="kw">`)</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span> <span class="va">ENGINE</span><span class="op">=</span>InnoDB <span class="ex">COLLATE</span> utf8mb4_general_ci COMMENT=<span class="st">'订单表'</span><span class="kw">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-3.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
+<section id="项目连接数据库" class="level3">
+<h3 class="anchored" data-anchor-id="项目连接数据库">项目连接数据库</h3>
+<ul>
+<li>先修改配置文件，在配置中增加数据库相关配置</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">root:123456@tcp</span><span class="er">(</span><span class="ex">127.0.0.1:3307</span><span class="kw">)</span><span class="ex">/user_order?charset=utf8mb4</span><span class="kw">&amp;</span><span class="va">parseTime</span><span class="op">=</span>True<span class="kw">&amp;</span><span class="va">loc</span><span class="op">=</span>Local</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">├─┘└──┘└┘└────┘└──┘└─────┘└───────┘└───────┘└────┘</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">用户名</span> 密码  协议    主机地址    端口   数据库名    字符集        时间解析     时区</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><p>然后修改 yaml文件中的配置信息，写入具体配置</p></li>
+<li><p>在 servicecontext 中增加数据库相关配置，并连接数据库表</p></li>
+<li><p>在注册逻辑中进行实现，增加数据写入逻辑</p></li>
+</ul>
+<p><strong>之后进行测试，数据写入</strong></p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-4.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-5.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
 </section>
 <section id="注册" class="level2">
 <h2 class="anchored" data-anchor-id="注册">注册</h2>
+<p>之前我们实现了简单的数据库操作，现在开始我们实现一个简单的注册功能</p>
+<ul>
+<li><p>参数校验（校验参数合法性，判断一下是不是空，还有两次密码认证—）</p></li>
+<li><p>数据唯一性确认（检查数据库中是否存在已有数据）</p></li>
+<li><p>加密加盐（使用 md5 进行加密加盐）</p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">//</span> 加密加盐</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">h</span> := md5.New<span class="er">(</span><span class="kw">)</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">h.Write</span><span class="er">(</span><span class="ex">[]byte</span><span class="er">(</span><span class="ex">req.Password</span><span class="kw">))</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">h.Write</span><span class="er">(</span><span class="ex">secret</span><span class="kw">)</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">passwordStr</span> := hex.EncodeToString<span class="er">(</span><span class="ex">h.Sum</span><span class="er">(</span><span class="ex">nil</span><span class="kw">))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>下面是效果验证</p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-6.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-7.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-8.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
 </section>
 <section id="缓存" class="level2">
 <h2 class="anchored" data-anchor-id="缓存">缓存</h2>
+<section id="go-zero缓存" class="level3">
+<h3 class="anchored" data-anchor-id="go-zero缓存">go-zero缓存</h3>
+<p>首先讲一下缓存，简单来说缓存就是把下次可能用到的数据先存下来，这样下次需要的时候就不用再慢慢去找，能有效提升加载速度和用户体验。</p>
+<p>在我们日常生活中使用浏览器加载网页一般都会进行缓存，所以一般第一次加载都会很慢，我之前遇到过一个情况，部署在 GitHub Page 的网页会一直缓存着第一次加载的数据，很奇怪，要在浏览器进行单独设置后才会解决这个问题</p>
+<p>在电商场景或者是应用场景下，会将读得特别多、计算成本高、不经常变化的数据或者是需要快速响应的数据进行缓存，既是为了降低成本，也是为了提升效率。</p>
+<p>缓存最常用的数据库就是 Redis，Redis 也在逐渐迭代，适配更多的缓存场景。</p>
+<p>在 go-zero中，可以通过”-c”参数设置缓存的使用，我们在目前的用户订单系统进行简单的缓存实现，首先使用下面指令，生成缓存相关代码</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">goctl</span> model mysql ddl <span class="at">-src</span><span class="op">=</span><span class="st">"./user.sql"</span> <span class="at">--dir</span><span class="op">=</span><span class="st">"./sql/cachemodel"</span> <span class="at">-c</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>下面是有无缓存代码的对比</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">//</span> 有缓存</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">func</span> <span class="er">(</span><span class="ex">m</span> <span class="pp">*</span>defaultUserModel<span class="kw">)</span> <span class="ex">FindOneByMobile</span><span class="er">(</span><span class="ex">ctx</span> context.Context, mobile string<span class="kw">)</span> <span class="kw">(</span><span class="ex">*User,</span> error<span class="kw">)</span> <span class="kw">{</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">userMobileKey</span> := fmt.Sprintf<span class="er">(</span><span class="st">"%s%v"</span><span class="ex">,</span> cacheUserMobilePrefix, mobile<span class="kw">)</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">var</span> resp User</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">err</span> := m.QueryRowIndexCtx<span class="er">(</span><span class="ex">ctx,</span> <span class="kw">&amp;</span><span class="ex">resp,</span> userMobileKey, m.formatPrimary, func<span class="er">(</span><span class="ex">ctx</span> context.Context, conn sqlx.SqlConn, v any<span class="kw">)</span> <span class="kw">(</span><span class="ex">i</span> any, e error<span class="kw">)</span> <span class="kw">{</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        <span class="ex">query</span> := fmt.Sprintf<span class="er">(</span><span class="st">"select %s from %s where </span><span class="kw">`</span><span class="ex">mobile</span><span class="kw">`</span><span class="st"> = ? limit 1"</span><span class="ex">,</span> userRows, m.table<span class="kw">)</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="ex">err</span> := conn.QueryRowCtx<span class="er">(</span><span class="ex">ctx,</span> <span class="kw">&amp;</span><span class="ex">resp,</span> query, mobile<span class="kw">);</span> <span class="ex">err</span> != nil {</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="ex">nil,</span> err</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">}</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ex">resp.Id,</span> nil</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="er">}</span><span class="ex">,</span> m.queryPrimary<span class="kw">)</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="ex">switch</span> err {</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> nil:</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        return &amp;resp, nil</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    case sqlc.ErrNotFound:</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        return nil, ErrNotFound</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    default:</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>        return nil, err</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>//无缓存</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>func (m *defaultUserModel) FindOneByMobile(ctx context.Context, mobile string) (*User, error) {</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    var resp User</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    query := fmt.Sprintf(<span class="st">"select %s from %s where </span><span class="kw">`</span><span class="ex">mobile</span><span class="kw">`</span><span class="st"> = ? limit 1"</span>, userRows, m.table)</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    err := m.conn.QueryRowCtx(ctx, &amp;resp, query, mobile)</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    switch err {</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    case nil:</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>        return &amp;resp, nil</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    case sqlx.ErrNotFound:</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>        return nil, ErrNotFound</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    default:</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>        return nil, err</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>有了缓存需求之后，我们就要配置缓存数据库了</p>
+<ul>
+<li>先看生成的带缓存的usermodel.go文件并深入查看数据结构的设计，我们能发现需要的新版的配置类型是cache.CacheConf，深入发现需要的参数在RedisConf中，这是我们需要在 yaml 文件中设置的内容。</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">//</span> NewUserModel returns a model for the database table.</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">func</span> NewUserModel<span class="er">(</span><span class="ex">conn</span> sqlx.SqlConn, c cache.CacheConf, opts ...cache.Option<span class="kw">)</span> <span class="ex">UserModel</span> {</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">&amp;</span><span class="ex">customUserModel{</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="ex">defaultUserModel:</span> newUserModel<span class="er">(</span><span class="ex">conn,</span> c, opts...<span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="er">}</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span> <span class="er">(</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="ex">//</span> A ClusterConf is the config of a redis cluster that used as cache.</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="ex">ClusterConf</span> []NodeConf</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="ex">//</span> A NodeConf is the config of a redis node that used as cache.</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="ex">NodeConf</span> struct {</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>        <span class="ex">redis.RedisConf</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>        <span class="ex">Weight</span> int <span class="kw">`</span><span class="ex">json:</span><span class="st">",default=100"</span><span class="kw">`</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="er">}</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span> <span class="er">(</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    <span class="ex">//</span> A RedisConf is a redis config.</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    <span class="ex">RedisConf</span> struct {</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>        <span class="ex">Host</span>     string</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>        <span class="ex">Type</span>     string <span class="kw">`</span><span class="ex">json:</span><span class="st">",default=node,options=node|cluster"</span><span class="kw">`</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>        <span class="ex">User</span>     string <span class="kw">`</span><span class="ex">json:</span><span class="st">",optional"</span><span class="kw">`</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>        <span class="ex">Pass</span>     string <span class="kw">`</span><span class="ex">json:</span><span class="st">",optional"</span><span class="kw">`</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>        <span class="ex">Tls</span>      bool   <span class="kw">`</span><span class="ex">json:</span><span class="st">",optional"</span><span class="kw">`</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>        <span class="ex">NonBlock</span> bool   <span class="kw">`</span><span class="ex">json:</span><span class="st">",default=true"</span><span class="kw">`</span></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>        <span class="ex">//</span> PingTimeout is the timeout for ping redis.</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>        <span class="ex">PingTimeout</span> time.Duration <span class="kw">`</span><span class="ex">json:</span><span class="st">",default=1s"</span><span class="kw">`</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    <span class="er">}</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>    <span class="ex">//</span> A RedisKeyConf is a redis config with key.</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>    <span class="ex">RedisKeyConf</span> struct {</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>        <span class="ex">RedisConf</span></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>        <span class="ex">Key</span> string</span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>    <span class="er">}</span></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><p>然后修改 config.go和 yaml 文件我们简单配置</p></li>
+<li><p>然后就结束了，剩下的框架都给你实现了。</p></li>
+</ul>
+</section>
+<section id="docker使用-redis" class="level3">
+<h3 class="anchored" data-anchor-id="docker使用-redis">docker使用 redis</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 拉取镜像</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> pull redis:8</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建容器</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="at">--name</span> testRedis <span class="at">-p</span> 6379:6379 redis:8</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 进入容器</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> exec <span class="at">-it</span> testRedis redis-cli </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 看一下keys</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="ex">keys</span> cache:user:name:<span class="pp">*</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 退出</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="bu">exit</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="测试" class="level3">
+<h3 class="anchored" data-anchor-id="测试">测试</h3>
+<p>通过结合 postman测试发现会逐渐将搜索加入缓存</p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-9.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p>这只是一个简单的使用，实际 redis的功能和应用范围非常广泛</p>
+</section>
 </section>
 <section id="日志" class="level2">
 <h2 class="anchored" data-anchor-id="日志">日志</h2>
+<p>在 config默认的结构体中嵌入了 go-zero的log配置项，下面是他的完整设计，我们在 yaml文件中创建 Log并进行下面参数的配置</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 配置</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Log</span><span class="kw">:</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">ServiceName</span><span class="kw">:</span><span class="at"> user-api-srv</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">Mode</span><span class="kw">:</span><span class="at"> file</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">Encoding</span><span class="kw">:</span><span class="at"> json</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">Path</span><span class="kw">:</span><span class="at"> logs</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">Level</span><span class="kw">:</span><span class="at"> info</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">Stat</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> <span class="op">(</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// A LogConf is a logging config.</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    LogConf <span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        <span class="co">// ServiceName represents the service name.</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        ServiceName <span class="dt">string</span> <span class="st">`json:",optional"`</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Mode represents the logging mode, default is `console`.</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">// console: log to console.</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">// file: log to file.</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">// volume: used in k8s, prepend the hostname to the log file name.</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>        Mode <span class="dt">string</span> <span class="st">`json:",default=console,options=[console,file,volume]"`</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Encoding represents the encoding type, default is `json`.</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">// json: json encoding.</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>        <span class="co">// plain: plain text encoding, typically used in development.</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>        Encoding <span class="dt">string</span> <span class="st">`json:",default=json,options=[json,plain]"`</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>        <span class="co">// TimeFormat represents the time format, default is `2006-01-02T15:04:05.000Z07:00`.</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>        TimeFormat <span class="dt">string</span> <span class="st">`json:",optional"`</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Path represents the log file path, default is `logs`.</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>        Path <span class="dt">string</span> <span class="st">`json:",default=logs"`</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Level represents the log level, default is `info`.</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>        Level <span class="dt">string</span> <span class="st">`json:",default=info,options=[debug,info,error,severe]"`</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>        <span class="co">// MaxContentLength represents the max content bytes, default is no limit.</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>        MaxContentLength <span class="dt">uint32</span> <span class="st">`json:",optional"`</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Compress represents whether to compress the log file, default is `false`.</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>        Compress <span class="dt">bool</span> <span class="st">`json:",optional"`</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Stat represents whether to log statistics, default is `true`.</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>        Stat <span class="dt">bool</span> <span class="st">`json:",default=true"`</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>        <span class="co">// KeepDays represents how many days the log files will be kept. Default to keep all files.</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Only take effect when Mode is `file` or `volume`, both work when Rotation is `daily` or `size`.</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>        KeepDays <span class="dt">int</span> <span class="st">`json:",optional"`</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>        <span class="co">// StackCooldownMillis represents the cooldown time for stack logging, default is 100ms.</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>        StackCooldownMillis <span class="dt">int</span> <span class="st">`json:",default=100"`</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>        <span class="co">// MaxBackups represents how many backup log files will be kept. 0 means all files will be kept forever.</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Only take effect when RotationRuleType is `size`.</span></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Even though `MaxBackups` sets 0, log files will still be removed</span></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>        <span class="co">// if the `KeepDays` limitation is reached.</span></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>        MaxBackups <span class="dt">int</span> <span class="st">`json:",default=0"`</span></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>        <span class="co">// MaxSize represents how much space the writing log file takes up. 0 means no limit. The unit is `MB`.</span></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Only take effect when RotationRuleType is `size`</span></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>        MaxSize <span class="dt">int</span> <span class="st">`json:",default=0"`</span></span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Rotation represents the type of log rotation rule. Default is `daily`.</span></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>        <span class="co">// daily: daily rotation.</span></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>        <span class="co">// size: size limited rotation.</span></span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>        Rotation <span class="dt">string</span> <span class="st">`json:",default=daily,options=[daily,size]"`</span></span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a>        <span class="co">// FileTimeFormat represents the time format for file name, default is `2006-01-02T15:04:05.000Z07:00`.</span></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>        FileTimeFormat <span class="dt">string</span> <span class="st">`json:",optional"`</span></span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a>        <span class="co">// FieldKeys represents the field keys.</span></span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a>        FieldKeys fieldKeyConf <span class="st">`json:",optional"`</span></span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a>    fieldKeyConf <span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a>        <span class="co">// CallerKey represents the caller key.</span></span>
+<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a>        CallerKey <span class="dt">string</span> <span class="st">`json:",default=caller"`</span></span>
+<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a>        <span class="co">// ContentKey represents the content key.</span></span>
+<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a>        ContentKey <span class="dt">string</span> <span class="st">`json:",default=content"`</span></span>
+<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a>        <span class="co">// DurationKey represents the duration key.</span></span>
+<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a>        DurationKey <span class="dt">string</span> <span class="st">`json:",default=duration"`</span></span>
+<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a>        <span class="co">// LevelKey represents the level key.</span></span>
+<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a>        LevelKey <span class="dt">string</span> <span class="st">`json:",default=level"`</span></span>
+<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a>        <span class="co">// SpanKey represents the span key.</span></span>
+<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a>        SpanKey <span class="dt">string</span> <span class="st">`json:",default=span"`</span></span>
+<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a>        <span class="co">// TimestampKey represents the timestamp key.</span></span>
+<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a>        TimestampKey <span class="dt">string</span> <span class="st">`json:",default=@timestamp"`</span></span>
+<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a>        <span class="co">// TraceKey represents the trace key.</span></span>
+<span id="cb17-64"><a href="#cb17-64" aria-hidden="true" tabindex="-1"></a>        TraceKey <span class="dt">string</span> <span class="st">`json:",default=trace"`</span></span>
+<span id="cb17-65"><a href="#cb17-65" aria-hidden="true" tabindex="-1"></a>        <span class="co">// TruncatedKey represents the truncated key.</span></span>
+<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a>        TruncatedKey <span class="dt">string</span> <span class="st">`json:",default=truncated"`</span></span>
+<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>可以使用下面的接口，进行日志的记录</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode typescript code-with-copy"><code class="sourceCode typescript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> Logger <span class="kw">interface</span> {</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Debug</span>(<span class="op">...</span>any)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Debugf</span>(string<span class="op">,</span> <span class="op">...</span>any)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Debugv</span>(any)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Debugw</span>(string<span class="op">,</span> <span class="op">...</span>LogField)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">Error</span>(<span class="op">...</span>any)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Errorf</span>(string<span class="op">,</span> <span class="op">...</span>any)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Errorv</span>(any)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Errorw</span>(string<span class="op">,</span> <span class="op">...</span>LogField)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Info</span>(<span class="op">...</span>any)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Infof</span>(string<span class="op">,</span> <span class="op">...</span>any)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Infov</span>(any)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Infow</span>(string<span class="op">,</span> <span class="op">...</span>LogField)</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Slow</span>(<span class="op">...</span>any)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Slowf</span>(string<span class="op">,</span> <span class="op">...</span>any)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Slowv</span>(any)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Sloww</span>(string<span class="op">,</span> <span class="op">...</span>LogField)</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">WithCallerSkip</span>(skip int) Logger</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">WithContext</span>(ctx context<span class="op">.</span><span class="at">Context</span>) Logger</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">WithDuration</span>(d time<span class="op">.</span><span class="at">Duration</span>) Logger</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">WithFields</span>(fields <span class="op">...</span>LogField) Logger</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>简单测试</p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-10.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
 </section>
-<section id="login-接口" class="level2">
-<h2 class="anchored" data-anchor-id="login-接口">login 接口</h2>
+<section id="login-和userinfo接口" class="level2">
+<h2 class="anchored" data-anchor-id="login-和userinfo接口">login 和userInfo接口</h2>
+<p>主要进行这两个文件中逻辑的完善</p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-11.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p>在项目中进行简单实现，具体参照项目代码，<a href="https://github.com/aorangehc/GoFramwork/tree/main/GoZeroDemo/serviceDemo/user/api/internal/logic">点击直达</a></p>
+<p>下面是测试：</p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-12.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-13.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-14.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p>不过项目中还有很多错误，比如 id的写入出现问题，涉及到数据库配置的问题。</p>
 </section>
 <section id="jwt-鉴权" class="level2">
 <h2 class="anchored" data-anchor-id="jwt-鉴权">JWT 鉴权</h2>
+<section id="jwt的主要流程" class="level3">
+<h3 class="anchored" data-anchor-id="jwt的主要流程">JWT的主要流程</h3>
+<p>用户详情接口需要登陆之后才能进行访问</p>
+<ol type="1">
+<li><p>用户登录成功之后-&gt;JSON Web Token(JWT)-&gt;前端会把token保存起来，每次后端调用的时候都会带上，继续验证。</p></li>
+<li><p>后端需要鉴权接口，通常是做成中间件的形式进行鉴权，对请求头中的token进行解析</p></li>
+<li><p>解析成功就是登录用户</p></li>
+<li><p>解析失败就是未登录用户或者是失效用户</p></li>
+<li><p>Refresh token</p></li>
+</ol>
+</section>
+<section id="简单实现和测试" class="level3">
+<h3 class="anchored" data-anchor-id="简单实现和测试">简单实现和测试</h3>
+<p>借助github.com/golang-jwt/jwt/v4实现 jwt 认证</p>
+<p>还有一个比较重要的问题，jwt token存到哪里了，存到项目的 context 中了，我们从 context 中就能取到值。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">token</span> := l.ctx.Value<span class="er">(</span><span class="st">"userId"</span><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>生成 token</p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-15.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p> 测试没加 token 和加入 token 之后的人一个结果，注意会超时，因为之前设置了 60 秒。</p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-16.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-17.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
 </section>
 <section id="中间件" class="level2">
 <h2 class="anchored" data-anchor-id="中间件">中间件</h2>
+<p>路由中间件：只给部分路由添加中间件，比如鉴权，性能检测等等</p>
+<p>全局中间件：全部都要使用</p>
+<p>也能通过闭包调用其他服务中的中间件</p>
+<section id="中间件定义" class="level3">
+<h3 class="anchored" data-anchor-id="中间件定义">中间件定义</h3>
+<p>我们可以直接在 api文件中进行定义，通过 middleware 中间件</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>syntax <span class="op">=</span> <span class="st">"v1"</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">// 进行项目的简单说明</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>info <span class="op">(</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    title<span class="op">:</span>   <span class="st">"实现简单的用户服务"</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    author<span class="op">:</span>  <span class="st">"aorangehc"</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    date<span class="op">:</span>    <span class="st">"2025年 11 月 11 日"</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    version<span class="op">:</span> <span class="st">"v1"</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">// 注册需要用户名、密码、手机号码，要做唯一性检测</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> RegisterReq <span class="op">{</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    UserName   <span class="dt">string</span> <span class="st">`json:"username"`</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    Password   <span class="dt">string</span> <span class="st">`json:"password"`</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    Repassword <span class="dt">string</span> <span class="st">`json:"re_password"`</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    Mobile     <span class="dt">string</span> <span class="st">`json:"mobile"`</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    Gender     <span class="dt">int</span>    <span class="st">`json:"gender,options=0|1|2,default=0"`</span> <span class="co">// male|female|unknown</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    NickName   <span class="dt">string</span> <span class="st">`json:"nickname"`</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> RegisterResp <span class="op">{</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    success <span class="dt">bool</span>   <span class="st">`json:"success"`</span> <span class="co">// 注册是否成功</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>    Message <span class="dt">string</span> <span class="st">`json:"message"`</span> <span class="co">// 注册报错信息</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    Id      <span class="dt">int64</span>  <span class="st">`json:"id"`</span> <span class="co">// 成功注册返回的 id</span></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> LoginReq <span class="op">{</span></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>    UserName <span class="dt">string</span> <span class="st">`json:"username"`</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>    Password <span class="dt">string</span> <span class="st">`json:"password"`</span></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> LoginResp <span class="op">{</span></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>    Message      <span class="dt">string</span> <span class="st">`json:"message"`</span></span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>    AccessToken  <span class="dt">string</span> <span class="st">`json:"accessToken"`</span></span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>    AccessExpire <span class="dt">int64</span>  <span class="st">`json:"accessExpire"`</span></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>    RefreshAfter <span class="dt">int64</span>  <span class="st">`json:"refreshAfter"`</span></span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> UserInfoReq <span class="op">{</span></span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>    Id <span class="dt">int64</span> <span class="st">`json:"id"`</span></span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> UserInfoResp <span class="op">{</span></span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>    Id       <span class="dt">int64</span>  <span class="st">`json:"id"`</span></span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>    Token    <span class="dt">string</span> <span class="st">`json:"token"`</span></span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>    UserName <span class="dt">string</span> <span class="st">`json:"username"`</span></span>
+<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a>    Mobile   <span class="dt">string</span> <span class="st">`json:"mobile"`</span></span>
+<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a>    Gender   <span class="dt">int</span>    <span class="st">`json:"gender,options=0|1|2,default=0"`</span> <span class="co">// male|female|unknown</span></span>
+<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a>    NickName <span class="dt">string</span> <span class="st">`json:"nickname"`</span></span>
+<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a>    CreateAt <span class="dt">string</span> <span class="st">`json:"createAt"`</span> <span class="co">// 注册时间</span></span>
+<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a>    UpdateAt <span class="dt">string</span> <span class="st">`json:"updateAt"`</span> <span class="co">// 最后更新时间</span></span>
+<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a><span class="co">// 用户信息更新</span></span>
+<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> UserUpdateReq <span class="op">{</span></span>
+<span id="cb20-56"><a href="#cb20-56" aria-hidden="true" tabindex="-1"></a>    Id       <span class="dt">int64</span>  <span class="st">`json:"id"`</span></span>
+<span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a>    UserName <span class="dt">string</span> <span class="st">`json:"username"`</span></span>
+<span id="cb20-58"><a href="#cb20-58" aria-hidden="true" tabindex="-1"></a>    Password <span class="dt">string</span> <span class="st">`json:"password"`</span></span>
+<span id="cb20-59"><a href="#cb20-59" aria-hidden="true" tabindex="-1"></a>    Mobile   <span class="dt">string</span> <span class="st">`json:"mobile"`</span></span>
+<span id="cb20-60"><a href="#cb20-60" aria-hidden="true" tabindex="-1"></a>    Gender   <span class="dt">int</span>    <span class="st">`json:"gender,options=0|1|2,default=0"`</span> <span class="co">// male|female|unknown</span></span>
+<span id="cb20-61"><a href="#cb20-61" aria-hidden="true" tabindex="-1"></a>    NickName <span class="dt">string</span> <span class="st">`json:"nickname"`</span></span>
+<span id="cb20-62"><a href="#cb20-62" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb20-63"><a href="#cb20-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-64"><a href="#cb20-64" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> UserUpdateResp <span class="op">{</span></span>
+<span id="cb20-65"><a href="#cb20-65" aria-hidden="true" tabindex="-1"></a>    success <span class="dt">bool</span>   <span class="st">`json:"success"`</span></span>
+<span id="cb20-66"><a href="#cb20-66" aria-hidden="true" tabindex="-1"></a>    Message <span class="dt">string</span> <span class="st">`json:"message"`</span> <span class="co">// 更新报错信息</span></span>
+<span id="cb20-67"><a href="#cb20-67" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb20-68"><a href="#cb20-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-69"><a href="#cb20-69" aria-hidden="true" tabindex="-1"></a><span class="co">// 定义用户服务的 Api</span></span>
+<span id="cb20-70"><a href="#cb20-70" aria-hidden="true" tabindex="-1"></a>@server <span class="op">(</span></span>
+<span id="cb20-71"><a href="#cb20-71" aria-hidden="true" tabindex="-1"></a>    prefix<span class="op">:</span> api</span>
+<span id="cb20-72"><a href="#cb20-72" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb20-73"><a href="#cb20-73" aria-hidden="true" tabindex="-1"></a>service user<span class="op">-</span>api <span class="op">{</span></span>
+<span id="cb20-74"><a href="#cb20-74" aria-hidden="true" tabindex="-1"></a>    @handler register</span>
+<span id="cb20-75"><a href="#cb20-75" aria-hidden="true" tabindex="-1"></a>    post <span class="op">/</span>user<span class="op">/</span>register <span class="op">(</span>RegisterReq<span class="op">)</span> returns <span class="op">(</span>RegisterResp<span class="op">)</span></span>
+<span id="cb20-76"><a href="#cb20-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-77"><a href="#cb20-77" aria-hidden="true" tabindex="-1"></a>    @handler login</span>
+<span id="cb20-78"><a href="#cb20-78" aria-hidden="true" tabindex="-1"></a>    post <span class="op">/</span>user<span class="op">/</span>login <span class="op">(</span>LoginReq<span class="op">)</span> returns <span class="op">(</span>LoginResp<span class="op">)</span></span>
+<span id="cb20-79"><a href="#cb20-79" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb20-80"><a href="#cb20-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-81"><a href="#cb20-81" aria-hidden="true" tabindex="-1"></a>@server <span class="op">(</span></span>
+<span id="cb20-82"><a href="#cb20-82" aria-hidden="true" tabindex="-1"></a>    prefix<span class="op">:</span>     api</span>
+<span id="cb20-83"><a href="#cb20-83" aria-hidden="true" tabindex="-1"></a>    jwt<span class="op">:</span>        Auth</span>
+<span id="cb20-84"><a href="#cb20-84" aria-hidden="true" tabindex="-1"></a>    middleware<span class="op">:</span> Cost <span class="co">// 耗时统计的一个中间件</span></span>
+<span id="cb20-85"><a href="#cb20-85" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb20-86"><a href="#cb20-86" aria-hidden="true" tabindex="-1"></a>service user<span class="op">-</span>api <span class="op">{</span></span>
+<span id="cb20-87"><a href="#cb20-87" aria-hidden="true" tabindex="-1"></a>    @handler userInfo <span class="co">// 获取用户信息</span></span>
+<span id="cb20-88"><a href="#cb20-88" aria-hidden="true" tabindex="-1"></a>    get <span class="op">/</span>user<span class="op">/:</span>id <span class="op">(</span>UserInfoReq<span class="op">)</span> returns <span class="op">(</span>UserInfoResp<span class="op">)</span></span>
+<span id="cb20-89"><a href="#cb20-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-90"><a href="#cb20-90" aria-hidden="true" tabindex="-1"></a>    @handler userUpdate <span class="co">// 更新用户信息</span></span>
+<span id="cb20-91"><a href="#cb20-91" aria-hidden="true" tabindex="-1"></a>    post <span class="op">/</span>user<span class="op">/</span>update <span class="op">(</span>UserUpdateReq<span class="op">)</span> returns <span class="op">(</span>UserUpdateResp<span class="op">)</span></span>
+<span id="cb20-92"><a href="#cb20-92" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="demo-和测试" class="level3">
+<h3 class="anchored" data-anchor-id="demo-和测试">Demo 和测试</h3>
+<p>更新完成 api文件之后，通过 goctl更新项目，然后完善</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">GoZeroDemo/serviceDemo/user/api/internal/middleware/costMiddleware.go中的</span> Handle 方法</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">GoZeroDemo/serviceDemo/user/api/internal/svc/serviceContext.go中增加</span> Cost的注册</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>之后我们运行项目进行测试，打印出耗时</p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-18.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-19.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p>实现一个简单的全局中间件</p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-20.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
 </section>
 <section id="rpc服务和调用" class="level2">
 <h2 class="anchored" data-anchor-id="rpc服务和调用">RPC服务和调用</h2>
+<section id="rpc-服务实现流程" class="level3">
+<h3 class="anchored" data-anchor-id="rpc-服务实现流程">RPC 服务实现流程</h3>
+<ul>
+<li><p>编写 rpc文件</p></li>
+<li><p>goctl生成项目文件</p></li>
+<li><p>修改配置结构体和相关的文件</p></li>
+<li><p>完善项目内容</p>
+<ul>
+<li><p>修改 context 文件</p></li>
+<li><p>完善 RPC 业务逻辑</p></li>
+</ul></li>
+<li><p>测试，使用 postman 测试功能</p></li>
+</ul>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-21.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
+<section id="rpc-调用" class="level3">
+<h3 class="anchored" data-anchor-id="rpc-调用">RPC 调用</h3>
+<p>在 go-zero中进行rpc调用基本要进行以下流程</p>
+<ul>
+<li><p>首先配置 yaml 文件和config 文件</p></li>
+<li><p>然后在 context 文件中进行数据库连接和 RPC 的配置</p></li>
+<li><p>之后再 logic 文件中进行 RPC 的调用</p></li>
+</ul>
+<p>下面是测试结果</p>
+<p><strong>创建订单</strong> </p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-22.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><strong>测试订单删除功能</strong> </p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-23.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-24.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><strong>获取订单信息</strong> </p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-25.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
 </section>
 <section id="注册中心-consul" class="level2">
 <h2 class="anchored" data-anchor-id="注册中心-consul">注册中心-consul</h2>
+<p>原本使用 Etcd 作为 注册中心，要改成 consul，docker 启动 consul</p>
+<ul>
+<li><p>修改配置文件 yaml 和 config.go，注释掉原来的 etcd</p></li>
+<li><p>将服务注册到 consul，在启动服务的时候</p></li>
+<li><p>服务发现方也需要修改配置</p></li>
+</ul>
+<p>之后启动服务进行测试，测试成功</p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-26.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-29.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-27.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
+<section id="rpc-调用传递-metadata" class="level2">
+<h2 class="anchored" data-anchor-id="rpc-调用传递-metadata">RPC 调用传递 metadata</h2>
+<p>metadata（元数据）= 快递单（贴在包裹上的信息：谁寄的、寄给谁、是否易碎）。可以包含：</p>
+<ul>
+<li><p>认证令牌 (Token)： JWT Token，用来证明你是谁。</p></li>
+<li><p>链路追踪 ID (Trace ID)： 用来追踪这个请求经过了哪几个微服务（例如 x-request-id）。</p></li>
+<li><p>客户端信息： 比如 User-Agent，或者客户端版本号。</p></li>
+<li><p>超时控制： 告诉服务端，如果 1 秒没处理完就别处理了。</p></li>
+</ul>
 </section>
 <section id="rpc-拦截器" class="level2">
 <h2 class="anchored" data-anchor-id="rpc-拦截器">RPC 拦截器</h2>
+<p>拦截器 = 安检员/分拣中心（在包裹真正到达收件人手里之前，先检查一下快递单，或者对包裹做个消毒）</p>
+<p>装“上下文”信息</p>
+<p>它是一种<strong>钩子机制（Hook）</strong>。它允许你在请求<strong>发送出去之前</strong>（客户端）或者请求<strong>被处理之前/之后</strong>（服务端），插入一段通用的逻辑代码。</p>
+<p>它的核心目的是把通用逻辑从业务代码中剥离出来（AOP 面向切面编程的思想）。可以进行：</p>
+<ul>
+<li><p>身份认证： 在进入业务逻辑前，检查 Metadata 里有没有 Token，Token 对不对。如果不对应，直接拦截退回，业务逻辑根本不用写判断代码。</p></li>
+<li><p>日志记录： 记录“谁在什么时间调了哪个接口，耗时多少”。</p></li>
+<li><p>错误处理： 统一捕获异常，转换成标准错误码。</p></li>
+<li><p>限流/熔断： 检查请求是不是太多了，如果太多直接拦截。</p></li>
+</ul>
+<section id="客户端拦截器" class="level3">
+<h3 class="anchored" data-anchor-id="客户端拦截器">客户端拦截器</h3>
+<p>在 context 文件中编写拦截器，之后加到 rpc发现服务中</p>
+<p>需要注意：</p>
+<ul>
+<li><p>什么时候存储metadata</p></li>
+<li><p>怎么存</p></li>
+<li><p>拦截器怎么通过 context 传值</p></li>
+</ul>
+</section>
+<section id="服务端拦截器" class="level3">
+<h3 class="anchored" data-anchor-id="服务端拦截器">服务端拦截器</h3>
+<p>在启动 RPC 服务之前进行拦截器的注册</p>
+<p>拦截器的业务逻辑实现</p>
+<p>服务端怎么从 metadata 中取到数据</p>
+<p><strong>测试</strong> </p>
+<p>经过简单测试，服务端收到来客户端的元数据并进行安正</p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-28.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
 </section>
 <section id="错误处理" class="level2">
 <h2 class="anchored" data-anchor-id="错误处理">错误处理</h2>
+<p>可以自定义错误类型，输出更加全面</p>
+<ul>
+<li><p>定义自定义格式错误</p></li>
+<li><p>业务代码中按需使用定义的错误</p></li>
+<li><p>告诉 go-zero框架我们自定义了错误类型要进行处理</p></li>
+</ul>
+<p>下面是测试结果</p>
+<p><img src="../assets/images/gozeroservicedemo/Go-zero demo-image-30.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
 </section>
 <section id="修改模板生成自定义代码" class="level2">
 <h2 class="anchored" data-anchor-id="修改模板生成自定义代码">修改模板生成自定义代码</h2>
+<p>参照<a href="https://go-zero.dev/docs/tutorials/customization/template">模板定制化</a> <a href="https://go-zero.dev/docs/tutorials/cli/template">goctl template</a></p>
+<p>模版的作用：生成项目代码，goctl指令生成代码的时候就是根据模板来生成代码的</p>
+<p>修改模版的主要指令</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">goctl</span> template clean <span class="co"># 用于删除持久化在本地的模板文件。</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">goctl</span> template init <span class="co"># 用于初始化模板，会将模板文件存储到本地。</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="ex">goctl</span> template revert <span class="co"># 用于回滚某个分类下的指定的模板文件。</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="ex">goctl</span> template update <span class="co"># 用于更新某个分类下的所有模板文件。</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这样在指定目录下就能看到.goctl文件夹，里面存储 tpl文件，我们可以修改文件内容，实现生成项目文件的自动定义</p>
 </section>
 <section id="参考资料" class="level2">
 <h2 class="anchored" data-anchor-id="参考资料">参考资料</h2>
+<p><a href="https://go-zero.dev/">go-zero</a></p>
+<p><a href="https://space.bilibili.com/4638193">七米老师课程</a></p>
 
 
 </section>
