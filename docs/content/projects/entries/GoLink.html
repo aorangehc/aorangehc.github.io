@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-01-11">
+
+<title>GoLink Go短链接项目</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-3bbbbd466991e281563892c5dce73c3d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-4990a151d59038663a44b02348f88d08.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-3bbbbd466991e281563892c5dce73c3d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../pages/index.html"> 
+<span class="menu-text"><span class="lang-en">About Me</span><span class="lang-zh">关于我</span></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../pages/home.html"> 
+<span class="menu-text"><span class="lang-en">Home</span><span class="lang-zh">主页</span></span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/blogs/index.html"> 
+<span class="menu-text"><span class="lang-en">Blogs</span><span class="lang-zh">博客</span></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/projects/index.html"> 
+<span class="menu-text"><span class="lang-en">Projects</span><span class="lang-zh">项目</span></span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-span-classlang-enpapersreportsspanspan-classlang-zh论文和技术报告span" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><span class="lang-en">Papers&amp;Reports</span><span class="lang-zh">论文和技术报告</span></span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-span-classlang-enpapersreportsspanspan-classlang-zh论文和技术报告span">    
+        <li>
+    <a class="dropdown-item" href="../../../content/papers/index.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../content/papers/deepseek/index.html">
+ <span class="dropdown-text">DeepSeek</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../content/papers/labnotes/index.html">
+ <span class="dropdown-text">LabNotes</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-span-classlang-enlearning-notesspanspan-classlang-zh学习笔记span" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><span class="lang-en">Learning Notes</span><span class="lang-zh">学习笔记</span></span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-span-classlang-enlearning-notesspanspan-classlang-zh学习笔记span">    
+        <li>
+    <a class="dropdown-item" href="../../../content/learning-notes/index.html">
+ <span class="dropdown-text">Overview</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../content/learning-notes/golang/index.html">
+ <span class="dropdown-text">golang基础</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../content/learning-notes/microservices/index.html">
+ <span class="dropdown-text">微服务(golang)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../content/learning-notes/infrastructure/index.html">
+ <span class="dropdown-text">基础设施(golang)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../content/learning-notes/deepL/index.html">
+ <span class="dropdown-text">深度学习</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="https://github.com/aorangehc" title="" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+    <a href="mailto:morange0205@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label="Email"><i class="bi bi-envelope"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#短链接简介" id="toc-短链接简介" class="nav-link active" data-scroll-target="#短链接简介">短链接简介</a>
+  <ul class="collapse">
+  <li><a href="#是什么" id="toc-是什么" class="nav-link" data-scroll-target="#是什么">是什么</a></li>
+  <li><a href="#为什么" id="toc-为什么" class="nav-link" data-scroll-target="#为什么">为什么</a></li>
+  <li><a href="#怎么做" id="toc-怎么做" class="nav-link" data-scroll-target="#怎么做">怎么做</a></li>
+  </ul></li>
+  <li><a href="#项目设计" id="toc-项目设计" class="nav-link" data-scroll-target="#项目设计">项目设计</a>
+  <ul class="collapse">
+  <li><a href="#需求分析" id="toc-需求分析" class="nav-link" data-scroll-target="#需求分析">需求分析</a></li>
+  <li><a href="#系统设计" id="toc-系统设计" class="nav-link" data-scroll-target="#系统设计">系统设计</a></li>
+  </ul></li>
+  <li><a href="#项目实现" id="toc-项目实现" class="nav-link" data-scroll-target="#项目实现">项目实现</a>
+  <ul class="collapse">
+  <li><a href="#搭建项目骨架" id="toc-搭建项目骨架" class="nav-link" data-scroll-target="#搭建项目骨架">1、搭建项目骨架</a></li>
+  <li><a href="#转链" id="toc-转链" class="nav-link" data-scroll-target="#转链">2、转链</a></li>
+  <li><a href="#查看短链接" id="toc-查看短链接" class="nav-link" data-scroll-target="#查看短链接">3、查看短链接</a></li>
+  </ul></li>
+  <li><a href="#参考资料" id="toc-参考资料" class="nav-link" data-scroll-target="#参考资料">参考资料</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">GoLink Go短链接项目</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">golang</div>
+    <div class="quarto-category">go-zero</div>
+    <div class="quarto-category">demo</div>
+    <div class="quarto-category">shortUrl</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 11, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><img src="../assets/images/GoLink/GoLink-image-13.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p>一个简单实用的短链接项目。<a href="https://github.com/aorangehc/GoLink">项目地址</a></p>
+<section id="短链接简介" class="level2">
+<h2 class="anchored" data-anchor-id="短链接简介">短链接简介</h2>
+<section id="是什么" class="level3">
+<h3 class="anchored" data-anchor-id="是什么">是什么</h3>
+<p>短链接通俗来讲是将一个比较长的 URL 通过程序计算的方式转换成简单的简短的网址链接。</p>
+<p>我平时收到最多的短链接就是京东发的，下面是一个例子</p>
+<p><em>【京东】北京国补狂欢限时猛料，26年国补正式上线！上京东领补贴立省15％，限时抢，手慢无！抢 3.cn/v/1-FT59nd 拒收请回复R</em></p>
+<p><em>我们点击之后得到的 URL 是：</em></p>
+<p><em>https://pro.m.jd.com/mall/active/4YSZ3d72rtEfxiWiDVcWRBEjCbSd/index.html?babelChannel=ttt58</em></p>
+<p>正是通过短链接的方式将原本长长的地址换成了一个简短的，并且让人读不懂的链接。</p>
+<p>很多公司也有提供短链接服务：</p>
+<ul>
+<li><p>百度：dwz.cn</p></li>
+<li><p>微博：t.cn</p></li>
+<li><p>。。。</p></li>
+</ul>
+</section>
+<section id="为什么" class="level3">
+<h3 class="anchored" data-anchor-id="为什么">为什么</h3>
+<p>一般公司内部会有很多需要发送链接的场景，并且业务侧的非常细致，导致链接非常长，在发送短信，IM 工具发送消息以及 push 等场景会会有很多劣势，比如：</p>
+<ul>
+<li><p>短信内容可能超长，截断会花更多的钱，信息也不完整</p></li>
+<li><p>社交平台的字数限制</p></li>
+<li><p>还有的平台监管机制比较严格，能识别关键字，判定为违规，比如小某书、某红书和小红某</p></li>
+<li><p>URL 是可以转换成二维码的，如果太长，转换成的二维码就会非常复杂，短链接转换成的二维码更加清晰</p></li>
+</ul>
+<p>这个时候将长链接转换成短链接就显得非常重要。</p>
+</section>
+<section id="怎么做" class="level3">
+<h3 class="anchored" data-anchor-id="怎么做">怎么做</h3>
+<p><img src="../assets/images/GoLink/GoLink-image-14.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p>浏览器并不能将短链接转换成长链接，这里涉及到一个重新定向的概念。</p>
+<p>浏览器收到短链接的地址，向公司的短链接服务器发送请求，公司返回数据和 302 重定向的状态码，之后浏览器进行重定向，向真正的业务服务器发送请求。</p>
+<p><img src="../assets/images/GoLink/GoLink-image-12.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
+</section>
+<section id="项目设计" class="level2">
+<h2 class="anchored" data-anchor-id="项目设计">项目设计</h2>
+<section id="需求分析" class="level3">
+<h3 class="anchored" data-anchor-id="需求分析">需求分析</h3>
+<p><strong>背景</strong> </p>
+<p>公司内部业务需要大量发送营销短信、通知类的短信，在客服电话推销之后要发送到短信配套营销。</p>
+<p>需要一个短链接服务满足各个业务线的使用，现阶段是提供转链接的接口，后续可以提供点击链接统计的数据报表分析接口</p>
+<p><strong>描述</strong> </p>
+<ol type="1">
+<li><p>输入一个长网址得到一个唯一的短网址</p></li>
+<li><p>用户点击短链接能够跳转到对应的网址</p></li>
+<li><p>为了保证业务的延续性，短网址长期有效</p></li>
+</ol>
+<p><strong>定位</strong> </p>
+<ol type="1">
+<li><p>只是公司内部业务使用的短链接服务，只接收公司内部的长链接转短链接需求，不提供对外的服务</p></li>
+<li><p>基本在国内使用</p></li>
+<li><p>后续可能会根据需求提供短链接的访问数据报表接口</p></li>
+</ol>
+<p><strong>规模</strong> </p>
+<ol type="1">
+<li><p>服务于公司内部多少条业务线</p></li>
+<li><p>用户的规模是什么量级</p></li>
+<li><p>QPS 是多少</p>
+<ol type="1">
+<li>注：QPS是指每秒查询率（Queries Per Second），是衡量系统性能的一个重要指标，表示系统每秒能够处理的查询请求数量。在数据库、网络、服务器等领域中，QPS是一个常用的性能指标，通常越高表示系统性能越好。</li>
+</ol></li>
+</ol>
+<p><strong>技术指标</strong> </p>
+<ul>
+<li><p>请求延时，多少 ms之内要完成整个过程</p></li>
+<li><p>可靠性，保证 99.99% 能正常跳转</p></li>
+<li><p>安全性，不能数据泄露，被攻击</p></li>
+</ul>
+<p><strong>功能模块分析</strong> </p>
+<p>根据需求分析，可以将需求拆分成转链模块、存储模块和访问链接模块，以及可以拓展的数据统计模块</p>
+<ol type="1">
+<li><p>转链模块</p>
+<ol type="1">
+<li><p>相同的长链接转成同一个短链接（也可以根据个人信息转成不同的，比如推广机制，精确到人）</p></li>
+<li><p>生成的短链接为尽可能短的字符</p></li>
+<li><p>需要避免出现一些不合适的词语和有些具有特殊含义的词语</p></li>
+<li><p>需要避免循环转链（把已经是短链的再拿出来转短链）</p></li>
+</ol></li>
+<li><p>存储模块</p>
+<ol type="1">
+<li><p>保存原始长链接和短链接之间的对应关系</p></li>
+<li><p>能够根据短链接查到原始的长链接</p></li>
+</ol></li>
+<li><p>查看链接模块</p>
+<ol type="1">
+<li><p>根据链接查询到长链后返回重定向响应</p></li>
+<li><p>后续数据报表需求可能需要采集并统计请求头数据</p></li>
+</ol></li>
+</ol>
+</section>
+<section id="系统设计" class="level3">
+<h3 class="anchored" data-anchor-id="系统设计">系统设计</h3>
+<p>根据实际的业务场景，我们能够发现存入的链接是少的，访问的链接是多的，这是一个典型的读多写少的系统。</p>
+<p>并且还有个特点就是数据写入之后基本不需要改变，这样数据一致性问题其实可以忽略，能够使用缓存系统来提高读的效率。</p>
+<section id="整体框架" class="level4">
+<h4 class="anchored" data-anchor-id="整体框架">整体框架</h4>
+<p><img src="../assets/images/GoLink/GoLink-image.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<ul>
+<li><p>长链接转短链接</p>
+<ul>
+<li><p>单独部署为一个微服务（转链服务）</p></li>
+<li><p>对其他服务提供转链服务，需要鉴权</p>
+<ul>
+<li><p>通过RESTful API调用我们的转链接口</p></li>
+<li><p>通过RPC方式调用我们的转链方法（自己实现一个RPC版本的转链）</p></li>
+</ul></li>
+</ul></li>
+<li><p>查看短链接</p>
+<ul>
+<li><p>单独部署为一个服务（查看短链服务）</p></li>
+<li><p>通过 nginx 转发查看请求，/[0-9+a-z+A-Z]* –&gt; 转发到我们的查链服务</p></li>
+<li><p>通过 access.log 收集（EFK）并统计访问数据</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="技术方案" class="level4">
+<h4 class="anchored" data-anchor-id="技术方案">技术方案</h4>
+<p><strong>短链接生成方式</strong> </p>
+<ul>
+<li><p>Hash</p>
+<ul>
+<li><p>使用hash 函数对长链接进行 hash，得到的 hash 值作为短链接标识符</p></li>
+<li><p>这样做的优势比较简单，但是如果数据量大会出现哈希冲突</p></li>
+<li><p><strong>MurmurHash</strong> 是一种非加密型哈希函数，和其他流行的哈希函数相比，对规律性比较强的 key随机分布特性表现更加优良，这种算法随机分布特性表现好，算法速度快。</p></li>
+</ul></li>
+<li><p>发号器/自增序列</p>
+<ul>
+<li><p>每收到一个长链接转短链接请求之后，就使用发号器生成递增，然后将该序列号转成 62 （10+26*2）进制，最后拼接到短域名之后就得到最后的最终短链。</p></li>
+<li><p>发号器能生成 id的自增，理论上容量足够满足实现需求。但是高并发的情况下发号器的设计比比较难，因为要实现合理的自增。</p></li>
+<li><p>发号器的实现方式</p>
+<ul>
+<li><p>基于 uuid 实现</p>
+<ul>
+<li><p>优势：不会重复、性能好</p></li>
+<li><p>劣势：数字太大，有 32 位的 16 进制数</p></li>
+</ul></li>
+<li><p>基于 redis 实现发号器</p>
+<ul>
+<li><p>优势：高性能</p></li>
+<li><p>劣势：需要搭建高可用架构并考虑<strong>持久化</strong></p></li>
+</ul></li>
+<li><p>基于雪花算法的分布式 ID生成器</p>
+<ul>
+<li><p>优势：高性能、高可用</p></li>
+<li><p>劣势：实现复杂，依赖时钟</p></li>
+</ul></li>
+<li><p>基于 MySQL 自增主键的发号器</p>
+<ul>
+<li><p>优势：简单可靠</p></li>
+<li><p>劣势：依赖 MySQL，性能会成为瓶颈，但是可以通过分片拓展可用性</p></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p><strong>基于 MySQL 自增主键实现发号器</strong></p>
+<ul>
+<li><p>我们的项目采用基于 MySQL 数据库主键作为发号器的方案</p></li>
+<li><p>构建一个数据表，这个表的结构比较简单，不能包含其他多余的数据字段</p></li>
+<li><p>每有一次转链请求，我们都会在数据表表中插入一个记录，我们可以使用该表自增 ID 作为生成的号码</p></li>
+<li><p>使用 MySQL replace，如果表中的旧行和新行在 primary key 或 unique 索引具有相同的值，就在新行之前删除旧行。</p></li>
+<li><p>为了避免单点故障，我们将ID 生成器分成奇数和偶数两个部分，分别部署在两个 MySQL 服务器。</p></li>
+</ul>
+<pre class="plain&amp;#x20;text"><code>server1:
+auto-increment-increment = 2
+auto-increment-offset = 1
+
+server2:
+auto-increment-increment = 2
+auto-increment-offset = 2</code></pre>
+<ul>
+<li>下面是数据表创建和相关 SQL 语句</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* 序号表的设计 */</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> `sequence` (</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    `id` bigint(<span class="dv">20</span>) unsigned <span class="kw">NOT</span> <span class="kw">NULL</span> AUTO_INCREMENT,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    `stub` <span class="dt">varchar</span>(<span class="dv">1</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    `timestamp` <span class="dt">timestamp</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_TIMESTAMP</span> <span class="kw">ON</span> <span class="kw">UPDATE</span> <span class="fu">CURRENT_TIMESTAMP</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (`id`),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">UNIQUE</span> <span class="kw">KEY</span> `idx_uniq_stub` (`stub`)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>) ENGINE<span class="op">=</span>MyISAM <span class="kw">DEFAULT</span> CHARSET<span class="op">=</span>utf8;</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">REPLACE</span> <span class="kw">INTO</span> <span class="kw">sequence</span> (stub) <span class="kw">VALUES</span> (<span class="st">'a'</span>);</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> LAST_INSERT_ID();</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+<p>简单测试</p>
+<p><img src="../assets/images/GoLink/GoLink-image-1.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><strong>数据表</strong> </p>
+<ul>
+<li><p>数据表设计</p>
+<ul>
+<li><p>lur1和 sur1都唯一，长链和短链都不允许重复</p></li>
+<li><p>长链接的数据量大不适合建索引，所以这里使用md5值来做索引</p></li>
+<li><p>is_del是软删除标识</p></li>
+<li><p>可以采用读写分离的模式，写主库、读从库</p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> `short_url_map` (</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    `id` BIGINT UNSIGNED <span class="kw">NOT</span> <span class="kw">NULL</span> AUTO_INCREMENT <span class="kw">COMMENT</span> <span class="st">'主键'</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    `create_at` DATETIME <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_TIMESTAMP</span> <span class="kw">COMMENT</span> <span class="st">'创建时间'</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    `create_by` <span class="dt">VARCHAR</span>(<span class="dv">64</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> <span class="st">''</span> <span class="kw">COMMENT</span> <span class="st">'创建者'</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    `is_del` tinyint UNSIGNED <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> <span class="st">'0'</span> <span class="kw">COMMENT</span> <span class="st">'是否删除：0正常 1删除'</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    `lurl` <span class="dt">varchar</span>(<span class="dv">2048</span>) <span class="kw">DEFAULT</span> <span class="kw">NULL</span> <span class="kw">COMMENT</span> <span class="st">'长链接'</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    `md5` <span class="dt">char</span>(<span class="dv">32</span>) <span class="kw">DEFAULT</span> <span class="kw">NULL</span> <span class="kw">COMMENT</span> <span class="st">'长链接MD5'</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    `surl` <span class="dt">varchar</span>(<span class="dv">11</span>) <span class="kw">DEFAULT</span> <span class="kw">NULL</span> <span class="kw">COMMENT</span> <span class="st">'短链接'</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(`id`),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INDEX</span>(`is_del`),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">UNIQUE</span>(`md5`),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">UNIQUE</span>(`surl`)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>) ENGINE<span class="op">=</span>INNODB <span class="kw">DEFAULT</span> CHARSET<span class="op">=</span>utf8mb4;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>数据量</p>
+<ul>
+<li><p>URL 网址的最大长度不同浏览器下不同</p></li>
+<li><p>1 条长链+短链需要的存储空间假设为 200bytes/条</p></li>
+<li><p>假设每个业务线每秒写入 100 条，10 条线就是 1000 条/秒</p></li>
+<li><p>一主两备份共三份数据，索引等冗余系统 1.5</p></li>
+<li><p>这样 200*1000*3600*24*365*3*1.5大概等于 20T</p></li>
+</ul></li>
+<li><p>数据删除</p>
+<ul>
+<li>本项目不涉及链接配置过期时间，所有删除均为软删除，通过手动标记实现删除</li>
+</ul></li>
+</ul>
+<p><strong>预防攻击</strong> </p>
+<ul>
+<li><p>对外服务</p>
+<ul>
+<li><p>IP 请求限制</p></li>
+<li><p>用户限制转链额度</p></li>
+<li><p>记录已转链接的 URL 缓存，防止刷光 ID，适用于相同的 URL 可以转成不同短链接的场景</p>
+<ul>
+<li><p>LRU 缓存 URL</p></li>
+<li><p>布隆过滤器</p></li>
+</ul></li>
+<li><p>校验链接是否有效</p></li>
+</ul></li>
+<li><p>对内服务</p>
+<ul>
+<li><p>权限认证</p></li>
+<li><p>账户每日限额</p></li>
+<li><p>检验链接是否有效</p></li>
+</ul></li>
+</ul>
+<p><strong>访问短链方式</strong> </p>
+<ul>
+<li><p>使用 Redis 作为缓存+MySQL 进行持久化存储</p></li>
+<li><p>短链接请求进来之后先根据标识符查询缓存中的，有就返回，没有就查询，MySQL 数据库，查到就返回重定位响应，也才写入缓存中</p></li>
+<li><p>关于缓存设置</p>
+<ul>
+<li><p>采用 LRU 方式</p></li>
+<li><p>Redis 集群部署</p></li>
+<li><p>根据数据量设计内存的大小，使用 LRU 淘汰策略，移除最近最少使用的 key</p></li>
+</ul></li>
+<li><p>环保节缓存击穿的问题</p>
+<ul>
+<li><p>过期时间加大</p></li>
+<li><p>加锁</p></li>
+<li><p>使用 singleflight 合并请求</p></li>
+</ul></li>
+<li><p>解决缓存穿透的问题</p>
+<ul>
+<li><p>通过布隆过滤器，不存储原始数据，如果过滤器找不到一定不在，找到了就查找数据库，可能不存在</p></li>
+<li><p>布谷鸟过滤器，支持删除本项目比较适合使用布谷鸟过滤器</p></li>
+</ul></li>
+</ul>
+<p><strong>部署</strong> </p>
+<p>我们的短链服务部署在 Nginx 后。通过这种方式，可以通过 Nginx 的访问日志（access.log）来统计访问数据。（例如通过EFK采集日志，统计报表）</p>
+<p><strong>项目管理</strong> </p>
+<p>使用 git</p>
+</section>
+<section id="技术栈总结" class="level4">
+<h4 class="anchored" data-anchor-id="技术栈总结">技术栈总结</h4>
+<p>Golang Go-Zero MySQL Redis Git Nginx EFK</p>
+</section>
+</section>
+</section>
+<section id="项目实现" class="level2">
+<h2 class="anchored" data-anchor-id="项目实现">项目实现</h2>
+<section id="搭建项目骨架" class="level3">
+<h3 class="anchored" data-anchor-id="搭建项目骨架">1、搭建项目骨架</h3>
+<section id="建库建表" class="level4">
+<h4 class="anchored" data-anchor-id="建库建表">1.1、建库建表</h4>
+<p>使用 docker创建的 MySQL 容器，在其中进行建库建表，具体过程如下图：</p>
+<p><img src="../assets/images/GoLink/GoLink-image-2.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
+<section id="搭建-go-zero框架的骨架" class="level4">
+<h4 class="anchored" data-anchor-id="搭建-go-zero框架的骨架">1.2、搭建 go-zero框架的骨架</h4>
+<p>我们使用 goctl进行框架代码的生成</p>
+<p><img src="../assets/images/GoLink/GoLink-image-3.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><strong>api 文件</strong> </p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode typescript code-with-copy"><code class="sourceCode typescript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>syntax <span class="op">=</span> <span class="st">"v1"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">// 进行项目的简单说明</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">info</span> (</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    title<span class="op">:</span>   <span class="st">"短链接项目"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    author<span class="op">:</span>  <span class="st">"aorangehc"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    date<span class="op">:</span>    <span class="st">"2025年 8 月 5 日"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    version<span class="op">:</span> <span class="st">"v1"</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> ConvertReq {</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    LongUrl <span class="fu">string</span> <span class="vs">`json:"longUrl"`</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> ConvertResp {</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    ShortUrl <span class="fu">string</span> <span class="vs">`json:"shortUrl"`</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> ShowReq {</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    ShortUrl <span class="fu">string</span> <span class="vs">`json:"shortUrl"`</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> ShowResp {</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    LongUrl <span class="fu">string</span> <span class="vs">`json:"longUrl"`</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>@<span class="fu">server</span> (</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    prefix<span class="op">:</span> <span class="st">"/api/shortener"</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>service shortener_api {</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    @handler ConvertHandler</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    post <span class="op">/</span><span class="fu">convert</span> (ConvertReq) <span class="fu">returns</span> (ConvertResp)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    @handler ShowHandler</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">get</span> <span class="op">/:</span><span class="fu">shortUrl</span> (ShowReq) <span class="fu">returns</span> (ShowResp)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>model文件</strong> </p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> `sequence` (</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    `id` bigint(<span class="dv">20</span>) unsigned <span class="kw">NOT</span> <span class="kw">NULL</span> AUTO_INCREMENT,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    `stub` <span class="dt">varchar</span>(<span class="dv">1</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    `timestamp` <span class="dt">timestamp</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_TIMESTAMP</span> <span class="kw">ON</span> <span class="kw">UPDATE</span> <span class="fu">CURRENT_TIMESTAMP</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (`id`),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">UNIQUE</span> <span class="kw">KEY</span> `idx_uniq_stub` (`stub`)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>) ENGINE<span class="op">=</span>MyISAM <span class="kw">DEFAULT</span> CHARSET<span class="op">=</span>utf8;</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> `short_url_map` (</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    `id` BIGINT UNSIGNED <span class="kw">NOT</span> <span class="kw">NULL</span> AUTO_INCREMENT <span class="kw">COMMENT</span> <span class="st">'主键'</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    `create_at` DATETIME <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_TIMESTAMP</span> <span class="kw">COMMENT</span> <span class="st">'创建时间'</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    `create_by` <span class="dt">VARCHAR</span>(<span class="dv">64</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> <span class="st">''</span> <span class="kw">COMMENT</span> <span class="st">'创建者'</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    `is_del` tinyint UNSIGNED <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> <span class="st">'0'</span> <span class="kw">COMMENT</span> <span class="st">'是否删除：0正常 1删除'</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    `lurl` <span class="dt">varchar</span>(<span class="dv">2048</span>) <span class="kw">DEFAULT</span> <span class="kw">NULL</span> <span class="kw">COMMENT</span> <span class="st">'长链接'</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    `md5` <span class="dt">char</span>(<span class="dv">32</span>) <span class="kw">DEFAULT</span> <span class="kw">NULL</span> <span class="kw">COMMENT</span> <span class="st">'长链接MD5'</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    `surl` <span class="dt">varchar</span>(<span class="dv">11</span>) <span class="kw">DEFAULT</span> <span class="kw">NULL</span> <span class="kw">COMMENT</span> <span class="st">'短链接'</span>,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(`id`),</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INDEX</span>(`is_del`),</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">UNIQUE</span>(`md5`),</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">UNIQUE</span>(`surl`)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>) ENGINE<span class="op">=</span>INNODB <span class="kw">DEFAULT</span> CHARSET<span class="op">=</span>utf8mb4;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="下载项目依赖" class="level4">
+<h4 class="anchored" data-anchor-id="下载项目依赖">1.3、下载项目依赖</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 在根目录下使用</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">go</span> mod tidy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="运行项目" class="level4">
+<h4 class="anchored" data-anchor-id="运行项目">1.4、运行项目</h4>
+<p>运行正常</p>
+<p><img src="../assets/images/GoLink/GoLink-image-4.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
+<section id="修改配置文件和配置结构体" class="level4">
+<h4 class="anchored" data-anchor-id="修改配置文件和配置结构体">1.5、修改配置文件和配置结构体</h4>
+<p>咋yaml 文件中增加数据库配置并在 config 文件中进行相应参数的添加。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ShortUrlDB:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">DataSource:</span> <span class="st">"user:password@tcp(127.0.0.1:3307)/golink?charset=utf8mb4&amp;parseTime=True&amp;loc=Local"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">SequenceDB:</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">DataSource:</span> <span class="st">"user:password@tcp(127.0.0.1:3307)/golink?charset=utf8mb4&amp;parseTime=True&amp;loc=Local"</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="bu">type</span> Config struct {</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">rest.RestConf</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="ex">ShortUrlDB</span> struct {</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="ex">DataSource</span> string</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="er">}</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="ex">SequenceDB</span> struct {</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="ex">DataSource</span> string</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="er">}</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="转链" class="level3">
+<h3 class="anchored" data-anchor-id="转链">2、转链</h3>
+<p>长链接 -&gt; 短链接</p>
+<section id="长链接校验" class="level4">
+<h4 class="anchored" data-anchor-id="长链接校验">2.1、长链接校验</h4>
+<p><strong>数据不能为空</strong> </p>
+<p>使用 validator 库进行参数校验</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">go</span> get github.com/go-playground/validator/v10</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>之后在 api文件中参数后面添加 validate 参数和设置</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> ConvertReq <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    LongUrl <span class="dt">string</span> <span class="st">`json:"longUrl" validate:"required"`</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> ConvertResp <span class="op">{</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    ShortUrl <span class="dt">string</span> <span class="st">`json:"shortUrl"`</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> ShowReq <span class="op">{</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    ShortUrl <span class="dt">string</span> <span class="st">`json:"shortUrl" validate:"required"`</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> ShowResp <span class="op">{</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    LongUrl <span class="dt">string</span> <span class="st">`json:"longUrl"`</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>重新生成代码后修改 context 文件并测试，数据校验设置成功，对空数据会直接报错。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">//</span> 参数校验</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="ex">err</span> := validator.New<span class="er">(</span><span class="kw">)</span><span class="ex">.StructCtx</span><span class="er">(</span><span class="fu">r.Context()</span><span class="ex">,</span> <span class="kw">&amp;</span><span class="ex">req</span><span class="kw">);</span> <span class="ex">err</span> != nil {</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">httpx.ErrorCtx</span><span class="er">(</span><span class="fu">r.Context()</span><span class="ex">,</span> w, err<span class="kw">)</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="../assets/images/GoLink/GoLink-image-5.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><strong>长链接能够进行请求</strong> </p>
+<p>通过 http 标准库创建一个 http 客户端进行探活</p>
+<p><img src="../assets/images/GoLink/GoLink-image-6.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/GoLink/GoLink-image-7.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><strong>判断是否已经转链</strong> </p>
+<p>数据库中使用 md5作为主键</p>
+<p>先生成md5</p>
+<p>之后查数据库中的 md5是否存在</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>md5Str <span class="op">:=</span> md5<span class="op">.</span>Sum<span class="op">([]</span><span class="dt">byte</span><span class="op">(</span>req<span class="op">.</span>LongUrl<span class="op">))</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>u<span class="op">,</span> err <span class="op">:=</span> l<span class="op">.</span>svcCtx<span class="op">.</span>ShortUrlModel<span class="op">.</span>FindOneByMd5<span class="op">(</span>l<span class="op">.</span>ctx<span class="op">,</span> sql<span class="op">.</span>NullString<span class="op">{</span>String<span class="op">:</span> md5Str<span class="op">,</span> Valid<span class="op">:</span> <span class="ot">true</span><span class="op">})</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> err <span class="op">!=</span> sqlx<span class="op">.</span>ErrNotFound <span class="op">{</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> err <span class="op">==</span> <span class="ot">nil</span> <span class="op">{</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ot">nil</span><span class="op">,</span> errors<span class="op">.</span>New<span class="op">(</span><span class="st">"该长链接已转链，短链接为："</span> <span class="op">+</span> u<span class="op">.</span>Surl<span class="op">.</span>String<span class="op">)</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    logx<span class="op">.</span>Errorw<span class="op">(</span><span class="st">"ShortUrlModel.FindOneByMd5 error"</span><span class="op">,</span> logx<span class="op">.</span>Field<span class="op">(</span><span class="st">"err"</span><span class="op">,</span> err<span class="op">),</span> logx<span class="op">.</span>Field<span class="op">(</span><span class="st">"md5"</span><span class="op">,</span> md5Str<span class="op">))</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ot">nil</span><span class="op">,</span> err</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">// Sum 计算数据的 MD5 值，返回十六进制字符串表示</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> Sum<span class="op">(</span>data <span class="op">[]</span><span class="dt">byte</span><span class="op">)</span> <span class="dt">string</span> <span class="op">{</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    h <span class="op">:=</span> md5<span class="op">.</span>New<span class="op">()</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    h<span class="op">.</span>Write<span class="op">(</span>data<span class="op">)</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> hex<span class="op">.</span>EncodeToString<span class="op">(</span>h<span class="op">.</span>Sum<span class="op">(</span><span class="ot">nil</span><span class="op">))</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>避免循环转链接</strong> </p>
+<p>解析出链接的 basepath，然后查询数据库中是否是已经转过的短链</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">basePath,</span> err := urltools.GetBasePath<span class="er">(</span><span class="ex">req.LongUrl</span><span class="kw">)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="ex">err</span> != nil {</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">logx.Errorw</span><span class="er">(</span><span class="st">"GetBasePath error"</span><span class="ex">,</span> logx.Field<span class="er">(</span><span class="st">"err"</span><span class="ex">,</span> err<span class="kw">))</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ex">nil,</span> err</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="ex">u,</span> err = l.svcCtx.ShortUrlModel.FindOneBySurl<span class="er">(</span><span class="ex">l.ctx,</span> sql.NullString{String: basePath, Valid: true}<span class="kw">)</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="ex">err</span> != sqlx.ErrNotFound {</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="ex">err</span> == nil {</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ex">nil,</span> errors.New<span class="er">(</span><span class="st">"该链接已转链，短链接为："</span> + u.Surl.String<span class="kw">)</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="er">}</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="ex">logx.Errorw</span><span class="er">(</span><span class="st">"ShortUrlModel.FindOneBySurl error"</span><span class="ex">,</span> logx.Field<span class="er">(</span><span class="st">"err"</span><span class="ex">,</span> err<span class="kw">)</span><span class="ex">,</span> logx.Field<span class="er">(</span><span class="st">"basePath"</span><span class="ex">,</span> basePath<span class="kw">))</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ex">nil,</span> err</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="ex">//</span> GetBasePath 获取 url 的 base path</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="ex">func</span> GetBasePath<span class="er">(</span><span class="ex">baseUrl</span> string<span class="kw">)</span> <span class="kw">(</span><span class="ex">string,</span> error<span class="kw">)</span> <span class="kw">{</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="ex">myUrl,</span> err := url.Parse<span class="er">(</span><span class="ex">baseUrl</span><span class="kw">)</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="ex">err</span> != nil {</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">""</span><span class="ex">,</span> err</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">}</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="ex">basePath</span> := path.Base<span class="er">(</span><span class="ex">myUrl.Path</span><span class="kw">)</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ex">basePath,</span> nil</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="取号器实现" class="level4">
+<h4 class="anchored" data-anchor-id="取号器实现">2.2、取号器实现</h4>
+<p>每来一个转链请求，使用 replace into 语句往 sequence 表中插入一条数据，并取出 id 作为号码。</p>
+<p>我们在 model中增加新的方法，时间 replace 方法并返回最新的 id</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Replace 实现 repalce into语句，返回最后插入数据的 id</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="op">(</span>m <span class="op">*</span>defaultSequenceModel<span class="op">)</span> Replace<span class="op">(</span>ctx context<span class="op">.</span>Context<span class="op">,</span> newData <span class="op">*</span>Sequence<span class="op">)</span> <span class="op">(</span><span class="dt">int64</span><span class="op">,</span> <span class="dt">error</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    query <span class="op">:=</span> fmt<span class="op">.</span>Sprintf<span class="op">(</span><span class="st">"replace into %s (%s) values (?, ?)"</span><span class="op">,</span> m<span class="op">.</span>table<span class="op">,</span> sequenceRowsExpectAutoSet<span class="op">)</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    ret<span class="op">,</span> err <span class="op">:=</span> m<span class="op">.</span>conn<span class="op">.</span>ExecCtx<span class="op">(</span>ctx<span class="op">,</span> query<span class="op">,</span> newData<span class="op">.</span>Stub<span class="op">,</span> newData<span class="op">.</span>Timestamp<span class="op">)</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> err <span class="op">!=</span> <span class="ot">nil</span> <span class="op">{</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">,</span> err</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    id<span class="op">,</span> err <span class="op">:=</span> ret<span class="op">.</span>LastInsertId<span class="op">()</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> err <span class="op">!=</span> <span class="ot">nil</span> <span class="op">{</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span><span class="op">,</span> err</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> id<span class="op">,</span> <span class="ot">nil</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>测试结果正常。</p>
+<p><img src="../assets/images/GoLink/GoLink-image-8.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/GoLink/GoLink-image-9.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
+<section id="进制转链" class="level4">
+<h4 class="anchored" data-anchor-id="进制转链">2.3、62 进制转链</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">package</span> base62</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="op">(</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"math"</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"strings"</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">// 62进制转换</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">// 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">// 0-9：0-9</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">// a-z：10-35</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">// A-Z：36-61</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">// 为了避免安全性，打乱顺序</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> <span class="op">(</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    baseStr    <span class="dt">string</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    baseStrLen <span class="dt">uint64</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co">// BaseInit 初始化</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> BaseInit<span class="op">(</span>bs <span class="dt">string</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span><span class="op">(</span>bs<span class="op">)</span> <span class="op">==</span> <span class="dv">0</span> <span class="op">{</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>        <span class="bu">panic</span><span class="op">(</span><span class="st">"baseStr is empty"</span><span class="op">)</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>    baseStr <span class="op">=</span> bs</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>    baseStrLen <span class="op">=</span> <span class="dt">uint64</span><span class="op">(</span><span class="bu">len</span><span class="op">(</span>bs<span class="op">))</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="co">// Base62Encode 将数字转换为62进制</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> Base62Encode<span class="op">(</span>num <span class="dt">uint64</span><span class="op">)</span> <span class="dt">string</span> <span class="op">{</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> num <span class="op">==</span> <span class="dv">0</span> <span class="op">{</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dt">string</span><span class="op">(</span>baseStr<span class="op">[</span><span class="dv">0</span><span class="op">])</span></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> res <span class="op">[]</span><span class="dt">byte</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> num <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">{</span></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>        res <span class="op">=</span> <span class="bu">append</span><span class="op">(</span>res<span class="op">,</span> baseStr<span class="op">[</span>num<span class="op">%</span>baseStrLen<span class="op">])</span></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>        num <span class="op">/=</span> baseStrLen</span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dt">string</span><span class="op">(</span>reverse<span class="op">(</span>res<span class="op">))</span></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="co">// Base62Decode 将62进制转换为数字</span></span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> Base62Decode<span class="op">(</span>str <span class="dt">string</span><span class="op">)</span> <span class="op">(</span>seq <span class="dt">uint64</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>    bl <span class="op">:=</span> <span class="op">[]</span><span class="dt">byte</span><span class="op">(</span>str<span class="op">)</span></span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>    bl <span class="op">=</span> reverse<span class="op">(</span>bl<span class="op">)</span></span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> idx<span class="op">,</span> b <span class="op">:=</span> <span class="kw">range</span> bl <span class="op">{</span></span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>        base <span class="op">:=</span> math<span class="op">.</span>Pow<span class="op">(</span><span class="dt">float64</span><span class="op">(</span>baseStrLen<span class="op">),</span> <span class="dt">float64</span><span class="op">(</span>idx<span class="op">))</span></span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>        seq <span class="op">+=</span> <span class="dt">uint64</span><span class="op">(</span>strings<span class="op">.</span>Index<span class="op">(</span>baseStr<span class="op">,</span> <span class="dt">string</span><span class="op">(</span>b<span class="op">)))</span> <span class="op">*</span> <span class="dt">uint64</span><span class="op">(</span>base<span class="op">)</span></span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> seq</span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> reverse<span class="op">(</span>s <span class="op">[]</span><span class="dt">byte</span><span class="op">)</span> <span class="op">[]</span><span class="dt">byte</span> <span class="op">{</span></span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i<span class="op">,</span> j <span class="op">:=</span> <span class="dv">0</span><span class="op">,</span> <span class="bu">len</span><span class="op">(</span>s<span class="op">)-</span><span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;</span> j<span class="op">;</span> i<span class="op">,</span> j <span class="op">=</span> i<span class="op">+</span><span class="dv">1</span><span class="op">,</span> j<span class="op">-</span><span class="dv">1</span> <span class="op">{</span></span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a>        s<span class="op">[</span>i<span class="op">],</span> s<span class="op">[</span>j<span class="op">]</span> <span class="op">=</span> s<span class="op">[</span>j<span class="op">],</span> s<span class="op">[</span>i<span class="op">]</span></span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>通过打乱全局 62 进制字符串简单保证安全性</p>
+<p>通过设置全局的短链接黑名单实现某些词汇的出现</p>
+</section>
+<section id="存储和测试" class="level4">
+<h4 class="anchored" data-anchor-id="存储和测试">2.4、存储和测试</h4>
+<p>结果存储到数据库中</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 4.存储长链接和短链接的映射关系</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> _<span class="op">,</span> err <span class="op">:=</span> l<span class="op">.</span>svcCtx<span class="op">.</span>ShortUrlModel<span class="op">.</span>Insert<span class="op">(</span>l<span class="op">.</span>ctx<span class="op">,</span> <span class="op">&amp;</span>model<span class="op">.</span>ShortUrlMap<span class="op">{</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        Lurl<span class="op">:</span> sql<span class="op">.</span>NullString<span class="op">{</span>String<span class="op">:</span> req<span class="op">.</span>LongUrl<span class="op">,</span> Valid<span class="op">:</span> <span class="ot">true</span><span class="op">},</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        Surl<span class="op">:</span> sql<span class="op">.</span>NullString<span class="op">{</span>String<span class="op">:</span> short<span class="op">,</span> Valid<span class="op">:</span> <span class="ot">true</span><span class="op">},</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        Md5<span class="op">:</span>  sql<span class="op">.</span>NullString<span class="op">{</span>String<span class="op">:</span> md5Str<span class="op">,</span> Valid<span class="op">:</span> <span class="ot">true</span><span class="op">},</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">});</span> err <span class="op">!=</span> <span class="ot">nil</span> <span class="op">{</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        logx<span class="op">.</span>Errorw<span class="op">(</span><span class="st">"ShortUrlModel.Insert error"</span><span class="op">,</span> logx<span class="op">.</span>Field<span class="op">(</span><span class="st">"err"</span><span class="op">,</span> err<span class="op">))</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ot">nil</span><span class="op">,</span> err</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    shortUrl <span class="op">:=</span> l<span class="op">.</span>svcCtx<span class="op">.</span>Config<span class="op">.</span>ShortDoamin <span class="op">+</span> <span class="st">"/"</span> <span class="op">+</span> short <span class="co">// shortUrl = 'http://localhost:8080/' short</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    resp <span class="op">=</span> <span class="op">&amp;</span>types<span class="op">.</span>ConvertResp<span class="op">{</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>        ShortUrl<span class="op">:</span> shortUrl<span class="op">,</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> resp<span class="op">,</span> <span class="ot">nil</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="../assets/images/GoLink/GoLink-image-10.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/GoLink/GoLink-image-11.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
+</section>
+<section id="查看短链接" class="level3">
+<h3 class="anchored" data-anchor-id="查看短链接">3、查看短链接</h3>
+<section id="实现短链接重定向接口" class="level4">
+<h4 class="anchored" data-anchor-id="实现短链接重定向接口">3.1、实现短链接重定向接口</h4>
+<p>接收到短链接请求之后，重定向到真实的链接，同时进行测试</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="op">(</span>l <span class="op">*</span>ShowLogic<span class="op">)</span> Show<span class="op">(</span>req <span class="op">*</span>types<span class="op">.</span>ShowReq<span class="op">)</span> <span class="op">(</span>resp <span class="op">*</span>types<span class="op">.</span>ShowResp<span class="op">,</span> err <span class="dt">error</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 根据短链接查询长链接</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    u<span class="op">,</span> err <span class="op">:=</span> l<span class="op">.</span>svcCtx<span class="op">.</span>ShortUrlModel<span class="op">.</span>FindOneBySurl<span class="op">(</span>l<span class="op">.</span>ctx<span class="op">,</span> sql<span class="op">.</span>NullString<span class="op">{</span>String<span class="op">:</span> req<span class="op">.</span>ShortUrl<span class="op">,</span> Valid<span class="op">:</span> <span class="ot">true</span><span class="op">})</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> err <span class="op">!=</span> <span class="ot">nil</span> <span class="op">{</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> err <span class="op">==</span> sql<span class="op">.</span>ErrNoRows <span class="op">{</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="ot">nil</span><span class="op">,</span> errors<span class="op">.</span>New<span class="op">(</span><span class="st">"404 Not Found"</span><span class="op">)</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        logx<span class="op">.</span>Errorw<span class="op">(</span><span class="st">"ShortUrlModel.FindOneBySurl error"</span><span class="op">,</span> logx<span class="op">.</span>Field<span class="op">(</span><span class="st">"err"</span><span class="op">,</span> err<span class="op">))</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ot">nil</span><span class="op">,</span> err</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    resp <span class="op">=</span> <span class="op">&amp;</span>types<span class="op">.</span>ShowResp<span class="op">{</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>        LongUrl<span class="op">:</span> u<span class="op">.</span>Lurl<span class="op">.</span>String<span class="op">,</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 返回查询到的长链接，在 handler 层进行重定向返回</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> resp<span class="op">,</span> <span class="ot">nil</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="../assets/images/GoLink/GoLink-PixPin_2026-02-04_16-39-14.gif" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p>为了提升性能，加入 Redis 缓存，提升速度</p>
+<p><img src="../assets/images/GoLink/GoLink-image-15.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
+<section id="singleflight" class="level4">
+<h4 class="anchored" data-anchor-id="singleflight">3.2、singleflight</h4>
+<p>它提供了重复函数调用抑制机制，使用它可以避免同时进行相同的函数调用。第一个调用未完成时后续的重复调用会等待，当第一个调用完成时则会与它们分享结果，这样一来虽然只执行了一次函数调用但是所有调用都拿到了最终的调用结果。</p>
+<p>go-zero框架默认使用 singleflight</p>
+</section>
+<section id="使用布隆过滤器" class="level4">
+<h4 class="anchored" data-anchor-id="使用布隆过滤器">3.3、使用布隆过滤器</h4>
+<p>防止出现缓存穿透的情况（短时间内大量不存在数据进行请求）</p>
+<p><img src="../assets/images/GoLink/GoLink-image-16.png" alt="daily" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p>通过布隆过滤器的机制，当所有对应位置全为 1 的时候表示可能存在，否则一定不存在。</p>
+</section>
+</section>
+</section>
+<section id="参考资料" class="level2">
+<h2 class="anchored" data-anchor-id="参考资料">参考资料</h2>
+<p><a href="https://github.com/zeromicro/go-zero/tree/master">go-zero</a></p>
+<p><a href="https://go-zero.dev/">go-zero官方文档</a></p>
+<p><a href="https://aorangehc.github.io/content/learning-notes/golang/entries/go%E7%9A%84%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-g%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8.html">go的版本管理工具-g的安装和使用</a></p>
+<p><a href="https://www.zhihu.com/question/29270034">短 URL 系统是怎么设计的？</a></p>
+<p><a href="https://hardcore.feishu.cn/docs/doccnAfY0f35ZgnrFg7jSTQmOOf">实现一个短域名系统</a></p>
+<p><a href="https://github.com/mxschmitt/golang-url-shortener">Golang URL Shortener</a></p>
+<p><a href="https://github.com/andyxning/shortme">shortme</a></p>
+<p><a href="https://www.liwenzhou.com/posts/Go/singleflight/">singleflight</a></p>
+<p><a href="https://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/">Ticket Servers: Distributed Unique Primary Keys on the Cheap</a></p>
+<p><a href="https://www.geeksforgeeks.org/system-design-url-shortening-service/">URL Shortner System Design</a></p>
+<p><a href="https://medium.com/@sandeep4.verma/system-design-scalable-url-shortener-service-like-tinyurl-106f30f23a82">System Design : Scalable URL shortener service like TinyURL</a></p>
+<p><a href="https://www.designgurus.io/blog/url-shortening">How to Design a URL Shortener Service (System Design Interview Guide)</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<button id="lang-toggle" type="button" aria-label="Toggle language"></button>
+<script>
+  (() => {
+    const storageKey = "site-lang";
+    const defaultLang = "zh";
+    const button = document.getElementById("lang-toggle");
+    if (!button) {
+      return;
+    }
+
+    const applyLang = (lang) => {
+      document.body.dataset.lang = lang;
+      button.textContent = lang === "zh" ? "EN" : "中文";
+      button.setAttribute("aria-label", lang === "zh" ? "Switch to English" : "切换中文");
+      window.localStorage.setItem(storageKey, lang);
+    };
+
+    const stored = window.localStorage.getItem(storageKey);
+    applyLang(stored || defaultLang);
+
+    button.addEventListener("click", () => {
+      const next = document.body.dataset.lang === "zh" ? "en" : "zh";
+      applyLang(next);
+    });
+  })();
+</script>
+<script>
+  (() => {
+    const storageKey = "theme-preference";
+    const getStored = () => {
+      try {
+        return window.localStorage.getItem(storageKey);
+      } catch {
+        return null;
+      }
+    };
+    const setStored = (value) => {
+      try {
+        window.localStorage.setItem(storageKey, value);
+      } catch {}
+    };
+    const currentTheme = () =>
+      document.body.classList.contains("quarto-dark") ? "dark" : "light";
+
+    const applyStored = () => {
+      const stored = getStored();
+      if (!stored) {
+        return;
+      }
+      if (stored !== currentTheme() && window.quartoToggleColorScheme) {
+        window.quartoToggleColorScheme();
+      }
+    };
+
+    const bindToggle = () => {
+      const toggles = document.querySelectorAll(".quarto-color-scheme-toggle");
+      toggles.forEach((toggle) => {
+        toggle.addEventListener("click", () => {
+          window.setTimeout(() => setStored(currentTheme()), 0);
+        });
+      });
+    };
+
+    applyStored();
+    bindToggle();
+  })();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built with Quarto</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
