@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-01-16">
 
-<title>微服务学习笔记</title>
+<title>Kratos 微服务框架</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,33 +21,66 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<script src="../../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-3bbbbd466991e281563892c5dce73c3d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-4990a151d59038663a44b02348f88d08.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../site_libs/bootstrap/bootstrap-3bbbbd466991e281563892c5dce73c3d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-3bbbbd466991e281563892c5dce73c3d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-dark-4990a151d59038663a44b02348f88d08.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../../site_libs/bootstrap/bootstrap-3bbbbd466991e281563892c5dce73c3d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,68 +107,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -312,21 +288,21 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../pages/index.html"> 
+    <a class="nav-link" href="../../../../pages/index.html"> 
 <span class="menu-text"><span class="lang-en">About Me</span><span class="lang-zh">关于我</span></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../pages/home.html"> 
+    <a class="nav-link" href="../../../../pages/home.html"> 
 <span class="menu-text"><span class="lang-en">Home</span><span class="lang-zh">主页</span></span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../content/blogs/index.html"> 
+    <a class="nav-link" href="../../../../content/blogs/index.html"> 
 <span class="menu-text"><span class="lang-en">Blogs</span><span class="lang-zh">博客</span></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../content/projects/index.html"> 
+    <a class="nav-link" href="../../../../content/projects/index.html"> 
 <span class="menu-text"><span class="lang-en">Projects</span><span class="lang-zh">项目</span></span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -335,15 +311,15 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-span-classlang-enpapersreportsspanspan-classlang-zh论文和技术报告span">    
         <li>
-    <a class="dropdown-item" href="../../../content/papers/index.html">
+    <a class="dropdown-item" href="../../../../content/papers/index.html">
  <span class="dropdown-text">Overview</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../content/papers/deepseek/index.html">
+    <a class="dropdown-item" href="../../../../content/papers/deepseek/index.html">
  <span class="dropdown-text">DeepSeek</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../content/papers/labnotes/index.html">
+    <a class="dropdown-item" href="../../../../content/papers/labnotes/index.html">
  <span class="dropdown-text">LabNotes</span></a>
   </li>  
     </ul>
@@ -354,23 +330,23 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-span-classlang-enlearning-notesspanspan-classlang-zh学习笔记span">    
         <li>
-    <a class="dropdown-item" href="../../../content/learning-notes/index.html">
+    <a class="dropdown-item" href="../../../../content/learning-notes/index.html">
  <span class="dropdown-text">Overview</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../content/learning-notes/golang/index.html">
+    <a class="dropdown-item" href="../../../../content/learning-notes/golang/index.html">
  <span class="dropdown-text">golang基础</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../content/learning-notes/microservices/index.html">
+    <a class="dropdown-item" href="../../../../content/learning-notes/microservices/index.html">
  <span class="dropdown-text">微服务(golang)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../content/learning-notes/infrastructure/index.html">
+    <a class="dropdown-item" href="../../../../content/learning-notes/infrastructure/index.html">
  <span class="dropdown-text">基础设施(golang)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../content/learning-notes/deepL/index.html">
+    <a class="dropdown-item" href="../../../../content/learning-notes/deepL/index.html">
  <span class="dropdown-text">深度学习</span></a>
   </li>  
     </ul>
@@ -390,22 +366,44 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="JUU2JUExJTg2JUU2JTlFJUI2">框架 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx">微服务 <span class="quarto-category-count">(6)</span></div><div class="category" data-category="YXBp">api <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z28ta2l0">go-kit <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z28temVybw==">go-zero <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z29sYW5n">golang <span class="quarto-category-count">(6)</span></div><div class="category" data-category="S3JhdG9z">Kratos <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHJvdG9idWY=">Protobuf <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#简介" id="toc-简介" class="nav-link active" data-scroll-target="#简介">简介</a></li>
+  <li><a href="#安装和简单使用" id="toc-安装和简单使用" class="nav-link" data-scroll-target="#安装和简单使用">安装和简单使用</a>
+  <ul class="collapse">
+  <li><a href="#安装" id="toc-安装" class="nav-link" data-scroll-target="#安装">安装</a></li>
+  <li><a href="#demo" id="toc-demo" class="nav-link" data-scroll-target="#demo">Demo</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">微服务学习笔记</h1>
-</div>
+<h1 class="title">Kratos 微服务框架</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">golang</div>
+    <div class="quarto-category">微服务</div>
+    <div class="quarto-category">Kratos</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 16, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -415,203 +413,134 @@ window.Quarto = {
 </header>
 
 
-<p>记录一下微服务学习过程中的笔记.主要语言还是golang.</p>
-<p>相关代码仓库github: <a href="https://github.com/aorangehc/GoFramwork">aorangehc/GoFramwork</a></p>
+<p><img src="../assets/images/kratos/Kratos-image-3.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p>Kratos: An elegant toolkit for Go microservices.</p>
+<p>Kratos是一个基于golang实现的面向微服务的治理框架，它提供了便捷的功能，帮助你从零开始快速构建一个可靠的应用。</p>
+<p>他是 B 站开源的一个 golang 微服务框架，也是主流的微服务框架之一。</p>
+<p>名字来源于:《战神》游戏以希腊神话为背景，讲述奎托斯（Kratos）由凡人成为战神并展开弑神屠杀的冒险经历。</p>
+<section id="简介" class="level2">
+<h2 class="anchored" data-anchor-id="简介">简介</h2>
+<p><a href="https://github.com/go-kratos/kratos?tab=readme-ov-file">项目地址</a></p>
+<p><a href="https://go-kratos.dev/zh-cn/">文档地址</a></p>
+</section>
+<section id="安装和简单使用" class="level2">
+<h2 class="anchored" data-anchor-id="安装和简单使用">安装和简单使用</h2>
+<section id="安装" class="level3">
+<h3 class="anchored" data-anchor-id="安装">安装</h3>
+<p>安装前置</p>
+<ul>
+<li><p><a href="https://golang.org/dl/">go</a></p></li>
+<li><p><a href="https://github.com/protocolbuffers/protobuf">protoc</a></p></li>
+<li><p><a href="https://github.com/protocolbuffers/protobuf-go">protoc-gen-go</a></p></li>
+</ul>
+<p>安装指令</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">go</span> install github.com/go-kratos/kratos/cmd/kratos/v2@latest</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">kratos</span> upgrade</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">go</span> install github.com/google/wire/cmd/wire@latest</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>安装之后查看相关操作</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">base</span><span class="kw">)</span> <span class="ex">➜</span>  GoFramwork git:<span class="er">(</span><span class="ex">main</span><span class="kw">)</span> <span class="ex">kratos</span> <span class="at">-h</span>     </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Kratos:</span> An elegant toolkit for Go microservices.</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Usage:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">kratos</span> <span class="pp">[</span><span class="ss">command</span><span class="pp">]</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Available</span> Commands:</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">changelog</span>   生成 Kratos 变更 log</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">completion</span>  为指定的Shell生成自动补全脚本</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="bu">help</span>        帮助指令</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="ex">new</span>         生成一个服务模板</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="ex">proto</span>       生成 proto 文件</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="ex">run</span>         运行项目</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="ex">upgrade</span>     升级 Kratos 工具</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ex">Flags:</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-h,</span> <span class="at">--help</span>      help for kratos</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="ex">-v,</span> <span class="at">--version</span>   version for kratos</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="ex">Use</span> <span class="st">"kratos [command] --help"</span> for more information about a command.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="demo" class="level3">
+<h3 class="anchored" data-anchor-id="demo">Demo</h3>
+<p>根据官方的提示创建一个Kratos HelloWord</p>
+<p>首先使用 new 创建项目</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kratos</span> new helloworld</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>new 完成后我们发现可以选择不同的模板，这里我们选择第一个service</p>
+<p><img src="../assets/images/kratos/Kratos-image-2.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p>等待生成完成，这是生成的项目结构</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>├── api  # API 定义层 <span class="op">(</span>Protocol Buffers<span class="op">)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>│   └── helloworld</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>│       └── v1</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>│           ├── error_reason<span class="op">.</span>pb<span class="op">.</span><span class="cf">go</span>   # <span class="op">[</span>生成<span class="op">]</span> 错误原因的 Go 代码</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>│           ├── error_reason<span class="op">.</span>proto   # 定义业务错误原因 <span class="op">(</span>Enum<span class="op">)</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>│           ├── greeter_grpc<span class="op">.</span>pb<span class="op">.</span><span class="cf">go</span>   # <span class="op">[</span>生成<span class="op">]</span> gRPC 服务端和客户端代码</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>│           ├── greeter_http<span class="op">.</span>pb<span class="op">.</span><span class="cf">go</span>   # <span class="op">[</span>生成<span class="op">]</span> Kratos HTTP 服务代码 <span class="op">(</span>路由、编解码<span class="op">)</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>│           ├── greeter<span class="op">.</span>pb<span class="op">.</span><span class="cf">go</span>        # <span class="op">[</span>生成<span class="op">]</span> 请求<span class="op">/</span>响应消息的 Go 结构体</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>│           └── greeter<span class="op">.</span>proto        # 定义服务接口 <span class="op">(</span>RPC<span class="op">)</span> 和消息结构 <span class="op">(</span>Message<span class="op">)</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>├── cmd  # 程序入口 <span class="op">(</span>Entry Point<span class="op">)</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>│   └── helloworld</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>│       ├── main<span class="op">.</span><span class="cf">go</span>      # 主程序入口：负责初始化资源、依赖注入、启动服务、监听退出信号</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>│       ├── wire_gen<span class="op">.</span><span class="cf">go</span>  # <span class="op">[</span>生成<span class="op">]</span> Wire 依赖注入生成的具体代码 <span class="op">(</span>不要手动修改<span class="op">)</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>│       └── wire<span class="op">.</span><span class="cf">go</span>      # Wire 依赖注入的声明文件，定义 ProviderSet</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>├── configs  # 配置文件</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>│   └── config<span class="op">.</span>yaml      # 具体的配置内容 <span class="op">(</span>如数据库地址、端口、日志级别等<span class="op">)</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>├── Dockerfile           # 容器化构建脚本</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>├── <span class="cf">go</span><span class="op">.</span>mod               # Go 模块依赖定义</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>├── <span class="cf">go</span><span class="op">.</span>sum               # Go 模块依赖校验和</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>├── internal  # 内部业务逻辑 <span class="op">(</span>Go 规范：外部项目无法 <span class="kw">import</span> 此目录内容<span class="op">)</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>│   ├── biz   # <span class="op">[</span>业务逻辑层 <span class="op">/</span> 领域层<span class="op">]</span> <span class="op">(</span>Domain Layer<span class="op">)</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>│   │   ├── biz<span class="op">.</span><span class="cf">go</span>       # 定义 biz 层的 ProviderSet</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>│   │   ├── greeter<span class="op">.</span><span class="cf">go</span>   # 定义领域对象 <span class="op">(</span>Entity<span class="op">)</span> 和 业务接口 <span class="op">(</span>Repo Interface<span class="op">)</span>，不依赖具体实现</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>│   │   └── README<span class="op">.</span>md</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>│   ├── conf  # <span class="op">[</span>配置定义层<span class="op">]</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>│   │   ├── conf<span class="op">.</span>pb<span class="op">.</span><span class="cf">go</span>   # <span class="op">[</span>生成<span class="op">]</span> 配置文件的 Go 结构体</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>│   │   └── conf<span class="op">.</span>proto   # 定义配置文件的结构 <span class="op">(</span>将 YAML 映射为强类型 <span class="kw">struct</span><span class="op">)</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>│   ├── data  # <span class="op">[</span>数据访问层 <span class="op">/</span> 基础设施层<span class="op">]</span> <span class="op">(</span>Infrastructure Layer<span class="op">)</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>│   │   ├── data<span class="op">.</span><span class="cf">go</span>      # 初始化数据库<span class="op">/</span>Redis 连接，定义 data 层的 ProviderSet</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>│   │   ├── greeter<span class="op">.</span><span class="cf">go</span>   # 实现 biz 层定义的 Repo 接口 <span class="op">(</span>数据库 CRUD、缓存、RPC 调用<span class="op">)</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>│   │   └── README<span class="op">.</span>md</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>│   ├── server # <span class="op">[</span>服务实例层<span class="op">]</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>│   │   ├── grpc<span class="op">.</span><span class="cf">go</span>      # 初始化 gRPC Server</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>│   │   ├── http<span class="op">.</span><span class="cf">go</span>      # 初始化 HTTP Server</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>│   │   └── server<span class="op">.</span><span class="cf">go</span>    # 定义 server 层的 ProviderSet</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>│   └── service # <span class="op">[</span>应用服务层<span class="op">]</span> <span class="op">(</span>Application Layer<span class="op">)</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>│       ├── greeter<span class="op">.</span><span class="cf">go</span>   # 实现 api 定义的 protobuf 接口，负责 DTO <span class="op">-&gt;</span> DO 转换，编排 biz 逻辑</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>│       ├── README<span class="op">.</span>md</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>│       └── service<span class="op">.</span><span class="cf">go</span>   # 定义 service 层的 ProviderSet</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>├── LICENSE              # 许可证文件</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>├── Makefile             # 项目管理脚本 <span class="op">(</span>生成 API、编译、运行、测试等命令<span class="op">)</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>├── openapi<span class="op">.</span>yaml         # <span class="op">[</span>生成<span class="op">]</span> OpenAPI<span class="op">/</span>Swagger 接口文档</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>├── README<span class="op">.</span>md            # 项目说明文档</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>└── third_party  # 第三方依赖的 Proto 文件 <span class="op">(</span>用于生成代码<span class="op">)</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    ├── errors           # Kratos 错误模型定义</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    │   └── errors<span class="op">.</span>proto</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    ├── google           # Google 官方 Proto <span class="op">(</span>API 注解、HTTP 映射、通用类型等<span class="op">)</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    │   ├── api</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    │   │   ├── <span class="op">...</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    │   └── protobuf</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    │       ├── <span class="op">...</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    ├── openapi          # OpenAPI 生成相关的 Proto 定义</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>    │   └── v3</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>    │       ├── <span class="op">...</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>    ├── README<span class="op">.</span>md</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>    └── validate         # 参数校验规则 Proto 定义</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>        ├── README<span class="op">.</span>md</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>        └── validate<span class="op">.</span>proto</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>之后我们进入目录，运行依赖下载指令</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> helloworld</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">go</span> mod download</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们也可以自己编写proto源码、wire等等，通过 Kratos 生成相应的代码</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">go</span> generate ./...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然后是运行项目</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kratos</span> run</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="../assets/images/kratos/Kratos-image.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/kratos/Kratos-image-1.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
 
 
+</section>
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Z29sYW5nJTJDJUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUExJTJDS3JhdG9z" data-listing-date-sort="1737033306000" data-listing-file-modified-sort="1770691930704" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="949">
-<div class="thumbnail"><a href="../../../content/learning-notes/microservices/entries/Kratos.html" class="no-external">
-
-<p class="card-img-top"><img src="assets/images/kratos/Kratos-image-3.png" alt="go" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../../content/learning-notes/microservices/entries/Kratos.html" class="no-external">Kratos 微服务框架</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z29sYW5n'); return false;">golang</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx'); return false;">微服务</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('S3JhdG9z'); return false;">Kratos</div>
-
-</div>
-<div class="delink listing-description"><a href="../../../content/learning-notes/microservices/entries/Kratos.html" class="no-external">
-Kratos: An elegant toolkit for Go microservices.
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../../content/learning-notes/microservices/entries/Kratos.html" class="no-external">
-<div class="listing-date">
-Jan 16, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Z29sYW5nJTJDJUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUExJTJDYXBp" data-listing-date-sort="1737033306000" data-listing-file-modified-sort="1769742703514" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1005">
-<div class="thumbnail"><a href="../../../content/learning-notes/microservices/entries/api语言.html" class="no-external">
-
-<p class="card-img-top"><img src="assets/images/api/image.png" alt="go" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../../content/learning-notes/microservices/entries/api语言.html" class="no-external">go-zero的API语言</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z29sYW5n'); return false;">golang</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx'); return false;">微服务</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('YXBp'); return false;">api</div>
-
-</div>
-<div class="delink listing-description"><a href="../../../content/learning-notes/microservices/entries/api语言.html" class="no-external">
-api 是 go-zero 自研的领域特性语言，旨在实现人性化的基础描述原因，作为生成 HTTP 服务最基本的描述语言。可以通过官方提供的 goctl 工具实现 api 向结构化项目的转换。
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../../content/learning-notes/microservices/entries/api语言.html" class="no-external">
-<div class="listing-date">
-Jan 16, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="Z29sYW5nJTJDJUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUExJTJDZ28ta2l0" data-listing-date-sort="1737033306000" data-listing-file-modified-sort="1769742703515" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="413">
-<div class="thumbnail"><a href="../../../content/learning-notes/microservices/entries/go-kit.html" class="no-external">
-
-<p class="card-img-top"><img src="assets/images/go-kit/image-13.png" alt="go" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../../content/learning-notes/microservices/entries/go-kit.html" class="no-external">Go-Kit 微服务框架</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z29sYW5n'); return false;">golang</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx'); return false;">微服务</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z28ta2l0'); return false;">go-kit</div>
-
-</div>
-<div class="delink listing-description"><a href="../../../content/learning-notes/microservices/entries/go-kit.html" class="no-external">
-相关代码的GitHub地址：GoKitAddSrv，不同文件夹代表不同章节，直接<strong>go run .</strong>可运行
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../../content/learning-notes/microservices/entries/go-kit.html" class="no-external">
-<div class="listing-date">
-Jan 16, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="Z29sYW5nJTJDJUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUExJTJDZ28temVybw==" data-listing-date-sort="1737033306000" data-listing-file-modified-sort="1769742703515" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1277">
-<div class="thumbnail"><a href="../../../content/learning-notes/microservices/entries/go-zero.html" class="no-external">
-
-<p class="card-img-top"><img src="assets/images/go-zero/image.png" alt="go" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../../content/learning-notes/microservices/entries/go-zero.html" class="no-external">Go-Zero 微服务框架</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z29sYW5n'); return false;">golang</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx'); return false;">微服务</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z28temVybw=='); return false;">go-zero</div>
-
-</div>
-<div class="delink listing-description"><a href="../../../content/learning-notes/microservices/entries/go-zero.html" class="no-external">
-go-zero是一个集成了各种工程实践的 web 和 rpc 框架。通过弹性设计保障了大并发服务端的稳定性，经受了充分的实战检验。
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../../content/learning-notes/microservices/entries/go-zero.html" class="no-external">
-<div class="listing-date">
-Jan 16, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="Z29sYW5nJTJDJUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUExJTJDUHJvdG9idWY=" data-listing-date-sort="1737033306000" data-listing-file-modified-sort="1769742703515" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="580">
-<div class="thumbnail"><a href="../../../content/learning-notes/microservices/entries/protobuf.html" class="no-external">
-
-<p class="card-img-top"><img src="assets/images/protobuf/image.png" alt="go" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../../content/learning-notes/microservices/entries/protobuf.html" class="no-external">Protobuf</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z29sYW5n'); return false;">golang</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx'); return false;">微服务</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHJvdG9idWY='); return false;">Protobuf</div>
-
-</div>
-<div class="delink listing-description"><a href="../../../content/learning-notes/microservices/entries/protobuf.html" class="no-external">
-Protobuf(Protocal Buffer)，是谷歌开源的一种和语言、平台无关的，能进行扩展的，用于序列化结构化数据的协议
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../../content/learning-notes/microservices/entries/protobuf.html" class="no-external">
-<div class="listing-date">
-Jan 16, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="Z29sYW5nJTJDJUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUExJTJDJUU2JUExJTg2JUU2JTlFJUI2" data-listing-date-sort="1737033306000" data-listing-file-modified-sort="1769742703515" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="43">
-<div class="thumbnail"><a href="../../../content/learning-notes/microservices/entries/微服务框架(golang).html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" style="height: 140px;">&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../../content/learning-notes/microservices/entries/微服务框架(golang).html" class="no-external">微服务框架(golang)</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z29sYW5n'); return false;">golang</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx'); return false;">微服务</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU2JUExJTg2JUU2JTlFJUI2'); return false;">框架</div>
-
-</div>
-<div class="delink listing-description"><a href="../../../content/learning-notes/microservices/entries/微服务框架(golang).html" class="no-external">
-框架，英文名称framework，可以看作一种脚手架或者是一种标准化模版
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../../content/learning-notes/microservices/entries/微服务框架(golang).html" class="no-external">
-<div class="listing-date">
-Jan 16, 2025
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <button id="lang-toggle" type="button" aria-label="Toggle language"></button>
 <script>
   (() => {
@@ -1110,5 +1039,5 @@ Jan 16, 2025
 
 
 
-<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
