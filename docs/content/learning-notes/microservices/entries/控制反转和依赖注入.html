@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-01-16">
 
-<title>微服务学习笔记</title>
+<title>控制反转和依赖注入</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,33 +21,66 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<script src="../../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-3bbbbd466991e281563892c5dce73c3d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-4990a151d59038663a44b02348f88d08.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../site_libs/bootstrap/bootstrap-3bbbbd466991e281563892c5dce73c3d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-3bbbbd466991e281563892c5dce73c3d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-dark-4990a151d59038663a44b02348f88d08.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../../site_libs/bootstrap/bootstrap-3bbbbd466991e281563892c5dce73c3d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,68 +107,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -312,21 +288,21 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../pages/index.html"> 
+    <a class="nav-link" href="../../../../pages/index.html"> 
 <span class="menu-text"><span class="lang-en">About Me</span><span class="lang-zh">关于我</span></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../pages/home.html"> 
+    <a class="nav-link" href="../../../../pages/home.html"> 
 <span class="menu-text"><span class="lang-en">Home</span><span class="lang-zh">主页</span></span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../content/blogs/index.html"> 
+    <a class="nav-link" href="../../../../content/blogs/index.html"> 
 <span class="menu-text"><span class="lang-en">Blogs</span><span class="lang-zh">博客</span></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../content/projects/index.html"> 
+    <a class="nav-link" href="../../../../content/projects/index.html"> 
 <span class="menu-text"><span class="lang-en">Projects</span><span class="lang-zh">项目</span></span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -335,15 +311,15 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-span-classlang-enpapersreportsspanspan-classlang-zh论文和技术报告span">    
         <li>
-    <a class="dropdown-item" href="../../../content/papers/index.html">
+    <a class="dropdown-item" href="../../../../content/papers/index.html">
  <span class="dropdown-text">Overview</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../content/papers/deepseek/index.html">
+    <a class="dropdown-item" href="../../../../content/papers/deepseek/index.html">
  <span class="dropdown-text">DeepSeek</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../content/papers/labnotes/index.html">
+    <a class="dropdown-item" href="../../../../content/papers/labnotes/index.html">
  <span class="dropdown-text">LabNotes</span></a>
   </li>  
     </ul>
@@ -354,23 +330,23 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-span-classlang-enlearning-notesspanspan-classlang-zh学习笔记span">    
         <li>
-    <a class="dropdown-item" href="../../../content/learning-notes/index.html">
+    <a class="dropdown-item" href="../../../../content/learning-notes/index.html">
  <span class="dropdown-text">Overview</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../content/learning-notes/golang/index.html">
+    <a class="dropdown-item" href="../../../../content/learning-notes/golang/index.html">
  <span class="dropdown-text">golang基础</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../content/learning-notes/microservices/index.html">
+    <a class="dropdown-item" href="../../../../content/learning-notes/microservices/index.html">
  <span class="dropdown-text">微服务(golang)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../content/learning-notes/infrastructure/index.html">
+    <a class="dropdown-item" href="../../../../content/learning-notes/infrastructure/index.html">
  <span class="dropdown-text">基础设施(golang)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../content/learning-notes/deepL/index.html">
+    <a class="dropdown-item" href="../../../../content/learning-notes/deepL/index.html">
  <span class="dropdown-text">深度学习</span></a>
   </li>  
     </ul>
@@ -390,22 +366,48 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(7)</span></div><div class="category" data-category="JUU2JThFJUE3JUU1JTg4JUI2JUU1JThGJThEJUU4JUJEJUFDJUU1JTkyJThDJUU0JUJFJTlEJUU4JUI1JTk2JUU2JUIzJUE4JUU1JTg1JUE1">控制反转和依赖注入 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUU2JUExJTg2JUU2JTlFJUI2">框架 <span class="quarto-category-count">(2)</span></div><div class="category" data-category="JUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx">微服务 <span class="quarto-category-count">(6)</span></div><div class="category" data-category="YXBp">api <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z28ta2l0">go-kit <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z28temVybw==">go-zero <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z29sYW5n">golang <span class="quarto-category-count">(7)</span></div><div class="category" data-category="S3JhdG9z">Kratos <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHJvdG9idWY=">Protobuf <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#基本概念" id="toc-基本概念" class="nav-link active" data-scroll-target="#基本概念">基本概念</a></li>
+  <li><a href="#控制反转" id="toc-控制反转" class="nav-link" data-scroll-target="#控制反转">控制反转</a></li>
+  <li><a href="#依赖注入" id="toc-依赖注入" class="nav-link" data-scroll-target="#依赖注入">依赖注入</a></li>
+  <li><a href="#wire" id="toc-wire" class="nav-link" data-scroll-target="#wire">Wire</a>
+  <ul class="collapse">
+  <li><a href="#provider" id="toc-provider" class="nav-link" data-scroll-target="#provider">Provider</a></li>
+  <li><a href="#injector" id="toc-injector" class="nav-link" data-scroll-target="#injector">Injector</a></li>
+  <li><a href="#wire的安装和使用" id="toc-wire的安装和使用" class="nav-link" data-scroll-target="#wire的安装和使用">wire的安装和使用</a></li>
+  </ul></li>
+  <li><a href="#参考资料" id="toc-参考资料" class="nav-link" data-scroll-target="#参考资料">参考资料</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">微服务学习笔记</h1>
-</div>
+<h1 class="title">控制反转和依赖注入</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">golang</div>
+    <div class="quarto-category">控制反转和依赖注入</div>
+    <div class="quarto-category">框架</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 16, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -415,234 +417,183 @@ window.Quarto = {
 </header>
 
 
-<p>记录一下微服务学习过程中的笔记.主要语言还是golang.</p>
-<p>相关代码仓库github: <a href="https://github.com/aorangehc/GoFramwork">aorangehc/GoFramwork</a></p>
+<p><img src="../assets/images/IoC/image.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p>控制反转（Inversion of Control, IoC）是面向对象编程中的一种设计原则，用来降低计算机代码之间的耦合程度，控制反转最常见的方式就是依赖注入（Dependency Injection, DI），Wire 就是一个常见的依赖注入工具。</p>
+<section id="基本概念" class="level2">
+<h2 class="anchored" data-anchor-id="基本概念">基本概念</h2>
+<p><strong>控制反转</strong>本质是一种把控制权交出去的设计思想：以前是你在代码里自己 new 一个对象、自己决定它什么时候创建、用谁当依赖、怎么组装调用链；IoC 之后，这些“创建 + 组装 + 调度”的控制权交给外部（框架/容器/上层），你的业务代码只描述“我需要什么、我提供什么”，不负责把一切拼起来，能大大降低代码的耦合程度。</p>
+<p><strong>依赖注入</strong>是 IoC 最常见的方式之一，当 A 需要 B 的时候，不需要A 自己创建，直接通过外部创建好，通过参数传递进来，通过方法字段进行注入，DI 将依赖关系表现得更加显式。</p>
+<p><strong>Wire</strong> 是 Go 里的编译期依赖注入代码生成工具。它的用途是把你声明的 provider（也就是构造函数）和 injector（也就是装配入口函数）组合起来，自动生成一段等价于你手写 new 然后逐层传参组装的初始化代码。你先定义一个 ProviderSet，比如 ProviderSet = wire.NewSet(NewData, NewRepo, NewUsecase, NewService 等)，再在 wireApp 这种 injector 函数里调用 wire.Build 来表达你最终想得到的对象，比如我要一个 kratos.App。Wire 在生成阶段会根据这些构造函数的类型签名推导依赖关系，计算出正确的创建顺序，检查依赖是否缺失以及是否存在循环依赖，最后生成 wire_gen.go，在里面给出真正可运行的 wireApp 实现，同时把需要释放资源的 cleanup 函数也拼出来。运行时不需要容器，也不需要反射，本质上就是把装配代码自动写出来，让初始化过程更清晰、更安全、更容易维护。</p>
+<p><strong>为什么要降低耦合呢？</strong></p>
+<p>增加可维护性，防止牵一发动全身</p>
+<p>增加可测试性，测试位置更加精准，只跑逻辑本身，更加符合现在设计的理念</p>
+<p>增加可替换性，降低代码迭代成本，可能只需要替换一个参数就能实现数据库的替换，不需要进行大改</p>
+<p>降低耦合也能提升团队的协作效率，每个人只需要关心自己的一部分。</p>
+<p>增加项目可靠性，这样某个部分故障，不容易发生扩散，更容易找出问题。</p>
+</section>
+<section id="控制反转" class="level2">
+<h2 class="anchored" data-anchor-id="控制反转">控制反转</h2>
+<p>控制反转的常见方法</p>
+<ul>
+<li><p>构造器注入：把依赖作为构造函数参数传入，依赖关系最显式，Go 最推荐。</p></li>
+<li><p>方法/Setter 注入：通过 setter 或初始化方法注入，适合可选依赖或运行时替换。</p></li>
+<li><p>字段/属性注入：框架通过反射/标签把依赖塞进结构体字段，写起来省事但依赖隐藏、可测试性差。</p></li>
+<li><p>接口 + 工厂（Factory）：通过接口隔离具体实现，再用工厂负责创建实现对象，常用于“按配置选择实现”。</p></li>
+<li><p>抽象工厂/构建器（Abstract Factory / Builder）：当对象组装很复杂、需要分步骤或多套组合方案时用。</p></li>
+<li><p>服务定位器（Service Locator）：对象自己从“容器”里按 key/类型取依赖（也是 IoC），但依赖不透明，一般不推荐做主方案。</p></li>
+<li><p>插件化/注册表（Plugin / Registry）：实现通过注册机制挂到 registry，运行时按名称/能力发现与加载。</p></li>
+<li><p>函数式 Options（Functional Options）：Go 常见，用 <code>WithXxx()</code> 注入可选依赖或配置，适合参数很多的构造。</p></li>
+<li><p>Context/请求级注入（Request-scoped Injection）：每个请求携带依赖（如 trace/span、用户信息、事务对象），常见于 web 框架中间件链。</p></li>
+<li><p>编译期装配（Codegen Wiring）：依赖在编译期被解析并生成装配代码，运行时无容器/无反射（Wire、Dagger 这类）。</p></li>
+</ul>
+</section>
+<section id="依赖注入" class="level2">
+<h2 class="anchored" data-anchor-id="依赖注入">依赖注入</h2>
+<p>依赖注入常见工具</p>
+<p>Go</p>
+<ul>
+<li><p>编译期：Google Wire</p></li>
+<li><p>运行时容器：Uber dig、sarulabs/di、(较老) facebookgo/inject</p></li>
+<li><p>应用框架化生命周期：Uber fx（基于 dig，带 OnStart/OnStop）</p></li>
+<li><p>其他思路：手写 main 装配、Functional Options（不算工具但很常用）</p></li>
+</ul>
+<p>Java / JVM</p>
+<ul>
+<li><p>Spring / Spring Boot（运行时容器，注解驱动）</p></li>
+<li><p>Guice（运行时容器）</p></li>
+<li><p>Dagger（编译期为主，Android 常见）</p></li>
+<li><p>Micronaut（偏编译期/减少反射）</p></li>
+</ul>
+<p>.NET</p>
+<ul>
+<li><p>Microsoft.Extensions.DependencyInjection（官方内置 DI）</p></li>
+<li><p>Autofac、Castle Windsor（第三方容器）</p></li>
+</ul>
+<p>Node.js / TypeScript</p>
+<ul>
+<li><p>NestJS（框架自带 DI）</p></li>
+<li><p>InversifyJS、tsyringe、typedi（容器/注入库）</p></li>
+</ul>
+<p>Python</p>
+<ul>
+<li><p>dependency-injector（容器）</p></li>
+<li><p>FastAPI Depends（更偏“依赖解析/函数注入”，request-scoped 很强）</p></li>
+<li><p>Injector（Guice 风格）</p></li>
+</ul>
+<p>Rust / C++（更少“容器化”，更多手动/编译期）</p>
+<ul>
+<li><p>Rust：更常见是手动装配 + trait 抽象（DI 工具相对少）</p></li>
+<li><p>C++：Boost.DI（编译期）</p></li>
+</ul>
+</section>
+<section id="wire" class="level2">
+<h2 class="anchored" data-anchor-id="wire">Wire</h2>
+<p>Go社区中有很多依赖注入框架。比如：Uber的dig和Facebook的inject都使用反射来做运行时依赖注入。</p>
+<p>wire是一个的 Google 开源的依赖注入工具，通过自动生成代码的方式在编译期完成依赖注入。</p>
+<p>wire 中有两个核心概念：提供者（provider）和注入器（injector）。</p>
+<section id="provider" class="level3">
+<h3 class="anchored" data-anchor-id="provider">Provider</h3>
+<p>provider 通常是一个 New 开头的构造函数，表示实现了某一个结构体，也就是创建了一个对象</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">package</span> demo</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="op">(</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"context"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"errors"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> A <span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    Value <span class="dt">int</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> NewA<span class="op">(</span>ctx context<span class="op">.</span>Context<span class="op">,</span> b B<span class="op">)</span> <span class="op">(</span>A<span class="op">,</span> <span class="dt">error</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> b<span class="op">.</span>Value <span class="op">==</span> <span class="dv">0</span> <span class="op">{</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> A<span class="op">{},</span> errors<span class="op">.</span>New<span class="op">(</span><span class="st">"cannot provide a when value is zero"</span><span class="op">)</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> A<span class="op">{</span>Value<span class="op">:</span> b<span class="op">.</span>Value <span class="op">+</span> <span class="dv">2</span><span class="op">},</span> <span class="ot">nil</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>提供者函数可以分组为提供者函数集（provider set）。使用wire.NewSet 函数可以将多个提供者函数添加到一个集合中。如果经常同时使用多个提供者函数，这非常有用。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">package</span> demo</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="op">(</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"github.com/google/wire"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> ProviderSet <span class="op">=</span> wire<span class="op">.</span>NewSet<span class="op">(</span>NewData<span class="op">,</span> NewRepo<span class="op">,</span> NewUsecase<span class="op">,</span> NewService<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>同时，还可以将其他提供者函数集添加到提供者函数集中。</p>
+</section>
+<section id="injector" class="level3">
+<h3 class="anchored" data-anchor-id="injector">Injector</h3>
+<p>应用程序中是用一个注入器来连接提供者，注入器就是一个按照依赖顺序调用提供者。</p>
+<p>要声明一个注入器函数只需要在函数体中调用wire.Build。这个函数的返回值也无关紧要，只要它们的类型正确即可。这些值在生成的代码中将被忽略。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> wireApp<span class="op">(*</span>conf<span class="op">.</span>Server<span class="op">,</span> <span class="op">*</span>conf<span class="op">.</span>Data<span class="op">,</span> log<span class="op">.</span>Helper<span class="op">)</span> <span class="op">(*</span>kratos<span class="op">.</span>App<span class="op">,</span> <span class="kw">func</span><span class="op">(),</span> <span class="dt">error</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">panic</span><span class="op">(</span>wire<span class="op">.</span>Build<span class="op">(</span>server<span class="op">.</span>ProviderSet<span class="op">,</span> data<span class="op">.</span>ProviderSet<span class="op">,</span> biz<span class="op">.</span>ProviderSet<span class="op">,</span> service<span class="op">.</span>ProviderSet<span class="op">,</span> newApp<span class="op">))</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="wire的安装和使用" class="level3">
+<h3 class="anchored" data-anchor-id="wire的安装和使用">wire的安装和使用</h3>
+<p>在 golang 中使用 install 安装依赖包，通过在注射器同级目录下使用 wire 指令即可完成自动依赖注入</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">go</span> install github<span class="op">.</span>com<span class="op">/</span>google<span class="op">/</span>wire<span class="op">/</span>cmd<span class="op">/</span>wire@latest</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>cd cmd<span class="op">/</span>golist</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>wire</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>通过上面例子会生成一个 wire_gen.go文件，此时依赖注入完成。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Code generated by Wire. DO NOT EDIT.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">//go:generate go run -mod=mod github.com/google/wire/cmd/wire</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">//go:build !wireinject</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">// +build !wireinject</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">package</span> main</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="op">(</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"golist/internal/biz"</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"golist/internal/conf"</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"golist/internal/data"</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"golist/internal/server"</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"golist/internal/service"</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"github.com/go-kratos/kratos/v2"</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"github.com/go-kratos/kratos/v2/log"</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    _ <span class="st">"go.uber.org/automaxprocs"</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">// Injectors from wire.go:</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co">// wireApp init kratos application.</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> wireApp<span class="op">(</span>confServer <span class="op">*</span>conf<span class="op">.</span>Server<span class="op">,</span> confData <span class="op">*</span>conf<span class="op">.</span>Data<span class="op">,</span> logger log<span class="op">.</span>Logger<span class="op">)</span> <span class="op">(*</span>kratos<span class="op">.</span>App<span class="op">,</span> <span class="kw">func</span><span class="op">(),</span> <span class="dt">error</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    db<span class="op">,</span> err <span class="op">:=</span> data<span class="op">.</span>NewDB<span class="op">(</span>confData<span class="op">)</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> err <span class="op">!=</span> <span class="ot">nil</span> <span class="op">{</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ot">nil</span><span class="op">,</span> <span class="ot">nil</span><span class="op">,</span> err</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    dataData<span class="op">,</span> cleanup<span class="op">,</span> err <span class="op">:=</span> data<span class="op">.</span>NewData<span class="op">(</span>db<span class="op">,</span> logger<span class="op">)</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> err <span class="op">!=</span> <span class="ot">nil</span> <span class="op">{</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ot">nil</span><span class="op">,</span> <span class="ot">nil</span><span class="op">,</span> err</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    todoRepo <span class="op">:=</span> data<span class="op">.</span>NewTodoRepo<span class="op">(</span>dataData<span class="op">,</span> logger<span class="op">)</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    todoUsecase <span class="op">:=</span> biz<span class="op">.</span>NewTodoUsecase<span class="op">(</span>todoRepo<span class="op">,</span> logger<span class="op">)</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    todoService <span class="op">:=</span> service<span class="op">.</span>NewTodoService<span class="op">(</span>todoUsecase<span class="op">)</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    grpcServer <span class="op">:=</span> server<span class="op">.</span>NewGRPCServer<span class="op">(</span>confServer<span class="op">,</span> todoService<span class="op">,</span> logger<span class="op">)</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    httpServer <span class="op">:=</span> server<span class="op">.</span>NewHTTPServer<span class="op">(</span>confServer<span class="op">,</span> todoService<span class="op">,</span> logger<span class="op">)</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    app <span class="op">:=</span> newApp<span class="op">(</span>logger<span class="op">,</span> grpcServer<span class="op">,</span> httpServer<span class="op">)</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> app<span class="op">,</span> <span class="kw">func</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>        cleanup<span class="op">()</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    <span class="op">},</span> <span class="ot">nil</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="参考资料" class="level2">
+<h2 class="anchored" data-anchor-id="参考资料">参考资料</h2>
+<p><a href="https://www.liwenzhou.com/posts/Go/wire/">依赖注入工具-wire</a></p>
+<p><a href="https://go-kratos.dev/zh-cn/docs/guide/wire/">Wire 依赖注入</a></p>
+<p><a href="https://chatgpt.com/">ChatGPT老师</a></p>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Z29sYW5nJTJDJUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUExJTJDS3JhdG9z" data-listing-date-sort="1737033306000" data-listing-file-modified-sort="1770692238232" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="951">
-<div class="thumbnail"><a href="../../../content/learning-notes/microservices/entries/Kratos.html" class="no-external">
-
-<p class="card-img-top"><img src="assets/images/kratos/Kratos-image-3.png" alt="go" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../../content/learning-notes/microservices/entries/Kratos.html" class="no-external">Kratos 微服务框架</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z29sYW5n'); return false;">golang</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx'); return false;">微服务</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('S3JhdG9z'); return false;">Kratos</div>
-
-</div>
-<div class="delink listing-description"><a href="../../../content/learning-notes/microservices/entries/Kratos.html" class="no-external">
-Kratos: An elegant toolkit for Go microservices.
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../../content/learning-notes/microservices/entries/Kratos.html" class="no-external">
-<div class="listing-date">
-Jan 16, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Z29sYW5nJTJDJUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUExJTJDYXBp" data-listing-date-sort="1737033306000" data-listing-file-modified-sort="1769742703514" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1005">
-<div class="thumbnail"><a href="../../../content/learning-notes/microservices/entries/api语言.html" class="no-external">
-
-<p class="card-img-top"><img src="assets/images/api/image.png" alt="go" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../../content/learning-notes/microservices/entries/api语言.html" class="no-external">go-zero的API语言</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z29sYW5n'); return false;">golang</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx'); return false;">微服务</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('YXBp'); return false;">api</div>
-
-</div>
-<div class="delink listing-description"><a href="../../../content/learning-notes/microservices/entries/api语言.html" class="no-external">
-api 是 go-zero 自研的领域特性语言，旨在实现人性化的基础描述原因，作为生成 HTTP 服务最基本的描述语言。可以通过官方提供的 goctl 工具实现 api 向结构化项目的转换。
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../../content/learning-notes/microservices/entries/api语言.html" class="no-external">
-<div class="listing-date">
-Jan 16, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="Z29sYW5nJTJDJUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUExJTJDZ28ta2l0" data-listing-date-sort="1737033306000" data-listing-file-modified-sort="1769742703515" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="413">
-<div class="thumbnail"><a href="../../../content/learning-notes/microservices/entries/go-kit.html" class="no-external">
-
-<p class="card-img-top"><img src="assets/images/go-kit/image-13.png" alt="go" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../../content/learning-notes/microservices/entries/go-kit.html" class="no-external">Go-Kit 微服务框架</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z29sYW5n'); return false;">golang</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx'); return false;">微服务</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z28ta2l0'); return false;">go-kit</div>
-
-</div>
-<div class="delink listing-description"><a href="../../../content/learning-notes/microservices/entries/go-kit.html" class="no-external">
-相关代码的GitHub地址：GoKitAddSrv，不同文件夹代表不同章节，直接<strong>go run .</strong>可运行
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../../content/learning-notes/microservices/entries/go-kit.html" class="no-external">
-<div class="listing-date">
-Jan 16, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="Z29sYW5nJTJDJUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUExJTJDZ28temVybw==" data-listing-date-sort="1737033306000" data-listing-file-modified-sort="1769742703515" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1277">
-<div class="thumbnail"><a href="../../../content/learning-notes/microservices/entries/go-zero.html" class="no-external">
-
-<p class="card-img-top"><img src="assets/images/go-zero/image.png" alt="go" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../../content/learning-notes/microservices/entries/go-zero.html" class="no-external">Go-Zero 微服务框架</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z29sYW5n'); return false;">golang</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx'); return false;">微服务</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z28temVybw=='); return false;">go-zero</div>
-
-</div>
-<div class="delink listing-description"><a href="../../../content/learning-notes/microservices/entries/go-zero.html" class="no-external">
-go-zero是一个集成了各种工程实践的 web 和 rpc 框架。通过弹性设计保障了大并发服务端的稳定性，经受了充分的实战检验。
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../../content/learning-notes/microservices/entries/go-zero.html" class="no-external">
-<div class="listing-date">
-Jan 16, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="Z29sYW5nJTJDJUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUExJTJDUHJvdG9idWY=" data-listing-date-sort="1737033306000" data-listing-file-modified-sort="1769742703515" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="580">
-<div class="thumbnail"><a href="../../../content/learning-notes/microservices/entries/protobuf.html" class="no-external">
-
-<p class="card-img-top"><img src="assets/images/protobuf/image.png" alt="go" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../../content/learning-notes/microservices/entries/protobuf.html" class="no-external">Protobuf</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z29sYW5n'); return false;">golang</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx'); return false;">微服务</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHJvdG9idWY='); return false;">Protobuf</div>
-
-</div>
-<div class="delink listing-description"><a href="../../../content/learning-notes/microservices/entries/protobuf.html" class="no-external">
-Protobuf(Protocal Buffer)，是谷歌开源的一种和语言、平台无关的，能进行扩展的，用于序列化结构化数据的协议
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../../content/learning-notes/microservices/entries/protobuf.html" class="no-external">
-<div class="listing-date">
-Jan 16, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="Z29sYW5nJTJDJUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUExJTJDJUU2JUExJTg2JUU2JTlFJUI2" data-listing-date-sort="1737033306000" data-listing-file-modified-sort="1769742703515" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="43">
-<div class="thumbnail"><a href="../../../content/learning-notes/microservices/entries/微服务框架(golang).html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" style="height: 140px;">&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../../content/learning-notes/microservices/entries/微服务框架(golang).html" class="no-external">微服务框架(golang)</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z29sYW5n'); return false;">golang</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU1JUJFJUFFJUU2JTlDJThEJUU1JThBJUEx'); return false;">微服务</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU2JUExJTg2JUU2JTlFJUI2'); return false;">框架</div>
-
-</div>
-<div class="delink listing-description"><a href="../../../content/learning-notes/microservices/entries/微服务框架(golang).html" class="no-external">
-框架，英文名称framework，可以看作一种脚手架或者是一种标准化模版
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../../content/learning-notes/microservices/entries/微服务框架(golang).html" class="no-external">
-<div class="listing-date">
-Jan 16, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="Z29sYW5nJTJDJUU2JThFJUE3JUU1JTg4JUI2JUU1JThGJThEJUU4JUJEJUFDJUU1JTkyJThDJUU0JUJFJTlEJUU4JUI1JTk2JUU2JUIzJUE4JUU1JTg1JUE1JTJDJUU2JUExJTg2JUU2JTlFJUI2" data-listing-date-sort="1737033306000" data-listing-file-modified-sort="1770950258245" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="476">
-<div class="thumbnail"><a href="../../../content/learning-notes/microservices/entries/控制反转和依赖注入.html" class="no-external">
-
-<p class="card-img-top"><img src="assets/images/IoC/image.png" alt="go" style="height: 140px;"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../../content/learning-notes/microservices/entries/控制反转和依赖注入.html" class="no-external">控制反转和依赖注入</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z29sYW5n'); return false;">golang</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU2JThFJUE3JUU1JTg4JUI2JUU1JThGJThEJUU4JUJEJUFDJUU1JTkyJThDJUU0JUJFJTlEJUU4JUI1JTk2JUU2JUIzJUE4JUU1JTg1JUE1'); return false;">控制反转和依赖注入</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('JUU2JUExJTg2JUU2JTlFJUI2'); return false;">框架</div>
-
-</div>
-<div class="delink listing-description"><a href="../../../content/learning-notes/microservices/entries/控制反转和依赖注入.html" class="no-external">
-控制反转（Inversion of Control, IoC）是面向对象编程中的一种设计原则，用来降低计算机代码之间的耦合程度，控制反转最常见的方式就是依赖注入（Dependency Injection, DI），Wire 就是一个常见的依赖注入工具。
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../../content/learning-notes/microservices/entries/控制反转和依赖注入.html" class="no-external">
-<div class="listing-date">
-Jan 16, 2025
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <button id="lang-toggle" type="button" aria-label="Toggle language"></button>
 <script>
   (() => {
@@ -1141,5 +1092,5 @@ Jan 16, 2025
 
 
 
-<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
