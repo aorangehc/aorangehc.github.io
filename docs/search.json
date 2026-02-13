@@ -336,6 +336,48 @@
     "text": "安装和简单使用\n\n安装\n安装前置\n\ngo\nprotoc\nprotoc-gen-go\n\n安装指令\ngo install github.com/go-kratos/kratos/cmd/kratos/v2@latest\nkratos upgrade\ngo install github.com/google/wire/cmd/wire@latest\n安装之后查看相关操作\n(base) ➜  GoFramwork git:(main) kratos -h     \nKratos: An elegant toolkit for Go microservices.\n\nUsage:\n  kratos [command]\n\nAvailable Commands:\n  changelog   生成 Kratos 变更 log\n  completion  为指定的Shell生成自动补全脚本\n  help        帮助指令\n  new         生成一个服务模板\n  proto       生成 proto 文件\n  run         运行项目\n  upgrade     升级 Kratos 工具\n\nFlags:\n  -h, --help      help for kratos\n  -v, --version   version for kratos\n\nUse \"kratos [command] --help\" for more information about a command.\n\n\nDemo\n根据官方的提示创建一个Kratos HelloWord\n首先使用 new 创建项目\nkratos new helloworld\nnew 完成后我们发现可以选择不同的模板，这里我们选择第一个service\n\n等待生成完成，这是生成的项目结构\n.\n├── api  # API 定义层 (Protocol Buffers)\n│   └── helloworld\n│       └── v1\n│           ├── error_reason.pb.go   # [生成] 错误原因的 Go 代码\n│           ├── error_reason.proto   # 定义业务错误原因 (Enum)\n│           ├── greeter_grpc.pb.go   # [生成] gRPC 服务端和客户端代码\n│           ├── greeter_http.pb.go   # [生成] Kratos HTTP 服务代码 (路由、编解码)\n│           ├── greeter.pb.go        # [生成] 请求/响应消息的 Go 结构体\n│           └── greeter.proto        # 定义服务接口 (RPC) 和消息结构 (Message)\n├── cmd  # 程序入口 (Entry Point)\n│   └── helloworld\n│       ├── main.go      # 主程序入口：负责初始化资源、依赖注入、启动服务、监听退出信号\n│       ├── wire_gen.go  # [生成] Wire 依赖注入生成的具体代码 (不要手动修改)\n│       └── wire.go      # Wire 依赖注入的声明文件，定义 ProviderSet\n├── configs  # 配置文件\n│   └── config.yaml      # 具体的配置内容 (如数据库地址、端口、日志级别等)\n├── Dockerfile           # 容器化构建脚本\n├── go.mod               # Go 模块依赖定义\n├── go.sum               # Go 模块依赖校验和\n├── internal  # 内部业务逻辑 (Go 规范：外部项目无法 import 此目录内容)\n│   ├── biz   # [业务逻辑层 / 领域层] (Domain Layer)\n│   │   ├── biz.go       # 定义 biz 层的 ProviderSet\n│   │   ├── greeter.go   # 定义领域对象 (Entity) 和 业务接口 (Repo Interface)，不依赖具体实现\n│   │   └── README.md\n│   ├── conf  # [配置定义层]\n│   │   ├── conf.pb.go   # [生成] 配置文件的 Go 结构体\n│   │   └── conf.proto   # 定义配置文件的结构 (将 YAML 映射为强类型 struct)\n│   ├── data  # [数据访问层 / 基础设施层] (Infrastructure Layer)\n│   │   ├── data.go      # 初始化数据库/Redis 连接，定义 data 层的 ProviderSet\n│   │   ├── greeter.go   # 实现 biz 层定义的 Repo 接口 (数据库 CRUD、缓存、RPC 调用)\n│   │   └── README.md\n│   ├── server # [服务实例层]\n│   │   ├── grpc.go      # 初始化 gRPC Server\n│   │   ├── http.go      # 初始化 HTTP Server\n│   │   └── server.go    # 定义 server 层的 ProviderSet\n│   └── service # [应用服务层] (Application Layer)\n│       ├── greeter.go   # 实现 api 定义的 protobuf 接口，负责 DTO -&gt; DO 转换，编排 biz 逻辑\n│       ├── README.md\n│       └── service.go   # 定义 service 层的 ProviderSet\n├── LICENSE              # 许可证文件\n├── Makefile             # 项目管理脚本 (生成 API、编译、运行、测试等命令)\n├── openapi.yaml         # [生成] OpenAPI/Swagger 接口文档\n├── README.md            # 项目说明文档\n└── third_party  # 第三方依赖的 Proto 文件 (用于生成代码)\n    ├── errors           # Kratos 错误模型定义\n    │   └── errors.proto\n    ├── google           # Google 官方 Proto (API 注解、HTTP 映射、通用类型等)\n    │   ├── api\n    │   │   ├── ...\n    │   └── protobuf\n    │       ├── ...\n    ├── openapi          # OpenAPI 生成相关的 Proto 定义\n    │   └── v3\n    │       ├── ...\n    ├── README.md\n    └── validate         # 参数校验规则 Proto 定义\n        ├── README.md\n        └── validate.proto\n之后我们进入目录，运行依赖下载指令\ncd helloworld\ngo mod download\n我们也可以自己编写proto源码、wire等等，通过 Kratos 生成相应的代码\ngo generate ./...\n然后是运行项目\nkratos run"
   },
   {
+    "objectID": "content/learning-notes/microservices/entries/Kratos.html#依赖注入-wire",
+    "href": "content/learning-notes/microservices/entries/Kratos.html#依赖注入-wire",
+    "title": "Kratos 微服务框架",
+    "section": "依赖注入 wire",
+    "text": "依赖注入 wire\n参见文章：控制反转和依赖注入"
+  },
+  {
+    "objectID": "content/learning-notes/microservices/entries/Kratos.html#kratos的配置",
+    "href": "content/learning-notes/microservices/entries/Kratos.html#kratos的配置",
+    "title": "Kratos 微服务框架",
+    "section": "Kratos的配置",
+    "text": "Kratos的配置\n\n配置源\n\n文件json yaml\n环境变量 env\n配置中心 apollo consul\n\n\n\n读取配置\n\nc.Load 和 c.Scan, 取值c.Value\nc.Watch 配置热加载\n合并\nResolver 自定义\nCodec自定义\n\n\n\n配置结构体\ninternal/conf/conf.pb.go 文件中的 Bootstrap\n\n\n程序添加配置的核心流程\n\n1. 修改 internal/conf/conf.proto 文件， 用pb定义配置\n2. 生成配置对应的Go代码项目目录下执行 make config如果没有装make命令，那么就执行\nprotoc --proto_path=./internal \\--proto_path=./third_party \\--go_out=paths=source_relative:./internal \\internal/conf/conf.proto\n3. 修改configs配置文件\n\n\n\n注意事项\n\npb文件要语法写对\n改完pb文件一定记得要生成Go代码\n配置文件要跟Go代码里的结构体对应上\n配置文件的语法要写对"
+  },
+  {
+    "objectID": "content/learning-notes/microservices/entries/Kratos.html#自定义http返回",
+    "href": "content/learning-notes/microservices/entries/Kratos.html#自定义http返回",
+    "title": "Kratos 微服务框架",
+    "section": "自定义HTTP返回",
+    "text": "自定义HTTP返回\n创建响应编码器并替换默认编码器，具体demo可见项目：httpencoder和http\npackage server\n\nimport (\n        \"net/http\"\n\n        kratoshttp \"github.com/go-kratos/kratos/v2/transport/http\"\n        kratosstatus \"github.com/go-kratos/kratos/v2/transport/http/status\"\n        \"google.golang.org/grpc/status\"\n)\n\n// 定义 HTTP 响应编码器\n\n// 覆盖默认的  DefaultResponseEncoder, 通过  http.ResponseEncoder() 配置，注入到  http.Server() 中\ntype httpResponse struct {\n        Code int32  `json:\"code\"`\n        Msg  string `json:\"msg\"`\n        Data any    `json:\"data\"`\n}\n\nfunc ResponseEncoder(w http.ResponseWriter, r *http.Request, v any) error {\n        if v == nil {\n                return nil\n        }\n        // 判断是否是重定向\n        if rd, ok := v.(kratoshttp.Redirector); ok {\n                url, code := rd.Redirect()\n                http.Redirect(w, r, url, code)\n                return nil\n        }\n        // 构造自定义的响应结构体\n        resp := &httpResponse{\n                Code: http.StatusOK,\n                Msg:  \"success\",\n                Data: v,\n        }\n        // 响应数据\n        codec, _ := kratoshttp.CodecForRequest(r, \"Accept\")\n\n        data, err := codec.Marshal(resp) // json.Marshal\n        if err != nil {\n                return err\n        }\n        // 设置响应头 Content-Type:application/json\n        w.Header().Set(\"Content-Type\", \"application/\"+codec.Name())\n        _, err = w.Write(data)\n        return err\n}\n\n// 自定义的错误响应编码器\nfunc errorEncoder(w http.ResponseWriter, r *http.Request, err error) {\n        if err == nil {\n                return\n        }\n        resp := new(httpResponse) // 能从err里面解析出错误码的\n        if gs, ok := status.FromError(err); ok {\n                resp = &httpResponse{\n                        Code: int32(kratosstatus.FromGRPCCode(gs.Code())),\n                        Msg:  gs.Message(),\n                        Data: nil,\n                }\n        } else {\n                resp = &httpResponse{\n                        Code: http.StatusInternalServerError, // 500\n                        Msg:  \"内部错误\",\n                }\n        }\n\n        codec, _ := kratoshttp.CodecForRequest(r, \"Accept\")\n        body, err := codec.Marshal(resp)\n        if err != nil {\n                w.WriteHeader(http.StatusInternalServerError)\n                return\n        }\n        w.Header().Set(\"Content-Type\", \"application/\"+codec.Name())\n        w.WriteHeader(int(resp.Code))\n        _, _ = w.Write(body)\n}\n// 替换默认的 HTTP 响应编码器\nopts = append(opts, http.ResponseEncoder(ResponseEncoder))\n// 替换默认的错误响应编码器\nopts = append(opts, http.ErrorEncoder(errorEncoder))"
+  },
+  {
+    "objectID": "content/learning-notes/microservices/entries/Kratos.html#日志",
+    "href": "content/learning-notes/microservices/entries/Kratos.html#日志",
+    "title": "Kratos 微服务框架",
+    "section": "日志",
+    "text": "日志\n为了方便使用，Kratos定义了两个层面的抽象，Logger统一了日志的接入方式，Helper接口统一的日志库的调用方式。\nKratos的日志库主要有如下特性：\n\nLogger用于对接各种日志库或日志平台，可以用现成的或者自己实现\nHelper是在您的项目代码中实际需要调用的，用于在业务代码里打日志\nFilter用于对输出日志进行过滤或魔改（通常用于日志脱敏）\nValuer用于绑定一些全局的固定值或动态值（比如时间戳、traceID或者实例id之类的东西）到输出日志中"
+  },
+  {
+    "objectID": "content/learning-notes/microservices/entries/Kratos.html#中间件",
+    "href": "content/learning-notes/microservices/entries/Kratos.html#中间件",
+    "title": "Kratos 微服务框架",
+    "section": "中间件",
+    "text": "中间件"
+  },
+  {
+    "objectID": "content/learning-notes/microservices/entries/Kratos.html#section",
+    "href": "content/learning-notes/microservices/entries/Kratos.html#section",
+    "title": "Kratos 微服务框架",
+    "section": ". . .",
+    "text": ". . ."
+  },
+  {
     "objectID": "content/learning-notes/microservices/entries/Kratos.html#参考资料",
     "href": "content/learning-notes/microservices/entries/Kratos.html#参考资料",
     "title": "Kratos 微服务框架",

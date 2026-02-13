@@ -376,6 +376,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#安装" id="toc-安装" class="nav-link" data-scroll-target="#安装">安装</a></li>
   <li><a href="#demo" id="toc-demo" class="nav-link" data-scroll-target="#demo">Demo</a></li>
   </ul></li>
+  <li><a href="#依赖注入-wire" id="toc-依赖注入-wire" class="nav-link" data-scroll-target="#依赖注入-wire">依赖注入 wire</a></li>
+  <li><a href="#kratos的配置" id="toc-kratos的配置" class="nav-link" data-scroll-target="#kratos的配置">Kratos的配置</a>
+  <ul class="collapse">
+  <li><a href="#配置源" id="toc-配置源" class="nav-link" data-scroll-target="#配置源">配置源</a></li>
+  <li><a href="#读取配置" id="toc-读取配置" class="nav-link" data-scroll-target="#读取配置">读取配置</a></li>
+  <li><a href="#配置结构体" id="toc-配置结构体" class="nav-link" data-scroll-target="#配置结构体">配置结构体</a></li>
+  <li><a href="#程序添加配置的核心流程" id="toc-程序添加配置的核心流程" class="nav-link" data-scroll-target="#程序添加配置的核心流程">程序添加配置的核心流程</a></li>
+  <li><a href="#注意事项" id="toc-注意事项" class="nav-link" data-scroll-target="#注意事项">注意事项</a></li>
+  </ul></li>
+  <li><a href="#自定义http返回" id="toc-自定义http返回" class="nav-link" data-scroll-target="#自定义http返回">自定义HTTP返回</a></li>
+  <li><a href="#日志" id="toc-日志" class="nav-link" data-scroll-target="#日志">日志</a></li>
+  <li><a href="#中间件" id="toc-中间件" class="nav-link" data-scroll-target="#中间件">中间件</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">. . .</a></li>
   <li><a href="#参考资料" id="toc-参考资料" class="nav-link" data-scroll-target="#参考资料">参考资料</a></li>
   </ul>
 </nav>
@@ -466,7 +479,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>首先使用 new 创建项目</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kratos</span> new helloworld</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>new 完成后我们发现可以选择不同的模板，这里我们选择第一个service</p>
-<p><img src="../assets/images/kratos/Kratos-image-2.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/kratos/Kratos-image-4.png" alt="go" style="width: 70%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
 <p>等待生成完成，这是生成的项目结构</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">.</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>├── api  # API 定义层 <span class="op">(</span>Protocol Buffers<span class="op">)</span></span>
@@ -534,9 +547,159 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">go</span> generate ./...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>然后是运行项目</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kratos</span> run</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img src="../assets/images/kratos/Kratos-image.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
-<p><img src="../assets/images/kratos/Kratos-image-1.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/kratos/Kratos-image.png" alt="go" style="width: 70%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+<p><img src="../assets/images/kratos/Kratos-image-1.png" alt="go" style="width: 70%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
 </section>
+</section>
+<section id="依赖注入-wire" class="level2">
+<h2 class="anchored" data-anchor-id="依赖注入-wire">依赖注入 wire</h2>
+<p>参见文章：<a href="https://aorangehc.github.io/content/learning-notes/microservices/entries/%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC%E5%92%8C%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5.html">控制反转和依赖注入</a></p>
+</section>
+<section id="kratos的配置" class="level2">
+<h2 class="anchored" data-anchor-id="kratos的配置">Kratos的配置</h2>
+<section id="配置源" class="level3">
+<h3 class="anchored" data-anchor-id="配置源">配置源</h3>
+<ul>
+<li><p>文件json yaml</p></li>
+<li><p>环境变量 env</p></li>
+<li><p>配置中心 apollo consul</p></li>
+</ul>
+</section>
+<section id="读取配置" class="level3">
+<h3 class="anchored" data-anchor-id="读取配置">读取配置</h3>
+<ul>
+<li><p>c.Load 和 c.Scan, 取值c.Value</p></li>
+<li><p>c.Watch 配置热加载</p></li>
+<li><p>合并</p></li>
+<li><p>Resolver 自定义</p></li>
+<li><p>Codec自定义</p></li>
+</ul>
+</section>
+<section id="配置结构体" class="level3">
+<h3 class="anchored" data-anchor-id="配置结构体">配置结构体</h3>
+<p>internal/conf/conf.pb.go 文件中的 Bootstrap</p>
+</section>
+<section id="程序添加配置的核心流程" class="level3">
+<h3 class="anchored" data-anchor-id="程序添加配置的核心流程">程序添加配置的核心流程</h3>
+<ul>
+<li><p>1. 修改 internal/conf/conf.proto 文件， 用pb定义配置</p></li>
+<li><p>2. 生成配置对应的Go代码项目目录下执行 make config如果没有装make命令，那么就执行</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>protoc <span class="op">--</span>proto_path<span class="op">=./</span>internal \<span class="op">--</span>proto_path<span class="op">=./</span>third_party \<span class="op">--</span>go_out<span class="op">=</span>paths<span class="op">=</span>source_relative<span class="op">:./</span>internal \internal<span class="op">/</span>conf<span class="op">/</span>conf<span class="op">.</span>proto</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>3. 修改configs配置文件</p></li>
+</ul>
+</section>
+<section id="注意事项" class="level3">
+<h3 class="anchored" data-anchor-id="注意事项">注意事项</h3>
+<ul>
+<li><p>pb文件要语法写对</p></li>
+<li><p>改完pb文件一定记得要生成Go代码</p></li>
+<li><p>配置文件要跟Go代码里的结构体对应上</p></li>
+<li><p>配置文件的语法要写对</p></li>
+</ul>
+</section>
+</section>
+<section id="自定义http返回" class="level2">
+<h2 class="anchored" data-anchor-id="自定义http返回">自定义HTTP返回</h2>
+<p>创建响应编码器并替换默认编码器，具体demo可见项目：<a href="https://github.com/aorangehc/GoList/blob/main/internal/server/httpencoder.go">httpencoder</a>和<a href="https://github.com/aorangehc/GoList/blob/main/internal/server/http.go">http</a></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">package</span> server</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="op">(</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"net/http"</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        kratoshttp <span class="st">"github.com/go-kratos/kratos/v2/transport/http"</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        kratosstatus <span class="st">"github.com/go-kratos/kratos/v2/transport/http/status"</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"google.golang.org/grpc/status"</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">// 定义 HTTP 响应编码器</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">// 覆盖默认的  DefaultResponseEncoder, 通过  http.ResponseEncoder() 配置，注入到  http.Server() 中</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> httpResponse <span class="kw">struct</span> <span class="op">{</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        Code <span class="dt">int32</span>  <span class="st">`json:"code"`</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        Msg  <span class="dt">string</span> <span class="st">`json:"msg"`</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        Data <span class="dt">any</span>    <span class="st">`json:"data"`</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> ResponseEncoder<span class="op">(</span>w http<span class="op">.</span>ResponseWriter<span class="op">,</span> r <span class="op">*</span>http<span class="op">.</span>Request<span class="op">,</span> v <span class="dt">any</span><span class="op">)</span> <span class="dt">error</span> <span class="op">{</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> v <span class="op">==</span> <span class="ot">nil</span> <span class="op">{</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="ot">nil</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 判断是否是重定向</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> rd<span class="op">,</span> ok <span class="op">:=</span> v<span class="op">.(</span>kratoshttp<span class="op">.</span>Redirector<span class="op">);</span> ok <span class="op">{</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>                url<span class="op">,</span> code <span class="op">:=</span> rd<span class="op">.</span>Redirect<span class="op">()</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>                http<span class="op">.</span>Redirect<span class="op">(</span>w<span class="op">,</span> r<span class="op">,</span> url<span class="op">,</span> code<span class="op">)</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> <span class="ot">nil</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 构造自定义的响应结构体</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>        resp <span class="op">:=</span> <span class="op">&amp;</span>httpResponse<span class="op">{</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>                Code<span class="op">:</span> http<span class="op">.</span>StatusOK<span class="op">,</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>                Msg<span class="op">:</span>  <span class="st">"success"</span><span class="op">,</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>                Data<span class="op">:</span> v<span class="op">,</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 响应数据</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>        codec<span class="op">,</span> _ <span class="op">:=</span> kratoshttp<span class="op">.</span>CodecForRequest<span class="op">(</span>r<span class="op">,</span> <span class="st">"Accept"</span><span class="op">)</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>        data<span class="op">,</span> err <span class="op">:=</span> codec<span class="op">.</span>Marshal<span class="op">(</span>resp<span class="op">)</span> <span class="co">// json.Marshal</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> err <span class="op">!=</span> <span class="ot">nil</span> <span class="op">{</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> err</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 设置响应头 Content-Type:application/json</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>        w<span class="op">.</span>Header<span class="op">().</span>Set<span class="op">(</span><span class="st">"Content-Type"</span><span class="op">,</span> <span class="st">"application/"</span><span class="op">+</span>codec<span class="op">.</span>Name<span class="op">())</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>        _<span class="op">,</span> err <span class="op">=</span> w<span class="op">.</span>Write<span class="op">(</span>data<span class="op">)</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> err</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="co">// 自定义的错误响应编码器</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> errorEncoder<span class="op">(</span>w http<span class="op">.</span>ResponseWriter<span class="op">,</span> r <span class="op">*</span>http<span class="op">.</span>Request<span class="op">,</span> err <span class="dt">error</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> err <span class="op">==</span> <span class="ot">nil</span> <span class="op">{</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>        resp <span class="op">:=</span> <span class="bu">new</span><span class="op">(</span>httpResponse<span class="op">)</span> <span class="co">// 能从err里面解析出错误码的</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> gs<span class="op">,</span> ok <span class="op">:=</span> status<span class="op">.</span>FromError<span class="op">(</span>err<span class="op">);</span> ok <span class="op">{</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>                resp <span class="op">=</span> <span class="op">&amp;</span>httpResponse<span class="op">{</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>                        Code<span class="op">:</span> <span class="dt">int32</span><span class="op">(</span>kratosstatus<span class="op">.</span>FromGRPCCode<span class="op">(</span>gs<span class="op">.</span>Code<span class="op">())),</span></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>                        Msg<span class="op">:</span>  gs<span class="op">.</span>Message<span class="op">(),</span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>                        Data<span class="op">:</span> <span class="ot">nil</span><span class="op">,</span></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>                resp <span class="op">=</span> <span class="op">&amp;</span>httpResponse<span class="op">{</span></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>                        Code<span class="op">:</span> http<span class="op">.</span>StatusInternalServerError<span class="op">,</span> <span class="co">// 500</span></span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>                        Msg<span class="op">:</span>  <span class="st">"内部错误"</span><span class="op">,</span></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>        codec<span class="op">,</span> _ <span class="op">:=</span> kratoshttp<span class="op">.</span>CodecForRequest<span class="op">(</span>r<span class="op">,</span> <span class="st">"Accept"</span><span class="op">)</span></span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>        body<span class="op">,</span> err <span class="op">:=</span> codec<span class="op">.</span>Marshal<span class="op">(</span>resp<span class="op">)</span></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> err <span class="op">!=</span> <span class="ot">nil</span> <span class="op">{</span></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>                w<span class="op">.</span>WriteHeader<span class="op">(</span>http<span class="op">.</span>StatusInternalServerError<span class="op">)</span></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span></span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>        w<span class="op">.</span>Header<span class="op">().</span>Set<span class="op">(</span><span class="st">"Content-Type"</span><span class="op">,</span> <span class="st">"application/"</span><span class="op">+</span>codec<span class="op">.</span>Name<span class="op">())</span></span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>        w<span class="op">.</span>WriteHeader<span class="op">(</span><span class="dt">int</span><span class="op">(</span>resp<span class="op">.</span>Code<span class="op">))</span></span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>        _<span class="op">,</span> _ <span class="op">=</span> w<span class="op">.</span>Write<span class="op">(</span>body<span class="op">)</span></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode go code-with-copy"><code class="sourceCode go"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 替换默认的 HTTP 响应编码器</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>opts <span class="op">=</span> <span class="bu">append</span><span class="op">(</span>opts<span class="op">,</span> http<span class="op">.</span>ResponseEncoder<span class="op">(</span>ResponseEncoder<span class="op">))</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">// 替换默认的错误响应编码器</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>opts <span class="op">=</span> <span class="bu">append</span><span class="op">(</span>opts<span class="op">,</span> http<span class="op">.</span>ErrorEncoder<span class="op">(</span>errorEncoder<span class="op">))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="日志" class="level2">
+<h2 class="anchored" data-anchor-id="日志">日志</h2>
+<p>为了方便使用，Kratos定义了两个层面的抽象，Logger统一了日志的接入方式，Helper接口统一的日志库的调用方式。</p>
+<p>Kratos的日志库主要有如下特性：</p>
+<ul>
+<li><p>Logger用于对接各种日志库或日志平台，可以用现成的或者自己实现</p></li>
+<li><p>Helper是在您的项目代码中实际需要调用的，用于在业务代码里打日志</p></li>
+<li><p>Filter用于对输出日志进行过滤或魔改（通常用于日志脱敏）</p></li>
+<li><p>Valuer用于绑定一些全局的固定值或动态值（比如时间戳、traceID或者实例id之类的东西）到输出日志中</p></li>
+</ul>
+</section>
+<section id="中间件" class="level2">
+<h2 class="anchored" data-anchor-id="中间件">中间件</h2>
+<p><img src="../assets/images/kratos/Kratos-image-2.png" alt="go" style="width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto;"></p>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section">. . .</h2>
 </section>
 <section id="参考资料" class="level2">
 <h2 class="anchored" data-anchor-id="参考资料">参考资料</h2>
