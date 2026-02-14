@@ -2,7 +2,7 @@
   {
     "listing": "/content/papers/labnotes/index.html",
     "items": [
-      "/content/papers/labnotes/entries/default.html"
+      "/content/papers/labnotes/entries/BackdoorIndicator.html"
     ]
   },
   {
@@ -69,7 +69,7 @@
       "/content/projects/entries/GoLink.html",
       "/content/projects/entries/GoList.html",
       "/content/papers/deepseek/entries/default.html",
-      "/content/papers/labnotes/entries/default.html",
+      "/content/papers/labnotes/entries/BackdoorIndicator.html",
       "/content/learning-notes/algorithm/entries/hot100.html",
       "/content/learning-notes/algorithm/entries/不定长滑动窗口-越长越合法+求最短+最小.html",
       "/content/learning-notes/algorithm/entries/滑动窗口与双指针-定长滑动窗口-基础.html",
@@ -169,7 +169,7 @@
     "listing": "/content/papers/index.html",
     "items": [
       "/content/papers/deepseek/entries/default.html",
-      "/content/papers/labnotes/entries/default.html"
+      "/content/papers/labnotes/entries/BackdoorIndicator.html"
     ]
   },
   {
