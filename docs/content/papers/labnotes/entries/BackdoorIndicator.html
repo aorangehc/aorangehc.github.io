@@ -476,53 +476,53 @@ window.Quarto = {
 <section id="算法输入-input" class="level3">
 <h3 class="anchored" data-anchor-id="算法输入-input">算法输入 (Input)</h3>
 <ul>
-<li><p><strong>指示器数据集</strong>：<span class="math display">\[D_o\]</span>，由分布外 OOD 数据构成。</p></li>
-<li><p><strong>指示器任务训练超参数</strong>：训练迭代次数 <span class="math display">\[E\]</span>和学习率 <span class="math display">\[\eta\]</span>。</p></li>
-<li><p><strong>正则化项权重</strong>： <span class="math display">\[\lambda\]</span>，用于控制指示器任务不对主任务产生过大影响</p></li>
-<li><p><strong>怀疑阈值</strong>： <span class="math display">\[\epsilon_I\]</span>，用于判定模型是否恶意的界限</p></li>
-<li><p><strong>参与客户端</strong>：第 <span class="math display">\[t\]</span>轮被随机选中的客户端集合<span class="math display">\[S_t\]</span></p></li>
+<li><p><strong>指示器数据集</strong>：<span class="math inline">\(D_o\)</span>，由分布外 OOD 数据构成。</p></li>
+<li><p><strong>指示器任务训练超参数</strong>：训练迭代次数 <span class="math inline">\(E\)</span>和学习率 <span class="math inline">\(\eta\)</span>。</p></li>
+<li><p><strong>正则化项权重</strong>： <span class="math inline">\(\lambda\)</span>，用于控制指示器任务不对主任务产生过大影响</p></li>
+<li><p><strong>怀疑阈值</strong>： <span class="math inline">\(\epsilon_I\)</span>，用于判定模型是否恶意的界限</p></li>
+<li><p><strong>参与客户端</strong>：第 <span class="math inline">\(t\)</span>轮被随机选中的客户端集合<span class="math inline">\(S_t\)</span></p></li>
 </ul>
 </section>
 <section id="算法输出-output" class="level3">
 <h3 class="anchored" data-anchor-id="算法输出-output">算法输出 (Output)</h3>
 <ul>
-<li><strong>下一轮的全局模型</strong>：经过过滤和聚合后生成的第 <span class="math display">\[t+1\]</span>轮全局模型 <span class="math display">\[G^{t+1}\]</span></li>
+<li><strong>下一轮的全局模型</strong>：经过过滤和聚合后生成的第 <span class="math inline">\(t+1\)</span>轮全局模型 <span class="math inline">\(G^{t+1}\)</span></li>
 </ul>
 </section>
 <section id="第一阶段服务器初始化与指示器注入" class="level3">
 <h3 class="anchored" data-anchor-id="第一阶段服务器初始化与指示器注入">第一阶段：服务器初始化与指示器注入</h3>
 <p>在这个阶段，服务器负责把指示器任务植入到下发的模型中。</p>
 <ol type="1">
-<li><p><strong>保存原始统计量</strong>：服务器保存当前全局模型 <span class="math display">\[G^t\]</span>的批归一化均值和方差，分别记作 <span class="math display">\[\mu_M\]</span> 和 <span class="math display">\[\sigma_M\]</span>。初始化指示器模型 <span class="math display">\[w_{ind} \leftarrow G^t\]</span>。</p></li>
-<li><p><strong>训练指示器任务</strong>：服务器在指示器数据集 <span class="math display">\[D_o\]</span>上对模型进行 <span class="math display">\[E\]</span>次迭代训练。训练过程优化的损失函数不仅包含交叉熵损失，还加入了一个 L2 正则化项 <span class="math display">\[\lambda||w_{ind}-G^{t}||_{2}\]</span>以防止模型偏离主任务过远 </p></li>
-<li><p><strong>保存新统计量</strong>：指示器任务训练完成后，服务器记录此时模型新的 BN 均值和方差，记作 <span class="math display">\[\mu_I\]</span> 和 <span class="math display">\[\sigma_I\]</span> </p></li>
-<li><p><strong>恢复原始统计量</strong>：为了消除植入指示器任务对主任务准确率的干扰，服务器强制将模型 <span class="math display">\[w_{ind}\]</span> 中的 BN 统计量替换回第一步保存的 <span class="math display">\[\mu_M\]</span> 和 <span class="math display">\[\sigma_M\]</span></p></li>
-<li><p><strong>模型下发</strong>：服务器将处理好的模型 <span class="math display">\[w_{ind}\]</span>广播下发给本轮选中的所有客户端 <span class="math display">\[S_t\]</span></p></li>
+<li><p><strong>保存原始统计量</strong>：服务器保存当前全局模型 <span class="math inline">\(G^t\)</span>的批归一化均值和方差，分别记作 <span class="math inline">\(\mu_M\)</span> 和 <span class="math inline">\(\sigma_M\)</span>。初始化指示器模型 <span class="math inline">\(w_{ind} \leftarrow G^t\)</span>。</p></li>
+<li><p><strong>训练指示器任务</strong>：服务器在指示器数据集 <span class="math inline">\(D_o\)</span>上对模型进行 <span class="math inline">\(E\)</span>次迭代训练。训练过程优化的损失函数不仅包含交叉熵损失，还加入了一个 L2 正则化项 <span class="math inline">\(\lambda||w_{ind}-G^{t}||_{2}\)</span>以防止模型偏离主任务过远 </p></li>
+<li><p><strong>保存新统计量</strong>：指示器任务训练完成后，服务器记录此时模型新的 BN 均值和方差，记作 <span class="math inline">\(\mu_I\)</span> 和 <span class="math inline">\(\sigma_I\)</span> </p></li>
+<li><p><strong>恢复原始统计量</strong>：为了消除植入指示器任务对主任务准确率的干扰，服务器强制将模型 <span class="math inline">\(w_{ind}\)</span> 中的 BN 统计量替换回第一步保存的 <span class="math inline">\(\mu_M\)</span> 和 <span class="math inline">\(\sigma_M\)</span></p></li>
+<li><p><strong>模型下发</strong>：服务器将处理好的模型 <span class="math inline">\(w_{ind}\)</span>广播下发给本轮选中的所有客户端 <span class="math inline">\(S_t\)</span></p></li>
 </ol>
 </section>
 <section id="第二阶段客户端本地训练-clients-perform-local-training" class="level3">
 <h3 class="anchored" data-anchor-id="第二阶段客户端本地训练-clients-perform-local-training">第二阶段：客户端本地训练 (Clients perform local training)</h3>
 <p>在这个阶段，客户端在本地进行常规的联邦学习训练。</p>
 <ol type="1">
-<li><p><strong>本地初始化</strong>：客户端接收到服务器下发的模型 <span class="math display">\[w_{ind}\]</span> ，并以此作为本地模型的初始状态 </p></li>
-<li><p><strong>执行本地训练</strong>：被选中的各个客户端使用自己本地的<strong>私有数据集</strong>进行梯度的迭代下降训练，得到更新后的本地模型 <span class="math display">\[L_i\]</span></p></li>
-<li><p><strong>上传模型差异</strong>：客户端计算本地训练后的模型与收到的初始模型之间的参数差值 <span class="math display">\[\Delta w_i = L_i - w_{ind}\]</span>，并将该差值更新上传回服务器</p></li>
+<li><p><strong>本地初始化</strong>：客户端接收到服务器下发的模型 <span class="math inline">\(w_{ind}\)</span> ，并以此作为本地模型的初始状态 </p></li>
+<li><p><strong>执行本地训练</strong>：被选中的各个客户端使用自己本地的<strong>私有数据集</strong>进行梯度的迭代下降训练，得到更新后的本地模型 <span class="math inline">\(L_i\)</span></p></li>
+<li><p><strong>上传模型差异</strong>：客户端计算本地训练后的模型与收到的初始模型之间的参数差值 <span class="math inline">\(\Delta w_i = L_i - w_{ind}\)</span>，并将该差值更新上传回服务器</p></li>
 </ol>
 </section>
 <section id="第三阶段服务器检测与聚合-server-checks-indicator-accuracy-and-aggregates" class="level3">
 <h3 class="anchored" data-anchor-id="第三阶段服务器检测与聚合-server-checks-indicator-accuracy-and-aggregates">第三阶段：服务器检测与聚合 (Server checks indicator accuracy and aggregates)</h3>
 <p>服务器通过校正偏移并测试指示器任务来剔除后门模型。</p>
 <ol type="1">
-<li><p><strong>初始化白名单</strong>：服务器初始化一个空的集合 <span class="math display">\[A\]</span>，用于存放通过安全检测的良性客户端索引</p></li>
-<li><p><strong>校正 BN 偏移</strong>：针对客户端上传的每一个模型更新，服务器先还原出其本地模型 <span class="math display">\[L_i \leftarrow w_{ind} + \Delta w_i\]</span>。随后，<strong>将该模型的 BN 统计量强制替换为之前保存的指示器统计量 <span class="math display">\[\mu_I\]</span> 和 <span class="math display">\[\sigma_I\]</span> </strong></p></li>
-<li><p><strong>盲测指示器准确率</strong>：服务器在该模型上测试指示器数据集 <span class="math display">\[D_o\]</span> 中各个标签类别的准确率，得到一个准确率数组 <span class="math display">\[\{\alpha_1, \alpha_2, ..., \alpha_N\}\]</span></p></li>
-<li><p><strong>提取最高分</strong>：从上述数组中找出最高的准确率，记为 <span class="math display">\[\alpha_m\]</span>即该模型对指示器任务的记忆程度</p></li>
+<li><p><strong>初始化白名单</strong>：服务器初始化一个空的集合 <span class="math inline">\(A\)</span>，用于存放通过安全检测的良性客户端索引</p></li>
+<li><p><strong>校正 BN 偏移</strong>：针对客户端上传的每一个模型更新，服务器先还原出其本地模型 <span class="math inline">\(L_i \leftarrow w_{ind} + \Delta w_i\)</span>。随后，<strong>将该模型的 BN 统计量强制替换为之前保存的指示器统计量 <span class="math inline">\(\mu_I\)</span> 和 <span class="math inline">\(\sigma_I\)</span> </strong></p></li>
+<li><p><strong>盲测指示器准确率</strong>：服务器在该模型上测试指示器数据集 <span class="math inline">\(D_o\)</span> 中各个标签类别的准确率，得到一个准确率数组 <span class="math inline">\(\{\alpha_1, \alpha_2, ..., \alpha_N\}\)</span></p></li>
+<li><p><strong>提取最高分</strong>：从上述数组中找出最高的准确率，记为 <span class="math inline">\(\alpha_m\)</span>即该模型对指示器任务的记忆程度</p></li>
 <li><p><strong>阈值判定过滤</strong>：</p>
 <ul>
-<li><p>如果 <span class="math display">\[\alpha_m &lt; \epsilon_I\]</span>，最高准确率<strong>低于</strong>怀疑阈值：说明客户端在正常的良性训练中已经遗忘了该诱饵任务，判定为<strong>良性更新</strong>，将该客户端加入白名单集合 <span class="math display">\[A\]</span></p></li>
-<li><p>如果 <span class="math display">\[\alpha_m \ge \epsilon_I\]</span>：说明该更新保留了 OOD 映射，被判定为<strong>疑似后门更新</strong>，将其直接剔除，不加入集合 <span class="math display">\[A\]</span></p></li>
+<li><p>如果 <span class="math inline">\(\alpha_m &lt; \epsilon_I\)</span>，最高准确率<strong>低于</strong>怀疑阈值：说明客户端在正常的良性训练中已经遗忘了该诱饵任务，判定为<strong>良性更新</strong>，将该客户端加入白名单集合 <span class="math inline">\(A\)</span></p></li>
+<li><p>如果 <span class="math inline">\(\alpha_m \ge \epsilon_I\)</span>：说明该更新保留了 OOD 映射，被判定为<strong>疑似后门更新</strong>，将其直接剔除，不加入集合 <span class="math inline">\(A\)</span></p></li>
 </ul></li>
-<li><p><strong>安全聚合</strong>：服务器将白名单集合 <span class="math display">\[A\]</span>中所有良性客户端的更新进行平均聚合，生成用于下一轮训练的新全局模型：<span class="math display">\[G^{t+1} = w_{ind} + \frac{1}{|A|}\sum_{i \in A}\Delta w_{i}\]</span></p></li>
+<li><p><strong>安全聚合</strong>：服务器将白名单集合 <span class="math inline">\(A\)</span>中所有良性客户端的更新进行平均聚合，生成用于下一轮训练的新全局模型：<span class="math inline">\(G^{t+1} = w_{ind} + \frac{1}{|A|}\sum_{i \in A}\Delta w_{i}\)</span></p></li>
 </ol>
 <p>除了上面的算法，还有一些问题</p>
 <p>服务器对潜在后门的类型、触发器以及目标标签完全未知。为了解决这个信息不对称的问题，论文作者在实验和算法设计中采用了一种全面撒网，取其最高的策略，在植入阶段覆盖所有标签，检测阶段独立计算，取最大值。</p>
