@@ -819,501 +819,11 @@
     "text": "这是一个非常简单（可能也没那么简单），但是非常有意思的RAG检索系统，但是可以作为一个学习的起点，了解RAG检索的基本流程和原理。\n在实际应用中，RAG检索系统的实现可能会更加复杂，需要考虑更多的因素，比如数据处理、检索索引、生成模型等。\n现在运行项目还会有很多问题，后续我也会发现原因，或许实践构建一个自己的RAG检索系统？"
   },
   {
-    "objectID": "content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html",
-    "href": "content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html",
-    "title": "一种免费、高清、安全、但是很麻烦的远程桌面连接方案",
+    "objectID": "content/blogs/entries/保姆教程如何创建自己的“个人网站”.html",
+    "href": "content/blogs/entries/保姆教程如何创建自己的“个人网站”.html",
+    "title": "保姆教程如何创建自己的“个人网站”",
     "section": "",
-    "text": "该方案能够解决的问题\n1、远程连接不受距离限制，通过tailscale实现，但是一定要保证网络的稳定\n2、免费高清串流，通过sunshine和moonlight实现\n3、安全，本方案中安全指的是远端的电脑屏幕在串流期间能够保持黑屏，能有效保护隐私，通过ParsecVDisplay诱骗电脑分屏实现\n\n\n\n\n通过上面的几个工具，大概能够推测出实现的原理 串流指的是将远程计算机的桌面环境、应用程序界面、音频和鼠标键盘输入等实时传输到另一台计算机或设备的过程。 在本方案中，通过ParsecVDisplay诱骗远端的分屏，然后将分屏串流到本地电脑，串流通过sunshine和moonlight实现。 在电脑上设置只在分屏显示，就可以实现主屏幕全程黑屏，保护隐私。然后通过tailscale将两个设备拉到同一个虚拟局域网中，实现不受距离限制的远程连接。\n\n基本原理如下图所示（画的比较糙了）\n\n相较于已有的方法，这个设置起来比较麻烦，但是免费、高清和安全还是非常诱人的。\n同时，这个方案有一个非常之名的缺点，这是由于分屏工具的一个BUG引起的。需要按照严格步骤才能防止意外地发生。\n\n\n\n这个工具的安装没有什么特别的，按照步骤进行安装即可，，可以点击下面的链接找到工具下载地址，如果是在Windows的环境中运行，可以按照图中的版本进行下载，实测有效。\n1、sunshine \n2、moonlight \n3、ParsecVDisplay \n4、tailscale \n注意： 1、sunshine要安装在远端的电脑上\n2、moonlight要安装在本地的电脑上\n3、ParsecVDisplay要安装在远端的电脑上\n4、tailscale在两个电脑上都要安装，注册完成后，登陆同一个账号即可\n\n\n\n在工具安装完成后，我们能够实现基本的串流，然后就是我们方案的实施\n\n\n打开moonlight，在右上角点击添加计算机，然后在框中输入远端主机的IP地址即可。 \n关于ip地址的获取：Win+R，输入cmd，回车，输入ipconfig，回车，找到IPv4地址即可。 \n同时为了能够更好的实现远程的连接推荐使用tailscale安装完成后分配的地址吗，这样可以实现更稳定的远程连接，电脑的ip地址离开局域网之后就不能用了。会自动更换其他地址，这会导致远程连接的失败。\n点击计算机列表中需要远程的电脑，第一次需要输入一个验证码，看到验证码后，在远程主机点击sunshine弹出的框，在框中输入就行。  \n输入完成后，就能实现最基本的电脑远程了。\n\n\n\n保持远程连接的状态下，打开ParsecVDisplay，右下角添加分屏，不过要记住分屏的名称 \n\n需要注意的是，分屏名称会发生变化，这也是 必要按照这个步骤执行的原因\n\n\n\n\n打开sunshine\n在配置中选择Audio/Video，将输出名称改成之前设置分屏的名称，然后重启sunshine\n\n\n这个时候会断连一次\n\n\n\n等待远程电脑的感叹号消失，连接回复正常，连接远程电脑 \n\n\n\n在设置里设置屏幕只在屏2显示，然后就可以实现远程电脑全程黑屏了。 \n\n\n\n先在设置中将原本的只在屏2显示改成复制这些屏幕，然后关闭ParsecVDisplay，然后将远端的电脑锁定，保证下次能正常连接。 \n之后用ctrl+alt+shift+Q退出moonlight就可以了\n\n只有按照上部步骤才能实现稳定连接，不然分屏工具会随机改变分屏名称，这是导致出现意外地原因，可以使用其他分屏工具进行实验 还有关于tailscale的配置和安装，可以参照相关教程\n\n\n\n\n\n\n这件事的灵感来源于跟师兄的聊天，由于初次接触远程连接，感觉很有趣，然后产生了能不能保护隐私的想法，从网上没找到合适方案。由此问师兄，师兄说不能实现吗，串流本质就是投屏，屏幕亮着才能实现吗，然后我就想起了可以借助分屏工具实现，最后测试一番才成功。 个人感觉很有趣，但是限制比较多，也很容易失败，但是也很实用不是吗。"
-  },
-  {
-    "objectID": "content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html#基本原理",
-    "href": "content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html#基本原理",
-    "title": "一种免费、高清、安全、但是很麻烦的远程桌面连接方案",
-    "section": "",
-    "text": "通过上面的几个工具，大概能够推测出实现的原理 串流指的是将远程计算机的桌面环境、应用程序界面、音频和鼠标键盘输入等实时传输到另一台计算机或设备的过程。 在本方案中，通过ParsecVDisplay诱骗远端的分屏，然后将分屏串流到本地电脑，串流通过sunshine和moonlight实现。 在电脑上设置只在分屏显示，就可以实现主屏幕全程黑屏，保护隐私。然后通过tailscale将两个设备拉到同一个虚拟局域网中，实现不受距离限制的远程连接。\n\n基本原理如下图所示（画的比较糙了）\n\n相较于已有的方法，这个设置起来比较麻烦，但是免费、高清和安全还是非常诱人的。\n同时，这个方案有一个非常之名的缺点，这是由于分屏工具的一个BUG引起的。需要按照严格步骤才能防止意外地发生。"
-  },
-  {
-    "objectID": "content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html#工具安装",
-    "href": "content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html#工具安装",
-    "title": "一种免费、高清、安全、但是很麻烦的远程桌面连接方案",
-    "section": "",
-    "text": "这个工具的安装没有什么特别的，按照步骤进行安装即可，，可以点击下面的链接找到工具下载地址，如果是在Windows的环境中运行，可以按照图中的版本进行下载，实测有效。\n1、sunshine \n2、moonlight \n3、ParsecVDisplay \n4、tailscale \n注意： 1、sunshine要安装在远端的电脑上\n2、moonlight要安装在本地的电脑上\n3、ParsecVDisplay要安装在远端的电脑上\n4、tailscale在两个电脑上都要安装，注册完成后，登陆同一个账号即可"
-  },
-  {
-    "objectID": "content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html#实施步骤",
-    "href": "content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html#实施步骤",
-    "title": "一种免费、高清、安全、但是很麻烦的远程桌面连接方案",
-    "section": "",
-    "text": "在工具安装完成后，我们能够实现基本的串流，然后就是我们方案的实施\n\n\n打开moonlight，在右上角点击添加计算机，然后在框中输入远端主机的IP地址即可。 \n关于ip地址的获取：Win+R，输入cmd，回车，输入ipconfig，回车，找到IPv4地址即可。 \n同时为了能够更好的实现远程的连接推荐使用tailscale安装完成后分配的地址吗，这样可以实现更稳定的远程连接，电脑的ip地址离开局域网之后就不能用了。会自动更换其他地址，这会导致远程连接的失败。\n点击计算机列表中需要远程的电脑，第一次需要输入一个验证码，看到验证码后，在远程主机点击sunshine弹出的框，在框中输入就行。  \n输入完成后，就能实现最基本的电脑远程了。\n\n\n\n保持远程连接的状态下，打开ParsecVDisplay，右下角添加分屏，不过要记住分屏的名称 \n\n需要注意的是，分屏名称会发生变化，这也是 必要按照这个步骤执行的原因\n\n\n\n\n打开sunshine\n在配置中选择Audio/Video，将输出名称改成之前设置分屏的名称，然后重启sunshine\n\n\n这个时候会断连一次\n\n\n\n等待远程电脑的感叹号消失，连接回复正常，连接远程电脑 \n\n\n\n在设置里设置屏幕只在屏2显示，然后就可以实现远程电脑全程黑屏了。 \n\n\n\n先在设置中将原本的只在屏2显示改成复制这些屏幕，然后关闭ParsecVDisplay，然后将远端的电脑锁定，保证下次能正常连接。 \n之后用ctrl+alt+shift+Q退出moonlight就可以了\n\n只有按照上部步骤才能实现稳定连接，不然分屏工具会随机改变分屏名称，这是导致出现意外地原因，可以使用其他分屏工具进行实验 还有关于tailscale的配置和安装，可以参照相关教程"
-  },
-  {
-    "objectID": "content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html#总结",
-    "href": "content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html#总结",
-    "title": "一种免费、高清、安全、但是很麻烦的远程桌面连接方案",
-    "section": "",
-    "text": "这件事的灵感来源于跟师兄的聊天，由于初次接触远程连接，感觉很有趣，然后产生了能不能保护隐私的想法，从网上没找到合适方案。由此问师兄，师兄说不能实现吗，串流本质就是投屏，屏幕亮着才能实现吗，然后我就想起了可以借助分屏工具实现，最后测试一番才成功。 个人感觉很有趣，但是限制比较多，也很容易失败，但是也很实用不是吗。"
-  },
-  {
-    "objectID": "content/blogs/entries/一文了解RAG.html",
-    "href": "content/blogs/entries/一文了解RAG.html",
-    "title": "一文了解RAG",
-    "section": "",
-    "text": "RAG（Retrieval Augmented Generation）：检索增强生成"
-  },
-  {
-    "objectID": "content/blogs/entries/一文了解RAG.html#引言",
-    "href": "content/blogs/entries/一文了解RAG.html#引言",
-    "title": "一文了解RAG",
-    "section": "0 引言",
-    "text": "0 引言\n写在前面，作者也是初学者，抱着学习的心态写了这篇文章，如果有问题，欢迎大家邮箱联系进行批评指正。\n本篇将系统介绍RAG的基本概念、核心技术原理、发展背景和典型架构，随后深入探讨多模态RAG（如文本-图像、文本-视频的检索增强生成）和Graph RAG（基于图结构数据的检索增强生成）等前沿方向，最后分析当前面临的挑战与未来发展趋势。"
-  },
-  {
-    "objectID": "content/blogs/entries/一文了解RAG.html#基本概念",
-    "href": "content/blogs/entries/一文了解RAG.html#基本概念",
-    "title": "一文了解RAG",
-    "section": "1 基本概念",
-    "text": "1 基本概念\nRAG（Retrieval Augmented Generation），中文名称是检索增强生成，通俗意义上来讲就是通过检索提升大模型生成效果的技术，旨在提升生成式AI的准确性与可信度。它实现了大语言模型与外部知识库的结合，是缓解幻觉与提升可追溯性的关键路线之一。该概念最初由Facebook AI研究团队在2020年提出，并发表了命名RAG的开创性论文。如今，RAG已发展为一类庞大的方法体系，被认为是通向更可靠生成式AI的重要方向。"
-  },
-  {
-    "objectID": "content/blogs/entries/一文了解RAG.html#背景和技术原理",
-    "href": "content/blogs/entries/一文了解RAG.html#背景和技术原理",
-    "title": "一文了解RAG",
-    "section": "2 背景和技术原理",
-    "text": "2 背景和技术原理\n\n2. 1 背景\n大模型在没有外部知识库的情况下也能”记住”大量知识，但仍然存在明显局限：参数中的知识更新成本高、回答往往缺少可核验的证据来源；遇到冷门知识、最新信息或长链路推理时，错误率会上升；在多轮对话与长上下文场景里，也可能出现信息遗忘、主题漂移与证据混淆等问题。\n比如，你问的是aorangehc是谁，它却开始讲爱因斯坦是谁，这类与问题无关或事实不符的生成通常被称为幻觉（LLM Hallucination)。幻觉并非某一个模型的偶然故障，而是概率式生成在信息不足、目标不清或证据缺失时容易出现的系统性现象，因此研究者开始从模型之外引入约束与外部信息来降低这类问题的发生。\n一种方法是在预训练之后对模型进行指令微调与对齐训练，让它在不确定时更倾向于回答”不知道”或主动澄清。一种方法是使用者通过Prompt对回答范围、证据要求与输出格式进行限制，减少模型自由发挥的空间。\n还有一种就是引入外部知识库。我们现在使用ChatGPT、Gemini、Kimi、豆包以及DeepSeek等大模型应用时，经常会看到联网搜索或知识库问答功能：系统会根据问题去外部数据源检索网页或文档片段，将检索结果作为证据提供给模型，再由模型基于证据与自身语言能力组织答案，从而显著提升事实性与可解释性。这个”先检索、再生成”的过程，就是RAG的典型范式。\n\n\n2.2 技术原理\n现在意义上的大模型具有很多能力，我们日常中更多是使用大模型进行提问，让它解决遇到的难题，比如Python代码报错，把报错信息扔给大模型，它给出修改意见，这个过程中使用的主要能力是指令遵循。除此之外还有上下文学习、推理、工具使用等，随着技术的发展，大模型可调用的能力在不断扩展。\n在RAG中主要利用的就是大模型的上下文学习能力，通过检索获取相关知识作为上下文提供给大模型，然后由大模型基于问题与证据进行归纳总结并生成回答。\nRAG的核心思想是在生成任务中引入检索模块。模型在接到输入后，先由检索模块从外部知识库（如维基百科、专有文档库、企业内部资料等）中检索出相关资料，再将检索到的内容与原始输入一起送入生成模型，生成最终回答或文本。这种”检索-生成”策略使模型能够现查现用所需知识，而不必完全依赖参数中存储的旧知识。OpenAI的WebGPT工作即是典型案例：它让GPT-3在一个受控的浏览环境中搜索网页、抽取引用片段并据此回答长问题，从而提升答案的事实性与可核验性。通过引入检索，不仅能降低幻觉发生率，也使知识库可以更灵活地扩展与更新，例如用户可以按需接入新的数据源供系统使用。\n自RAG提出后，各大研究团队纷纷推出改进的检索增强模型。例如，DeepMind在2021年发布的RETRO模型通过接入超大规模文本数据库进行检索增强，在较小参数规模下取得了与当时超大模型相当甚至在部分基准上更优的效果，体现了检索对”以更小模型获得更强知识能力”的潜力。又如Meta在2022年推出的Atlas模型，将预训练的检索增强语言模型用于少样本学习，在开放域问答等知识密集任务上，用显著更少的参数规模取得了与超大模型相竞争的表现。这些成果表明，检索增强可以在更小模型规模下达到甚至逼近超大模型的效果，凸显了参数与检索融合的效率优势与工程价值。"
-  },
-  {
-    "objectID": "content/blogs/entries/一文了解RAG.html#rag框架",
-    "href": "content/blogs/entries/一文了解RAG.html#rag框架",
-    "title": "一文了解RAG",
-    "section": "3 RAG框架",
-    "text": "3 RAG框架\n\n图片引用自文献Retrieval-Augmented Generation for AI-Generated Content: A Survey\n典型RAG系统包含检索器与生成器两大核心组件。\n\n3.1 RAG基本流程\n首先，输入查询会被检索模块编码为向量表示，并在外部知识库的向量索引中进行相似度搜索，检索出若干相关文本片段，并可能应用重排序技术来提高精度。随后，这些检索到的证据片段与原始查询一并提供给生成模型，模型将基于问题与证据生成最终回答。通过将外部知识融入生成过程，RAG能够让回答更贴近事实，并在工程实现上支持给出引用来源与证据片段，从而提升可解释性与可审计性。\n经典RAG在生成整个回答时往往使用固定的一组检索文档；也有更高级的变体如RAG-Token，可以在生成过程中对不同位置动态使用不同检索证据，从而提升信息使用的灵活性。\n无论哪种方式，检索结果与生成模型的融合都是关键。很多实现会将检索文本直接拼接到模型输入中，而一些研究也探索在模型内部以更结构化的方式利用检索信息，使模型在生成时能更稳定地对齐证据、减少无关发挥。实践中，检索器与生成器既可以分阶段独立优化，也可以在特定设定下进行联合训练或端到端微调，以让检索器更偏向于返回对生成最有帮助的证据、生成器也更善于引用与整合证据。\n\n\n3.2 检索器\n检索是指根据信息需求识别并获取相关信息。具体来说，我们可以将信息资源视为一个键值存储，其中每个键对应一个值，键和值可以相同。给定一个查询，目标是使用相似性函数搜索出最相似的前k个键，并获取与之配对的值。根据不同的相似性函数，现有的检索方法可分为稀疏检索、稠密检索及其他类型。\n\n3.2.1 稀疏检索器\n稀疏检索器利用词项匹配指标，如TF-IDF、BM25，主要用于文档的相关检索。这些方法通过分析文本中的词统计信息并构建倒排索引来实现高效搜索。本质上，BM25是大规模网络搜索中的一个强大基线，它整合了逆文档频率权重、查询词项出现次数和其他相关指标。\n\n\n3.2.2 稠密检索器\n稠密检索通过稠密嵌入向量来表示查询和键，并构建近似最近邻索引加快搜索速度，能用于所有模态的检索。稠密检索将原本的数据通过预训练模型编码成为向量，然后通过计算相似度分数进行检索，相似度计算可以通过余弦、内积和L2距离等。\n现在的RAG系统为了提升效果一般采用稀疏检索+稠密检索的混合检索模式，提升效果。\n\n\n\n3.3 生成器\n生成器结合检索到的内容，生成所需内容。\n随着AIGC时代的发展，生成器也不断发展丰富成熟，不同的生成器模型可以用于不同的场景，比如\n\nTransformer模型用于文本到文本的任务\nVisualGPT可以用于图像到文本的任务\nStable Diffusion可以用于文本到图像的任务\nCodex可以用于文本到代码的任务"
-  },
-  {
-    "objectID": "content/blogs/entries/一文了解RAG.html#rag增强",
-    "href": "content/blogs/entries/一文了解RAG.html#rag增强",
-    "title": "一文了解RAG",
-    "section": "4 RAG增强",
-    "text": "4 RAG增强\n是的检索增强生成(的)增强也是很重要的研究点，有很多技巧。\n\n4.1 输入增强\n最初输入到检索器中的内容对检索阶段的最终结果有显著影响，输入增强的方式主要有以下几种。\n\n4.1.1 查询转换\n查询转换可以通过修改输入查询来增强检索结果。\nQuery2doc和HyDE，利用原始查询生成伪文档，之后将该伪文档用作检索的查询。伪文档包含更丰富的相关信息，有助于检索出更准确的结果。\nTOC利用检索到的内容，将模糊的查询分解为多个清晰的子查询，这些子查询被发送到生成器，经聚合后产生最终结果。对于。\nRQ-RAG将复杂或模糊的查询分解为清晰的子查询以进行细粒度检索，并对响应进行综合，从而为原始查询提供连贯的答案\n\n\n4.1.2 数据增强\n数据增强表示在检索前对数据进行改进，包括去除无关信息、消除歧义、更新过时文档、合成新数据等技术\nMake-An-Audio利用字幕生成和音频-文本检索为无语言音频生成字幕，以缓解数据稀疏问题，并添加随机概念音频来改进原始音频。\nLESS通过分析梯度信息优化下游任务的数据集选择，旨在提升模型对指令提示的响应性能。\nReACC通过重命名和死代码插入来预训练代码检索模型。\n\n\n\n4.2 检索器增强\n\n4.2.1 递归检索\n归检索是指执行多次搜索以获取更丰富、更高质量的内容。\nReACT利用思维链（CoT）将查询分解以进行递归检索，并提供更丰富的信息。\nRATP采用蒙特卡洛树搜索进行模拟，以选择最优的检索内容，然后将其模板化并转发给生成器进行输出。\n\n\n4.2.2 块优化\n块优化指的是调整块大小以改善检索结果。\nLlamaIndex集成了一系列 chunk 优化方法，其中一种遵循”从小到大”的原则。其核心思想是精准定位更细粒度的内容，同时返回更丰富的信息。例如，句子窗口检索会获取小的文本块，并返回检索片段周围的相关句子窗口。在自动合并检索中，文档被组织成树状结构。该过程先获取子节点，再检索包含其子节点内容的父节点。\nRAPTOR采用递归嵌入、聚类和文本块摘要的方法，直到无法进一步聚类为止，从而构建多层树状结构。\nPrompt-RAG通过预先生成目录来提高检索准确性，使模型能够根据查询自主选择相关章节。\n\n\n4.2.3 检索器微调\n在稠密检索中检索器依赖于一个高效的嵌入模型，来表示相关内容并为生成器提供输入，从而提升系统性能。\n可以通过特定领域或任务相关的数据进行微调，以提升在目标领域的性能。\nREPLUG将语言模型视为黑盒，并根据最终结果更新检索模型。\nAPICoder使用Python文件以及API名称、签名和描述对检索模型进行微调。\nEDITSUM对检索模型进行微调，以减小检索后摘要之间的杰卡德距离。\n最新的模型Qwen3系列开源了多种embedding和rerank模型，并开放了技术报告，效果很好。其中小模型适合用来做微调测试和效果对比。\n\n\n4.2.4 混合检索\n混合检索指同时采用多种不同的检索方法或从多个不同的来源提取信息。\nRAP-Gen、BlendedRAG 和ReACC均同时使用密集检索器和稀疏检索器来提高检索质量。\nRencos使用稀疏检索器在句法层面检索相似的代码片段，并使用密集检索器在语义层面检索相似的代码片段。\nBASHEXPLAINER首先使用密集检索器捕获语义信息，然后使用稀疏检索器获取词汇信息。\nRetDream先通过文本进行检索，再通过图像嵌入进行检索。\nCRAG的特点是配备了一个检索评估器，用于衡量文档与查询的相关性，并根据置信度生成三种检索响应：如果结果准确，则直接用于知识优化；如果结果不正确，则进行网络搜索；对于模糊情况，则采用混合方法。\n\n\n4.2.5 Rerank\n重排序应该是最常见的方式，指对检索到的内容进行重新排序，以获得更高的多样性和更好的结果。也有很多重排序的模型开源可以使用。\nRe2G在传统检索器之后应用了一个重排序器模型，以减少因将文本压缩为向量而导致的信息丢失所带来的影响。\nAceCoder利用选择器对检索到的程序进行重排序，以减少冗余程序并获得多样化的检索程序。\nXRICL在检索后使用基于蒸馏的示例重排序器。\nRangan采用量化影响度量，通过评估查询和参考之间的统计偏差来衡量数据子集的相似性，并对检索结果进行重排序。\nUDAPDR利用大语言模型经济高效地生成用于训练特定领域重排序器的合成查询，然后应用多教师知识蒸馏来开发一个协同的检索器。\n\n\n4.2.6 检索转换\n检索转换通过重新表述检索到的内容，以更好地激发生成器的潜力，从而改进输出结果。\nFILCO能高效地从检索到的文本中清除无关内容，只保留相关的支持性内容，从而简化生成器的任务，有助于准确预测答案。\nFiD-Light首先使用编码器将检索到的内容转换为向量，然后对其进行压缩，大幅减少了延迟时间。\n\n\n\n4.3 生成器增强\n\n4.3.1 提示工程-Prompt Engineering\n提示工程是一种专注于提高大型语言模型输出质量的提示工程技术，如提示压缩、后退提示、主动提示、思维链提示等，均适用于检索增强生成系统中的大型语言模型生成器。\nLLMLingua应用一个小型模型来压缩查询的整体长度，以加速模型推理，减轻无关信息对模型的负面影响，并缓解中间迷失现象。\nReMoDiffuse通过使用ChatGPT将复杂描述分解为结构化文本脚本。\nASAP将包含输入代码、函数定义、分析结果和相应注释的示例元组纳入提示词中，以获得更好的结果。\nCEDAR使用设计好的提示词模板，将代码演示、查询和自然语言指令组织成提示词。\nXRICL利用思维链技术，在跨语言语义解析和推理中添加翻译对作为中间步骤。\nACTIVERAG采用认知连接机制来校准大语言模型的内在认知，并在答案生成中应用思维链提示词。\nMake-An-Audio能够使用其他模态作为输入，这可以为后续过程提供更丰富的信息。\n\n\n4.3.2 解码调优\n解码调优包括通过微调超参数来增强生成器控制，以提高多样性、限制输出词汇量以及进行其他调整。\nInferFix通过调整解码器的温度来平衡结果的多样性和质量。（温度可以理解为一个参数，控制模型生成内容的发散程度）\nSYNCHROMESH通过实施补全引擎来消除实现错误，从而限制解码器的输出词汇量。\n\n\n4.3.3 生成器微调\n生成器的微调可以增强模型掌握更精确领域知识的能力，或使其更好地与检索器相适配。\nRETRO固定了检索器的参数，并在生成器中使用分块交叉注意力机制来结合查询和检索器的内容。\nCARE 利用图像、音频和视频-文本对训练编码器，然后微调解码器（生成器）以同时减少字幕和概念检测损失，同时保持编码器和检索器固定。\nAnimate-A-Story利用图像数据优化视频生成器，然后微调LoRA适配器以捕捉给定角色的外观细节。\n\n\n\n4.4 结果增强\n\n4.4.1 输出重写\n输出重写指的是在特定场景下对生成器生成的内容进行改写，以满足下游任务的需求。\nSARGAM通过采用一种特殊的Transformer，结合删除分类器、占位符分类器和插入分类器，在代码相关任务中优化输出，使其更贴合现实世界的代码语境。\nRing根据生成器产生的每个令牌的对数概率平均值对候选结果进行重新排序，从而获得多样化的结果。\nCBR-KBQA通过将生成的关系与知识图谱中查询实体的本地邻域所呈现的关系进行对齐，来修正结果。\n\n\n\n4.5 流程增强 Pipeline Enhancement\nRAG流程增强指的是对RAG的整个流程进行优化，以获得更好的性能结果。\n\n4.5.1 自适应检索\n一些关于RAG的研究表明，检索并非总能提升最终结果。当模型固有的参数化知识足以回答相关问题时，过度检索可能会导致资源浪费，并可能造成混淆。因此有些方法研究是否应该进行RAG。\n\n基于规则\n\nFLARE会在生成过程中主动决定是否以及何时对概率进行搜索。\nEfficient-KNNLM将 KNN-LM 和 NPM的生成概率与超参数 λ 相结合，以确定生成和检索的比例。\n还有对问题进行统计分析，以便为高频问题提供直接答案，并对低频问题应用检索增强生成等。\n\n基于模型\n\nSelf-RAG使用训练过的生成器，根据不同用户查询下的检索令牌来决定是否执行检索。\nSKR利用大型语言模型自身的能力预先判断其是否能够回答该问题，若能回答，则不执行检索。\nRowen将一个问题翻译成多种语言，并检查这些语言版本答案的一致性，以此来决定是否需要信息检索。\nAdaptiveRAG通过一个较小的语言模型作为分类器，根据查询的复杂程度动态决定是否进行检索。\n\n\n\n\n4.5.2 迭代式检索增强生成\n迭代式检索增强生成通过在检索和生成阶段反复循环来逐步优化结果，实际就是进行多轮操作\nRepoCoder采用迭代检索-生成方法进行代码补全，利用先前生成的代码优化查询，以更好地利用分散的信息并改善结果。\nITER-RETGEN通过使用生成器的输出来确定知识缺口、检索必要信息并为未来的生成周期提供信息，从而迭代地提高内容质量。\nSelfMemory迭代地利用检索增强生成器来构建一个庞大的记忆池，记忆选择器从该池中挑选输出，为下一个生成周期提供信息。\nRAT首先由大语言模型通过零样本思维链提示生成内容，然后通过从外部知识库检索知识来修改每个思维步骤。"
-  },
-  {
-    "objectID": "content/blogs/entries/一文了解RAG.html#rag的多跳多领域问题graph-rag",
-    "href": "content/blogs/entries/一文了解RAG.html#rag的多跳多领域问题graph-rag",
-    "title": "一文了解RAG",
-    "section": "5 RAG的多跳多领域问题（Graph RAG）",
-    "text": "5 RAG的多跳多领域问题（Graph RAG）\n在RAG中有一个非常经典的瓶颈问题：有些问题并不是在找某一段最相似的文本，而是在要求把分散在多篇文档、多个概念、甚至多个领域的线索串起来，形成综合结论。当回答需要沿着共享实体、属性或关系在不同信息片段间穿行，并在此基础上生成新的洞察时，单纯依赖向量相似度检索往往不够用。这就是RAG需要面对的多跳与多领域问题。\nGraphRAG（Graph Retrieval-Augmented Generation）可以被看作是为这两类问题准备的一条升级路线，它不只检索语义相近的文本块，而是把知识显式表示成图结构，例如从文本中抽取实体与关系形成知识图谱或图索引，并利用图中的关系结构来组织证据与推进推理。\nIBM对GraphRAG的定义很贴近工程实践：GraphRAG是一种引入图结构数据的高级RAG；不同于仅靠向量检索语义相似文本，它利用图的关系结构来检索与处理信息，尤其擅长多跳推理、关系上下文以及层级结构数据的组织与查询。"
-  },
-  {
-    "objectID": "content/blogs/entries/一文了解RAG.html#多模态rag",
-    "href": "content/blogs/entries/一文了解RAG.html#多模态rag",
-    "title": "一文了解RAG",
-    "section": "6 多模态RAG",
-    "text": "6 多模态RAG\n\n6.1 多模态大模型\n随着大语言模型技术的不断发展，多模态甚至全模态大模型已经成为重要研究对象，并不断发展，现在多模态大模型也逐渐成为主流，给人们的生活带来便利，值得一提的是，gemini图像生成真的很强，下面的图就是它生成的，直观地展示了多模态大模型从早期的图文基础连接（如CLIP, DALL-E）起步，经历多感官融合（如GPT-4V, Gemini），最终迈向全模态实时交互与通用人工智能（AGI）的完整技术演进路线图。使用的提示词是：“生成一张介绍多模态大模型发展历程的图片”，很简单的提示词，但是生成的图挺科幻的。\n\n\n\n6.2 多模态检索增强生成\n随着多模态大模型的发展，研究者开始探索多模态检索增强生成（Multimodal RAG），即让系统不仅能检索文本，还能利用图像、音频、视频以及代码等多种数据源作为知识依据。比较特殊的是，RAG的核心思想和流程在不同模态之间基本保持一致，不过需要在检索器、生成器和相关技术细节上进行调整。\n多模态RAG的基本理念是：针对不同模态的数据，引入对应的编码器将它们映射到可比较的向量空间，从而支持跨模态检索。例如，系统可以将图像用视觉模型编码为向量、将文本用语言模型编码为向量，并建立统一或可对齐的检索索引。当用户以文本提出查询时，检索模块不仅可以返回相关文本片段，也可以返回相关图像、音频片段或视频片段作为补充信息。目前多模态检索最常见的是图文两种模态，更深入的细节往往与VLM相关，后面会进一步介绍。\n多模态RAG在需要综合视觉与文本信息的任务中展现出独特价值。例如在跨媒体问答场景中，用户给出一张图片并提出与之相关的问题，系统可以先对图像内容进行理解，再结合检索到的外部知识文本回答更深入的问题，例如图片中的人物背景、地点信息或历史事件脉络等。又如在视频问答或多媒体搜索中，系统可以综合检索字幕文本、视频关键帧、片段摘要乃至音频线索来获得更全面的信息。\n一些研究将多模态RAG用于视觉问答任务，证明结合图像内容与外部知识能够回答一些仅凭图像本身难以回答的问题。业界也出现了支持多模态检索的开源工具与框架，例如使用CLIP类模型编码图文以实现跨模态搜索。总体而言，多模态RAG拓展了传统RAG只能处理纯文本的限制，为系统提供了面向多模态世界的外部证据通道，使生成结果更丰富且更可核验。\n\n\n6.3 多模态RAG难题\n\n不同模态的数据格式各异，如何对齐多模态表示是关键，常见做法是基于大规模图文对、音频与转写文本等进行对比学习，使不同模态向量落在语义一致的空间中。\n检索过程可能需要在不同模态间跳转，例如以图搜文或以文搜图，这要求索引能够存储多模态信息并支持任意模态查询到任意模态内容。\n多模态数据规模大且检索计算开销高，尤其是在海量图像或视频片段上做近似最近邻检索时，对成本与延迟都是挑战。一些系统会采用先转文本再检索的策略，例如对图片做OCR或生成描述后再进入文本检索流程，以兼容现有文本检索体系，但这可能丢失关键视觉细节。更偏前沿的方法倾向于保留原始模态信息，让检索结果直接返回图像或视频内容，并由多模态生成模型端到端完成理解与生成，从而减少中间表示带来的信息损失。"
-  },
-  {
-    "objectID": "content/blogs/entries/一文了解RAG.html#rag的应用",
-    "href": "content/blogs/entries/一文了解RAG.html#rag的应用",
-    "title": "一文了解RAG",
-    "section": "7 RAG的应用",
-    "text": "7 RAG的应用\n\n7.1 应用分类\n\n文本RAG\n\n问答：通过从海量且全面的文本资源集合中提取信息，对提出的问题做出回应。\n事实核查：通常是指判断给定的自然语言文本与相关的主张或断言是否与文本中的事实相符。\n常识推理：指的是机器利用所获取的外部知识及其应用，以类人的方式对问题或任务进行推断或做出决策的能力。\n人机对话：包括机器理解自然语言的能力，以及熟练运用这种技能与人类进行无缝交流的能力。\n神经机器翻译：将文本从源语言自动翻译为目标语言。\n事件抽取：这是自然语言处理中的一个过程，它涉及识别文本中的特定事件并对其进行分类，同时将这些事件与相关实体关联起来。\n摘要生成：从冗长的文本中提炼关键信息，并生成一个简洁、连贯的摘要，以概括主要主题。\n\n代码RAG\n\n代码生成：将自然语言描述转换为代码实现。\n代码摘要：将代码转换为自然语言描述。\n代码补全：代码补全类似于下一句预测任务的代码版本。\n自动程序修复：基于查询的RAG常用于自动程序修复中，以帮助生成模型修复有缺陷的代码\nText2SQL和基于代码的语义解析：语义解析将自然语言转换为清晰的结构化表示，例如SQL或其他特定领域语言，通常会借助代码的帮助。\n\n知识RAG\n\n知识库问答：通常利用知识库来确定问题的正确答案。\n知识增强的开放域问答：主要是对结构化知识的应用。\n表格问答：表格作为另一种结构化知识形式，也有助于问答。\n\n3D RAG\n\nText-2-3D：检索可用于增强3D资产生成。\n\n图像 RAG\n\n图像生成：指的是创建新图像的过程，通常运用人工智能和机器学习领域的算法。\n图像摘要： 是生成图像文本描述的过程。\n\n视频 RAG\n\n视频摘要：将视觉内容转化为描述性语句。\n视频问答和对话：视频问答与对话会生成与视频内容一致的单轮或多轮响应。\n\n音频 RAG\n\n音频字幕生成：音频 captioning 本质上是一项序列到序列任务，它为音频数据生成自然语言数据\n音频生成：通常根据自然语言提示合成音频。\n\n科学领域 RAG\n\n药物发现：药物发现的目标是生成能同时满足多种特性的分子。\n生物医学信息学增强：通过从生物医学领域特定数据库中检索信息，提高了大语言模型的表达能力，从而增强了模型为医疗领域的任务提供有价值指导的能力。\n数学问答：数学领域的检索增强生成技术简化了解题过程，促进了研究创新，并优化了教育策略。\n\n\n\n\n7.2 应用领域\n个人与企业内部知识库 这类应用致力于解决私有数据的检索与问答难题，它将公司内部文档、手册或个人笔记进行结构化处理与向量化索引，当用户提问时系统能够定位到文件中的相关段落并由大模型基于证据生成答案，从而在很多场景中替代传统关键词搜索并显著提升信息获取效率。\n学术论文深度阅读与溯源 针对科研人员需要处理海量文献且对准确性要求极高的场景，这类应用能够跨多篇论文检索证据并生成综述或回答，其核心特点是强调证据可追溯与引用对齐，尽可能让每一个关键结论都能回到原文依据，从而最大化降低幻觉带来的风险。\n超大规模代码库智能助手 为了解决传统大模型难以一次性读完完整项目代码的问题，这类应用会对代码仓库的结构、符号与依赖关系进行索引，让开发者能够用自然语言查询项目架构或具体函数实现细节，并在证据范围内给出解释与修改建议，从而更高效地理解与维护复杂的遗留代码。\n\n\n7.3 Ima\nima是腾讯开发的Ai知识库工具，核心就是采用RAG，目前支持导入公众号文章构建知识库进行检索。\n在公众号中文章中点击转发，将文章导入知识库，之后可以通过AI进行相关问答。\n\n\n\n7.4 Coze\nCoze空间是字节跳动旗下AI应用开发平台扣子，是一个多智能体协作开发环境，它允许开发者在一个统一的画布式界面中，将多个AI Agent、工具、数据源和工作流编排成复杂的自动化任务系统，实现从单一聊天机器人到多角色协同、多步骤执行的进阶AI应用构建。\n我们下面使用其中的Agent和知识库构建功能，构建一个八股问答姬。\n首先导入文本，构建知识库，然后创建智能体，并进行测试，测试能从知识库中检索对应信息，这是一个知识库RAG的应用。\n  \n\n\n7.5 Ragflow\nRAGFlow是领先的开源检索增强生成（RAG）引擎，它融合了尖端的RAG与智能体功能，为大语言模型打造卓越的上下文层。它提供了精简的RAG工作流，适用于任何规模的企业。在融合的上下文引擎和预制智能体模板的支持下，RAGFlow使开发者能够将复杂数据转化为高保真、可投入生产的人工智能系统，且效率和精度都极为出色。\n它可以进行本地部署和使用。"
-  },
-  {
-    "objectID": "content/blogs/entries/一文了解RAG.html#数据集benchmark",
-    "href": "content/blogs/entries/一文了解RAG.html#数据集benchmark",
-    "title": "一文了解RAG",
-    "section": "8 数据集&Benchmark",
-    "text": "8 数据集&Benchmark\n\n8.1 Others;\n\n噪声鲁棒性，测试大型语言模型能否从含噪声的文档中提取必要信息\n负例拒绝，评估大型语言模型在检索到的内容不足时能否拒绝回答\n信息整合，检查大型语言模型能否通过整合多个检索到的内容来获取知识并进行回答\n反事实鲁棒性，判断大型语言模型能否识别检索到的内容中的反事实错误\n忠实性，基于检索到的内容评估事实准确性\n答案相关性，判断结果是否针对查询\n上下文相关性，评估检索到的内容的相关性及其简洁性\nCRUD-RAG将RAG任务分为四种类型：创建、读取、更新和删除，并通过文本续写、问答、幻觉纠正和开放域多文档摘要来对其进行评估\n我之前用过的数据集TreezzZ/WebQA，测试多模态效果，这玩意本身就是一个benchmark，包含问答对，通过简单脚本处理就能使用\n\n\n\n8.2 多模态RAG\n\n8.2.1 数据集\n\n\n\n图像-文本数据集\n\n\nLAION-400M：4亿对图文数据；用于多模态模型的预训练（图像-文本） Conceptual-Captions：超过300万对图像-标题；多语言的英德图像描述（图像-文本）CIRR：来自21,552张图像的36,554个三元组；侧重于自然图像关系（图像-文本）MS-COCO：33万张带字幕的图像；用于字幕到图像和图像到字幕的生成（图像-文本）Flickr30K：31K张图像，每张图像都配有5个英文 caption（图像-文本）Multi30K：30k条来自母语者的德语字幕和人工翻译的字幕（图像-文本）NoCaps：用于零样本图像 captioning 评估；15K 张图像（图像-文本）Laion-5B：58.5亿个图像-文本对被用作检索的外部存储器（图像-文本）COCO-CN：用于跨语言标记和带中文句子的图像描述的20,341张图像（图像-文本）CIRCO：1020个查询，每个查询平均有4.53个基准真值；用于组合图像检索（图像-文本）MINT-1T：1万亿个文本标记和34亿张图像；比现有的开源数据集大10倍（图像-文本）ShareGPT4V：120万张图片，配有GPT-4生成的说明文字，包括空间和事实细节（图像-文本）OmniCorpus：22亿个网页文档中的86亿张图像和1.7万亿个标记；交错的文本-图像布局（图像-文本）\n\n\n\n\n视频-文本数据集\n\n\nBDD-X：77小时的驾驶视频，配有专家的文字解释；用于可解释的驾驶行为研究（视频-文本）YouCook2：2000个带有对齐描述的烹饪视频；专注于视频-文本任务（视频-文本）ActivityNet：20,000个带有多个字幕的视频；用于视频理解和字幕生成（视频-文本）SoccerNet：550场足球比赛的视频和元数据；包括转录的解说和关键事件注释（视频-文本）MSVD：1970个视频，每个视频大约有40条字幕（视频-文本）LSMDC：来自202部电影的118,081个视频-文本对；一个电影描述数据集（视频-文本）DiDemo：10,000个视频，每个视频有4个拼接的字幕；包含事件的时间定位（视频-文本）COIN：涵盖180项任务的11,827个教学类YouTube视频，用于全面的教学视频分析（视频-文本）MSRVTT-QA：视频问答基准（视频-文本）ActivityNet-QA：58,000个人工标注的问答对，涉及5,800个视频；视频问答模型的基准（视频-文本）EpicKitchens-100：用于在线动作预测的700个视频（100小时的烹饪活动）；以自我为中心的视觉数据集（视频-文本）Ego4D：430万个以自我为中心的视频的视频-文本对；大规模以自我为中心的视频数据集（视频-文本）HowTo100M：来自120万个YouTube视频的1.36亿个带字幕的视频片段；用于学习文本-视频嵌入（视频-文本）CharadesEgo：来自第一视角和第三人称视角视频的68,536个活动实例；用于评估（视频-文本）ActivityNet：20K个视频，每个视频有3.7个时间定位的句子；对视频中的事件进行密集字幕标注（视频-文本）\n\n\n\n\n音频-文本数据集\n\n\nLibriSpeech：1000小时的英语朗读语音及对应文本；基于有声读物的语音识别语料库（音频-文本）SpeechBrown：55K对语音-文本样本；15个类别，涵盖从宗教到小说的各种主题（音频-文本）AudioCaps：46K个音频片段与人工编写的文本字幕配对（音频-文本）MusicCaps：它由5.5k个音乐-文本对组成，配有人类专家提供的丰富文本描述（音频-文本）Clotho：包含多样化音景的音频字幕数据集（音频-文本）WavCaps：大规模弱标记音频-文本数据集，包含约40万个带配对字幕的音频片段（音频-文本）Spoken SQuAD：SQuAD数据集的音频版本，用于口语问答，侧重于听力理解任务（音频-文本）AudioSet：来自YouTube的2,084,320个人工标注的10秒音频片段；632个音频事件类别（音频-文本）\n\n\n\n\n知识与问答数据集\n\n\nVQA：用于视觉问答的40万个带图像的问答对（图像-文本）PAQ：6500万个基于文本的问答对；一个大规模数据集（文本）ELI5：270K个复杂多样的问题，配有网页和图像作为补充（文本）MultimodalQA：29,918个需要对文本、表格和图像进行多模态多跳推理的问题（图像-文本-表格）ViQuAE：来自维基百科的1180万个段落，涵盖2397个独特实体；知识密集型问答（文本）OK-VQA：14K个需要外部知识的视觉问答问题（图像-文本）WebQA：46K个需要跨文本和图像进行推理的查询（图像-文本）Infoseek：使用基于维基百科的知识库（600万个段落）进行细粒度视觉知识检索（图像-文本）ClueWeb22：100亿个网页被分为三个子集；一个大规模的网络语料库（文本）MOCHEG：15,601个带有真实性标签的声明，并附有文本和图像证据（图像-文本）VQA：110万个问题（通过VG-QA问题扩充），用于微调VQA模型（图像-文本）A-OKVQA：使用世界知识进行视觉问答的基准；约25000个问题（图像-文本）XL-HeadTags：415K条新闻标题-文章对包含来自六个不同语系的20种语言（文本）DocVQA：12767张不同的文档图像，包含50K个问答对，按推理类型分类，用于评估文档视觉问答（DocVQA）方法（图像-文本）ChartQA：9.6K个人工编写的问答对 + 23.1K个从图表摘要生成的问答对（图像-文本）DVQA：30万个图表上的350万个问答对，用于评估结构、数据检索和推理能力（图像-文本）\n\n\n\n\n医学数据集\n\n\nMIMIC-CXR：125,417个胸部X光片和报告的训练对（图像-文本）CheXpert：65,240名患者的224,316张胸部X光片；专注于医学分析（图像-文本）MIMIC-III：超过4万名患者的健康相关数据（文本）IU-Xray：7470对胸部X光片和相应的诊断报告（图像-文本）PubLayNet：从PubLayNet构建了100,000个训练样本和2,160个测试样本（医疗领域定制）（图像-文本）Quilt-1M：438K张医学图像，配有768K个文本对；包含显微图像和UMLS实体（图像-文本）\n\n\n\n\n时尚数据集\n\n\nFashion-IQ：三个类别共77,684张图像；采用Recall@10和Recall@50进行评估 （图像-文本）FashionGen：260.5K 个时尚图像和物品描述的图像-文本对（图像-文本）VITON-HD：83K张用于虚拟试穿的图像；高分辨率服装物品（图像-文本）Fashionpedia：48,000张带有分割掩码和细粒度属性标注的时尚图像（图像-文本）DeepFashion：约80万张多样化的时尚图片，用于伪三元组生成（图像-文本）\n\n\n\n\n3D数据集\n\n\nShapeNet：涵盖55个常见物体类别，包含51300个独特的3D模型（3D-文本）\n\n\n\n\nOthers\n\n\nGeoDE：来自6个世界地区的40个类别中的61,940张图像；强调物体识别中的地理多样性（图像）RU-AI ：147万个真实内容与AI生成内容的样本，用于虚假检测的稳健性（图像-文本-音频）MIMIC-IT：用于模型对齐的280万个多模态指令-响应对（图像-视频-文本）MMVQA：横跨3146份多页研究PDF，包含26.2万个问答对，用于稳健的多模态信息检索（图像-文本）\n\n\n\n\n\n8.2.2 Benchmark\n\n\n\n跨模态\n\n\nMRAG-Bench：评估视觉检索、整合以及对不相关视觉信息的鲁棒性（图像）M2⁢R⁢A⁢G：对多模态检索增强生成（RAG）进行基准测试；评估检索、多跳推理和整合能力（图像-文本）Dyn-VQA：专注于动态检索、多跳推理以及对变化信息的鲁棒性（图像-文本）MMBench：涵盖视觉问答、图像描述、检索；评估跨视觉、文本和音频的跨模态理解能力（图像-文本-音频）ScienceQA：包含21,208个问题；通过文本、图表和图像测试科学推理能力（图像-表格-文本）SK-VQA：提供200万个问答对；专注于合成知识、多模态推理和外部知识整合（图像-文本）SMMQG：包含1024个问答对；侧重于合成多模态数据和受控问题生成（图像-文本）\n\n\n\n\n文本\n\n\nTriviaQA：提供65万个问答对；阅读理解数据集，适用于多模态检索增强生成（RAG）（文本）Natural Questions：包含307,373个训练示例；真实世界的搜索查询，可适配视觉语境（文本）\n\n\n\n\n\n8.2.3 评估指标\n\n检索评估\n\n准确率\n召回率和Recall@K：用于检查前K个结果中的相关项目，比标准召回率更受青睐\n精确率和Top-K准确率\n\n\n\nF1分数\n平均倒数排名（MRR）：用于衡量返回列表中第一个相关结果的排名位置，其中Q是查询的总数。r⁢a⁢n⁢kq是查询q的第一个相关结果的排名。\n\n\n模态评估\n\n文本评估\n\n精确匹配（EM）\nBLEU\n\n\n\n\nROUGE：用于评估文本摘要和生成\nROUGE-N：用于衡量生成文本与参考文本之间 N 元语法的重叠度\n\n\n\nROUGE-L：衡量生成文本与参考文本之间的最长公共子序列（LCS）\n\n\n\nMETEOR\n\n图像评估\n\n图像描述\n\nCIDEr（基于共识的图像描述评估）：利用TF-IDF和余弦相似度来衡量描述质量\nSPICE（语义命题图像描述评估）\nSPIDEr ：结合CIDEr和SPICE\n\n语义对齐\n\nBERTScore\nCLIPScore\n\n\n图像质量\n\nFID\n\n\n\nKID\nInception Score：通过分类概率评估图像的多样性和质量"
-  },
-  {
-    "objectID": "content/blogs/entries/一文了解RAG.html#参考资料",
-    "href": "content/blogs/entries/一文了解RAG.html#参考资料",
-    "title": "一文了解RAG",
-    "section": "参考资料",
-    "text": "参考资料\n为什么大家都用RAG，这篇小白都看懂了\nRetrieval-Augmented Generation for AI-Generated Content: A Survey\nAsk in Any Modality: A Comprehensive Survey on Multimodal Retrieval-Augmented Generation\n未完待续，后续我们会对文章进行优化，并提供相关图片、数据集、代码和文献链接等，这是一个长期不断优化的过程！"
-  },
-  {
-    "objectID": "content/blogs/entries/Windows安装Jekyll.html",
-    "href": "content/blogs/entries/Windows安装Jekyll.html",
-    "title": "Windows安装Jekyll",
-    "section": "",
-    "text": "之前分享了如何在GitHub上搭建个人博客，但缺少Jekyll的安装教程。最近换了新电脑，正好借此机会补上这个重要的环节，为想要搭建技术博客的朋友们提供一份详细的Windows安装指南。\n\n\nJekyll基于Ruby开发，所以我们首先需要安装Ruby环境：\n\n访问Ruby官网下载适合你的RubyInstaller\n我选择的是rubyinstaller-devkit-3.4.7-1-x64版本\n你也可以根据系统配置选择合适的版本\n\n\n安装时的关键步骤：\n\n双击下载的安装程序，按提示进行安装\n重要：务必勾选”添加到PATH”选项，方便在命令行中直接使用\n安装过程中会自动安装MSYS2，这是后续安装gem和Jekyll的必要组件\n\n\n安装完成后，打开命令提示符测试是否安装成功：\nruby -v\n\n\n\n\nRubyGems是Ruby的包管理器，我们需要用它来安装Jekyll：\n\n前往RubyGems下载页面\n选择ZIP格式下载\n\n\n安装步骤：\n\n将下载的ZIP文件解压到合适的目录\n在解压后的文件夹中打开命令提示符\n运行安装命令：\n\nruby setup.rb\n\n\n\n\n现在我们可以开始安装Jekyll了：\n安装Jekyll核心：\ngem install jekyll\n安装分页插件（很多主题都需要）：\ngem install jekyll-paginate\n验证安装是否成功：\njekyll -v\n\n\n\n在你的Jekyll博客目录中，启动本地服务器：\nbundle exec jekyll server\n如果提示缺少某些插件，按照提示安装即可：\n\n安装完成后重新运行，看到成功提示：\n\n在浏览器中访问 http://localhost:4000，就能看到你的博客在本地运行的效果了！\n\n\n\n\n恭喜！现在你已经在Windows上成功安装了Jekyll，可以开始本地开发和测试你的博客了。如果在安装过程中遇到任何问题，欢迎在评论区留言交流。\n贴心提示：建议将整个安装过程记录下来，这样下次换电脑或者重装系统时就能快速完成环境配置。\n参考资源：在Windows上安装Jekyll\n博客作者简介 大家好，我是一名热爱分享的技术博主，专注于Web开发和开源技术。通过这个博客，我希望与大家分享我的学习心得和实践经验，帮助更多开发者解决实际问题。如果你对技术分享感兴趣，欢迎关注我的博客，我们一起成长！"
-  },
-  {
-    "objectID": "content/blogs/entries/Windows安装Jekyll.html#第一步安装ruby环境",
-    "href": "content/blogs/entries/Windows安装Jekyll.html#第一步安装ruby环境",
-    "title": "Windows安装Jekyll",
-    "section": "",
-    "text": "Jekyll基于Ruby开发，所以我们首先需要安装Ruby环境：\n\n访问Ruby官网下载适合你的RubyInstaller\n我选择的是rubyinstaller-devkit-3.4.7-1-x64版本\n你也可以根据系统配置选择合适的版本\n\n\n安装时的关键步骤：\n\n双击下载的安装程序，按提示进行安装\n重要：务必勾选”添加到PATH”选项，方便在命令行中直接使用\n安装过程中会自动安装MSYS2，这是后续安装gem和Jekyll的必要组件\n\n\n安装完成后，打开命令提示符测试是否安装成功：\nruby -v"
-  },
-  {
-    "objectID": "content/blogs/entries/Windows安装Jekyll.html#第二步安装rubygems",
-    "href": "content/blogs/entries/Windows安装Jekyll.html#第二步安装rubygems",
-    "title": "Windows安装Jekyll",
-    "section": "",
-    "text": "RubyGems是Ruby的包管理器，我们需要用它来安装Jekyll：\n\n前往RubyGems下载页面\n选择ZIP格式下载\n\n\n安装步骤：\n\n将下载的ZIP文件解压到合适的目录\n在解压后的文件夹中打开命令提示符\n运行安装命令：\n\nruby setup.rb"
-  },
-  {
-    "objectID": "content/blogs/entries/Windows安装Jekyll.html#第三步安装jekyll及相关组件",
-    "href": "content/blogs/entries/Windows安装Jekyll.html#第三步安装jekyll及相关组件",
-    "title": "Windows安装Jekyll",
-    "section": "",
-    "text": "现在我们可以开始安装Jekyll了：\n安装Jekyll核心：\ngem install jekyll\n安装分页插件（很多主题都需要）：\ngem install jekyll-paginate\n验证安装是否成功：\njekyll -v"
-  },
-  {
-    "objectID": "content/blogs/entries/Windows安装Jekyll.html#第四步本地测试",
-    "href": "content/blogs/entries/Windows安装Jekyll.html#第四步本地测试",
-    "title": "Windows安装Jekyll",
-    "section": "",
-    "text": "在你的Jekyll博客目录中，启动本地服务器：\nbundle exec jekyll server\n如果提示缺少某些插件，按照提示安装即可：\n\n安装完成后重新运行，看到成功提示：\n\n在浏览器中访问 http://localhost:4000，就能看到你的博客在本地运行的效果了！"
-  },
-  {
-    "objectID": "content/blogs/entries/Windows安装Jekyll.html#安装完成",
-    "href": "content/blogs/entries/Windows安装Jekyll.html#安装完成",
-    "title": "Windows安装Jekyll",
-    "section": "",
-    "text": "恭喜！现在你已经在Windows上成功安装了Jekyll，可以开始本地开发和测试你的博客了。如果在安装过程中遇到任何问题，欢迎在评论区留言交流。\n贴心提示：建议将整个安装过程记录下来，这样下次换电脑或者重装系统时就能快速完成环境配置。\n参考资源：在Windows上安装Jekyll\n博客作者简介 大家好，我是一名热爱分享的技术博主，专注于Web开发和开源技术。通过这个博客，我希望与大家分享我的学习心得和实践经验，帮助更多开发者解决实际问题。如果你对技术分享感兴趣，欢迎关注我的博客，我们一起成长！"
-  },
-  {
-    "objectID": "content/blogs/entries/Mac安装Jekyll.html",
-    "href": "content/blogs/entries/Mac安装Jekyll.html",
-    "title": "Mac安装Jekyll",
-    "section": "",
-    "text": "更新了在Windows的Jekyll教程。顺便把环境在Mac上重新配置了一遍，把完整流程记录下来，给正在折腾博客的你一份可直接照做的macOS安装指南。\n\n本文默认你使用 zsh 终端（macOS 默认），并通过 rbenv 管理 Ruby 版本，避免系统自带 Ruby 的权限与兼容问题。\n\n\n\n\n\n\n/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"\n安装完成后，根据提示把 brew 加入 PATH，并重新打开终端或执行 source ~/.zshrc。\n\n\n\nbrew update\nbrew install rbenv ruby-build\n\n\n\necho 'eval \"$(rbenv init - zsh)\"' &gt;&gt; ~/.zshrc\nsource ~/.zshrc\n\n\n\n\n\n\n\nrbenv install 3.3.5\nrbenv global 3.3.5\nruby -v\n\n\n\ngem install bundler jekyll\n\n\n\n\n\n在你的博客主目录下运行：\nbundle install\nbundle exec jekyll serve\n看到成功提示后，在浏览器访问：\nhttp://127.0.0.1:4000\n\n\n\n\n恭喜！现在你已经在 macOS 上成功安装并运行了 Jekyll。后续可以在 _config.yml 中调整主题与配置、在 _posts 中编写文章，用 bundle exec jekyll build 生成静态文件进行部署。"
-  },
-  {
-    "objectID": "content/blogs/entries/Mac安装Jekyll.html#第一步准备基础环境",
-    "href": "content/blogs/entries/Mac安装Jekyll.html#第一步准备基础环境",
-    "title": "Mac安装Jekyll",
-    "section": "",
-    "text": "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"\n安装完成后，根据提示把 brew 加入 PATH，并重新打开终端或执行 source ~/.zshrc。\n\n\n\nbrew update\nbrew install rbenv ruby-build\n\n\n\necho 'eval \"$(rbenv init - zsh)\"' &gt;&gt; ~/.zshrc\nsource ~/.zshrc"
-  },
-  {
-    "objectID": "content/blogs/entries/Mac安装Jekyll.html#第二步安装-ruby-与-jekyll",
-    "href": "content/blogs/entries/Mac安装Jekyll.html#第二步安装-ruby-与-jekyll",
-    "title": "Mac安装Jekyll",
-    "section": "",
-    "text": "rbenv install 3.3.5\nrbenv global 3.3.5\nruby -v\n\n\n\ngem install bundler jekyll"
-  },
-  {
-    "objectID": "content/blogs/entries/Mac安装Jekyll.html#第三步在项目中安装依赖并启动",
-    "href": "content/blogs/entries/Mac安装Jekyll.html#第三步在项目中安装依赖并启动",
-    "title": "Mac安装Jekyll",
-    "section": "",
-    "text": "在你的博客主目录下运行：\nbundle install\nbundle exec jekyll serve\n看到成功提示后，在浏览器访问：\nhttp://127.0.0.1:4000"
-  },
-  {
-    "objectID": "content/blogs/entries/Mac安装Jekyll.html#安装完成",
-    "href": "content/blogs/entries/Mac安装Jekyll.html#安装完成",
-    "title": "Mac安装Jekyll",
-    "section": "",
-    "text": "恭喜！现在你已经在 macOS 上成功安装并运行了 Jekyll。后续可以在 _config.yml 中调整主题与配置、在 _posts 中编写文章，用 bundle exec jekyll build 生成静态文件进行部署。"
-  },
-  {
-    "objectID": "content/blogs/entries/Deepseek-R1-32B模型部署.html",
-    "href": "content/blogs/entries/Deepseek-R1-32B模型部署.html",
-    "title": "Deepseek-R1-32B模型部署",
-    "section": "",
-    "text": "这段时间国产大模型deepseek受到广泛关注，deepseek也开源了他们模型的参数，在huggingface上，提供了原始模型和经过不同程度蒸馏的模型\n因为好奇，手边刚好也有之前白嫖的阿里云的服务器，就尝试一下本地部署的过程\n本文简单介绍一下部署的过程，也提供一个gradio的示例，进行模型的使用\n\n\n\n\n免费试用，可以选择交互式建模进行试用。\n\n\n注册阿里云账号并选择试用即可\n\n\n\n\n\n首先在阿里云创建一个实例\n\n然后选择选择A10的GPU和图中所示的镜像\n\n之后等待实例创建完成，进入实例环境，点击右上方加号，进入命令行\n\n\n\n\n\n在命令行进行模型下载与测试\n\n1、设置Hugging Face镜像源\n export HF_ENDPOINT=https://hf-mirror.com\n2、下载DeepSeek-R1 32B模型\nhuggingface-cli download Valdemardi/DeepSeek-R1-Distill-Qwen-32B-AWQ --cache-dir /mnt/workspace/Valdemardi/DeepSeek-R1-Distill-Qwen-32B-AWQ\n3、测试模型是否能加载成功\n vllm serve Valdemardi/DeepSeek-R1-Distill-Qwen-32B-AWQ --quantization awq_marlin --max-model-len 1024 --max-num-batched-tokens 2048 --max-num-seqs 1 --tensor-parallel-size 1 --port 8003 --enforce-eager --gpu_memory_utilization=0.90 --enable-chunked-prefill\n\n相关参数说明： quantization awq_marlin：启用AWQ量化，显著降低显存占用。 max-model-len 1024：设置最大序列长度为1024个token，适用于大部分NLP任务。 max-num-batched-tokens 2048：设置批量处理的token数为512，平衡处理速度和显存占用。 max-num-seqs 1：设置同时处理的序列数为1，避免多序列处理带来的显存碎片。 tensor-parallel-size 1：禁用 tensor 并行，最大化利用显存。 port 8003：设置服务监听端口为8003。 enforce-eager：启用 eager 模式，加快推理速度。 gpu_memory_utilization 0.90：设置显存使用率为98%，尽可能多地利用显存。 enable-chunked-prefill：启用分块预填充，减少显存碎片。\n\n\n\n\n\n\n使用gradio加载vllm推理模型，进行可视化交互，使用的代码如下：\n\nimport gradio as gr\nimport requests\nfrom subprocess import Popen, PIPE\nimport threading\nimport time\nimport json\n\n# ============== 配置参数 ==============\nMODEL_NAME = \"DeepSeek-R1-Distill-Qwen-32B-AWQ\"\nVLLM_PORT = 8003\nGRADIO_PORT = 7860\n\nVLLM_CMD = [\n    \"vllm\", \"serve\", MODEL_NAME,\n    \"--quantization\", \"awq\",\n    \"--max-model-len\", \"1024\",\n    \"--max-num-batched-tokens\", \"2048\",\n    \"--max-num-seqs\", \"1\",\n    \"--tensor-parallel-size\", \"1\",\n    \"--port\", str(VLLM_PORT),\n    \"--gpu-memory-utilization\", \"0.9\",\n    \"--enforce-eager\",\n    \"--disable-log-requests\",\n    \"--swap-space\", \"16\"\n]\n\n# ============== 服务管理类 ==============\nclass VLLMServer:\n    def __init__(self):\n        self.process = None\n        self._ready = threading.Event()\n        self.start_time = time.time()\n\n    def start(self):\n        try:\n            print(f\"正在加载模型 {MODEL_NAME}...\")\n            self.process = Popen(VLLM_CMD, stdout=PIPE, stderr=PIPE, text=True)\n            \n            def log_monitor():\n                while self.process.poll() is None:\n                    line = self.process.stderr.readline()\n                    if \"Uvicorn running\" in line:\n                        print(\"vLLM服务启动成功！\")\n                        self._ready.set()\n                    if time.time() - self.start_time &gt; 600:\n                        print(\"模型加载超时，请检查显存是否足够\")\n                        self.process.terminate()\n                    print(\"[vLLM]\", line.strip())\n            \n            threading.Thread(target=log_monitor, daemon=True).start()\n            return True\n        except Exception as e:\n            print(f\"vLLM启动失败: {str(e)}\")\n            return False\n\n    def is_ready(self, timeout=600):\n        return self._ready.wait(timeout=timeout)\n\n# ============== 提示词构建 ==============\ndef build_prompt(history):\n    prompt = \"&lt;|beginofutterance|&gt;system\\n你是一个智能助手&lt;|endofutterance|&gt;\\n\"\n    for entry in history:\n        if entry[\"role\"] == \"user\":\n            prompt += f\"&lt;|beginofutterance|&gt;user\\n{entry['content']}&lt;|endofutterance|&gt;\\n\"\n        elif entry[\"role\"] == \"assistant\":\n            prompt += f\"&lt;|beginofutterance|&gt;assistant\\n{entry['content']}&lt;|endofutterance|&gt;\\n\"\n    prompt += \"&lt;|beginofutterance|&gt;assistant\\n\"\n    return prompt\n\n# ============== 流式生成逻辑 ==============\ndef stream_generator(history):\n    try:\n        response = requests.post(\n            f\"http://localhost:{VLLM_PORT}/v1/completions\",\n            headers={\"Content-Type\": \"application/json\"},\n            json={\n                \"model\": MODEL_NAME,\n                \"prompt\": build_prompt(history),\n                \"max_tokens\": 512,\n                \"temperature\": 0.7,\n                \"top_p\": 0.9,\n                \"stop\": [\"&lt;|endofutterance|&gt;\"],\n                \"stream\": True\n            },\n            stream=True,\n            timeout=120\n        )\n        response.raise_for_status()\n        \n        full_response = \"\"  # 用于缓存完整的助手回答\n        for chunk in response.iter_lines():\n            if chunk:\n                decoded = chunk.decode().replace(\"data: \", \"\")\n                try:\n                    data = json.loads(decoded)\n                    token = data[\"choices\"][0][\"text\"]\n                    full_response += token\n                    yield full_response  # 返回完整的生成内容（逐步追加）\n                except:\n                    pass\n                    \n    except requests.exceptions.ConnectionError:\n        yield \"服务未就绪，请稍后重试\"\n    except Exception as e:\n        yield f\"请求失败: {str(e)}\"\n\n# ============== 界面布局 ==============\nwith gr.Blocks(title=\"DeepSeek-32B vLLM版\") as demo:\n    gr.Markdown(\"## DeepSeek-R1-32B 智能助手 (vLLM版)\")\n    \n    status = gr.Textbox(label=\"服务状态\", interactive=False)\n    chatbot = gr.Chatbot(\n        height=500,\n        type=\"messages\",\n        label=\"对话历史\",\n        avatar_images=(\"user.png\", \"bot.png\")\n    )\n    msg = gr.Textbox(label=\"输入消息\", placeholder=\"请输入您的问题...\")\n    clear = gr.Button(\"清空历史\", variant=\"secondary\")\n\n    def user(user_message, history):\n        return \"\", history + [{\"role\": \"user\", \"content\": user_message}]\n\n    def bot(history):\n        if not history or history[-1][\"role\"] != \"user\":\n            yield history\n            return\n            \n        history.append({\"role\": \"assistant\", \"content\": \"\"})  # 添加空的助手消息\n        full_response = \"\"  # 用于存储完整回答\n        for chunk in stream_generator(history):\n            full_response = chunk  # 缓存生成的内容\n            yield history[:-1] + [{\"role\": \"assistant\", \"content\": full_response}]  # 更新生成的回答\n        \n        # 最终更新完整历史记录\n        history[-1][\"content\"] = full_response\n        yield history\n\n    msg.submit(user, [msg, chatbot], [msg, chatbot], queue=True).then(\n        bot, chatbot, chatbot\n    )\n    clear.click(lambda: [], None, chatbot, queue=False)\n\n    # 状态检查\n    demo.load(\n        fn=lambda: \"服务已就绪\" if vllm_server.is_ready() else \"启动中...\",\n        outputs=status\n    )\n\nif __name__ == \"__main__\":\n    vllm_server = VLLMServer()\n    print(\"正在启动vLLM服务...\")\n    threading.Thread(target=vllm_server.start, daemon=True).start()\n    \n    if vllm_server.is_ready():\n        print(\"启动Gradio界面...\")\n        demo.launch(\n            server_name=\"0.0.0.0\",\n            server_port=GRADIO_PORT,\n            share=False\n        )\n    else:\n        print(\"服务启动失败\")\n\n\n\n\n\n\n运行成功后点击下方链接即可打开界面\n\n\n\n\n从图中测试可以看出，数学方面好像有提升，但是草莓问题中的’r’还是不能数出有多少\n\n\n\n\n\n使用3090单显卡部署deepseek-r1 32B"
-  },
-  {
-    "objectID": "content/blogs/entries/Deepseek-R1-32B模型部署.html#白嫖阿里云服务器",
-    "href": "content/blogs/entries/Deepseek-R1-32B模型部署.html#白嫖阿里云服务器",
-    "title": "Deepseek-R1-32B模型部署",
-    "section": "",
-    "text": "免费试用，可以选择交互式建模进行试用。\n\n\n注册阿里云账号并选择试用即可"
-  },
-  {
-    "objectID": "content/blogs/entries/Deepseek-R1-32B模型部署.html#模型下载和加载测试",
-    "href": "content/blogs/entries/Deepseek-R1-32B模型部署.html#模型下载和加载测试",
-    "title": "Deepseek-R1-32B模型部署",
-    "section": "",
-    "text": "首先在阿里云创建一个实例\n\n然后选择选择A10的GPU和图中所示的镜像\n\n之后等待实例创建完成，进入实例环境，点击右上方加号，进入命令行\n\n\n\n\n\n在命令行进行模型下载与测试\n\n1、设置Hugging Face镜像源\n export HF_ENDPOINT=https://hf-mirror.com\n2、下载DeepSeek-R1 32B模型\nhuggingface-cli download Valdemardi/DeepSeek-R1-Distill-Qwen-32B-AWQ --cache-dir /mnt/workspace/Valdemardi/DeepSeek-R1-Distill-Qwen-32B-AWQ\n3、测试模型是否能加载成功\n vllm serve Valdemardi/DeepSeek-R1-Distill-Qwen-32B-AWQ --quantization awq_marlin --max-model-len 1024 --max-num-batched-tokens 2048 --max-num-seqs 1 --tensor-parallel-size 1 --port 8003 --enforce-eager --gpu_memory_utilization=0.90 --enable-chunked-prefill\n\n相关参数说明： quantization awq_marlin：启用AWQ量化，显著降低显存占用。 max-model-len 1024：设置最大序列长度为1024个token，适用于大部分NLP任务。 max-num-batched-tokens 2048：设置批量处理的token数为512，平衡处理速度和显存占用。 max-num-seqs 1：设置同时处理的序列数为1，避免多序列处理带来的显存碎片。 tensor-parallel-size 1：禁用 tensor 并行，最大化利用显存。 port 8003：设置服务监听端口为8003。 enforce-eager：启用 eager 模式，加快推理速度。 gpu_memory_utilization 0.90：设置显存使用率为98%，尽可能多地利用显存。 enable-chunked-prefill：启用分块预填充，减少显存碎片。"
-  },
-  {
-    "objectID": "content/blogs/entries/Deepseek-R1-32B模型部署.html#gradio交互",
-    "href": "content/blogs/entries/Deepseek-R1-32B模型部署.html#gradio交互",
-    "title": "Deepseek-R1-32B模型部署",
-    "section": "",
-    "text": "使用gradio加载vllm推理模型，进行可视化交互，使用的代码如下：\n\nimport gradio as gr\nimport requests\nfrom subprocess import Popen, PIPE\nimport threading\nimport time\nimport json\n\n# ============== 配置参数 ==============\nMODEL_NAME = \"DeepSeek-R1-Distill-Qwen-32B-AWQ\"\nVLLM_PORT = 8003\nGRADIO_PORT = 7860\n\nVLLM_CMD = [\n    \"vllm\", \"serve\", MODEL_NAME,\n    \"--quantization\", \"awq\",\n    \"--max-model-len\", \"1024\",\n    \"--max-num-batched-tokens\", \"2048\",\n    \"--max-num-seqs\", \"1\",\n    \"--tensor-parallel-size\", \"1\",\n    \"--port\", str(VLLM_PORT),\n    \"--gpu-memory-utilization\", \"0.9\",\n    \"--enforce-eager\",\n    \"--disable-log-requests\",\n    \"--swap-space\", \"16\"\n]\n\n# ============== 服务管理类 ==============\nclass VLLMServer:\n    def __init__(self):\n        self.process = None\n        self._ready = threading.Event()\n        self.start_time = time.time()\n\n    def start(self):\n        try:\n            print(f\"正在加载模型 {MODEL_NAME}...\")\n            self.process = Popen(VLLM_CMD, stdout=PIPE, stderr=PIPE, text=True)\n            \n            def log_monitor():\n                while self.process.poll() is None:\n                    line = self.process.stderr.readline()\n                    if \"Uvicorn running\" in line:\n                        print(\"vLLM服务启动成功！\")\n                        self._ready.set()\n                    if time.time() - self.start_time &gt; 600:\n                        print(\"模型加载超时，请检查显存是否足够\")\n                        self.process.terminate()\n                    print(\"[vLLM]\", line.strip())\n            \n            threading.Thread(target=log_monitor, daemon=True).start()\n            return True\n        except Exception as e:\n            print(f\"vLLM启动失败: {str(e)}\")\n            return False\n\n    def is_ready(self, timeout=600):\n        return self._ready.wait(timeout=timeout)\n\n# ============== 提示词构建 ==============\ndef build_prompt(history):\n    prompt = \"&lt;|beginofutterance|&gt;system\\n你是一个智能助手&lt;|endofutterance|&gt;\\n\"\n    for entry in history:\n        if entry[\"role\"] == \"user\":\n            prompt += f\"&lt;|beginofutterance|&gt;user\\n{entry['content']}&lt;|endofutterance|&gt;\\n\"\n        elif entry[\"role\"] == \"assistant\":\n            prompt += f\"&lt;|beginofutterance|&gt;assistant\\n{entry['content']}&lt;|endofutterance|&gt;\\n\"\n    prompt += \"&lt;|beginofutterance|&gt;assistant\\n\"\n    return prompt\n\n# ============== 流式生成逻辑 ==============\ndef stream_generator(history):\n    try:\n        response = requests.post(\n            f\"http://localhost:{VLLM_PORT}/v1/completions\",\n            headers={\"Content-Type\": \"application/json\"},\n            json={\n                \"model\": MODEL_NAME,\n                \"prompt\": build_prompt(history),\n                \"max_tokens\": 512,\n                \"temperature\": 0.7,\n                \"top_p\": 0.9,\n                \"stop\": [\"&lt;|endofutterance|&gt;\"],\n                \"stream\": True\n            },\n            stream=True,\n            timeout=120\n        )\n        response.raise_for_status()\n        \n        full_response = \"\"  # 用于缓存完整的助手回答\n        for chunk in response.iter_lines():\n            if chunk:\n                decoded = chunk.decode().replace(\"data: \", \"\")\n                try:\n                    data = json.loads(decoded)\n                    token = data[\"choices\"][0][\"text\"]\n                    full_response += token\n                    yield full_response  # 返回完整的生成内容（逐步追加）\n                except:\n                    pass\n                    \n    except requests.exceptions.ConnectionError:\n        yield \"服务未就绪，请稍后重试\"\n    except Exception as e:\n        yield f\"请求失败: {str(e)}\"\n\n# ============== 界面布局 ==============\nwith gr.Blocks(title=\"DeepSeek-32B vLLM版\") as demo:\n    gr.Markdown(\"## DeepSeek-R1-32B 智能助手 (vLLM版)\")\n    \n    status = gr.Textbox(label=\"服务状态\", interactive=False)\n    chatbot = gr.Chatbot(\n        height=500,\n        type=\"messages\",\n        label=\"对话历史\",\n        avatar_images=(\"user.png\", \"bot.png\")\n    )\n    msg = gr.Textbox(label=\"输入消息\", placeholder=\"请输入您的问题...\")\n    clear = gr.Button(\"清空历史\", variant=\"secondary\")\n\n    def user(user_message, history):\n        return \"\", history + [{\"role\": \"user\", \"content\": user_message}]\n\n    def bot(history):\n        if not history or history[-1][\"role\"] != \"user\":\n            yield history\n            return\n            \n        history.append({\"role\": \"assistant\", \"content\": \"\"})  # 添加空的助手消息\n        full_response = \"\"  # 用于存储完整回答\n        for chunk in stream_generator(history):\n            full_response = chunk  # 缓存生成的内容\n            yield history[:-1] + [{\"role\": \"assistant\", \"content\": full_response}]  # 更新生成的回答\n        \n        # 最终更新完整历史记录\n        history[-1][\"content\"] = full_response\n        yield history\n\n    msg.submit(user, [msg, chatbot], [msg, chatbot], queue=True).then(\n        bot, chatbot, chatbot\n    )\n    clear.click(lambda: [], None, chatbot, queue=False)\n\n    # 状态检查\n    demo.load(\n        fn=lambda: \"服务已就绪\" if vllm_server.is_ready() else \"启动中...\",\n        outputs=status\n    )\n\nif __name__ == \"__main__\":\n    vllm_server = VLLMServer()\n    print(\"正在启动vLLM服务...\")\n    threading.Thread(target=vllm_server.start, daemon=True).start()\n    \n    if vllm_server.is_ready():\n        print(\"启动Gradio界面...\")\n        demo.launch(\n            server_name=\"0.0.0.0\",\n            server_port=GRADIO_PORT,\n            share=False\n        )\n    else:\n        print(\"服务启动失败\")"
-  },
-  {
-    "objectID": "content/blogs/entries/Deepseek-R1-32B模型部署.html#效果测试",
-    "href": "content/blogs/entries/Deepseek-R1-32B模型部署.html#效果测试",
-    "title": "Deepseek-R1-32B模型部署",
-    "section": "",
-    "text": "运行成功后点击下方链接即可打开界面\n\n\n\n\n从图中测试可以看出，数学方面好像有提升，但是草莓问题中的’r’还是不能数出有多少"
-  },
-  {
-    "objectID": "content/blogs/entries/Deepseek-R1-32B模型部署.html#参考",
-    "href": "content/blogs/entries/Deepseek-R1-32B模型部署.html#参考",
-    "title": "Deepseek-R1-32B模型部署",
-    "section": "",
-    "text": "使用3090单显卡部署deepseek-r1 32B"
-  },
-  {
-    "objectID": "content/papers/labnotes/index.html",
-    "href": "content/papers/labnotes/index.html",
-    "title": "个人研究相关论文",
-    "section": "",
-    "text": "个人研究相关论文阅读笔记\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBackdoorIndicator - Leveraging OOD Data for Proactive Backdoor Detection in Federated Learning\n\n\n\nFL\n\nbackdoor\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "content/papers/deepseek/index.html",
-    "href": "content/papers/deepseek/index.html",
-    "title": "DeepSeek",
-    "section": "",
-    "text": "DeepSeek论文阅读笔记\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDeepSeek\n\n\n\nLLM\n\nPaper\n\nReport\n\nDeepSeek\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "content/learning-notes/infrastructure/index.html",
-    "href": "content/learning-notes/infrastructure/index.html",
-    "title": "基础设施学习笔记",
-    "section": "",
-    "text": "记录一下基础设施相关的学习笔记.\n基础设施是指支撑应用程序运行的硬件、软件和网络资源。它包括服务器、存储设备、网络设备、操作系统、数据库等。\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nConsul\n\n\n\ngolang\n\n微服务\n\n基础设施\n\nconsul\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n基础设施(golang)\n\n\n\ngolang\n\n微服务\n\n基础设施\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "content/learning-notes/golang/index.html",
-    "href": "content/learning-notes/golang/index.html",
-    "title": "golang",
-    "section": "",
-    "text": "记录一下golang学习过程中的笔记.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngo的版本管理工具-g的安装和使用\n\n\n\ngolang\n\ng\n\ngolang版本管理\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（13）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（12）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（11）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（10）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（9）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 19, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（8）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 18, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（7）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 17, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（6）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 16, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（5）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（4）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 13, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（3）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nSep 29, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（2）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nSep 23, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（1）-在win搭建go环境\n\n\n\ngolang\n\n环境搭建\n\n\n\n\n\n\n\n\n\nSep 16, 2024\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "content/learning-notes/algorithm/index.html",
-    "href": "content/learning-notes/algorithm/index.html",
-    "title": "算法学习笔记",
-    "section": "",
-    "text": "不开long long见祖宗，不过golang没long long(笑)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngolang实现hot100题解(ACM版本)\n\n\n\n算法\n\nleetcode\n\nhot100\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nleetcode-灵神跟练-滑动窗口与双指针-不定长滑动窗口-越长越合法+求最短+最小\n\n\n\n算法\n\nleetcode\n\n滑动窗口\n\n不定长滑动窗口\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nleetcode-灵神跟练-滑动窗口与双指针-定长滑动窗口-基础\n\n\n\n算法\n\nleetcode\n\n滑动窗口与双指针\n\n\n\n\n\n\n\n\n\nNov 9, 2025\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "pages/home.html",
-    "href": "pages/home.html",
-    "title": "Home主页",
-    "section": "",
-    "text": "这里是首页，汇总各模块最近更新内容。\n\n\nThis is the home page with the latest updates from each module.\n\n\n\nBlogs博客\n\n\n\n\n\n\n\n\n\n\n\nHot100(golang)\n\n\n\nLeetcode\n\nHot100\n\nGolang\n\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nPrompt-&gt;Context-&gt;Skills\n\n\n\nPrompt\n\nContext\n\nSkills\n\nVibe-Coding\n\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n一文了解RAG\n\n\n\nRAG\n\nLLM\n\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\nNo matching items\n\n\n\n\nProjects项目\n\n\n\n\n\n\n\n\n\nDaily Log Maker\n\n\n\nselfTools\n\n前端\n\n每日记录\n\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\n\n\n\n\n\n\n\n\n\nGesture-Fireworks\n\n\n\nselfTools\n\n前端\n\n手指烟花\n\nFireworks\n\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\nQuarto-Blogs-Template\n\n\n\nQuarto\n\nBlog\n\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\nNo matching items\n\n\n\n\nPapers论文\n\n\n\n\n\n\n\n\n\n\n\nDeepSeek\n\n\n\nLLM\n\nPaper\n\nReport\n\nDeepSeek\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nBackdoorIndicator - Leveraging OOD Data for Proactive Backdoor Detection in Federated Learning\n\n\n\nFL\n\nbackdoor\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\nNo matching items\n\n\n\n\nLearning Notes学习笔记\n\n\n\n\n\n\n\n\n\n\n\ngolang实现hot100题解(ACM版本)\n\n\n\n算法\n\nleetcode\n\nhot100\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nleetcode-灵神跟练-滑动窗口与双指针-不定长滑动窗口-越长越合法+求最短+最小\n\n\n\n算法\n\nleetcode\n\n滑动窗口\n\n不定长滑动窗口\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nleetcode-灵神跟练-滑动窗口与双指针-定长滑动窗口-基础\n\n\n\n算法\n\nleetcode\n\n滑动窗口与双指针\n\n\n\n\n\n\n\n\n\nNov 9, 2025\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "pages/index.html",
-    "href": "pages/index.html",
-    "title": "About Me关于我",
-    "section": "",
-    "text": "我是 aorangehc(He Cheng)\n\n\n这是我的邮箱，欢迎联系：morange0205@gmail.com\n\n\n\n\n\ngolang后端开发\n\n\n大模型应用开发\n\n\nLLM实现和部署\n\n\n\n\n\n\n\n2024 - 2027 [硕士学位/网络空间安全] [北京邮电大学]\n\n\n2020 - 2024 [学士学位/计算机科学与技术] [北方工业大学]\n\n\n\n\n\n\n\n[2025.1-2025.7] [科研实习] [中科院软件所] — [MindSpore框架下经典NLP模型复现和优化]\n\n\n[2025.8-2025.10] [后端开发实习] [长亭科技] — [参与长亭科技项目的后端开发、多模态RAG拓展和项目优化]\n\n\n\n\n\n\n\n[年份] [项目名称] [一句话描述/亮点] GitHub · Blog\n\n\n\n\n\n\nGolang 开发 LLM 深度学习 联邦学习\n\n\n\n\n\nI am aorangehc(He Cheng)\n\n\nThis is my email, feel free to contact me: morange0205@gmail.com\n\n\n\n\n\nGolang Backend Development\n\n\nLarge Model Application Development\n\n\nLLM Implementation and Deployment\n\n\n\n\n\n\n\n2024 - 2027 [Master’s Degree/Cyberspace Security] [Beijing University of Posts and Telecommunications]\n\n\n2020 - 2024 [Bachelor’s Degree/Computer Science and Technology] [North China University of Technology]\n\n\n\n\n\n\n\n[Jan 2025 - Jul 2025] [Research Intern] [Institute of Software, Chinese Academy of Sciences] — [Reproduction and optimization of classic NLP models under MindSpore framework]\n\n\n[Aug 2025 - Oct 2025] [Backend Development Intern] [Chaitin Technology] — [Participated in backend development, multimodal RAG expansion and project optimization for Chaitin Technology projects]\n\n\n\n\n\n\n\n[Years] [Project Name] [One-sentence Description/Highlight] GitHub · Blog\n\n\n\n\n\n\nGolang Development LLM Deep Learning Federated Learning"
-  },
-  {
-    "objectID": "pages/index.html#方向",
-    "href": "pages/index.html#方向",
-    "title": "About Me关于我",
-    "section": "",
-    "text": "golang后端开发\n\n\n大模型应用开发\n\n\nLLM实现和部署"
-  },
-  {
-    "objectID": "pages/index.html#教育经历",
-    "href": "pages/index.html#教育经历",
-    "title": "About Me关于我",
-    "section": "",
-    "text": "2024 - 2027 [硕士学位/网络空间安全] [北京邮电大学]\n\n\n2020 - 2024 [学士学位/计算机科学与技术] [北方工业大学]"
-  },
-  {
-    "objectID": "pages/index.html#工作经历",
-    "href": "pages/index.html#工作经历",
-    "title": "About Me关于我",
-    "section": "",
-    "text": "[2025.1-2025.7] [科研实习] [中科院软件所] — [MindSpore框架下经典NLP模型复现和优化]\n\n\n[2025.8-2025.10] [后端开发实习] [长亭科技] — [参与长亭科技项目的后端开发、多模态RAG拓展和项目优化]"
-  },
-  {
-    "objectID": "pages/index.html#项目",
-    "href": "pages/index.html#项目",
-    "title": "About Me关于我",
-    "section": "",
-    "text": "[年份] [项目名称] [一句话描述/亮点] GitHub · Blog"
-  },
-  {
-    "objectID": "pages/index.html#技术栈",
-    "href": "pages/index.html#技术栈",
-    "title": "About Me关于我",
-    "section": "",
-    "text": "Golang 开发 LLM 深度学习 联邦学习"
-  },
-  {
-    "objectID": "pages/index.html#focus-areas",
-    "href": "pages/index.html#focus-areas",
-    "title": "About Me关于我",
-    "section": "",
-    "text": "Golang Backend Development\n\n\nLarge Model Application Development\n\n\nLLM Implementation and Deployment"
-  },
-  {
-    "objectID": "pages/index.html#education",
-    "href": "pages/index.html#education",
-    "title": "About Me关于我",
-    "section": "",
-    "text": "2024 - 2027 [Master’s Degree/Cyberspace Security] [Beijing University of Posts and Telecommunications]\n\n\n2020 - 2024 [Bachelor’s Degree/Computer Science and Technology] [North China University of Technology]"
-  },
-  {
-    "objectID": "pages/index.html#experience",
-    "href": "pages/index.html#experience",
-    "title": "About Me关于我",
-    "section": "",
-    "text": "[Jan 2025 - Jul 2025] [Research Intern] [Institute of Software, Chinese Academy of Sciences] — [Reproduction and optimization of classic NLP models under MindSpore framework]\n\n\n[Aug 2025 - Oct 2025] [Backend Development Intern] [Chaitin Technology] — [Participated in backend development, multimodal RAG expansion and project optimization for Chaitin Technology projects]"
-  },
-  {
-    "objectID": "pages/index.html#projects",
-    "href": "pages/index.html#projects",
-    "title": "About Me关于我",
-    "section": "",
-    "text": "[Years] [Project Name] [One-sentence Description/Highlight] GitHub · Blog"
-  },
-  {
-    "objectID": "pages/index.html#technical-skills",
-    "href": "pages/index.html#technical-skills",
-    "title": "About Me关于我",
-    "section": "",
-    "text": "Golang Development LLM Deep Learning Federated Learning"
-  },
-  {
-    "objectID": "content/blogs/index.html",
-    "href": "content/blogs/index.html",
-    "title": "Blogs博客",
-    "section": "",
-    "text": "Short essays, reviews, and research notes.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHot100(golang)\n\n\n\nLeetcode\n\nHot100\n\nGolang\n\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nPrompt-&gt;Context-&gt;Skills\n\n\n\nPrompt\n\nContext\n\nSkills\n\nVibe-Coding\n\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n一文了解RAG\n\n\n\nRAG\n\nLLM\n\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n一文了解VLM\n\n\n\nVLM\n\nLLM\n\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n本地服务器低速传输解决方案\n\n\n\n技术\n\n技术实践\n\nssh\n\n网络\n\n\n\n\n\n\n\n\n\nDec 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nMac安装Jekyll\n\n\n\nGitHub\n\nBlog\n\nJekyll\n\n\n\n\n\n\n\n\n\nOct 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nPC的快捷指令\n\n\n\nWindows\n\nMac\n\nLinux\n\nInstruction\n\n\n\n\n\n\n\n\n\nOct 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nWindows安装Jekyll\n\n\n\nGitHub\n\nBlog\n\nJekyll\n\n\n\n\n\n\n\n\n\nOct 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n基于BM25检索算法构建RAG智能文档问答助手–学习和实践\n\n\n\n大模型\n\nRAG\n\n信息检索\n\n智能助手\n\n\n\n\n\n\n\n\n\nMar 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nDeepseek-R1-32B模型部署\n\n\n\n大模型\n\n部署\n\nDeepseek\n\n\n\n\n\n\n\n\n\nJan 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n如何使用git\n\n\n\n技术\n\ngit\n\n指令\n\n\n\n\n\n\n\n\n\nJan 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n开源协议\n\n\n\n技术\n\n技术理论\n\n\n\n\n\n\n\n\n\nJan 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n一种免费、高清、安全、但是很麻烦的远程桌面连接方案\n\n\n\n技术\n\n技术实践\n\n\n\n\n\n\n\n\n\nJan 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n保姆教程如何创建自己的“个人网站”\n\n\n\nGitHub\n\nBlog\n\nJekyll\n\n\n\n\n\n\n\n\n\nSep 15, 2024\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "content/learning-notes/deepL/index.html",
-    "href": "content/learning-notes/deepL/index.html",
-    "title": "深度学习学习笔记",
-    "section": "",
-    "text": "记录一下深度学习相关的学习笔记.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n通过案例了解机器学习\n\n\n\n深度学习\n\n深度学习基础\n\n\n\n\n\n\n\n\n\nAug 26, 2024\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "content/learning-notes/index.html",
-    "href": "content/learning-notes/index.html",
-    "title": "Learning Notes学习笔记",
-    "section": "",
-    "text": "课程学习笔记.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngo的版本管理工具-g的安装和使用\n\n\n\ngolang\n\ng\n\ngolang版本管理\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nKratos 微服务框架\n\n\n\ngolang\n\n微服务\n\nKratos\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\ngo-zero的API语言\n\n\n\ngolang\n\n微服务\n\napi\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nGo-Kit 微服务框架\n\n\n\ngolang\n\n微服务\n\ngo-kit\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nGo-Zero 微服务框架\n\n\n\ngolang\n\n微服务\n\ngo-zero\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nProtobuf\n\n\n\ngolang\n\n微服务\n\nProtobuf\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n微服务框架(golang)\n\n\n\ngolang\n\n微服务\n\n框架\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n控制反转和依赖注入\n\n\n\ngolang\n\n控制反转和依赖注入\n\n框架\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nConsul\n\n\n\ngolang\n\n微服务\n\n基础设施\n\nconsul\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n基础设施(golang)\n\n\n\ngolang\n\n微服务\n\n基础设施\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（13）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（12）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（11）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（10）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（9）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 19, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（8）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 18, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（7）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 17, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（6）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 16, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（5）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（4）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 13, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（3）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nSep 29, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（2）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nSep 23, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（1）-在win搭建go环境\n\n\n\ngolang\n\n环境搭建\n\n\n\n\n\n\n\n\n\nSep 16, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n通过案例了解机器学习\n\n\n\n深度学习\n\n深度学习基础\n\n\n\n\n\n\n\n\n\nAug 26, 2024\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "content/learning-notes/microservices/index.html",
-    "href": "content/learning-notes/microservices/index.html",
-    "title": "微服务学习笔记",
-    "section": "",
-    "text": "记录一下微服务学习过程中的笔记.主要语言还是golang.\n相关代码仓库github: aorangehc/GoFramwork\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKratos 微服务框架\n\n\n\ngolang\n\n微服务\n\nKratos\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\ngo-zero的API语言\n\n\n\ngolang\n\n微服务\n\napi\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nGo-Kit 微服务框架\n\n\n\ngolang\n\n微服务\n\ngo-kit\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nGo-Zero 微服务框架\n\n\n\ngolang\n\n微服务\n\ngo-zero\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nProtobuf\n\n\n\ngolang\n\n微服务\n\nProtobuf\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n微服务框架(golang)\n\n\n\ngolang\n\n微服务\n\n框架\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n控制反转和依赖注入\n\n\n\ngolang\n\n控制反转和依赖注入\n\n框架\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "content/papers/index.html",
-    "href": "content/papers/index.html",
-    "title": "Paper&Report论文和技术报告",
-    "section": "",
-    "text": "记录论文和技术报告阅读\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDeepSeek\n\n\n\nLLM\n\nPaper\n\nReport\n\nDeepSeek\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nBackdoorIndicator - Leveraging OOD Data for Proactive Backdoor Detection in Federated Learning\n\n\n\nFL\n\nbackdoor\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "content/projects/index.html",
-    "href": "content/projects/index.html",
-    "title": "Projects项目",
-    "section": "",
-    "text": "Project write-ups, demos, and technical summaries.\n\n\n\n\n\n\n\n\n\n\n\n\nDaily Log Maker\n\n\n\nselfTools\n\n前端\n\n每日记录\n\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\n\n\n\n\n\n\n\n\n\nGesture-Fireworks\n\n\n\nselfTools\n\n前端\n\n手指烟花\n\nFireworks\n\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\nQuarto-Blogs-Template\n\n\n\nQuarto\n\nBlog\n\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\ngo-zero-demo\n\n\n\ngolang\n\n微服务\n\ndemo\n\n\n\n\n\n\n\n\n\n\nJan 11, 2025\n\n\n\n\n\n\n\n\n\n\n\nGoLink\n\n\n\ngolang\n\ngo-zero\n\ndemo\n\nshortUrl\n\n\n\n\n\n\n\n\n\n\nJan 11, 2025\n\n\n\n\n\n\n\n\n\n\n\nGoList\n\n\n\ngolang\n\nkratos\n\ndemo\n\nlist\n\n\n\n\n\n\n\n\n\n\nJan 11, 2025\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "content/blogs/entries/Hot 100(golang).html",
-    "href": "content/blogs/entries/Hot 100(golang).html",
-    "title": "Hot100(golang)",
-    "section": "",
-    "text": "记录一下经典leetcode hot100的解题思路和题解"
-  },
-  {
-    "objectID": "content/blogs/entries/Hot 100(golang).html#哈希",
-    "href": "content/blogs/entries/Hot 100(golang).html#哈希",
-    "title": "Hot100(golang)",
-    "section": "哈希",
-    "text": "哈希\n\n1. 两数之和\n\n题解\npackage main\n\nimport (\n    \"fmt\"\n    \"reflect\"\n)\n\nfunc twoSum(nums []int, target int) (ans []int) {\n    mp := map[int]int{}\n\n    for idx, num := range nums {\n        if i, ok := mp[target-num]; ok {\n            ans = []int{i, idx}\n        }\n        mp[num] = idx\n    }\n\n    return ans\n}\n\nfunc main() {\n    testCases := []struct {\n        nums   []int\n        target int\n        ans    []int\n    }{\n        {nums: []int{2, 7, 11, 15}, target: 9, ans: []int{0, 1}},\n        {nums: []int{3, 2, 4}, target: 6, ans: []int{1, 2}},\n        {nums: []int{3, 3}, target: 6, ans: []int{0, 1}},\n    }\n\n    for _, t := range testCases {\n        fmt.Println(reflect.DeepEqual(twoSum(t.nums, t.target), t.ans))\n    }\n}\n\n\n\n\n\n49. 字母异位词分组\n\n题解\npackage main\n\nimport (\n    \"fmt\"\n    \"reflect\"\n    \"slices\"\n)\n\nfunc groupAnagrams(strs []string) [][]string {\n    mp := map[string][]string{}\n\n    for _, str := range strs {\n        s := []byte(str)\n        slices.Sort(s)\n        mp[string(s)] = append(mp[string(s)], str)\n    }\n\n    ans := make([][]string, 0, len(mp))\n\n    for i := range mp {\n        ans = append(ans, mp[i])\n    }\n\n    return ans\n}\n\nfunc main() {\n    testCases := []struct {\n        strs []string\n        ans  [][]string\n    }{\n        {\n            []string{\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"},\n            [][]string{\n                {\"eat\", \"tea\", \"ate\"},\n                {\"tan\", \"nat\"},\n                {\"bat\"},\n            },\n        },\n        {\n            []string{\"\"},\n            [][]string{\n                {\"\"},\n            },\n        },\n        {\n            []string{\"a\"},\n            [][]string{\n                {\"a\"},\n            },\n        },\n    }\n\n    for _, t := range testCases {\n        fmt.Println(reflect.DeepEqual(groupAnagrams(t.strs), t.ans))\n    }\n}\n\n\n\n\n\n128. 最长连续序列\n\n题解\npackage main\n\nimport \"fmt\"\n\nfunc longestConsecutive(nums []int) int {\n    ans := 0\n    mp := map[int]bool{}\n\n    for _, num := range nums {\n        mp[num] = true\n    }\n\n    for i := range mp {\n        if mp[i-1] == true {\n            continue\n        }\n        cnt := 1\n\n        for mp[i+1] == true {\n            i += 1\n            cnt += 1\n        }\n\n        ans = max(ans, cnt)\n    }\n\n    return ans\n}\n\nfunc main() {\n    testCases := []struct {\n        nums []int\n        ans  int\n    }{\n        {[]int{100, 4, 200, 1, 3, 2}, 4},\n        {[]int{0, 3, 7, 2, 5, 8, 4, 6, 0, 1}, 9},\n        {[]int{1, 0, 1, 2}, 3},\n    }\n\n    for _, t := range testCases {\n        fmt.Println(longestConsecutive(t.nums) == t.ans)\n    }\n}"
-  },
-  {
-    "objectID": "content/blogs/entries/PromptContextSkills.html",
-    "href": "content/blogs/entries/PromptContextSkills.html",
-    "title": "Prompt->Context->Skills",
-    "section": "",
-    "text": "从 Prompt 到上下文工程到 Skills：AI 交互范式的演进与 Vibe Coding 的崛起"
-  },
-  {
-    "objectID": "content/blogs/entries/PromptContextSkills.html#引言ai-交互的三次革命",
-    "href": "content/blogs/entries/PromptContextSkills.html#引言ai-交互的三次革命",
-    "title": "Prompt->Context->Skills",
-    "section": "引言：AI 交互的三次革命",
-    "text": "引言：AI 交互的三次革命\n2022 年底，ChatGPT 的横空出世标志着人工智能进入了一个全新的时代。短短两年多时间，我们与 AI 的交互方式已经经历了三次深刻的范式转变：\n第一次革命：Prompt Engineering（提示工程） —— 我们学会了如何与 AI 对话，用精心设计的提示词来引导模型输出。\n第二次革命：Context Engineering（上下文工程） —— 我们意识到 AI 的能力不仅取决于提示词本身，更取决于提供给它的上下文环境。RAG、记忆系统、外部知识库的引入，让 AI 从”闭卷考试”变成了”开卷考试”。\n第三次革命：Skills & Agentic AI（技能与智能体） —— AI 不再只是被动回答问题，而是能够主动调用工具、执行动作、与其他 Agent 协作，成为真正的”数字工作者”。\n与此同时，一种全新的编程范式正在悄然兴起 —— Vibe Coding（氛围编程），它正在重新定义人类与 AI 在软件开发中的协作关系。\n本文将带你完整走过这段演进历程，无论你是刚接触 AI 的初学者，还是希望深入理解底层逻辑的技术从业者，都能从中获得系统性的认知提升。"
-  },
-  {
-    "objectID": "content/blogs/entries/PromptContextSkills.html#第一章prompt-engineering-与-ai-对话的艺术",
-    "href": "content/blogs/entries/PromptContextSkills.html#第一章prompt-engineering-与-ai-对话的艺术",
-    "title": "Prompt->Context->Skills",
-    "section": "第一章：Prompt Engineering —— 与 AI 对话的艺术",
-    "text": "第一章：Prompt Engineering —— 与 AI 对话的艺术\n\n1.1 什么是 Prompt Engineering？\nPrompt Engineering（提示工程）是指通过设计和优化输入提示（prompt），来引导大型语言模型（LLM）产生更准确、更有用输出的技术。它是最基础、最直观的 AI 交互方式 —— 你输入文字，AI 返回文字。\n但Prompt Engineering 远不止是”问问题”这么简单。正如 2025 年的最佳实践所强调的：“Specific prompts are better prompts”（具体的提示才是好提示）。\n一个糟糕的例子：\n\"解释气候变化\"\n一个优秀的例子：\n\"为高中生撰写一段关于气候变化的三段式总结，使用项目符号，\n保持中立语气，控制在 300 字以内。\"\n\n\n1.2 核心技术技法\n\nZero-Shot Prompting（零样本提示）\n直接向模型提出任务，不提供任何示例。这是最简单的方式，适用于模型已经具备相关知识的任务。\n将以下英文翻译成中文：\n\"The quick brown fox jumps over the lazy dog.\"\n\n\nFew-Shot Prompting（少样本提示）\n提供 3-5 个高质量的示例，让模型学习模式和格式。研究表明，这是提升输出质量最有效的方法之一。\n将情感分类为正面、负面或中性。\n\n示例 1：\n文本：\"这部电影太棒了！\"\n情感：正面\n\n示例 2：\n文本：\"服务态度很差\"\n情感：负面\n\n示例 3：\n文本：\"今天天气晴朗\"\n情感：中性\n\n待分类文本：\"这个产品完全不符合预期\"\n情感：\n\n\nChain-of-Thought (CoT) 思维链\n要求模型展示推理过程，而非直接给出答案。这对数学问题、逻辑推理尤其有效。\n问题：一个农场有 35 只鸡和 28 只兔子。农场主卖掉了一半的鸡和 \n三分之一的兔子。还剩多少只动物？\n\n请一步一步思考：\n模型会输出：\n1. 初始鸡的数量：35 只\n2. 卖掉一半的鸡：35 ÷ 2 = 17.5，取整为 17 只\n3. 剩余鸡：35 - 17 = 18 只\n4. 初始兔子数量：28 只\n5. 卖掉三分之一的兔子：28 ÷ 3 ≈ 9 只\n6. 剩余兔子：28 - 9 = 19 只\n7. 总共剩余：18 + 19 = 37 只\n\n\nReAct (Reasoning + Acting) 推理+行动\n结合推理和工具调用的先进技法。模型不仅思考，还能决定何时使用外部工具。\n你需要搜索最新信息来回答用户问题。\n\n问题：苹果公司今天的股价是多少？\n\n思考：我需要搜索苹果的最新股价\n行动：搜索 \"Apple stock price today\"\n观察：[搜索结果：AAPL $182.50, +1.2%]\n思考：我已经获得了股价信息\n最终答案：苹果公司今天股价为 182.50 美元，上涨 1.2%\n\n\n\n1.3 2025 年的前沿技术\n\nRecursive Self-Improvement Prompting (RSIP) 递归自改进提示\n让 AI 批判并改进自己的输出，通过多轮迭代达到更高质量。\n流程： 1. 生成：创建初始输出 2. 批判性评估：让模型使用特定标准识别弱点 3. 改进：基于批评生成增强版本\n实践表明，这种方法可以减少约 60% 的修改周期。\n\n\nMulti-Perspective Simulation (MPS) 多视角模拟\n在单次对话中运行”虚拟专家小组”，让模型从不同角度分析问题。\n请从以下三个角度分析这个商业决策：\n1. 财务总监（关注成本与 ROI）\n2. 技术总监（关注可行性与技术债务）\n3. 市场总监（关注用户体验与竞争优势）\n\n每个视角都需要：\n- 阐述核心观点\n- 提出潜在风险\n- 给出具体建议\n\n最后，请综合三个视角给出整体评估。\n\n\n\n1.4 Prompt Engineering 的局限性\n尽管 Prompt Engineering 强大，但它存在根本性限制：\n\nFragility（脆弱性）：输入的微小变化、系统版本更新，甚至模型的随机性，都可能导致输出质量波动\nLimited Context（上下文限制）：模型的上下文窗口有限，无法处理大量外部信息\nNo Real-Time Knowledge（无实时知识）：模型只能依赖训练数据，无法获取最新信息\nNo Action Capability（无行动能力）：模型只能生成文本，无法执行实际操作\n\n这些限制催生了下一个演进阶段 —— Context Engineering。"
-  },
-  {
-    "objectID": "content/blogs/entries/PromptContextSkills.html#第二章context-engineering-构建-ai-的操作环境",
-    "href": "content/blogs/entries/PromptContextSkills.html#第二章context-engineering-构建-ai-的操作环境",
-    "title": "Prompt->Context->Skills",
-    "section": "第二章：Context Engineering —— 构建 AI 的操作环境",
-    "text": "第二章：Context Engineering —— 构建 AI 的操作环境\n\n2.1 从 Prompt 到 Context 的范式转移\nContext Engineering（上下文工程）是 2024-2025 年兴起的新 discipline。如果说 Prompt Engineering 是”写好问题”，Context Engineering 就是”构建完整的操作环境”。\n核心定义： &gt; Context Engineering 是系统地设计和管理提供给 LLM 的所有信息 —— 包括提示、检索结果、对话历史、元数据、工具状态 —— 以控制模型的推理和输出，而无需修改模型权重。\n简单来说，Context Engineering = Prompt Engineering + RAG + 记忆管理 + 工具状态 + 环境配置\n\n\n2.2 RAG：检索增强生成\nRAG（Retrieval-Augmented Generation）是 Context Engineering 的核心组件。它解决了 LLM 无法访问私有数据、无法获取实时信息的问题。\nRAG 工作流程：\n用户查询 → 嵌入向量 → 向量数据库检索 → 获取 Top-K 相关文档 \n→ 将文档注入提示上下文 → LLM 生成回答\n实际应用场景：\n场景 1：企业知识库问答\n基于以下公司内部文档回答问题：\n&lt;documents&gt;\n[从向量数据库检索的相关文档片段]\n&lt;/documents&gt;\n\n问题：我们的年假政策是什么？\n请引用相关文档的具体章节并标注页码。\n场景 2：客服机器人\n你是一个客服助手。以下是相关的产品文档和历史对话：\n&lt;context&gt;\n[产品手册片段]\n[用户之前的工单记录]\n[常见问题解答]\n&lt;/context&gt;\n\n用户问题：我的订单什么时候能到？\n订单号：#12345\n\n\n2.3 上下文工程的技术支柱\n\n1. Prompt Design（提示设计）\n动态提示模板，根据用户、任务和系统状态组装不同的提示。\n# 动态提示模板示例\ndef build_prompt(user_type, task, context):\n    system_prompt = f\"你是一个{user_type}专家助手。\"\n    user_prompt = f\"任务：{task}\\n\\n上下文：{context}\"\n    return system_prompt + user_prompt\n\n\n2. Context Composition（上下文组合）\n现代 AI 系统需要组合多层上下文：\n\n对话历史：保持对话连贯性\n检索结果：外部知识注入\n当前工具状态：告诉 AI 有哪些工具可用\nAgent 目标与计划：长期任务的状态跟踪\n用户画像/偏好：个性化设置\n\ncontext_stack = {\n    \"system_instructions\": \"你是一个研究助手...\",\n    \"user_profile\": {\"role\": \"研究员\", \"expertise\": \"AI\"},\n    \"conversation_history\": [...],\n    \"retrieved_documents\": [...],\n    \"available_tools\": [\"search\", \"calculator\", \"code_runner\"],\n    \"current_task_state\": {\"step\": 3, \"goal\": \"完成报告\"}\n}\n\n\n3. Memory Systems（记忆系统）\n生产级 Agent 需要四层记忆架构：\n\n\n\n\n\n\n\n\n记忆类型\n描述\n技术实现\n\n\n\n\nShort-Term Memory (STM)\n当前对话的短期上下文\n滑动窗口，保留最近 N 轮对话\n\n\nWorking Memory\n当前任务的临时状态\n变量存储，任务完成即清除\n\n\nLong-Term Memory (LTM)\n用户偏好、历史交互\n向量数据库持久化存储\n\n\nEpisodic Memory\n特定事件/经验的记忆\n结构化存储，支持语义检索\n\n\n\n\n\n\n2.4 Prompt Engineering vs Context Engineering\n\n\n\n维度\nPrompt Engineering\nContext Engineering\n\n\n\n\n关注点\n提示词的措辞和结构\n完整的输入环境设计\n\n\n范围\n单次交互\n多轮对话 + 外部系统\n\n\n技术栈\n自然语言 + 模板\nRAG + 向量DB + 记忆系统\n\n\n目标\n优化单次输出\n塑造持续可靠的行为\n\n\n适用场景\n简单问答、内容生成\n复杂应用、生产系统\n\n\n\n关键洞察： &gt; “Prompt Engineering 优化即时输出，Context Engineering 治理模型在推理前看到的所有上下文，塑造生产系统中的持续行为。”"
-  },
-  {
-    "objectID": "content/blogs/entries/PromptContextSkills.html#第三章skillstool-use-与-agentic-ai-从说话到行动",
-    "href": "content/blogs/entries/PromptContextSkills.html#第三章skillstool-use-与-agentic-ai-从说话到行动",
-    "title": "Prompt->Context->Skills",
-    "section": "第三章：Skills、Tool Use 与 Agentic AI —— 从说话到行动",
-    "text": "第三章：Skills、Tool Use 与 Agentic AI —— 从说话到行动\n\n3.1 工具调用：AI 的”手”和”脚”\n如果说 Context Engineering 给了 AI “眼睛”（看外部信息），那么 Tool Use（工具调用）就给了 AI “手”和”脚”（执行动作）。\nTool Calling 的定义： &gt; 工具调用是 LLM 决定使用外部功能（运行代码、调用 API、搜索网页、操作数据库）来完成模型自身无法独立完成的任务的过程。\n工具调用的决策流程：\n1. 解析用户查询 → 理解用户想要什么\n2. 映射意图到工具模式 → 对比可用工具描述\n3. 决定是否需要工具 → 纯推理 vs 需要执行\n4. 生成结构化工具调用 → JSON 格式的函数调用\n5. 在外部执行工具 → Python/API/数据库查询\n6. 将输出返回给 LLM → 工具执行结果\n7. LLM 决定下一步 → 继续调用工具或直接回答\n\n\n3.2 Function Calling 实战示例\n示例：天气查询 Agent\n首先，定义工具的模式（Schema）：\n{\n  \"name\": \"get_weather\",\n  \"description\": \"获取指定城市的当前天气\",\n  \"parameters\": {\n    \"type\": \"object\",\n    \"properties\": {\n      \"city\": {\n        \"type\": \"string\",\n        \"description\": \"城市名称，如 '北京'、'上海'\"\n      },\n      \"unit\": {\n        \"type\": \"string\",\n        \"enum\": [\"celsius\", \"fahrenheit\"],\n        \"description\": \"温度单位\"\n      }\n    },\n    \"required\": [\"city\"]\n  }\n}\n用户输入：“北京今天天气怎么样？”\nLLM 的决策过程：\n思考：用户询问北京天气，我需要调用 get_weather 工具\n工具调用：{\"tool\": \"get_weather\", \"arguments\": {\"city\": \"北京\", \"unit\": \"celsius\"}}\n后端执行工具，返回：\n{\n  \"temperature\": 22,\n  \"condition\": \"晴朗\",\n  \"humidity\": \"45%\"\n}\nLLM 生成最终回答：\n北京今天天气晴朗，气温 22°C，湿度 45%，是个出行的好天气！\n\n\n3.3 MCP：模型上下文协议 —— AI 的”USB-C”\n2024 年底，Anthropic 推出了 MCP（Model Context Protocol），这是一个开放标准协议，旨在标准化 AI 系统与外部工具和数据源的交互方式。\nMCP 的核心愿景： &gt; “就像 USB-C 为各种设备提供通用连接一样，MCP 为 AI 模型提供统一的接口来连接不同的工具和数据源。”\nMCP 架构：\n\nMCP 2025 年路线图包括：\n\n远程 MCP 连接：支持 OAuth 2.0 认证与授权\n分发与发现：包管理、安装工具、服务器注册\nAgent 支持：分层 Agent 系统、交互式工作流、流式结果\n\nMCP 正在快速成为行业标准，类似于当年的 LSP（Language Server Protocol）。\n\n\n3.4 A2A：Agent-to-Agent 协议 —— AI 的”社交语言”\n如果说 MCP 是 AI 与工具的通用接口，那么 A2A（Agent-to-Agent Protocol） 就是 AI 与 AI 之间的通用语言。\n2025 年 4 月，Google 推出了 A2A 协议，这是一个开放标准，旨在让不同框架、不同厂商的 AI Agent 能够发现彼此、协商任务、协作完成复杂工作流。\nA2A 的五大设计原则：\n\n拥抱自然 Agent 能力：不强制改变 Agent 的工作方式\n基于现有标准：使用 HTTP、JSON-RPC 等成熟技术\n企业级安全：内置认证、授权、加密\n支持长时间任务：异步执行、状态更新、推送通知\n模态无关：支持文本、音频、视频、结构化数据\n\nA2A 的核心概念：\n\n\n\n组件\n描述\n\n\n\n\nAgent Cards\nJSON 元数据文件，描述 Agent 的能力、身份、端点\n\n\nTask Management\n任务生命周期管理：发起、状态更新、完成通知\n\n\nCollaboration\nAgent 间交换上下文、协商执行方式\n\n\nUX Negotiation\n协商内容类型和格式，适应不同 UI 能力\n\n\n\n实际应用场景：\n招聘流程自动化：\n招聘经理 Agent → 发布招聘需求\n       ↓\n猎头 Agent A → 搜索候选人\n       ↓\n猎头 Agent B → 安排面试\n       ↓\n背景调查 Agent → 执行背景核查\n       ↓\n所有结果汇总 → 招聘经理 Agent\n每个 Agent 可能来自不同厂商、使用不同框架，但通过 A2A 协议可以无缝协作。\n\n\n3.5 现代 Agent 架构\n一个生产级的 AI Agent 可以形式化定义为：\nAgent := &lt;Perception, Memory, Reasoning, Planning, Action, Feedback&gt;\n各组件详解：\n\n\n\n组件\n功能\n技术实现\n\n\n\n\nPerception\n接收输入\n文本解析、API 适配器、日志读取\n\n\nMemory\n存储状态\n向量 DB、文档存储、短期上下文\n\n\nReasoning\n推理决策\nLLM 推理 + CoT/ReAct/ToT\n\n\nPlanning\n任务规划\n任务分解、工具选择、执行图\n\n\nAction\n执行动作\n工具调用、API 请求、代码执行\n\n\nFeedback\n反馈学习\n错误分析、自我批评、记忆更新\n\n\n\n2025 年的 Agent 类型：\n\nDeep Research Agents：自主进行深度研究，如 Perplexity、Grok\nCoding Agents：Devin、Cursor IDE Agents，自主编写、调试、测试代码\nCUA (Computer-Using Agents)：模拟人类操作电脑界面，如 AutoGPT、SIMA\nMulti-Agent Systems：多个专业 Agent 协作，如 CrewAI、AutoGen"
-  },
-  {
-    "objectID": "content/blogs/entries/PromptContextSkills.html#第四章vibe-coding-编程范式的颠覆",
-    "href": "content/blogs/entries/PromptContextSkills.html#第四章vibe-coding-编程范式的颠覆",
-    "title": "Prompt->Context->Skills",
-    "section": "第四章：Vibe Coding —— 编程范式的颠覆",
-    "text": "第四章：Vibe Coding —— 编程范式的颠覆\n\n4.1 什么是 Vibe Coding？\nVibe Coding 是 2024-2025 年兴起的一种全新编程范式。它不关注代码的具体语法，而是关注”氛围”——开发者用自然语言描述想要的功能和感觉，AI 负责生成具体的代码实现。\n核心定义： &gt; Vibe Coding 是一种开发方法，开发者使用自然语言提示 AI 工具生成软件代码。它将重点从手动编码转移到 AI 引导的构建方式。\nVibe Coding 的工作流程：\n\n\n\n4.2 Vibe Coding 的起源与演进\n2023 年：Reddit 上的开发者开玩笑说他们在用 ChatGPT “vibe” 功能到现实中 —— 这只是一个梗。\n2024 年底：OpenAI 创始成员 Andrej Karpathy 认真对待这个概念，称之为”AI 原生开发的下一个演进”。\n2025 年初：《华尔街日报》确认企业开始在实际开发工作流中采用 Vibe Coding。\n今天：Vibe Coding 已经从梗变成了严肃的方法论。\n\n\n4.3 Vibe Coding 的工具生态\n\n\n\n工具\n特点\n适用场景\n\n\n\n\nCursor\nAI 原生代码编辑器，对话式开发\n专业开发，复杂项目\n\n\nGitHub Copilot X\nIDE 内实时代码建议\n日常编码，快速补全\n\n\nReplit Ghostwriter\n浏览器内多模态构建\n快速原型，教育\n\n\nClaude 3/4\n长上下文理解\n复杂逻辑，代码审查\n\n\nChatGPT-4/4.5\n自然语言优先\n快速原型，学习\n\n\n\n\n\n4.4 Vibe Coding 实战示例\n场景：创建一个待办事项应用\n传统方式：\n// 需要手动编写所有代码\nimport React, { useState } from 'react';\n\nfunction TodoApp() {\n  const [todos, setTodos] = useState([]);\n  const [input, setInput] = useState('');\n  \n  const addTodo = () =&gt; {\n    if (input.trim()) {\n      setTodos([...todos, { id: Date.now(), text: input, done: false }]);\n      setInput('');\n    }\n  };\n  \n  // ... 还需要写 toggle、delete、filter 等功能\n  \n  return (\n    // ... JSX 代码\n  );\n}\nVibe Coding 方式：\n用户：\"创建一个漂亮的待办事项应用，要有：\n- 添加任务的功能\n- 标记完成/未完成\n- 删除任务\n- 按状态筛选（全部/进行中/已完成）\n- 使用现代简洁的设计风格\n- 数据保存在 localStorage\"\n\nAI：（生成完整可运行的代码）\n\n用户：\"把完成任务的动画做得更流畅一些，\n再加一个进度统计在顶部\"\n\nAI：（更新代码）\n\n\n4.5 Vibe Coding 的核心理念\n\n设计优先，快速原型：先描述想要的感觉和体验，再迭代细节\n对话式调试：用自然语言问”为什么这个会失败？“而不是查文档一小时\n关注产品而非语法：把精力集中在用户体验和业务逻辑上\n迭代速度至上：快速实验，快速验证，快速调整\n\n\n\n4.6 Vibe Coding 的优势与风险\n优势： - ✅ 极大提升开发速度（10倍加速在 build-test 周期） - ✅ 降低编程门槛，非技术人员也能构建原型 - ✅ 减少样板代码的编写 - ✅ 加速学习和实验\n风险与争议： - ⚠️ 安全漏洞：AI 生成的代码可能存在安全隐患，需要人工审查 - ⚠️ 技术债务：快速生成的代码可能缺乏长期可维护性 - ⚠️ 理解深度：开发者可能不完全理解 AI 生成的代码 - ⚠️ 调试困难：当 AI 生成的代码出错时，定位问题可能更困难\n最佳实践： &gt; “Vibe Coding 不是完全替代传统开发，而是改变开发者的角色 —— 从逐行编写代码，转变为指导、测试和优化 AI 生成的输出。开发者成为 AI 的导师，确保生成的代码符合项目需求和最佳实践。”"
-  },
-  {
-    "objectID": "content/blogs/entries/PromptContextSkills.html#第五章整合与展望-四层架构的统一视图",
-    "href": "content/blogs/entries/PromptContextSkills.html#第五章整合与展望-四层架构的统一视图",
-    "title": "Prompt->Context->Skills",
-    "section": "第五章：整合与展望 —— 四层架构的统一视图",
-    "text": "第五章：整合与展望 —— 四层架构的统一视图\n\n5.1 四个层次的演进关系\n┌─────────────────────────────────────────────────────────────────┐\n│                    第四层：Vibe Coding                           │\n│              （人类与 AI 协作的最高形态）                          │\n│         开发者描述意图 → AI 生成完整应用 → 迭代优化               │\n├─────────────────────────────────────────────────────────────────┤\n│                    第三层：Skills & Agentic AI                   │\n│              （AI 的行动能力和协作能力）                           │\n│    MCP（工具连接） + A2A（Agent 协作） + Function Calling        │\n├─────────────────────────────────────────────────────────────────┤\n│                    第二层：Context Engineering                   │\n│              （AI 的知识环境和记忆系统）                           │\n│         RAG + 记忆管理 + 上下文组合 + 外部数据注入                │\n├─────────────────────────────────────────────────────────────────┤\n│                    第一层：Prompt Engineering                    │\n│              （与 AI 对话的基础能力）                              │\n│         Zero/Few-Shot + CoT + ReAct + 结构化输出                │\n└─────────────────────────────────────────────────────────────────┘\n\n\n5.2 各层之间的依赖关系\n\nPrompt Engineering 是基础：所有上层都依赖于如何有效地与模型沟通\nContext Engineering 是增强：让模型能够访问更多信息和知识\nSkills/Agentic AI 是跃迁：让模型从”说话”到”行动”\nVibe Coding 是融合：重新定义人类在 AI 时代的角色\n\n\n\n5.3 2025-2026 年的关键趋势\n\n趋势 1：协议标准化\nMCP 和 A2A 正在快速成为行业标准，类似于： - MCP ≈ USB-C：统一 AI 与工具的连接方式 - A2A ≈ HTTP：统一 AI 与 AI 的通信方式\n\n\n趋势 2：Agent 经济崛起\n据 2025 年全球 AI 调查： - 29% 的企业已经在生产环境运行 Agentic AI - 44% 计划在未来一年内加入 - 88% 的早期采用者报告了正向 ROI\n\n\n趋势 3：开发者角色转型\n开发者的工作正在从：\n编写代码 → 架构设计 + AI 协作 + 代码审查\n\n\n趋势 4：多 Agent 协作成为常态\n复杂任务将由多个专业 Agent 协作完成： - 研究 Agent + 写作 Agent + 审查 Agent - 前端 Agent + 后端 Agent + 测试 Agent - 数据分析 Agent + 可视化 Agent + 报告 Agent\n\n\n\n5.4 给初学者的学习路径\n阶段 1：掌握 Prompt Engineering（1-2 周） - 学习 Zero/Few-Shot、CoT、ReAct 等基础技术 - 练习编写清晰、具体的提示 - 理解模型的能力和局限性\n阶段 2：理解 Context Engineering（2-3 周） - 学习 RAG 原理和实现 - 了解向量数据库（Pinecone、Weaviate、Chroma） - 实践构建有记忆的对话系统\n阶段 3：探索 Tool Use & Agents（3-4 周） - 学习 Function Calling - 了解 MCP 协议 - 尝试构建简单的 Agent\n阶段 4：实践 Vibe Coding（持续） - 使用 Cursor、Copilot 等工具 - 从小项目开始，逐步建立信任 - 保持批判性思维，审查 AI 生成的代码\n\n\n5.5 给技术从业者的深度建议\n\n深入理解协议层：MCP 和 A2A 将成为基础设施，理解它们的设计哲学\n关注 Agent 架构：学习 ReAct、ToT、Reflexion 等推理模式\n掌握编排能力：多 Agent 系统的协调、状态管理、错误恢复\n保持工程纪律：AI 再强大，软件工程的基本原则依然适用"
-  },
-  {
-    "objectID": "content/blogs/entries/PromptContextSkills.html#结语人机协作的新纪元",
-    "href": "content/blogs/entries/PromptContextSkills.html#结语人机协作的新纪元",
-    "title": "Prompt->Context->Skills",
-    "section": "结语：人机协作的新纪元",
-    "text": "结语：人机协作的新纪元\n从 Prompt Engineering 到 Context Engineering，从 Tool Use 到 Vibe Coding，我们正见证着人机协作方式的根本性转变。\n这不仅仅是技术的演进，更是认知范式的转移：\n\n过去：人类告诉计算机”如何做”（How）\n现在：人类告诉 AI”做什么”（What）\n未来：人类与 AI 共同探索”为什么做”（Why）\n\n在这个新时代，最宝贵的技能不再是记住最多的 API 或写出最优雅的算法，而是：\n\n清晰表达意图的能力 —— 知道你想要什么\n批判性评估的能力 —— 判断 AI 输出是否正确\n系统思考的能力 —— 理解各部分如何协同工作\n持续学习的能力 —— 适应快速变化的技术 landscape\n\n正如 Vibe Coding 所揭示的，未来的开发者可能不再是”代码的编写者”，而是”智能的编排者”。而 Prompt Engineering、Context Engineering、Skills 这些层次，正是构建这个新世界的基石。\n无论你是初学者还是资深工程师，现在都是最好的入场时机。因为在这个领域，每个人都在学习，每天都有新发现，每个参与者都有机会塑造未来。"
-  },
-  {
-    "objectID": "content/blogs/entries/PromptContextSkills.html#参考资源",
-    "href": "content/blogs/entries/PromptContextSkills.html#参考资源",
-    "title": "Prompt->Context->Skills",
-    "section": "参考资源",
-    "text": "参考资源\nPrompt Engineering： - Prompt Engineering Best Practices 2025 - The Complete Prompt Engineering Guide for 2025\nContext Engineering： - What is Context Engineering? - Context Engineering: Best Practices & Examples\nAgentic AI & Protocols： - Model Context Protocol - Anthropic - Agent2Agent Protocol - Google - The Rise of Autonomous AI Agents\nVibe Coding： - Vibe Coding in 2025 - What is Vibe Coding? - Vibe Coding: Fun, AI-Assisted Programming"
-  },
-  {
-    "objectID": "content/blogs/entries/pc的快捷指令.html",
-    "href": "content/blogs/entries/pc的快捷指令.html",
-    "title": "PC的快捷指令",
-    "section": "",
-    "text": "记录一下常见PC的快捷指令，主要是博主经常忘记，这里记录一下，方便后续查看。"
-  },
-  {
-    "objectID": "content/blogs/entries/pc的快捷指令.html#windows",
-    "href": "content/blogs/entries/pc的快捷指令.html#windows",
-    "title": "PC的快捷指令",
-    "section": "Windows",
-    "text": "Windows\n\n终端配置\nWindows 终端增强配置速查\n\n基础环境\n# 安装 PowerShell 7（管理员）\nwinget install Microsoft.PowerShell\n\n# 创建配置文件\nif (!(Test-Path $PROFILE)) { New-Item -Path $PROFILE -ItemType File -Force }\nnotepad $PROFILE\n\n\n核心配置\n# 历史预测与提示\nSet-PSReadLineOption -PredictionSource History\nSet-PSReadLineOption -PredictionViewStyle InlineView\n\n# 快捷键：Ctrl+A/E 跳转行首行尾\nSet-PSReadLineKeyHandler -Key Ctrl+a -Function BeginningOfLine\nSet-PSReadLineKeyHandler -Key Ctrl+e -Function EndOfLine\n\n# 上下箭头匹配前缀\nSet-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward\nSet-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward\n\n# 默认 UTF-8\n$PSDefaultParameterValues['*:Encoding'] = 'UTF8'\n[Console]::OutputEncoding = [System.Text.Encoding]::UTF8\n\n\n工具安装\n# 安装（PowerShell 7 中执行）\nwinget install lsd\nwinget install sharkdp.bat --name bat\n\n# 若提示找不到命令，修复 Path（执行后重启终端）\n$lsdPath = \"${env:LOCALAPPDATA}\\Microsoft\\WinGet\\Packages\\lsd-rs.lsd_Microsoft.Winget.Source_8wekyb3d8bbwe\"\n$batPath = (Get-ChildItem \"${env:LOCALAPPDATA}\\Microsoft\\WinGet\\Packages\" -Recurse -Filter \"bat.exe\" | Select-Object -First 1).DirectoryName\n$userPath = [Environment]::GetEnvironmentVariable(\"Path\", \"User\")\n[Environment]::SetEnvironmentVariable(\"Path\", \"$userPath;$lsdPath;$batPath\", \"User\")\n\n\n别名设置\nfunction ls { lsd $args }\nfunction ll { lsd -la $args }\nfunction la { lsd -a $args }\nfunction cat { bat -p $args }      # 纯文本兼容\nfunction catl { bat $args }         # 带高亮行号\n\n\n验证指令\nlsd --version        # 显示版本即成功\nbat README.md        # 高亮显示文件\nGet-PSReadLineOption | Select-Object PredictionSource  # 检查预测开启"
-  },
-  {
-    "objectID": "content/blogs/entries/pc的快捷指令.html#mac",
-    "href": "content/blogs/entries/pc的快捷指令.html#mac",
-    "title": "PC的快捷指令",
-    "section": "Mac",
-    "text": "Mac\n\n删除\n\n清空废纸篓：Cmd + Shift + Delete\n直接删除不经过废纸篓：Option + Cmd + Delete\n反向删除：Fn + Delete\n\n\n\n命令行指令提示插件\n# 安装插件\nmkdir -p ~/.oh-my-zsh/custom/plugins\n\ngit clone https://github.com/zsh-users/zsh-autosuggestions \\\n  ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions\n\ngit clone https://github.com/zsh-users/zsh-syntax-highlighting \\\n  ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting\n\n# 注册插件生效\ncode ~/.zshrc\n\n# 找到 plugins=()\n# 改成 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)\n\nsource ~/.zshrc # 配置生效\n\n\n\n命令行快速到行首尾\n快速把光标跳到行首的默认快捷键是：\nCtrl + A\n快速把光标跳到行首的默认快捷键是：\nCtrl + E"
-  },
-  {
-    "objectID": "content/blogs/entries/pc的快捷指令.html#linux",
-    "href": "content/blogs/entries/pc的快捷指令.html#linux",
-    "title": "PC的快捷指令",
-    "section": "Linux",
-    "text": "Linux"
+    "text": "如何创建自己的个人网站\n\n文章主要介绍如何使用 Jekyll 和 GitHub 创建一个属于自己的个人网站，通过网站可以记录自己的学习笔记，技术收获，同时也可以更好地展示自己，养成笔记的好习惯（21天轻松养成好习惯，哈哈哈）。\n\n\n0、放在开头的一些东西\nRuby安装教程 因为文章是后补的，文章中没有介绍Ruby的安装，安装教程可以参考前面的链接。\n安装Ruby的目的是在本地运行代码，查看网站的效果，如果不需要本地运行可以不配置Ruby环境。\nJekyll模板网站 http://jekyllthemes.org/ 网站中包含了很多静态网的模板，大家可以自由选择，在本中文使用的是chirpy主题，所有模板的配置过程也都大差不差。 ### 1、使用GitHub创建自己的仓库 #### step 1 在GitHub中键入chirpy查找本教程使用的模板，上面的模板可以自行改动，大佬可以阅读源码创建自己的个人主页，下面的仓库操作比较简单，本文选择使用下面的模板，不进行修改，直接进行基础配置后可以进行使用。 \n\nstep 2\n首先找到模板所在的GitHub仓库，在左上角找到“use this template”，然后选择其中的“Create a new repository”，用模板构建自己的仓库。 \n\n\nstep 3\n进行仓库配置，首先需要创建自己仓库的名称，为了后续能够形成自己的个人主页，仓库名称需要设置为 “你的用户名”+“.github.io” ，这样可以通过https://username.github.io直接访问。然后需要将仓库的可见方式设置为Public（默认就是Public，不需要改动）。 \n\n\nstep 4\n点击 “Create repository” 创建属于自己的仓库。 \n\n\nstep 5\n等待仓库创建完成。 \n\n\nstep 6\n仓库创建完成。这时候可以检查仓库的名称是否正确，防止后续不能正常显示网页。 \n\n\nstep 7\n等待一段时间，GitHub配置完成后，在浏览器中输入 “username.github.io” 可以初步看到网页显示的效果，此时只有一个界面，很多配置还没有完成，能够正常显示就是初步成功。 \n\n\n\n2、将仓库内容git到本地\n\n为了能够更好配置网页，测试效果，后续配置和上传帖子，可以将项目git到本地进行配置\n在本地运行Jekyll模板需要配置Ruby环境，配置流程可以参考上面的链接\n当然，在GitHub直接进行修改也是可以的\n\n\n获取git链接\n在创建的仓库界面右上角点击 “code” ，选择HTTPS复制git链接。 \n\n\ngit到本地\n进入想要下载的文件夹，右击选择 “Git Bash Here” 。 \n在其中输入“git clone” + 刚在复制的git链接，将仓库git到本地吗，如果失败就多尝试几次，如果需要配置git可以找篇帖子看一下，都大差不差很好配置。 \n\n\nIDE打开项目\n文章选择使用pycharm打开项目。 \n打开项目后可以右击查看到项目中有git选项，这是因为Pycharm识别到我们git的项目了，通过点选就能完成项目的添加、提交和推送。 \n\n\n\n3、本地配置网站\n\n安装配置\n执行下方命令可以自动进行运行环境配置\nbundle\n\n在配置的过程中可能会出现错误，文章在配置过程中显示缺少wdm插件。 \n安装wdm\ngem install wdm\n\n根据图片中显示安装的是0.2.0版本，而需要的是0.1.1版本，检查Gemfile文件修改其中wdm需要的版本即可。 \n\n\n添加头像\n项目中资源文件一般放在assets中，在assets中创建文件夹防止头像即可，头像的显示需要在配置文件中添加路径，记得本步骤的路径即可。 \n\n\n配置文件修改\n项目的基本配置都在 “_config.yml” 文件中，阅读文件根据需要配置即可。 其中有几个配置比较关键 &gt; lang: 设置显示的语言，语言配置可以看这里，添加文件名就行。 &gt; &gt; description:网站的描述。 &gt; &gt; url: 改成你的网站地址”https://username.github.io” &gt; &gt; github:username: 改成自己的username &gt; &gt; social: 社交平台链接，根据需要修改 &gt; &gt; avatar：头像地址，改成上一步的地址即可 &gt; &gt; comments:评论系统配置，后面详细介绍\n\n\n\n本地运行项目\n配置完成后，执行下面命令运行项目，在 127.0.0.1:4000 查看运行结果。\nbundle exec jekyll server\n 在运行的过程中可能也会出现错误，基本都是缺少插件或者插件的版本问题，哪里报错改哪里，缺啥补啥，直接复制报错信息，直接搜基本都能找到解决方法。\n运行效果如下： \n结束运行： 首先ctrl+c，然后两次确定即可。 \n\n\n添加文章\n文章的添加在 “_post” 文件夹中即可，文件的命名格式和标头都有要求。 \n\n文章命名格式为：YYYY-MM-DD-TITLE.md（注意是markdown文件）\n\n\n标头格式为：\ntitle: 题目名称\nauthor: 作者名称\ndate: 项目创建时间\ncategories: 项目分类，如：[Jekyll, GitHub]\ntags: 项目标签，如：[Jekyll, Github]\nmath: 是否显示latex公式\n……\n其他根据需要添加，可以阅读源码查看相应配置\n\n\n\n\n\n4、提交修改\n提交项目使用git进行控制，主要有三个过程：添加，提交和推送。由于使用了pycharm作为IDE，能直接通过点选完成。\n右击项目，选择 “Git”，先点 “添加” ，然后点 “Commit目录” ，最后推送即可更新GitHub仓库中的内容。待内容更新完成可以在 “https://username.github.io” 查看更新效果。 \n提交更新后效果如下： \n\n\n5、添加评论系统\n在模板中配置了多种评论系统，文章中选择使用 “giscus”。\n在添加前需要完成一个配置，在 “Pages” 中将source改成 “GitHub Actions”。 \n\n安装giscus\n在giscus中点击安装即可，可能需要GitHub认证，按照步骤操作即可。 \n\n\nGitHub配置\n在设置中将Discussions设置为true \n查看Discussions，可以选择或创建一个标签作为评论系统的评论类别名称。这里选择的是 “General”。 \n\n\ngiscus配置\n在giscus中进行配置\n\n首先配置仓库：username/username.github.io\n然后选择映射关系，选择第一个，保持默认即可\n选择Discussion分类，选择之前确定或创建的分类即可 \n\n\n\n项目文件配置\n在giscus配置完成后，会生成专属id \n在项目的 “_config.yml” 文件中进行相应配置\n\nprovider: giscus\ngiscus:\n\nrepo: username/username.github.io\nrepo_id: 自己的repo_id\ncategory: Comments\ncategory_id: 自己的category_id\nmapping: pathname\n\n\n\n\n\n评论系统测试\n将修改后的项目提交，在网页的文章最后能看到评论系统，需要GitHub登陆后才能提交评论 \n\n\n\n6、关于创建过程中遇到的一些问题和解决方法\n\n文章中使用的Jekyll模板作者设计的非常全面，我们在使用的过程中可能会遇到很多问题，本章节主要记录遇到的问题和解决方案\n\n\n数学公式不显示的问题 在post编写的过程中可以使用latex写公式，GitHub也已经支持latex公式的显示，但提交的文章中公式还是源码。 在标头中设置“math: true”就可以 类似的问题可以查看源码，我之前一直以为作者没有添加公式识别功能，查看后才知道写了,需要在标头中进行设置。源码地址\n\n\n黑白两种主题不能切换的问题 缺少必要插件，具体少那个可以自己查查，我忘了\n\n\n插件安装报错wdm，在Gemfile中写的是0.1.1版本，实际安装过程中执行“bundle”命令安装的是0.2.0版本，吧Gemfile文件中的版本号改一下就行。 遇到其他插件报错的时候也可以参考这个方法\n\n\n项目识别不了http链接，可能是出于安全考虑吧 原本是”[xxx] (http://xxx/xxx)“，不能识别http协议，链接直接写就行，不然提交后会在Actions中报错。"
   },
   {
     "objectID": "content/blogs/entries/一文了解VLM.html",
@@ -1393,11 +903,522 @@
     "text": "参考资料\n[1]: 什么是视觉语言模型 (VLM)？| IBM\n[2]: VLM 说明\n[3]: VLP: A Survey on Vision-Language Pre-training\n[4]: Learning Transferable Visual Models From Natural Language Supervision (CLIP)\n[5]: Scaling Up Visual and Vision-Language Representation Learning With Noisy Text Supervision (ALIGN)\n[6]: BLIP: Bootstrapping Language-Image Pre-training for Unified Vision-Language Understanding and Generation\n[7]: Visual Instruction Tuning (LLaVA)\n[8]: BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders and Large Language Models\n[9]: Qwen2-VL: Enhancing Vision-Language Model’s Perception of the World at Any Resolution\n[10]: 视觉语言大模型的幻觉综述：成因、评估与治理\n\n延伸阅读： - Guide to Vision-Language Models (VLMs) | Encord - 视觉语言模型详解 | Hugging Face - What Are Vision Language Models | NVIDIA"
   },
   {
-    "objectID": "content/blogs/entries/保姆教程如何创建自己的“个人网站”.html",
-    "href": "content/blogs/entries/保姆教程如何创建自己的“个人网站”.html",
-    "title": "保姆教程如何创建自己的“个人网站”",
+    "objectID": "content/blogs/entries/pc的快捷指令.html",
+    "href": "content/blogs/entries/pc的快捷指令.html",
+    "title": "PC的快捷指令",
     "section": "",
-    "text": "如何创建自己的个人网站\n\n文章主要介绍如何使用 Jekyll 和 GitHub 创建一个属于自己的个人网站，通过网站可以记录自己的学习笔记，技术收获，同时也可以更好地展示自己，养成笔记的好习惯（21天轻松养成好习惯，哈哈哈）。\n\n\n0、放在开头的一些东西\nRuby安装教程 因为文章是后补的，文章中没有介绍Ruby的安装，安装教程可以参考前面的链接。\n安装Ruby的目的是在本地运行代码，查看网站的效果，如果不需要本地运行可以不配置Ruby环境。\nJekyll模板网站 http://jekyllthemes.org/ 网站中包含了很多静态网的模板，大家可以自由选择，在本中文使用的是chirpy主题，所有模板的配置过程也都大差不差。 ### 1、使用GitHub创建自己的仓库 #### step 1 在GitHub中键入chirpy查找本教程使用的模板，上面的模板可以自行改动，大佬可以阅读源码创建自己的个人主页，下面的仓库操作比较简单，本文选择使用下面的模板，不进行修改，直接进行基础配置后可以进行使用。 \n\nstep 2\n首先找到模板所在的GitHub仓库，在左上角找到“use this template”，然后选择其中的“Create a new repository”，用模板构建自己的仓库。 \n\n\nstep 3\n进行仓库配置，首先需要创建自己仓库的名称，为了后续能够形成自己的个人主页，仓库名称需要设置为 “你的用户名”+“.github.io” ，这样可以通过https://username.github.io直接访问。然后需要将仓库的可见方式设置为Public（默认就是Public，不需要改动）。 \n\n\nstep 4\n点击 “Create repository” 创建属于自己的仓库。 \n\n\nstep 5\n等待仓库创建完成。 \n\n\nstep 6\n仓库创建完成。这时候可以检查仓库的名称是否正确，防止后续不能正常显示网页。 \n\n\nstep 7\n等待一段时间，GitHub配置完成后，在浏览器中输入 “username.github.io” 可以初步看到网页显示的效果，此时只有一个界面，很多配置还没有完成，能够正常显示就是初步成功。 \n\n\n\n2、将仓库内容git到本地\n\n为了能够更好配置网页，测试效果，后续配置和上传帖子，可以将项目git到本地进行配置\n在本地运行Jekyll模板需要配置Ruby环境，配置流程可以参考上面的链接\n当然，在GitHub直接进行修改也是可以的\n\n\n获取git链接\n在创建的仓库界面右上角点击 “code” ，选择HTTPS复制git链接。 \n\n\ngit到本地\n进入想要下载的文件夹，右击选择 “Git Bash Here” 。 \n在其中输入“git clone” + 刚在复制的git链接，将仓库git到本地吗，如果失败就多尝试几次，如果需要配置git可以找篇帖子看一下，都大差不差很好配置。 \n\n\nIDE打开项目\n文章选择使用pycharm打开项目。 \n打开项目后可以右击查看到项目中有git选项，这是因为Pycharm识别到我们git的项目了，通过点选就能完成项目的添加、提交和推送。 \n\n\n\n3、本地配置网站\n\n安装配置\n执行下方命令可以自动进行运行环境配置\nbundle\n\n在配置的过程中可能会出现错误，文章在配置过程中显示缺少wdm插件。 \n安装wdm\ngem install wdm\n\n根据图片中显示安装的是0.2.0版本，而需要的是0.1.1版本，检查Gemfile文件修改其中wdm需要的版本即可。 \n\n\n添加头像\n项目中资源文件一般放在assets中，在assets中创建文件夹防止头像即可，头像的显示需要在配置文件中添加路径，记得本步骤的路径即可。 \n\n\n配置文件修改\n项目的基本配置都在 “_config.yml” 文件中，阅读文件根据需要配置即可。 其中有几个配置比较关键 &gt; lang: 设置显示的语言，语言配置可以看这里，添加文件名就行。 &gt; &gt; description:网站的描述。 &gt; &gt; url: 改成你的网站地址”https://username.github.io” &gt; &gt; github:username: 改成自己的username &gt; &gt; social: 社交平台链接，根据需要修改 &gt; &gt; avatar：头像地址，改成上一步的地址即可 &gt; &gt; comments:评论系统配置，后面详细介绍\n\n\n\n本地运行项目\n配置完成后，执行下面命令运行项目，在 127.0.0.1:4000 查看运行结果。\nbundle exec jekyll server\n 在运行的过程中可能也会出现错误，基本都是缺少插件或者插件的版本问题，哪里报错改哪里，缺啥补啥，直接复制报错信息，直接搜基本都能找到解决方法。\n运行效果如下： \n结束运行： 首先ctrl+c，然后两次确定即可。 \n\n\n添加文章\n文章的添加在 “_post” 文件夹中即可，文件的命名格式和标头都有要求。 \n\n文章命名格式为：YYYY-MM-DD-TITLE.md（注意是markdown文件）\n\n\n标头格式为：\ntitle: 题目名称\nauthor: 作者名称\ndate: 项目创建时间\ncategories: 项目分类，如：[Jekyll, GitHub]\ntags: 项目标签，如：[Jekyll, Github]\nmath: 是否显示latex公式\n……\n其他根据需要添加，可以阅读源码查看相应配置\n\n\n\n\n\n4、提交修改\n提交项目使用git进行控制，主要有三个过程：添加，提交和推送。由于使用了pycharm作为IDE，能直接通过点选完成。\n右击项目，选择 “Git”，先点 “添加” ，然后点 “Commit目录” ，最后推送即可更新GitHub仓库中的内容。待内容更新完成可以在 “https://username.github.io” 查看更新效果。 \n提交更新后效果如下： \n\n\n5、添加评论系统\n在模板中配置了多种评论系统，文章中选择使用 “giscus”。\n在添加前需要完成一个配置，在 “Pages” 中将source改成 “GitHub Actions”。 \n\n安装giscus\n在giscus中点击安装即可，可能需要GitHub认证，按照步骤操作即可。 \n\n\nGitHub配置\n在设置中将Discussions设置为true \n查看Discussions，可以选择或创建一个标签作为评论系统的评论类别名称。这里选择的是 “General”。 \n\n\ngiscus配置\n在giscus中进行配置\n\n首先配置仓库：username/username.github.io\n然后选择映射关系，选择第一个，保持默认即可\n选择Discussion分类，选择之前确定或创建的分类即可 \n\n\n\n项目文件配置\n在giscus配置完成后，会生成专属id \n在项目的 “_config.yml” 文件中进行相应配置\n\nprovider: giscus\ngiscus:\n\nrepo: username/username.github.io\nrepo_id: 自己的repo_id\ncategory: Comments\ncategory_id: 自己的category_id\nmapping: pathname\n\n\n\n\n\n评论系统测试\n将修改后的项目提交，在网页的文章最后能看到评论系统，需要GitHub登陆后才能提交评论 \n\n\n\n6、关于创建过程中遇到的一些问题和解决方法\n\n文章中使用的Jekyll模板作者设计的非常全面，我们在使用的过程中可能会遇到很多问题，本章节主要记录遇到的问题和解决方案\n\n\n数学公式不显示的问题 在post编写的过程中可以使用latex写公式，GitHub也已经支持latex公式的显示，但提交的文章中公式还是源码。 在标头中设置“math: true”就可以 类似的问题可以查看源码，我之前一直以为作者没有添加公式识别功能，查看后才知道写了,需要在标头中进行设置。源码地址\n\n\n黑白两种主题不能切换的问题 缺少必要插件，具体少那个可以自己查查，我忘了\n\n\n插件安装报错wdm，在Gemfile中写的是0.1.1版本，实际安装过程中执行“bundle”命令安装的是0.2.0版本，吧Gemfile文件中的版本号改一下就行。 遇到其他插件报错的时候也可以参考这个方法\n\n\n项目识别不了http链接，可能是出于安全考虑吧 原本是”[xxx] (http://xxx/xxx)“，不能识别http协议，链接直接写就行，不然提交后会在Actions中报错。"
+    "text": "记录一下常见PC的快捷指令，主要是博主经常忘记，这里记录一下，方便后续查看。"
+  },
+  {
+    "objectID": "content/blogs/entries/pc的快捷指令.html#windows",
+    "href": "content/blogs/entries/pc的快捷指令.html#windows",
+    "title": "PC的快捷指令",
+    "section": "Windows",
+    "text": "Windows\n\n终端配置\nWindows 终端增强配置速查\n\n基础环境\n# 安装 PowerShell 7（管理员）\nwinget install Microsoft.PowerShell\n\n# 创建配置文件\nif (!(Test-Path $PROFILE)) { New-Item -Path $PROFILE -ItemType File -Force }\nnotepad $PROFILE\n\n\n核心配置\n# 历史预测与提示\nSet-PSReadLineOption -PredictionSource History\nSet-PSReadLineOption -PredictionViewStyle InlineView\n\n# 快捷键：Ctrl+A/E 跳转行首行尾\nSet-PSReadLineKeyHandler -Key Ctrl+a -Function BeginningOfLine\nSet-PSReadLineKeyHandler -Key Ctrl+e -Function EndOfLine\n\n# 上下箭头匹配前缀\nSet-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward\nSet-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward\n\n# 默认 UTF-8\n$PSDefaultParameterValues['*:Encoding'] = 'UTF8'\n[Console]::OutputEncoding = [System.Text.Encoding]::UTF8\n\n\n工具安装\n# 安装（PowerShell 7 中执行）\nwinget install lsd\nwinget install sharkdp.bat --name bat\n\n# 若提示找不到命令，修复 Path（执行后重启终端）\n$lsdPath = \"${env:LOCALAPPDATA}\\Microsoft\\WinGet\\Packages\\lsd-rs.lsd_Microsoft.Winget.Source_8wekyb3d8bbwe\"\n$batPath = (Get-ChildItem \"${env:LOCALAPPDATA}\\Microsoft\\WinGet\\Packages\" -Recurse -Filter \"bat.exe\" | Select-Object -First 1).DirectoryName\n$userPath = [Environment]::GetEnvironmentVariable(\"Path\", \"User\")\n[Environment]::SetEnvironmentVariable(\"Path\", \"$userPath;$lsdPath;$batPath\", \"User\")\n\n\n别名设置\nfunction ls { lsd $args }\nfunction ll { lsd -la $args }\nfunction la { lsd -a $args }\nfunction cat { bat -p $args }      # 纯文本兼容\nfunction catl { bat $args }         # 带高亮行号\n\n\n验证指令\nlsd --version        # 显示版本即成功\nbat README.md        # 高亮显示文件\nGet-PSReadLineOption | Select-Object PredictionSource  # 检查预测开启"
+  },
+  {
+    "objectID": "content/blogs/entries/pc的快捷指令.html#mac",
+    "href": "content/blogs/entries/pc的快捷指令.html#mac",
+    "title": "PC的快捷指令",
+    "section": "Mac",
+    "text": "Mac\n\n删除\n\n清空废纸篓：Cmd + Shift + Delete\n直接删除不经过废纸篓：Option + Cmd + Delete\n反向删除：Fn + Delete\n\n\n\n命令行指令提示插件\n# 安装插件\nmkdir -p ~/.oh-my-zsh/custom/plugins\n\ngit clone https://github.com/zsh-users/zsh-autosuggestions \\\n  ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions\n\ngit clone https://github.com/zsh-users/zsh-syntax-highlighting \\\n  ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting\n\n# 注册插件生效\ncode ~/.zshrc\n\n# 找到 plugins=()\n# 改成 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)\n\nsource ~/.zshrc # 配置生效\n\n\n\n命令行快速到行首尾\n快速把光标跳到行首的默认快捷键是：\nCtrl + A\n快速把光标跳到行首的默认快捷键是：\nCtrl + E"
+  },
+  {
+    "objectID": "content/blogs/entries/pc的快捷指令.html#linux",
+    "href": "content/blogs/entries/pc的快捷指令.html#linux",
+    "title": "PC的快捷指令",
+    "section": "Linux",
+    "text": "Linux"
+  },
+  {
+    "objectID": "content/blogs/entries/PromptContextSkills.html",
+    "href": "content/blogs/entries/PromptContextSkills.html",
+    "title": "Prompt->Context->Skills",
+    "section": "",
+    "text": "从 Prompt 到上下文工程到 Skills：AI 交互范式的演进与 Vibe Coding 的崛起"
+  },
+  {
+    "objectID": "content/blogs/entries/PromptContextSkills.html#引言ai-交互的三次革命",
+    "href": "content/blogs/entries/PromptContextSkills.html#引言ai-交互的三次革命",
+    "title": "Prompt->Context->Skills",
+    "section": "引言：AI 交互的三次革命",
+    "text": "引言：AI 交互的三次革命\n2022 年底，ChatGPT 的横空出世标志着人工智能进入了一个全新的时代。短短两年多时间，我们与 AI 的交互方式已经经历了三次深刻的范式转变：\n第一次革命：Prompt Engineering（提示工程） —— 我们学会了如何与 AI 对话，用精心设计的提示词来引导模型输出。\n第二次革命：Context Engineering（上下文工程） —— 我们意识到 AI 的能力不仅取决于提示词本身，更取决于提供给它的上下文环境。RAG、记忆系统、外部知识库的引入，让 AI 从”闭卷考试”变成了”开卷考试”。\n第三次革命：Skills & Agentic AI（技能与智能体） —— AI 不再只是被动回答问题，而是能够主动调用工具、执行动作、与其他 Agent 协作，成为真正的”数字工作者”。\n与此同时，一种全新的编程范式正在悄然兴起 —— Vibe Coding（氛围编程），它正在重新定义人类与 AI 在软件开发中的协作关系。\n本文将带你完整走过这段演进历程，无论你是刚接触 AI 的初学者，还是希望深入理解底层逻辑的技术从业者，都能从中获得系统性的认知提升。"
+  },
+  {
+    "objectID": "content/blogs/entries/PromptContextSkills.html#第一章prompt-engineering-与-ai-对话的艺术",
+    "href": "content/blogs/entries/PromptContextSkills.html#第一章prompt-engineering-与-ai-对话的艺术",
+    "title": "Prompt->Context->Skills",
+    "section": "第一章：Prompt Engineering —— 与 AI 对话的艺术",
+    "text": "第一章：Prompt Engineering —— 与 AI 对话的艺术\n\n1.1 什么是 Prompt Engineering？\nPrompt Engineering（提示工程）是指通过设计和优化输入提示（prompt），来引导大型语言模型（LLM）产生更准确、更有用输出的技术。它是最基础、最直观的 AI 交互方式 —— 你输入文字，AI 返回文字。\n但Prompt Engineering 远不止是”问问题”这么简单。正如 2025 年的最佳实践所强调的：“Specific prompts are better prompts”（具体的提示才是好提示）。\n一个糟糕的例子：\n\"解释气候变化\"\n一个优秀的例子：\n\"为高中生撰写一段关于气候变化的三段式总结，使用项目符号，\n保持中立语气，控制在 300 字以内。\"\n\n\n1.2 核心技术技法\n\nZero-Shot Prompting（零样本提示）\n直接向模型提出任务，不提供任何示例。这是最简单的方式，适用于模型已经具备相关知识的任务。\n将以下英文翻译成中文：\n\"The quick brown fox jumps over the lazy dog.\"\n\n\nFew-Shot Prompting（少样本提示）\n提供 3-5 个高质量的示例，让模型学习模式和格式。研究表明，这是提升输出质量最有效的方法之一。\n将情感分类为正面、负面或中性。\n\n示例 1：\n文本：\"这部电影太棒了！\"\n情感：正面\n\n示例 2：\n文本：\"服务态度很差\"\n情感：负面\n\n示例 3：\n文本：\"今天天气晴朗\"\n情感：中性\n\n待分类文本：\"这个产品完全不符合预期\"\n情感：\n\n\nChain-of-Thought (CoT) 思维链\n要求模型展示推理过程，而非直接给出答案。这对数学问题、逻辑推理尤其有效。\n问题：一个农场有 35 只鸡和 28 只兔子。农场主卖掉了一半的鸡和 \n三分之一的兔子。还剩多少只动物？\n\n请一步一步思考：\n模型会输出：\n1. 初始鸡的数量：35 只\n2. 卖掉一半的鸡：35 ÷ 2 = 17.5，取整为 17 只\n3. 剩余鸡：35 - 17 = 18 只\n4. 初始兔子数量：28 只\n5. 卖掉三分之一的兔子：28 ÷ 3 ≈ 9 只\n6. 剩余兔子：28 - 9 = 19 只\n7. 总共剩余：18 + 19 = 37 只\n\n\nReAct (Reasoning + Acting) 推理+行动\n结合推理和工具调用的先进技法。模型不仅思考，还能决定何时使用外部工具。\n你需要搜索最新信息来回答用户问题。\n\n问题：苹果公司今天的股价是多少？\n\n思考：我需要搜索苹果的最新股价\n行动：搜索 \"Apple stock price today\"\n观察：[搜索结果：AAPL $182.50, +1.2%]\n思考：我已经获得了股价信息\n最终答案：苹果公司今天股价为 182.50 美元，上涨 1.2%\n\n\n\n1.3 2025 年的前沿技术\n\nRecursive Self-Improvement Prompting (RSIP) 递归自改进提示\n让 AI 批判并改进自己的输出，通过多轮迭代达到更高质量。\n流程： 1. 生成：创建初始输出 2. 批判性评估：让模型使用特定标准识别弱点 3. 改进：基于批评生成增强版本\n实践表明，这种方法可以减少约 60% 的修改周期。\n\n\nMulti-Perspective Simulation (MPS) 多视角模拟\n在单次对话中运行”虚拟专家小组”，让模型从不同角度分析问题。\n请从以下三个角度分析这个商业决策：\n1. 财务总监（关注成本与 ROI）\n2. 技术总监（关注可行性与技术债务）\n3. 市场总监（关注用户体验与竞争优势）\n\n每个视角都需要：\n- 阐述核心观点\n- 提出潜在风险\n- 给出具体建议\n\n最后，请综合三个视角给出整体评估。\n\n\n\n1.4 Prompt Engineering 的局限性\n尽管 Prompt Engineering 强大，但它存在根本性限制：\n\nFragility（脆弱性）：输入的微小变化、系统版本更新，甚至模型的随机性，都可能导致输出质量波动\nLimited Context（上下文限制）：模型的上下文窗口有限，无法处理大量外部信息\nNo Real-Time Knowledge（无实时知识）：模型只能依赖训练数据，无法获取最新信息\nNo Action Capability（无行动能力）：模型只能生成文本，无法执行实际操作\n\n这些限制催生了下一个演进阶段 —— Context Engineering。"
+  },
+  {
+    "objectID": "content/blogs/entries/PromptContextSkills.html#第二章context-engineering-构建-ai-的操作环境",
+    "href": "content/blogs/entries/PromptContextSkills.html#第二章context-engineering-构建-ai-的操作环境",
+    "title": "Prompt->Context->Skills",
+    "section": "第二章：Context Engineering —— 构建 AI 的操作环境",
+    "text": "第二章：Context Engineering —— 构建 AI 的操作环境\n\n2.1 从 Prompt 到 Context 的范式转移\nContext Engineering（上下文工程）是 2024-2025 年兴起的新 discipline。如果说 Prompt Engineering 是”写好问题”，Context Engineering 就是”构建完整的操作环境”。\n核心定义： &gt; Context Engineering 是系统地设计和管理提供给 LLM 的所有信息 —— 包括提示、检索结果、对话历史、元数据、工具状态 —— 以控制模型的推理和输出，而无需修改模型权重。\n简单来说，Context Engineering = Prompt Engineering + RAG + 记忆管理 + 工具状态 + 环境配置\n\n\n2.2 RAG：检索增强生成\nRAG（Retrieval-Augmented Generation）是 Context Engineering 的核心组件。它解决了 LLM 无法访问私有数据、无法获取实时信息的问题。\nRAG 工作流程：\n用户查询 → 嵌入向量 → 向量数据库检索 → 获取 Top-K 相关文档 \n→ 将文档注入提示上下文 → LLM 生成回答\n实际应用场景：\n场景 1：企业知识库问答\n基于以下公司内部文档回答问题：\n&lt;documents&gt;\n[从向量数据库检索的相关文档片段]\n&lt;/documents&gt;\n\n问题：我们的年假政策是什么？\n请引用相关文档的具体章节并标注页码。\n场景 2：客服机器人\n你是一个客服助手。以下是相关的产品文档和历史对话：\n&lt;context&gt;\n[产品手册片段]\n[用户之前的工单记录]\n[常见问题解答]\n&lt;/context&gt;\n\n用户问题：我的订单什么时候能到？\n订单号：#12345\n\n\n2.3 上下文工程的技术支柱\n\n1. Prompt Design（提示设计）\n动态提示模板，根据用户、任务和系统状态组装不同的提示。\n# 动态提示模板示例\ndef build_prompt(user_type, task, context):\n    system_prompt = f\"你是一个{user_type}专家助手。\"\n    user_prompt = f\"任务：{task}\\n\\n上下文：{context}\"\n    return system_prompt + user_prompt\n\n\n2. Context Composition（上下文组合）\n现代 AI 系统需要组合多层上下文：\n\n对话历史：保持对话连贯性\n检索结果：外部知识注入\n当前工具状态：告诉 AI 有哪些工具可用\nAgent 目标与计划：长期任务的状态跟踪\n用户画像/偏好：个性化设置\n\ncontext_stack = {\n    \"system_instructions\": \"你是一个研究助手...\",\n    \"user_profile\": {\"role\": \"研究员\", \"expertise\": \"AI\"},\n    \"conversation_history\": [...],\n    \"retrieved_documents\": [...],\n    \"available_tools\": [\"search\", \"calculator\", \"code_runner\"],\n    \"current_task_state\": {\"step\": 3, \"goal\": \"完成报告\"}\n}\n\n\n3. Memory Systems（记忆系统）\n生产级 Agent 需要四层记忆架构：\n\n\n\n\n\n\n\n\n记忆类型\n描述\n技术实现\n\n\n\n\nShort-Term Memory (STM)\n当前对话的短期上下文\n滑动窗口，保留最近 N 轮对话\n\n\nWorking Memory\n当前任务的临时状态\n变量存储，任务完成即清除\n\n\nLong-Term Memory (LTM)\n用户偏好、历史交互\n向量数据库持久化存储\n\n\nEpisodic Memory\n特定事件/经验的记忆\n结构化存储，支持语义检索\n\n\n\n\n\n\n2.4 Prompt Engineering vs Context Engineering\n\n\n\n维度\nPrompt Engineering\nContext Engineering\n\n\n\n\n关注点\n提示词的措辞和结构\n完整的输入环境设计\n\n\n范围\n单次交互\n多轮对话 + 外部系统\n\n\n技术栈\n自然语言 + 模板\nRAG + 向量DB + 记忆系统\n\n\n目标\n优化单次输出\n塑造持续可靠的行为\n\n\n适用场景\n简单问答、内容生成\n复杂应用、生产系统\n\n\n\n关键洞察： &gt; “Prompt Engineering 优化即时输出，Context Engineering 治理模型在推理前看到的所有上下文，塑造生产系统中的持续行为。”"
+  },
+  {
+    "objectID": "content/blogs/entries/PromptContextSkills.html#第三章skillstool-use-与-agentic-ai-从说话到行动",
+    "href": "content/blogs/entries/PromptContextSkills.html#第三章skillstool-use-与-agentic-ai-从说话到行动",
+    "title": "Prompt->Context->Skills",
+    "section": "第三章：Skills、Tool Use 与 Agentic AI —— 从说话到行动",
+    "text": "第三章：Skills、Tool Use 与 Agentic AI —— 从说话到行动\n\n3.1 工具调用：AI 的”手”和”脚”\n如果说 Context Engineering 给了 AI “眼睛”（看外部信息），那么 Tool Use（工具调用）就给了 AI “手”和”脚”（执行动作）。\nTool Calling 的定义： &gt; 工具调用是 LLM 决定使用外部功能（运行代码、调用 API、搜索网页、操作数据库）来完成模型自身无法独立完成的任务的过程。\n工具调用的决策流程：\n1. 解析用户查询 → 理解用户想要什么\n2. 映射意图到工具模式 → 对比可用工具描述\n3. 决定是否需要工具 → 纯推理 vs 需要执行\n4. 生成结构化工具调用 → JSON 格式的函数调用\n5. 在外部执行工具 → Python/API/数据库查询\n6. 将输出返回给 LLM → 工具执行结果\n7. LLM 决定下一步 → 继续调用工具或直接回答\n\n\n3.2 Function Calling 实战示例\n示例：天气查询 Agent\n首先，定义工具的模式（Schema）：\n{\n  \"name\": \"get_weather\",\n  \"description\": \"获取指定城市的当前天气\",\n  \"parameters\": {\n    \"type\": \"object\",\n    \"properties\": {\n      \"city\": {\n        \"type\": \"string\",\n        \"description\": \"城市名称，如 '北京'、'上海'\"\n      },\n      \"unit\": {\n        \"type\": \"string\",\n        \"enum\": [\"celsius\", \"fahrenheit\"],\n        \"description\": \"温度单位\"\n      }\n    },\n    \"required\": [\"city\"]\n  }\n}\n用户输入：“北京今天天气怎么样？”\nLLM 的决策过程：\n思考：用户询问北京天气，我需要调用 get_weather 工具\n工具调用：{\"tool\": \"get_weather\", \"arguments\": {\"city\": \"北京\", \"unit\": \"celsius\"}}\n后端执行工具，返回：\n{\n  \"temperature\": 22,\n  \"condition\": \"晴朗\",\n  \"humidity\": \"45%\"\n}\nLLM 生成最终回答：\n北京今天天气晴朗，气温 22°C，湿度 45%，是个出行的好天气！\n\n\n3.3 MCP：模型上下文协议 —— AI 的”USB-C”\n2024 年底，Anthropic 推出了 MCP（Model Context Protocol），这是一个开放标准协议，旨在标准化 AI 系统与外部工具和数据源的交互方式。\nMCP 的核心愿景： &gt; “就像 USB-C 为各种设备提供通用连接一样，MCP 为 AI 模型提供统一的接口来连接不同的工具和数据源。”\nMCP 架构：\n\nMCP 2025 年路线图包括：\n\n远程 MCP 连接：支持 OAuth 2.0 认证与授权\n分发与发现：包管理、安装工具、服务器注册\nAgent 支持：分层 Agent 系统、交互式工作流、流式结果\n\nMCP 正在快速成为行业标准，类似于当年的 LSP（Language Server Protocol）。\n\n\n3.4 A2A：Agent-to-Agent 协议 —— AI 的”社交语言”\n如果说 MCP 是 AI 与工具的通用接口，那么 A2A（Agent-to-Agent Protocol） 就是 AI 与 AI 之间的通用语言。\n2025 年 4 月，Google 推出了 A2A 协议，这是一个开放标准，旨在让不同框架、不同厂商的 AI Agent 能够发现彼此、协商任务、协作完成复杂工作流。\nA2A 的五大设计原则：\n\n拥抱自然 Agent 能力：不强制改变 Agent 的工作方式\n基于现有标准：使用 HTTP、JSON-RPC 等成熟技术\n企业级安全：内置认证、授权、加密\n支持长时间任务：异步执行、状态更新、推送通知\n模态无关：支持文本、音频、视频、结构化数据\n\nA2A 的核心概念：\n\n\n\n组件\n描述\n\n\n\n\nAgent Cards\nJSON 元数据文件，描述 Agent 的能力、身份、端点\n\n\nTask Management\n任务生命周期管理：发起、状态更新、完成通知\n\n\nCollaboration\nAgent 间交换上下文、协商执行方式\n\n\nUX Negotiation\n协商内容类型和格式，适应不同 UI 能力\n\n\n\n实际应用场景：\n招聘流程自动化：\n招聘经理 Agent → 发布招聘需求\n       ↓\n猎头 Agent A → 搜索候选人\n       ↓\n猎头 Agent B → 安排面试\n       ↓\n背景调查 Agent → 执行背景核查\n       ↓\n所有结果汇总 → 招聘经理 Agent\n每个 Agent 可能来自不同厂商、使用不同框架，但通过 A2A 协议可以无缝协作。\n\n\n3.5 现代 Agent 架构\n一个生产级的 AI Agent 可以形式化定义为：\nAgent := &lt;Perception, Memory, Reasoning, Planning, Action, Feedback&gt;\n各组件详解：\n\n\n\n组件\n功能\n技术实现\n\n\n\n\nPerception\n接收输入\n文本解析、API 适配器、日志读取\n\n\nMemory\n存储状态\n向量 DB、文档存储、短期上下文\n\n\nReasoning\n推理决策\nLLM 推理 + CoT/ReAct/ToT\n\n\nPlanning\n任务规划\n任务分解、工具选择、执行图\n\n\nAction\n执行动作\n工具调用、API 请求、代码执行\n\n\nFeedback\n反馈学习\n错误分析、自我批评、记忆更新\n\n\n\n2025 年的 Agent 类型：\n\nDeep Research Agents：自主进行深度研究，如 Perplexity、Grok\nCoding Agents：Devin、Cursor IDE Agents，自主编写、调试、测试代码\nCUA (Computer-Using Agents)：模拟人类操作电脑界面，如 AutoGPT、SIMA\nMulti-Agent Systems：多个专业 Agent 协作，如 CrewAI、AutoGen"
+  },
+  {
+    "objectID": "content/blogs/entries/PromptContextSkills.html#第四章vibe-coding-编程范式的颠覆",
+    "href": "content/blogs/entries/PromptContextSkills.html#第四章vibe-coding-编程范式的颠覆",
+    "title": "Prompt->Context->Skills",
+    "section": "第四章：Vibe Coding —— 编程范式的颠覆",
+    "text": "第四章：Vibe Coding —— 编程范式的颠覆\n\n4.1 什么是 Vibe Coding？\nVibe Coding 是 2024-2025 年兴起的一种全新编程范式。它不关注代码的具体语法，而是关注”氛围”——开发者用自然语言描述想要的功能和感觉，AI 负责生成具体的代码实现。\n核心定义： &gt; Vibe Coding 是一种开发方法，开发者使用自然语言提示 AI 工具生成软件代码。它将重点从手动编码转移到 AI 引导的构建方式。\nVibe Coding 的工作流程：\n\n\n\n4.2 Vibe Coding 的起源与演进\n2023 年：Reddit 上的开发者开玩笑说他们在用 ChatGPT “vibe” 功能到现实中 —— 这只是一个梗。\n2024 年底：OpenAI 创始成员 Andrej Karpathy 认真对待这个概念，称之为”AI 原生开发的下一个演进”。\n2025 年初：《华尔街日报》确认企业开始在实际开发工作流中采用 Vibe Coding。\n今天：Vibe Coding 已经从梗变成了严肃的方法论。\n\n\n4.3 Vibe Coding 的工具生态\n\n\n\n工具\n特点\n适用场景\n\n\n\n\nCursor\nAI 原生代码编辑器，对话式开发\n专业开发，复杂项目\n\n\nGitHub Copilot X\nIDE 内实时代码建议\n日常编码，快速补全\n\n\nReplit Ghostwriter\n浏览器内多模态构建\n快速原型，教育\n\n\nClaude 3/4\n长上下文理解\n复杂逻辑，代码审查\n\n\nChatGPT-4/4.5\n自然语言优先\n快速原型，学习\n\n\n\n\n\n4.4 Vibe Coding 实战示例\n场景：创建一个待办事项应用\n传统方式：\n// 需要手动编写所有代码\nimport React, { useState } from 'react';\n\nfunction TodoApp() {\n  const [todos, setTodos] = useState([]);\n  const [input, setInput] = useState('');\n  \n  const addTodo = () =&gt; {\n    if (input.trim()) {\n      setTodos([...todos, { id: Date.now(), text: input, done: false }]);\n      setInput('');\n    }\n  };\n  \n  // ... 还需要写 toggle、delete、filter 等功能\n  \n  return (\n    // ... JSX 代码\n  );\n}\nVibe Coding 方式：\n用户：\"创建一个漂亮的待办事项应用，要有：\n- 添加任务的功能\n- 标记完成/未完成\n- 删除任务\n- 按状态筛选（全部/进行中/已完成）\n- 使用现代简洁的设计风格\n- 数据保存在 localStorage\"\n\nAI：（生成完整可运行的代码）\n\n用户：\"把完成任务的动画做得更流畅一些，\n再加一个进度统计在顶部\"\n\nAI：（更新代码）\n\n\n4.5 Vibe Coding 的核心理念\n\n设计优先，快速原型：先描述想要的感觉和体验，再迭代细节\n对话式调试：用自然语言问”为什么这个会失败？“而不是查文档一小时\n关注产品而非语法：把精力集中在用户体验和业务逻辑上\n迭代速度至上：快速实验，快速验证，快速调整\n\n\n\n4.6 Vibe Coding 的优势与风险\n优势： - ✅ 极大提升开发速度（10倍加速在 build-test 周期） - ✅ 降低编程门槛，非技术人员也能构建原型 - ✅ 减少样板代码的编写 - ✅ 加速学习和实验\n风险与争议： - ⚠️ 安全漏洞：AI 生成的代码可能存在安全隐患，需要人工审查 - ⚠️ 技术债务：快速生成的代码可能缺乏长期可维护性 - ⚠️ 理解深度：开发者可能不完全理解 AI 生成的代码 - ⚠️ 调试困难：当 AI 生成的代码出错时，定位问题可能更困难\n最佳实践： &gt; “Vibe Coding 不是完全替代传统开发，而是改变开发者的角色 —— 从逐行编写代码，转变为指导、测试和优化 AI 生成的输出。开发者成为 AI 的导师，确保生成的代码符合项目需求和最佳实践。”"
+  },
+  {
+    "objectID": "content/blogs/entries/PromptContextSkills.html#第五章整合与展望-四层架构的统一视图",
+    "href": "content/blogs/entries/PromptContextSkills.html#第五章整合与展望-四层架构的统一视图",
+    "title": "Prompt->Context->Skills",
+    "section": "第五章：整合与展望 —— 四层架构的统一视图",
+    "text": "第五章：整合与展望 —— 四层架构的统一视图\n\n5.1 四个层次的演进关系\n┌─────────────────────────────────────────────────────────────────┐\n│                    第四层：Vibe Coding                           │\n│              （人类与 AI 协作的最高形态）                          │\n│         开发者描述意图 → AI 生成完整应用 → 迭代优化               │\n├─────────────────────────────────────────────────────────────────┤\n│                    第三层：Skills & Agentic AI                   │\n│              （AI 的行动能力和协作能力）                           │\n│    MCP（工具连接） + A2A（Agent 协作） + Function Calling        │\n├─────────────────────────────────────────────────────────────────┤\n│                    第二层：Context Engineering                   │\n│              （AI 的知识环境和记忆系统）                           │\n│         RAG + 记忆管理 + 上下文组合 + 外部数据注入                │\n├─────────────────────────────────────────────────────────────────┤\n│                    第一层：Prompt Engineering                    │\n│              （与 AI 对话的基础能力）                              │\n│         Zero/Few-Shot + CoT + ReAct + 结构化输出                │\n└─────────────────────────────────────────────────────────────────┘\n\n\n5.2 各层之间的依赖关系\n\nPrompt Engineering 是基础：所有上层都依赖于如何有效地与模型沟通\nContext Engineering 是增强：让模型能够访问更多信息和知识\nSkills/Agentic AI 是跃迁：让模型从”说话”到”行动”\nVibe Coding 是融合：重新定义人类在 AI 时代的角色\n\n\n\n5.3 2025-2026 年的关键趋势\n\n趋势 1：协议标准化\nMCP 和 A2A 正在快速成为行业标准，类似于： - MCP ≈ USB-C：统一 AI 与工具的连接方式 - A2A ≈ HTTP：统一 AI 与 AI 的通信方式\n\n\n趋势 2：Agent 经济崛起\n据 2025 年全球 AI 调查： - 29% 的企业已经在生产环境运行 Agentic AI - 44% 计划在未来一年内加入 - 88% 的早期采用者报告了正向 ROI\n\n\n趋势 3：开发者角色转型\n开发者的工作正在从：\n编写代码 → 架构设计 + AI 协作 + 代码审查\n\n\n趋势 4：多 Agent 协作成为常态\n复杂任务将由多个专业 Agent 协作完成： - 研究 Agent + 写作 Agent + 审查 Agent - 前端 Agent + 后端 Agent + 测试 Agent - 数据分析 Agent + 可视化 Agent + 报告 Agent\n\n\n\n5.4 给初学者的学习路径\n阶段 1：掌握 Prompt Engineering（1-2 周） - 学习 Zero/Few-Shot、CoT、ReAct 等基础技术 - 练习编写清晰、具体的提示 - 理解模型的能力和局限性\n阶段 2：理解 Context Engineering（2-3 周） - 学习 RAG 原理和实现 - 了解向量数据库（Pinecone、Weaviate、Chroma） - 实践构建有记忆的对话系统\n阶段 3：探索 Tool Use & Agents（3-4 周） - 学习 Function Calling - 了解 MCP 协议 - 尝试构建简单的 Agent\n阶段 4：实践 Vibe Coding（持续） - 使用 Cursor、Copilot 等工具 - 从小项目开始，逐步建立信任 - 保持批判性思维，审查 AI 生成的代码\n\n\n5.5 给技术从业者的深度建议\n\n深入理解协议层：MCP 和 A2A 将成为基础设施，理解它们的设计哲学\n关注 Agent 架构：学习 ReAct、ToT、Reflexion 等推理模式\n掌握编排能力：多 Agent 系统的协调、状态管理、错误恢复\n保持工程纪律：AI 再强大，软件工程的基本原则依然适用"
+  },
+  {
+    "objectID": "content/blogs/entries/PromptContextSkills.html#结语人机协作的新纪元",
+    "href": "content/blogs/entries/PromptContextSkills.html#结语人机协作的新纪元",
+    "title": "Prompt->Context->Skills",
+    "section": "结语：人机协作的新纪元",
+    "text": "结语：人机协作的新纪元\n从 Prompt Engineering 到 Context Engineering，从 Tool Use 到 Vibe Coding，我们正见证着人机协作方式的根本性转变。\n这不仅仅是技术的演进，更是认知范式的转移：\n\n过去：人类告诉计算机”如何做”（How）\n现在：人类告诉 AI”做什么”（What）\n未来：人类与 AI 共同探索”为什么做”（Why）\n\n在这个新时代，最宝贵的技能不再是记住最多的 API 或写出最优雅的算法，而是：\n\n清晰表达意图的能力 —— 知道你想要什么\n批判性评估的能力 —— 判断 AI 输出是否正确\n系统思考的能力 —— 理解各部分如何协同工作\n持续学习的能力 —— 适应快速变化的技术 landscape\n\n正如 Vibe Coding 所揭示的，未来的开发者可能不再是”代码的编写者”，而是”智能的编排者”。而 Prompt Engineering、Context Engineering、Skills 这些层次，正是构建这个新世界的基石。\n无论你是初学者还是资深工程师，现在都是最好的入场时机。因为在这个领域，每个人都在学习，每天都有新发现，每个参与者都有机会塑造未来。"
+  },
+  {
+    "objectID": "content/blogs/entries/PromptContextSkills.html#参考资源",
+    "href": "content/blogs/entries/PromptContextSkills.html#参考资源",
+    "title": "Prompt->Context->Skills",
+    "section": "参考资源",
+    "text": "参考资源\nPrompt Engineering： - Prompt Engineering Best Practices 2025 - The Complete Prompt Engineering Guide for 2025\nContext Engineering： - What is Context Engineering? - Context Engineering: Best Practices & Examples\nAgentic AI & Protocols： - Model Context Protocol - Anthropic - Agent2Agent Protocol - Google - The Rise of Autonomous AI Agents\nVibe Coding： - Vibe Coding in 2025 - What is Vibe Coding? - Vibe Coding: Fun, AI-Assisted Programming"
+  },
+  {
+    "objectID": "content/blogs/entries/Hot 100(golang).html",
+    "href": "content/blogs/entries/Hot 100(golang).html",
+    "title": "Hot100(golang)",
+    "section": "",
+    "text": "记录一下经典leetcode hot100的解题思路和题解"
+  },
+  {
+    "objectID": "content/blogs/entries/Hot 100(golang).html#哈希",
+    "href": "content/blogs/entries/Hot 100(golang).html#哈希",
+    "title": "Hot100(golang)",
+    "section": "哈希",
+    "text": "哈希\n\n1. 两数之和\n\n题解\npackage main\n\nimport (\n    \"fmt\"\n    \"reflect\"\n)\n\nfunc twoSum(nums []int, target int) (ans []int) {\n    mp := map[int]int{}\n\n    for idx, num := range nums {\n        if i, ok := mp[target-num]; ok {\n            ans = []int{i, idx}\n        }\n        mp[num] = idx\n    }\n\n    return ans\n}\n\nfunc main() {\n    testCases := []struct {\n        nums   []int\n        target int\n        ans    []int\n    }{\n        {nums: []int{2, 7, 11, 15}, target: 9, ans: []int{0, 1}},\n        {nums: []int{3, 2, 4}, target: 6, ans: []int{1, 2}},\n        {nums: []int{3, 3}, target: 6, ans: []int{0, 1}},\n    }\n\n    for _, t := range testCases {\n        fmt.Println(reflect.DeepEqual(twoSum(t.nums, t.target), t.ans))\n    }\n}\n\n\n\n\n\n49. 字母异位词分组\n\n题解\npackage main\n\nimport (\n    \"fmt\"\n    \"reflect\"\n    \"slices\"\n)\n\nfunc groupAnagrams(strs []string) [][]string {\n    mp := map[string][]string{}\n\n    for _, str := range strs {\n        s := []byte(str)\n        slices.Sort(s)\n        mp[string(s)] = append(mp[string(s)], str)\n    }\n\n    ans := make([][]string, 0, len(mp))\n\n    for i := range mp {\n        ans = append(ans, mp[i])\n    }\n\n    return ans\n}\n\nfunc main() {\n    testCases := []struct {\n        strs []string\n        ans  [][]string\n    }{\n        {\n            []string{\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"},\n            [][]string{\n                {\"eat\", \"tea\", \"ate\"},\n                {\"tan\", \"nat\"},\n                {\"bat\"},\n            },\n        },\n        {\n            []string{\"\"},\n            [][]string{\n                {\"\"},\n            },\n        },\n        {\n            []string{\"a\"},\n            [][]string{\n                {\"a\"},\n            },\n        },\n    }\n\n    for _, t := range testCases {\n        fmt.Println(reflect.DeepEqual(groupAnagrams(t.strs), t.ans))\n    }\n}\n\n\n\n\n\n128. 最长连续序列\n\n题解\npackage main\n\nimport \"fmt\"\n\nfunc longestConsecutive(nums []int) int {\n    ans := 0\n    mp := map[int]bool{}\n\n    for _, num := range nums {\n        mp[num] = true\n    }\n\n    for i := range mp {\n        if mp[i-1] == true {\n            continue\n        }\n        cnt := 1\n\n        for mp[i+1] == true {\n            i += 1\n            cnt += 1\n        }\n\n        ans = max(ans, cnt)\n    }\n\n    return ans\n}\n\nfunc main() {\n    testCases := []struct {\n        nums []int\n        ans  int\n    }{\n        {[]int{100, 4, 200, 1, 3, 2}, 4},\n        {[]int{0, 3, 7, 2, 5, 8, 4, 6, 0, 1}, 9},\n        {[]int{1, 0, 1, 2}, 3},\n    }\n\n    for _, t := range testCases {\n        fmt.Println(longestConsecutive(t.nums) == t.ans)\n    }\n}"
+  },
+  {
+    "objectID": "content/projects/index.html",
+    "href": "content/projects/index.html",
+    "title": "Projects项目",
+    "section": "",
+    "text": "Project write-ups, demos, and technical summaries.\n\n\n\n\n\n\n\n\n\n\n\n\nDaily Log Maker\n\n\n\nselfTools\n\n前端\n\n每日记录\n\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\n\n\n\n\n\n\n\n\n\nGesture-Fireworks\n\n\n\nselfTools\n\n前端\n\n手指烟花\n\nFireworks\n\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\nQuarto-Blogs-Template\n\n\n\nQuarto\n\nBlog\n\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\ngo-zero-demo\n\n\n\ngolang\n\n微服务\n\ndemo\n\n\n\n\n\n\n\n\n\n\nJan 11, 2025\n\n\n\n\n\n\n\n\n\n\n\nGoLink\n\n\n\ngolang\n\ngo-zero\n\ndemo\n\nshortUrl\n\n\n\n\n\n\n\n\n\n\nJan 11, 2025\n\n\n\n\n\n\n\n\n\n\n\nGoList\n\n\n\ngolang\n\nkratos\n\ndemo\n\nlist\n\n\n\n\n\n\n\n\n\n\nJan 11, 2025\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "content/papers/index.html",
+    "href": "content/papers/index.html",
+    "title": "Paper&Report论文和技术报告",
+    "section": "",
+    "text": "记录论文和技术报告阅读\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDeepSeek\n\n\n\nLLM\n\nPaper\n\nReport\n\nDeepSeek\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nBackdoorIndicator - Leveraging OOD Data for Proactive Backdoor Detection in Federated Learning\n\n\n\nFL\n\nbackdoor\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "content/learning-notes/microservices/index.html",
+    "href": "content/learning-notes/microservices/index.html",
+    "title": "微服务学习笔记",
+    "section": "",
+    "text": "记录一下微服务学习过程中的笔记.主要语言还是golang.\n相关代码仓库github: aorangehc/GoFramwork\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKratos 微服务框架\n\n\n\ngolang\n\n微服务\n\nKratos\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\ngo-zero的API语言\n\n\n\ngolang\n\n微服务\n\napi\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nGo-Kit 微服务框架\n\n\n\ngolang\n\n微服务\n\ngo-kit\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nGo-Zero 微服务框架\n\n\n\ngolang\n\n微服务\n\ngo-zero\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nProtobuf\n\n\n\ngolang\n\n微服务\n\nProtobuf\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n微服务框架(golang)\n\n\n\ngolang\n\n微服务\n\n框架\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n控制反转和依赖注入\n\n\n\ngolang\n\n控制反转和依赖注入\n\n框架\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "content/learning-notes/index.html",
+    "href": "content/learning-notes/index.html",
+    "title": "Learning Notes学习笔记",
+    "section": "",
+    "text": "课程学习笔记.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngo的版本管理工具-g的安装和使用\n\n\n\ngolang\n\ng\n\ngolang版本管理\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nKratos 微服务框架\n\n\n\ngolang\n\n微服务\n\nKratos\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\ngo-zero的API语言\n\n\n\ngolang\n\n微服务\n\napi\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nGo-Kit 微服务框架\n\n\n\ngolang\n\n微服务\n\ngo-kit\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nGo-Zero 微服务框架\n\n\n\ngolang\n\n微服务\n\ngo-zero\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nProtobuf\n\n\n\ngolang\n\n微服务\n\nProtobuf\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n微服务框架(golang)\n\n\n\ngolang\n\n微服务\n\n框架\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n控制反转和依赖注入\n\n\n\ngolang\n\n控制反转和依赖注入\n\n框架\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nConsul\n\n\n\ngolang\n\n微服务\n\n基础设施\n\nconsul\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n基础设施(golang)\n\n\n\ngolang\n\n微服务\n\n基础设施\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（13）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（12）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（11）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（10）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（9）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 19, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（8）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 18, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（7）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 17, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（6）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 16, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（5）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（4）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 13, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（3）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nSep 29, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（2）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nSep 23, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（1）-在win搭建go环境\n\n\n\ngolang\n\n环境搭建\n\n\n\n\n\n\n\n\n\nSep 16, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n通过案例了解机器学习\n\n\n\n深度学习\n\n深度学习基础\n\n\n\n\n\n\n\n\n\nAug 26, 2024\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "content/learning-notes/deepL/index.html",
+    "href": "content/learning-notes/deepL/index.html",
+    "title": "深度学习学习笔记",
+    "section": "",
+    "text": "记录一下深度学习相关的学习笔记.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n通过案例了解机器学习\n\n\n\n深度学习\n\n深度学习基础\n\n\n\n\n\n\n\n\n\nAug 26, 2024\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "content/blogs/index.html",
+    "href": "content/blogs/index.html",
+    "title": "Blogs博客",
+    "section": "",
+    "text": "Short essays, reviews, and research notes.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHot100(golang)\n\n\n\nLeetcode\n\nHot100\n\nGolang\n\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nPrompt-&gt;Context-&gt;Skills\n\n\n\nPrompt\n\nContext\n\nSkills\n\nVibe-Coding\n\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n一文了解RAG\n\n\n\nRAG\n\nLLM\n\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n一文了解VLM\n\n\n\nVLM\n\nLLM\n\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n本地服务器低速传输解决方案\n\n\n\n技术\n\n技术实践\n\nssh\n\n网络\n\n\n\n\n\n\n\n\n\nDec 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nMac安装Jekyll\n\n\n\nGitHub\n\nBlog\n\nJekyll\n\n\n\n\n\n\n\n\n\nOct 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nPC的快捷指令\n\n\n\nWindows\n\nMac\n\nLinux\n\nInstruction\n\n\n\n\n\n\n\n\n\nOct 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nWindows安装Jekyll\n\n\n\nGitHub\n\nBlog\n\nJekyll\n\n\n\n\n\n\n\n\n\nOct 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n基于BM25检索算法构建RAG智能文档问答助手–学习和实践\n\n\n\n大模型\n\nRAG\n\n信息检索\n\n智能助手\n\n\n\n\n\n\n\n\n\nMar 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nDeepseek-R1-32B模型部署\n\n\n\n大模型\n\n部署\n\nDeepseek\n\n\n\n\n\n\n\n\n\nJan 25, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n如何使用git\n\n\n\n技术\n\ngit\n\n指令\n\n\n\n\n\n\n\n\n\nJan 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n开源协议\n\n\n\n技术\n\n技术理论\n\n\n\n\n\n\n\n\n\nJan 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n一种免费、高清、安全、但是很麻烦的远程桌面连接方案\n\n\n\n技术\n\n技术实践\n\n\n\n\n\n\n\n\n\nJan 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n本地跑模型\n\n\n\n技术\n\n技术实践\n\nLLM\n\n\n\n\n\n\n\n\n\nJan 11, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n保姆教程如何创建自己的“个人网站”\n\n\n\nGitHub\n\nBlog\n\nJekyll\n\n\n\n\n\n\n\n\n\nSep 15, 2024\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "pages/index.html",
+    "href": "pages/index.html",
+    "title": "About Me关于我",
+    "section": "",
+    "text": "我是 aorangehc(He Cheng)\n\n\n这是我的邮箱，欢迎联系：morange0205@gmail.com\n\n\n\n\n\ngolang后端开发\n\n\n大模型应用开发\n\n\nLLM实现和部署\n\n\n\n\n\n\n\n2024 - 2027 [硕士学位/网络空间安全] [北京邮电大学]\n\n\n2020 - 2024 [学士学位/计算机科学与技术] [北方工业大学]\n\n\n\n\n\n\n\n[2025.1-2025.7] [科研实习] [中科院软件所] — [MindSpore框架下经典NLP模型复现和优化]\n\n\n[2025.8-2025.10] [后端开发实习] [长亭科技] — [参与长亭科技项目的后端开发、多模态RAG拓展和项目优化]\n\n\n\n\n\n\n\n[年份] [项目名称] [一句话描述/亮点] GitHub · Blog\n\n\n\n\n\n\nGolang 开发 LLM 深度学习 联邦学习\n\n\n\n\n\nI am aorangehc(He Cheng)\n\n\nThis is my email, feel free to contact me: morange0205@gmail.com\n\n\n\n\n\nGolang Backend Development\n\n\nLarge Model Application Development\n\n\nLLM Implementation and Deployment\n\n\n\n\n\n\n\n2024 - 2027 [Master’s Degree/Cyberspace Security] [Beijing University of Posts and Telecommunications]\n\n\n2020 - 2024 [Bachelor’s Degree/Computer Science and Technology] [North China University of Technology]\n\n\n\n\n\n\n\n[Jan 2025 - Jul 2025] [Research Intern] [Institute of Software, Chinese Academy of Sciences] — [Reproduction and optimization of classic NLP models under MindSpore framework]\n\n\n[Aug 2025 - Oct 2025] [Backend Development Intern] [Chaitin Technology] — [Participated in backend development, multimodal RAG expansion and project optimization for Chaitin Technology projects]\n\n\n\n\n\n\n\n[Years] [Project Name] [One-sentence Description/Highlight] GitHub · Blog\n\n\n\n\n\n\nGolang Development LLM Deep Learning Federated Learning"
+  },
+  {
+    "objectID": "pages/index.html#方向",
+    "href": "pages/index.html#方向",
+    "title": "About Me关于我",
+    "section": "",
+    "text": "golang后端开发\n\n\n大模型应用开发\n\n\nLLM实现和部署"
+  },
+  {
+    "objectID": "pages/index.html#教育经历",
+    "href": "pages/index.html#教育经历",
+    "title": "About Me关于我",
+    "section": "",
+    "text": "2024 - 2027 [硕士学位/网络空间安全] [北京邮电大学]\n\n\n2020 - 2024 [学士学位/计算机科学与技术] [北方工业大学]"
+  },
+  {
+    "objectID": "pages/index.html#工作经历",
+    "href": "pages/index.html#工作经历",
+    "title": "About Me关于我",
+    "section": "",
+    "text": "[2025.1-2025.7] [科研实习] [中科院软件所] — [MindSpore框架下经典NLP模型复现和优化]\n\n\n[2025.8-2025.10] [后端开发实习] [长亭科技] — [参与长亭科技项目的后端开发、多模态RAG拓展和项目优化]"
+  },
+  {
+    "objectID": "pages/index.html#项目",
+    "href": "pages/index.html#项目",
+    "title": "About Me关于我",
+    "section": "",
+    "text": "[年份] [项目名称] [一句话描述/亮点] GitHub · Blog"
+  },
+  {
+    "objectID": "pages/index.html#技术栈",
+    "href": "pages/index.html#技术栈",
+    "title": "About Me关于我",
+    "section": "",
+    "text": "Golang 开发 LLM 深度学习 联邦学习"
+  },
+  {
+    "objectID": "pages/index.html#focus-areas",
+    "href": "pages/index.html#focus-areas",
+    "title": "About Me关于我",
+    "section": "",
+    "text": "Golang Backend Development\n\n\nLarge Model Application Development\n\n\nLLM Implementation and Deployment"
+  },
+  {
+    "objectID": "pages/index.html#education",
+    "href": "pages/index.html#education",
+    "title": "About Me关于我",
+    "section": "",
+    "text": "2024 - 2027 [Master’s Degree/Cyberspace Security] [Beijing University of Posts and Telecommunications]\n\n\n2020 - 2024 [Bachelor’s Degree/Computer Science and Technology] [North China University of Technology]"
+  },
+  {
+    "objectID": "pages/index.html#experience",
+    "href": "pages/index.html#experience",
+    "title": "About Me关于我",
+    "section": "",
+    "text": "[Jan 2025 - Jul 2025] [Research Intern] [Institute of Software, Chinese Academy of Sciences] — [Reproduction and optimization of classic NLP models under MindSpore framework]\n\n\n[Aug 2025 - Oct 2025] [Backend Development Intern] [Chaitin Technology] — [Participated in backend development, multimodal RAG expansion and project optimization for Chaitin Technology projects]"
+  },
+  {
+    "objectID": "pages/index.html#projects",
+    "href": "pages/index.html#projects",
+    "title": "About Me关于我",
+    "section": "",
+    "text": "[Years] [Project Name] [One-sentence Description/Highlight] GitHub · Blog"
+  },
+  {
+    "objectID": "pages/index.html#technical-skills",
+    "href": "pages/index.html#technical-skills",
+    "title": "About Me关于我",
+    "section": "",
+    "text": "Golang Development LLM Deep Learning Federated Learning"
+  },
+  {
+    "objectID": "pages/home.html",
+    "href": "pages/home.html",
+    "title": "Home主页",
+    "section": "",
+    "text": "这里是首页，汇总各模块最近更新内容。\n\n\nThis is the home page with the latest updates from each module.\n\n\n\nBlogs博客\n\n\n\n\n\n\n\n\n\n\n\nHot100(golang)\n\n\n\nLeetcode\n\nHot100\n\nGolang\n\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nPrompt-&gt;Context-&gt;Skills\n\n\n\nPrompt\n\nContext\n\nSkills\n\nVibe-Coding\n\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n一文了解RAG\n\n\n\nRAG\n\nLLM\n\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\nNo matching items\n\n\n\n\nProjects项目\n\n\n\n\n\n\n\n\n\nDaily Log Maker\n\n\n\nselfTools\n\n前端\n\n每日记录\n\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\n\n\n\n\n\n\n\n\n\nGesture-Fireworks\n\n\n\nselfTools\n\n前端\n\n手指烟花\n\nFireworks\n\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\nQuarto-Blogs-Template\n\n\n\nQuarto\n\nBlog\n\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\nNo matching items\n\n\n\n\nPapers论文\n\n\n\n\n\n\n\n\n\n\n\nDeepSeek\n\n\n\nLLM\n\nPaper\n\nReport\n\nDeepSeek\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nBackdoorIndicator - Leveraging OOD Data for Proactive Backdoor Detection in Federated Learning\n\n\n\nFL\n\nbackdoor\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\nNo matching items\n\n\n\n\nLearning Notes学习笔记\n\n\n\n\n\n\n\n\n\n\n\ngolang实现hot100题解(ACM版本)\n\n\n\n算法\n\nleetcode\n\nhot100\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nleetcode-灵神跟练-滑动窗口与双指针-不定长滑动窗口-越长越合法+求最短+最小\n\n\n\n算法\n\nleetcode\n\n滑动窗口\n\n不定长滑动窗口\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nleetcode-灵神跟练-滑动窗口与双指针-定长滑动窗口-基础\n\n\n\n算法\n\nleetcode\n\n滑动窗口与双指针\n\n\n\n\n\n\n\n\n\nNov 9, 2025\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "content/learning-notes/algorithm/index.html",
+    "href": "content/learning-notes/algorithm/index.html",
+    "title": "算法学习笔记",
+    "section": "",
+    "text": "不开long long见祖宗，不过golang没long long(笑)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngolang实现hot100题解(ACM版本)\n\n\n\n算法\n\nleetcode\n\nhot100\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nleetcode-灵神跟练-滑动窗口与双指针-不定长滑动窗口-越长越合法+求最短+最小\n\n\n\n算法\n\nleetcode\n\n滑动窗口\n\n不定长滑动窗口\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nleetcode-灵神跟练-滑动窗口与双指针-定长滑动窗口-基础\n\n\n\n算法\n\nleetcode\n\n滑动窗口与双指针\n\n\n\n\n\n\n\n\n\nNov 9, 2025\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "content/learning-notes/golang/index.html",
+    "href": "content/learning-notes/golang/index.html",
+    "title": "golang",
+    "section": "",
+    "text": "记录一下golang学习过程中的笔记.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngo的版本管理工具-g的安装和使用\n\n\n\ngolang\n\ng\n\ngolang版本管理\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（13）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（12）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（11）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（10）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（9）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 19, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（8）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 18, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（7）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 17, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（6）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 16, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（5）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（4）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nOct 13, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（3）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nSep 29, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（2）\n\n\n\ngolang\n\ngolang基础学习\n\n\n\n\n\n\n\n\n\nSep 23, 2024\n\n\n\n\n\n\n\n\n\n\n\n\ngolang学习记录（1）-在win搭建go环境\n\n\n\ngolang\n\n环境搭建\n\n\n\n\n\n\n\n\n\nSep 16, 2024\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "content/learning-notes/infrastructure/index.html",
+    "href": "content/learning-notes/infrastructure/index.html",
+    "title": "基础设施学习笔记",
+    "section": "",
+    "text": "记录一下基础设施相关的学习笔记.\n基础设施是指支撑应用程序运行的硬件、软件和网络资源。它包括服务器、存储设备、网络设备、操作系统、数据库等。\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nConsul\n\n\n\ngolang\n\n微服务\n\n基础设施\n\nconsul\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n基础设施(golang)\n\n\n\ngolang\n\n微服务\n\n基础设施\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "content/papers/deepseek/index.html",
+    "href": "content/papers/deepseek/index.html",
+    "title": "DeepSeek",
+    "section": "",
+    "text": "DeepSeek论文阅读笔记\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDeepSeek\n\n\n\nLLM\n\nPaper\n\nReport\n\nDeepSeek\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "content/papers/labnotes/index.html",
+    "href": "content/papers/labnotes/index.html",
+    "title": "个人研究相关论文",
+    "section": "",
+    "text": "个人研究相关论文阅读笔记\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBackdoorIndicator - Leveraging OOD Data for Proactive Backdoor Detection in Federated Learning\n\n\n\nFL\n\nbackdoor\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "content/blogs/entries/Deepseek-R1-32B模型部署.html",
+    "href": "content/blogs/entries/Deepseek-R1-32B模型部署.html",
+    "title": "Deepseek-R1-32B模型部署",
+    "section": "",
+    "text": "这段时间国产大模型deepseek受到广泛关注，deepseek也开源了他们模型的参数，在huggingface上，提供了原始模型和经过不同程度蒸馏的模型\n因为好奇，手边刚好也有之前白嫖的阿里云的服务器，就尝试一下本地部署的过程\n本文简单介绍一下部署的过程，也提供一个gradio的示例，进行模型的使用\n\n\n\n\n免费试用，可以选择交互式建模进行试用。\n\n\n注册阿里云账号并选择试用即可\n\n\n\n\n\n首先在阿里云创建一个实例\n\n然后选择选择A10的GPU和图中所示的镜像\n\n之后等待实例创建完成，进入实例环境，点击右上方加号，进入命令行\n\n\n\n\n\n在命令行进行模型下载与测试\n\n1、设置Hugging Face镜像源\n export HF_ENDPOINT=https://hf-mirror.com\n2、下载DeepSeek-R1 32B模型\nhuggingface-cli download Valdemardi/DeepSeek-R1-Distill-Qwen-32B-AWQ --cache-dir /mnt/workspace/Valdemardi/DeepSeek-R1-Distill-Qwen-32B-AWQ\n3、测试模型是否能加载成功\n vllm serve Valdemardi/DeepSeek-R1-Distill-Qwen-32B-AWQ --quantization awq_marlin --max-model-len 1024 --max-num-batched-tokens 2048 --max-num-seqs 1 --tensor-parallel-size 1 --port 8003 --enforce-eager --gpu_memory_utilization=0.90 --enable-chunked-prefill\n\n相关参数说明： quantization awq_marlin：启用AWQ量化，显著降低显存占用。 max-model-len 1024：设置最大序列长度为1024个token，适用于大部分NLP任务。 max-num-batched-tokens 2048：设置批量处理的token数为512，平衡处理速度和显存占用。 max-num-seqs 1：设置同时处理的序列数为1，避免多序列处理带来的显存碎片。 tensor-parallel-size 1：禁用 tensor 并行，最大化利用显存。 port 8003：设置服务监听端口为8003。 enforce-eager：启用 eager 模式，加快推理速度。 gpu_memory_utilization 0.90：设置显存使用率为98%，尽可能多地利用显存。 enable-chunked-prefill：启用分块预填充，减少显存碎片。\n\n\n\n\n\n\n使用gradio加载vllm推理模型，进行可视化交互，使用的代码如下：\n\nimport gradio as gr\nimport requests\nfrom subprocess import Popen, PIPE\nimport threading\nimport time\nimport json\n\n# ============== 配置参数 ==============\nMODEL_NAME = \"DeepSeek-R1-Distill-Qwen-32B-AWQ\"\nVLLM_PORT = 8003\nGRADIO_PORT = 7860\n\nVLLM_CMD = [\n    \"vllm\", \"serve\", MODEL_NAME,\n    \"--quantization\", \"awq\",\n    \"--max-model-len\", \"1024\",\n    \"--max-num-batched-tokens\", \"2048\",\n    \"--max-num-seqs\", \"1\",\n    \"--tensor-parallel-size\", \"1\",\n    \"--port\", str(VLLM_PORT),\n    \"--gpu-memory-utilization\", \"0.9\",\n    \"--enforce-eager\",\n    \"--disable-log-requests\",\n    \"--swap-space\", \"16\"\n]\n\n# ============== 服务管理类 ==============\nclass VLLMServer:\n    def __init__(self):\n        self.process = None\n        self._ready = threading.Event()\n        self.start_time = time.time()\n\n    def start(self):\n        try:\n            print(f\"正在加载模型 {MODEL_NAME}...\")\n            self.process = Popen(VLLM_CMD, stdout=PIPE, stderr=PIPE, text=True)\n            \n            def log_monitor():\n                while self.process.poll() is None:\n                    line = self.process.stderr.readline()\n                    if \"Uvicorn running\" in line:\n                        print(\"vLLM服务启动成功！\")\n                        self._ready.set()\n                    if time.time() - self.start_time &gt; 600:\n                        print(\"模型加载超时，请检查显存是否足够\")\n                        self.process.terminate()\n                    print(\"[vLLM]\", line.strip())\n            \n            threading.Thread(target=log_monitor, daemon=True).start()\n            return True\n        except Exception as e:\n            print(f\"vLLM启动失败: {str(e)}\")\n            return False\n\n    def is_ready(self, timeout=600):\n        return self._ready.wait(timeout=timeout)\n\n# ============== 提示词构建 ==============\ndef build_prompt(history):\n    prompt = \"&lt;|beginofutterance|&gt;system\\n你是一个智能助手&lt;|endofutterance|&gt;\\n\"\n    for entry in history:\n        if entry[\"role\"] == \"user\":\n            prompt += f\"&lt;|beginofutterance|&gt;user\\n{entry['content']}&lt;|endofutterance|&gt;\\n\"\n        elif entry[\"role\"] == \"assistant\":\n            prompt += f\"&lt;|beginofutterance|&gt;assistant\\n{entry['content']}&lt;|endofutterance|&gt;\\n\"\n    prompt += \"&lt;|beginofutterance|&gt;assistant\\n\"\n    return prompt\n\n# ============== 流式生成逻辑 ==============\ndef stream_generator(history):\n    try:\n        response = requests.post(\n            f\"http://localhost:{VLLM_PORT}/v1/completions\",\n            headers={\"Content-Type\": \"application/json\"},\n            json={\n                \"model\": MODEL_NAME,\n                \"prompt\": build_prompt(history),\n                \"max_tokens\": 512,\n                \"temperature\": 0.7,\n                \"top_p\": 0.9,\n                \"stop\": [\"&lt;|endofutterance|&gt;\"],\n                \"stream\": True\n            },\n            stream=True,\n            timeout=120\n        )\n        response.raise_for_status()\n        \n        full_response = \"\"  # 用于缓存完整的助手回答\n        for chunk in response.iter_lines():\n            if chunk:\n                decoded = chunk.decode().replace(\"data: \", \"\")\n                try:\n                    data = json.loads(decoded)\n                    token = data[\"choices\"][0][\"text\"]\n                    full_response += token\n                    yield full_response  # 返回完整的生成内容（逐步追加）\n                except:\n                    pass\n                    \n    except requests.exceptions.ConnectionError:\n        yield \"服务未就绪，请稍后重试\"\n    except Exception as e:\n        yield f\"请求失败: {str(e)}\"\n\n# ============== 界面布局 ==============\nwith gr.Blocks(title=\"DeepSeek-32B vLLM版\") as demo:\n    gr.Markdown(\"## DeepSeek-R1-32B 智能助手 (vLLM版)\")\n    \n    status = gr.Textbox(label=\"服务状态\", interactive=False)\n    chatbot = gr.Chatbot(\n        height=500,\n        type=\"messages\",\n        label=\"对话历史\",\n        avatar_images=(\"user.png\", \"bot.png\")\n    )\n    msg = gr.Textbox(label=\"输入消息\", placeholder=\"请输入您的问题...\")\n    clear = gr.Button(\"清空历史\", variant=\"secondary\")\n\n    def user(user_message, history):\n        return \"\", history + [{\"role\": \"user\", \"content\": user_message}]\n\n    def bot(history):\n        if not history or history[-1][\"role\"] != \"user\":\n            yield history\n            return\n            \n        history.append({\"role\": \"assistant\", \"content\": \"\"})  # 添加空的助手消息\n        full_response = \"\"  # 用于存储完整回答\n        for chunk in stream_generator(history):\n            full_response = chunk  # 缓存生成的内容\n            yield history[:-1] + [{\"role\": \"assistant\", \"content\": full_response}]  # 更新生成的回答\n        \n        # 最终更新完整历史记录\n        history[-1][\"content\"] = full_response\n        yield history\n\n    msg.submit(user, [msg, chatbot], [msg, chatbot], queue=True).then(\n        bot, chatbot, chatbot\n    )\n    clear.click(lambda: [], None, chatbot, queue=False)\n\n    # 状态检查\n    demo.load(\n        fn=lambda: \"服务已就绪\" if vllm_server.is_ready() else \"启动中...\",\n        outputs=status\n    )\n\nif __name__ == \"__main__\":\n    vllm_server = VLLMServer()\n    print(\"正在启动vLLM服务...\")\n    threading.Thread(target=vllm_server.start, daemon=True).start()\n    \n    if vllm_server.is_ready():\n        print(\"启动Gradio界面...\")\n        demo.launch(\n            server_name=\"0.0.0.0\",\n            server_port=GRADIO_PORT,\n            share=False\n        )\n    else:\n        print(\"服务启动失败\")\n\n\n\n\n\n\n运行成功后点击下方链接即可打开界面\n\n\n\n\n从图中测试可以看出，数学方面好像有提升，但是草莓问题中的’r’还是不能数出有多少\n\n\n\n\n\n使用3090单显卡部署deepseek-r1 32B"
+  },
+  {
+    "objectID": "content/blogs/entries/Deepseek-R1-32B模型部署.html#白嫖阿里云服务器",
+    "href": "content/blogs/entries/Deepseek-R1-32B模型部署.html#白嫖阿里云服务器",
+    "title": "Deepseek-R1-32B模型部署",
+    "section": "",
+    "text": "免费试用，可以选择交互式建模进行试用。\n\n\n注册阿里云账号并选择试用即可"
+  },
+  {
+    "objectID": "content/blogs/entries/Deepseek-R1-32B模型部署.html#模型下载和加载测试",
+    "href": "content/blogs/entries/Deepseek-R1-32B模型部署.html#模型下载和加载测试",
+    "title": "Deepseek-R1-32B模型部署",
+    "section": "",
+    "text": "首先在阿里云创建一个实例\n\n然后选择选择A10的GPU和图中所示的镜像\n\n之后等待实例创建完成，进入实例环境，点击右上方加号，进入命令行\n\n\n\n\n\n在命令行进行模型下载与测试\n\n1、设置Hugging Face镜像源\n export HF_ENDPOINT=https://hf-mirror.com\n2、下载DeepSeek-R1 32B模型\nhuggingface-cli download Valdemardi/DeepSeek-R1-Distill-Qwen-32B-AWQ --cache-dir /mnt/workspace/Valdemardi/DeepSeek-R1-Distill-Qwen-32B-AWQ\n3、测试模型是否能加载成功\n vllm serve Valdemardi/DeepSeek-R1-Distill-Qwen-32B-AWQ --quantization awq_marlin --max-model-len 1024 --max-num-batched-tokens 2048 --max-num-seqs 1 --tensor-parallel-size 1 --port 8003 --enforce-eager --gpu_memory_utilization=0.90 --enable-chunked-prefill\n\n相关参数说明： quantization awq_marlin：启用AWQ量化，显著降低显存占用。 max-model-len 1024：设置最大序列长度为1024个token，适用于大部分NLP任务。 max-num-batched-tokens 2048：设置批量处理的token数为512，平衡处理速度和显存占用。 max-num-seqs 1：设置同时处理的序列数为1，避免多序列处理带来的显存碎片。 tensor-parallel-size 1：禁用 tensor 并行，最大化利用显存。 port 8003：设置服务监听端口为8003。 enforce-eager：启用 eager 模式，加快推理速度。 gpu_memory_utilization 0.90：设置显存使用率为98%，尽可能多地利用显存。 enable-chunked-prefill：启用分块预填充，减少显存碎片。"
+  },
+  {
+    "objectID": "content/blogs/entries/Deepseek-R1-32B模型部署.html#gradio交互",
+    "href": "content/blogs/entries/Deepseek-R1-32B模型部署.html#gradio交互",
+    "title": "Deepseek-R1-32B模型部署",
+    "section": "",
+    "text": "使用gradio加载vllm推理模型，进行可视化交互，使用的代码如下：\n\nimport gradio as gr\nimport requests\nfrom subprocess import Popen, PIPE\nimport threading\nimport time\nimport json\n\n# ============== 配置参数 ==============\nMODEL_NAME = \"DeepSeek-R1-Distill-Qwen-32B-AWQ\"\nVLLM_PORT = 8003\nGRADIO_PORT = 7860\n\nVLLM_CMD = [\n    \"vllm\", \"serve\", MODEL_NAME,\n    \"--quantization\", \"awq\",\n    \"--max-model-len\", \"1024\",\n    \"--max-num-batched-tokens\", \"2048\",\n    \"--max-num-seqs\", \"1\",\n    \"--tensor-parallel-size\", \"1\",\n    \"--port\", str(VLLM_PORT),\n    \"--gpu-memory-utilization\", \"0.9\",\n    \"--enforce-eager\",\n    \"--disable-log-requests\",\n    \"--swap-space\", \"16\"\n]\n\n# ============== 服务管理类 ==============\nclass VLLMServer:\n    def __init__(self):\n        self.process = None\n        self._ready = threading.Event()\n        self.start_time = time.time()\n\n    def start(self):\n        try:\n            print(f\"正在加载模型 {MODEL_NAME}...\")\n            self.process = Popen(VLLM_CMD, stdout=PIPE, stderr=PIPE, text=True)\n            \n            def log_monitor():\n                while self.process.poll() is None:\n                    line = self.process.stderr.readline()\n                    if \"Uvicorn running\" in line:\n                        print(\"vLLM服务启动成功！\")\n                        self._ready.set()\n                    if time.time() - self.start_time &gt; 600:\n                        print(\"模型加载超时，请检查显存是否足够\")\n                        self.process.terminate()\n                    print(\"[vLLM]\", line.strip())\n            \n            threading.Thread(target=log_monitor, daemon=True).start()\n            return True\n        except Exception as e:\n            print(f\"vLLM启动失败: {str(e)}\")\n            return False\n\n    def is_ready(self, timeout=600):\n        return self._ready.wait(timeout=timeout)\n\n# ============== 提示词构建 ==============\ndef build_prompt(history):\n    prompt = \"&lt;|beginofutterance|&gt;system\\n你是一个智能助手&lt;|endofutterance|&gt;\\n\"\n    for entry in history:\n        if entry[\"role\"] == \"user\":\n            prompt += f\"&lt;|beginofutterance|&gt;user\\n{entry['content']}&lt;|endofutterance|&gt;\\n\"\n        elif entry[\"role\"] == \"assistant\":\n            prompt += f\"&lt;|beginofutterance|&gt;assistant\\n{entry['content']}&lt;|endofutterance|&gt;\\n\"\n    prompt += \"&lt;|beginofutterance|&gt;assistant\\n\"\n    return prompt\n\n# ============== 流式生成逻辑 ==============\ndef stream_generator(history):\n    try:\n        response = requests.post(\n            f\"http://localhost:{VLLM_PORT}/v1/completions\",\n            headers={\"Content-Type\": \"application/json\"},\n            json={\n                \"model\": MODEL_NAME,\n                \"prompt\": build_prompt(history),\n                \"max_tokens\": 512,\n                \"temperature\": 0.7,\n                \"top_p\": 0.9,\n                \"stop\": [\"&lt;|endofutterance|&gt;\"],\n                \"stream\": True\n            },\n            stream=True,\n            timeout=120\n        )\n        response.raise_for_status()\n        \n        full_response = \"\"  # 用于缓存完整的助手回答\n        for chunk in response.iter_lines():\n            if chunk:\n                decoded = chunk.decode().replace(\"data: \", \"\")\n                try:\n                    data = json.loads(decoded)\n                    token = data[\"choices\"][0][\"text\"]\n                    full_response += token\n                    yield full_response  # 返回完整的生成内容（逐步追加）\n                except:\n                    pass\n                    \n    except requests.exceptions.ConnectionError:\n        yield \"服务未就绪，请稍后重试\"\n    except Exception as e:\n        yield f\"请求失败: {str(e)}\"\n\n# ============== 界面布局 ==============\nwith gr.Blocks(title=\"DeepSeek-32B vLLM版\") as demo:\n    gr.Markdown(\"## DeepSeek-R1-32B 智能助手 (vLLM版)\")\n    \n    status = gr.Textbox(label=\"服务状态\", interactive=False)\n    chatbot = gr.Chatbot(\n        height=500,\n        type=\"messages\",\n        label=\"对话历史\",\n        avatar_images=(\"user.png\", \"bot.png\")\n    )\n    msg = gr.Textbox(label=\"输入消息\", placeholder=\"请输入您的问题...\")\n    clear = gr.Button(\"清空历史\", variant=\"secondary\")\n\n    def user(user_message, history):\n        return \"\", history + [{\"role\": \"user\", \"content\": user_message}]\n\n    def bot(history):\n        if not history or history[-1][\"role\"] != \"user\":\n            yield history\n            return\n            \n        history.append({\"role\": \"assistant\", \"content\": \"\"})  # 添加空的助手消息\n        full_response = \"\"  # 用于存储完整回答\n        for chunk in stream_generator(history):\n            full_response = chunk  # 缓存生成的内容\n            yield history[:-1] + [{\"role\": \"assistant\", \"content\": full_response}]  # 更新生成的回答\n        \n        # 最终更新完整历史记录\n        history[-1][\"content\"] = full_response\n        yield history\n\n    msg.submit(user, [msg, chatbot], [msg, chatbot], queue=True).then(\n        bot, chatbot, chatbot\n    )\n    clear.click(lambda: [], None, chatbot, queue=False)\n\n    # 状态检查\n    demo.load(\n        fn=lambda: \"服务已就绪\" if vllm_server.is_ready() else \"启动中...\",\n        outputs=status\n    )\n\nif __name__ == \"__main__\":\n    vllm_server = VLLMServer()\n    print(\"正在启动vLLM服务...\")\n    threading.Thread(target=vllm_server.start, daemon=True).start()\n    \n    if vllm_server.is_ready():\n        print(\"启动Gradio界面...\")\n        demo.launch(\n            server_name=\"0.0.0.0\",\n            server_port=GRADIO_PORT,\n            share=False\n        )\n    else:\n        print(\"服务启动失败\")"
+  },
+  {
+    "objectID": "content/blogs/entries/Deepseek-R1-32B模型部署.html#效果测试",
+    "href": "content/blogs/entries/Deepseek-R1-32B模型部署.html#效果测试",
+    "title": "Deepseek-R1-32B模型部署",
+    "section": "",
+    "text": "运行成功后点击下方链接即可打开界面\n\n\n\n\n从图中测试可以看出，数学方面好像有提升，但是草莓问题中的’r’还是不能数出有多少"
+  },
+  {
+    "objectID": "content/blogs/entries/Deepseek-R1-32B模型部署.html#参考",
+    "href": "content/blogs/entries/Deepseek-R1-32B模型部署.html#参考",
+    "title": "Deepseek-R1-32B模型部署",
+    "section": "",
+    "text": "使用3090单显卡部署deepseek-r1 32B"
+  },
+  {
+    "objectID": "content/blogs/entries/Mac安装Jekyll.html",
+    "href": "content/blogs/entries/Mac安装Jekyll.html",
+    "title": "Mac安装Jekyll",
+    "section": "",
+    "text": "更新了在Windows的Jekyll教程。顺便把环境在Mac上重新配置了一遍，把完整流程记录下来，给正在折腾博客的你一份可直接照做的macOS安装指南。\n\n本文默认你使用 zsh 终端（macOS 默认），并通过 rbenv 管理 Ruby 版本，避免系统自带 Ruby 的权限与兼容问题。\n\n\n\n\n\n\n/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"\n安装完成后，根据提示把 brew 加入 PATH，并重新打开终端或执行 source ~/.zshrc。\n\n\n\nbrew update\nbrew install rbenv ruby-build\n\n\n\necho 'eval \"$(rbenv init - zsh)\"' &gt;&gt; ~/.zshrc\nsource ~/.zshrc\n\n\n\n\n\n\n\nrbenv install 3.3.5\nrbenv global 3.3.5\nruby -v\n\n\n\ngem install bundler jekyll\n\n\n\n\n\n在你的博客主目录下运行：\nbundle install\nbundle exec jekyll serve\n看到成功提示后，在浏览器访问：\nhttp://127.0.0.1:4000\n\n\n\n\n恭喜！现在你已经在 macOS 上成功安装并运行了 Jekyll。后续可以在 _config.yml 中调整主题与配置、在 _posts 中编写文章，用 bundle exec jekyll build 生成静态文件进行部署。"
+  },
+  {
+    "objectID": "content/blogs/entries/Mac安装Jekyll.html#第一步准备基础环境",
+    "href": "content/blogs/entries/Mac安装Jekyll.html#第一步准备基础环境",
+    "title": "Mac安装Jekyll",
+    "section": "",
+    "text": "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"\n安装完成后，根据提示把 brew 加入 PATH，并重新打开终端或执行 source ~/.zshrc。\n\n\n\nbrew update\nbrew install rbenv ruby-build\n\n\n\necho 'eval \"$(rbenv init - zsh)\"' &gt;&gt; ~/.zshrc\nsource ~/.zshrc"
+  },
+  {
+    "objectID": "content/blogs/entries/Mac安装Jekyll.html#第二步安装-ruby-与-jekyll",
+    "href": "content/blogs/entries/Mac安装Jekyll.html#第二步安装-ruby-与-jekyll",
+    "title": "Mac安装Jekyll",
+    "section": "",
+    "text": "rbenv install 3.3.5\nrbenv global 3.3.5\nruby -v\n\n\n\ngem install bundler jekyll"
+  },
+  {
+    "objectID": "content/blogs/entries/Mac安装Jekyll.html#第三步在项目中安装依赖并启动",
+    "href": "content/blogs/entries/Mac安装Jekyll.html#第三步在项目中安装依赖并启动",
+    "title": "Mac安装Jekyll",
+    "section": "",
+    "text": "在你的博客主目录下运行：\nbundle install\nbundle exec jekyll serve\n看到成功提示后，在浏览器访问：\nhttp://127.0.0.1:4000"
+  },
+  {
+    "objectID": "content/blogs/entries/Mac安装Jekyll.html#安装完成",
+    "href": "content/blogs/entries/Mac安装Jekyll.html#安装完成",
+    "title": "Mac安装Jekyll",
+    "section": "",
+    "text": "恭喜！现在你已经在 macOS 上成功安装并运行了 Jekyll。后续可以在 _config.yml 中调整主题与配置、在 _posts 中编写文章，用 bundle exec jekyll build 生成静态文件进行部署。"
+  },
+  {
+    "objectID": "content/blogs/entries/Windows安装Jekyll.html",
+    "href": "content/blogs/entries/Windows安装Jekyll.html",
+    "title": "Windows安装Jekyll",
+    "section": "",
+    "text": "之前分享了如何在GitHub上搭建个人博客，但缺少Jekyll的安装教程。最近换了新电脑，正好借此机会补上这个重要的环节，为想要搭建技术博客的朋友们提供一份详细的Windows安装指南。\n\n\nJekyll基于Ruby开发，所以我们首先需要安装Ruby环境：\n\n访问Ruby官网下载适合你的RubyInstaller\n我选择的是rubyinstaller-devkit-3.4.7-1-x64版本\n你也可以根据系统配置选择合适的版本\n\n\n安装时的关键步骤：\n\n双击下载的安装程序，按提示进行安装\n重要：务必勾选”添加到PATH”选项，方便在命令行中直接使用\n安装过程中会自动安装MSYS2，这是后续安装gem和Jekyll的必要组件\n\n\n安装完成后，打开命令提示符测试是否安装成功：\nruby -v\n\n\n\n\nRubyGems是Ruby的包管理器，我们需要用它来安装Jekyll：\n\n前往RubyGems下载页面\n选择ZIP格式下载\n\n\n安装步骤：\n\n将下载的ZIP文件解压到合适的目录\n在解压后的文件夹中打开命令提示符\n运行安装命令：\n\nruby setup.rb\n\n\n\n\n现在我们可以开始安装Jekyll了：\n安装Jekyll核心：\ngem install jekyll\n安装分页插件（很多主题都需要）：\ngem install jekyll-paginate\n验证安装是否成功：\njekyll -v\n\n\n\n在你的Jekyll博客目录中，启动本地服务器：\nbundle exec jekyll server\n如果提示缺少某些插件，按照提示安装即可：\n\n安装完成后重新运行，看到成功提示：\n\n在浏览器中访问 http://localhost:4000，就能看到你的博客在本地运行的效果了！\n\n\n\n\n恭喜！现在你已经在Windows上成功安装了Jekyll，可以开始本地开发和测试你的博客了。如果在安装过程中遇到任何问题，欢迎在评论区留言交流。\n贴心提示：建议将整个安装过程记录下来，这样下次换电脑或者重装系统时就能快速完成环境配置。\n参考资源：在Windows上安装Jekyll\n博客作者简介 大家好，我是一名热爱分享的技术博主，专注于Web开发和开源技术。通过这个博客，我希望与大家分享我的学习心得和实践经验，帮助更多开发者解决实际问题。如果你对技术分享感兴趣，欢迎关注我的博客，我们一起成长！"
+  },
+  {
+    "objectID": "content/blogs/entries/Windows安装Jekyll.html#第一步安装ruby环境",
+    "href": "content/blogs/entries/Windows安装Jekyll.html#第一步安装ruby环境",
+    "title": "Windows安装Jekyll",
+    "section": "",
+    "text": "Jekyll基于Ruby开发，所以我们首先需要安装Ruby环境：\n\n访问Ruby官网下载适合你的RubyInstaller\n我选择的是rubyinstaller-devkit-3.4.7-1-x64版本\n你也可以根据系统配置选择合适的版本\n\n\n安装时的关键步骤：\n\n双击下载的安装程序，按提示进行安装\n重要：务必勾选”添加到PATH”选项，方便在命令行中直接使用\n安装过程中会自动安装MSYS2，这是后续安装gem和Jekyll的必要组件\n\n\n安装完成后，打开命令提示符测试是否安装成功：\nruby -v"
+  },
+  {
+    "objectID": "content/blogs/entries/Windows安装Jekyll.html#第二步安装rubygems",
+    "href": "content/blogs/entries/Windows安装Jekyll.html#第二步安装rubygems",
+    "title": "Windows安装Jekyll",
+    "section": "",
+    "text": "RubyGems是Ruby的包管理器，我们需要用它来安装Jekyll：\n\n前往RubyGems下载页面\n选择ZIP格式下载\n\n\n安装步骤：\n\n将下载的ZIP文件解压到合适的目录\n在解压后的文件夹中打开命令提示符\n运行安装命令：\n\nruby setup.rb"
+  },
+  {
+    "objectID": "content/blogs/entries/Windows安装Jekyll.html#第三步安装jekyll及相关组件",
+    "href": "content/blogs/entries/Windows安装Jekyll.html#第三步安装jekyll及相关组件",
+    "title": "Windows安装Jekyll",
+    "section": "",
+    "text": "现在我们可以开始安装Jekyll了：\n安装Jekyll核心：\ngem install jekyll\n安装分页插件（很多主题都需要）：\ngem install jekyll-paginate\n验证安装是否成功：\njekyll -v"
+  },
+  {
+    "objectID": "content/blogs/entries/Windows安装Jekyll.html#第四步本地测试",
+    "href": "content/blogs/entries/Windows安装Jekyll.html#第四步本地测试",
+    "title": "Windows安装Jekyll",
+    "section": "",
+    "text": "在你的Jekyll博客目录中，启动本地服务器：\nbundle exec jekyll server\n如果提示缺少某些插件，按照提示安装即可：\n\n安装完成后重新运行，看到成功提示：\n\n在浏览器中访问 http://localhost:4000，就能看到你的博客在本地运行的效果了！"
+  },
+  {
+    "objectID": "content/blogs/entries/Windows安装Jekyll.html#安装完成",
+    "href": "content/blogs/entries/Windows安装Jekyll.html#安装完成",
+    "title": "Windows安装Jekyll",
+    "section": "",
+    "text": "恭喜！现在你已经在Windows上成功安装了Jekyll，可以开始本地开发和测试你的博客了。如果在安装过程中遇到任何问题，欢迎在评论区留言交流。\n贴心提示：建议将整个安装过程记录下来，这样下次换电脑或者重装系统时就能快速完成环境配置。\n参考资源：在Windows上安装Jekyll\n博客作者简介 大家好，我是一名热爱分享的技术博主，专注于Web开发和开源技术。通过这个博客，我希望与大家分享我的学习心得和实践经验，帮助更多开发者解决实际问题。如果你对技术分享感兴趣，欢迎关注我的博客，我们一起成长！"
+  },
+  {
+    "objectID": "content/blogs/entries/一文了解RAG.html",
+    "href": "content/blogs/entries/一文了解RAG.html",
+    "title": "一文了解RAG",
+    "section": "",
+    "text": "RAG（Retrieval Augmented Generation）：检索增强生成"
+  },
+  {
+    "objectID": "content/blogs/entries/一文了解RAG.html#引言",
+    "href": "content/blogs/entries/一文了解RAG.html#引言",
+    "title": "一文了解RAG",
+    "section": "0 引言",
+    "text": "0 引言\n写在前面，作者也是初学者，抱着学习的心态写了这篇文章，如果有问题，欢迎大家邮箱联系进行批评指正。\n本篇将系统介绍RAG的基本概念、核心技术原理、发展背景和典型架构，随后深入探讨多模态RAG（如文本-图像、文本-视频的检索增强生成）和Graph RAG（基于图结构数据的检索增强生成）等前沿方向，最后分析当前面临的挑战与未来发展趋势。"
+  },
+  {
+    "objectID": "content/blogs/entries/一文了解RAG.html#基本概念",
+    "href": "content/blogs/entries/一文了解RAG.html#基本概念",
+    "title": "一文了解RAG",
+    "section": "1 基本概念",
+    "text": "1 基本概念\nRAG（Retrieval Augmented Generation），中文名称是检索增强生成，通俗意义上来讲就是通过检索提升大模型生成效果的技术，旨在提升生成式AI的准确性与可信度。它实现了大语言模型与外部知识库的结合，是缓解幻觉与提升可追溯性的关键路线之一。该概念最初由Facebook AI研究团队在2020年提出，并发表了命名RAG的开创性论文。如今，RAG已发展为一类庞大的方法体系，被认为是通向更可靠生成式AI的重要方向。"
+  },
+  {
+    "objectID": "content/blogs/entries/一文了解RAG.html#背景和技术原理",
+    "href": "content/blogs/entries/一文了解RAG.html#背景和技术原理",
+    "title": "一文了解RAG",
+    "section": "2 背景和技术原理",
+    "text": "2 背景和技术原理\n\n2. 1 背景\n大模型在没有外部知识库的情况下也能”记住”大量知识，但仍然存在明显局限：参数中的知识更新成本高、回答往往缺少可核验的证据来源；遇到冷门知识、最新信息或长链路推理时，错误率会上升；在多轮对话与长上下文场景里，也可能出现信息遗忘、主题漂移与证据混淆等问题。\n比如，你问的是aorangehc是谁，它却开始讲爱因斯坦是谁，这类与问题无关或事实不符的生成通常被称为幻觉（LLM Hallucination)。幻觉并非某一个模型的偶然故障，而是概率式生成在信息不足、目标不清或证据缺失时容易出现的系统性现象，因此研究者开始从模型之外引入约束与外部信息来降低这类问题的发生。\n一种方法是在预训练之后对模型进行指令微调与对齐训练，让它在不确定时更倾向于回答”不知道”或主动澄清。一种方法是使用者通过Prompt对回答范围、证据要求与输出格式进行限制，减少模型自由发挥的空间。\n还有一种就是引入外部知识库。我们现在使用ChatGPT、Gemini、Kimi、豆包以及DeepSeek等大模型应用时，经常会看到联网搜索或知识库问答功能：系统会根据问题去外部数据源检索网页或文档片段，将检索结果作为证据提供给模型，再由模型基于证据与自身语言能力组织答案，从而显著提升事实性与可解释性。这个”先检索、再生成”的过程，就是RAG的典型范式。\n\n\n2.2 技术原理\n现在意义上的大模型具有很多能力，我们日常中更多是使用大模型进行提问，让它解决遇到的难题，比如Python代码报错，把报错信息扔给大模型，它给出修改意见，这个过程中使用的主要能力是指令遵循。除此之外还有上下文学习、推理、工具使用等，随着技术的发展，大模型可调用的能力在不断扩展。\n在RAG中主要利用的就是大模型的上下文学习能力，通过检索获取相关知识作为上下文提供给大模型，然后由大模型基于问题与证据进行归纳总结并生成回答。\nRAG的核心思想是在生成任务中引入检索模块。模型在接到输入后，先由检索模块从外部知识库（如维基百科、专有文档库、企业内部资料等）中检索出相关资料，再将检索到的内容与原始输入一起送入生成模型，生成最终回答或文本。这种”检索-生成”策略使模型能够现查现用所需知识，而不必完全依赖参数中存储的旧知识。OpenAI的WebGPT工作即是典型案例：它让GPT-3在一个受控的浏览环境中搜索网页、抽取引用片段并据此回答长问题，从而提升答案的事实性与可核验性。通过引入检索，不仅能降低幻觉发生率，也使知识库可以更灵活地扩展与更新，例如用户可以按需接入新的数据源供系统使用。\n自RAG提出后，各大研究团队纷纷推出改进的检索增强模型。例如，DeepMind在2021年发布的RETRO模型通过接入超大规模文本数据库进行检索增强，在较小参数规模下取得了与当时超大模型相当甚至在部分基准上更优的效果，体现了检索对”以更小模型获得更强知识能力”的潜力。又如Meta在2022年推出的Atlas模型，将预训练的检索增强语言模型用于少样本学习，在开放域问答等知识密集任务上，用显著更少的参数规模取得了与超大模型相竞争的表现。这些成果表明，检索增强可以在更小模型规模下达到甚至逼近超大模型的效果，凸显了参数与检索融合的效率优势与工程价值。"
+  },
+  {
+    "objectID": "content/blogs/entries/一文了解RAG.html#rag框架",
+    "href": "content/blogs/entries/一文了解RAG.html#rag框架",
+    "title": "一文了解RAG",
+    "section": "3 RAG框架",
+    "text": "3 RAG框架\n\n图片引用自文献Retrieval-Augmented Generation for AI-Generated Content: A Survey\n典型RAG系统包含检索器与生成器两大核心组件。\n\n3.1 RAG基本流程\n首先，输入查询会被检索模块编码为向量表示，并在外部知识库的向量索引中进行相似度搜索，检索出若干相关文本片段，并可能应用重排序技术来提高精度。随后，这些检索到的证据片段与原始查询一并提供给生成模型，模型将基于问题与证据生成最终回答。通过将外部知识融入生成过程，RAG能够让回答更贴近事实，并在工程实现上支持给出引用来源与证据片段，从而提升可解释性与可审计性。\n经典RAG在生成整个回答时往往使用固定的一组检索文档；也有更高级的变体如RAG-Token，可以在生成过程中对不同位置动态使用不同检索证据，从而提升信息使用的灵活性。\n无论哪种方式，检索结果与生成模型的融合都是关键。很多实现会将检索文本直接拼接到模型输入中，而一些研究也探索在模型内部以更结构化的方式利用检索信息，使模型在生成时能更稳定地对齐证据、减少无关发挥。实践中，检索器与生成器既可以分阶段独立优化，也可以在特定设定下进行联合训练或端到端微调，以让检索器更偏向于返回对生成最有帮助的证据、生成器也更善于引用与整合证据。\n\n\n3.2 检索器\n检索是指根据信息需求识别并获取相关信息。具体来说，我们可以将信息资源视为一个键值存储，其中每个键对应一个值，键和值可以相同。给定一个查询，目标是使用相似性函数搜索出最相似的前k个键，并获取与之配对的值。根据不同的相似性函数，现有的检索方法可分为稀疏检索、稠密检索及其他类型。\n\n3.2.1 稀疏检索器\n稀疏检索器利用词项匹配指标，如TF-IDF、BM25，主要用于文档的相关检索。这些方法通过分析文本中的词统计信息并构建倒排索引来实现高效搜索。本质上，BM25是大规模网络搜索中的一个强大基线，它整合了逆文档频率权重、查询词项出现次数和其他相关指标。\n\n\n3.2.2 稠密检索器\n稠密检索通过稠密嵌入向量来表示查询和键，并构建近似最近邻索引加快搜索速度，能用于所有模态的检索。稠密检索将原本的数据通过预训练模型编码成为向量，然后通过计算相似度分数进行检索，相似度计算可以通过余弦、内积和L2距离等。\n现在的RAG系统为了提升效果一般采用稀疏检索+稠密检索的混合检索模式，提升效果。\n\n\n\n3.3 生成器\n生成器结合检索到的内容，生成所需内容。\n随着AIGC时代的发展，生成器也不断发展丰富成熟，不同的生成器模型可以用于不同的场景，比如\n\nTransformer模型用于文本到文本的任务\nVisualGPT可以用于图像到文本的任务\nStable Diffusion可以用于文本到图像的任务\nCodex可以用于文本到代码的任务"
+  },
+  {
+    "objectID": "content/blogs/entries/一文了解RAG.html#rag增强",
+    "href": "content/blogs/entries/一文了解RAG.html#rag增强",
+    "title": "一文了解RAG",
+    "section": "4 RAG增强",
+    "text": "4 RAG增强\n是的检索增强生成(的)增强也是很重要的研究点，有很多技巧。\n\n4.1 输入增强\n最初输入到检索器中的内容对检索阶段的最终结果有显著影响，输入增强的方式主要有以下几种。\n\n4.1.1 查询转换\n查询转换可以通过修改输入查询来增强检索结果。\nQuery2doc和HyDE，利用原始查询生成伪文档，之后将该伪文档用作检索的查询。伪文档包含更丰富的相关信息，有助于检索出更准确的结果。\nTOC利用检索到的内容，将模糊的查询分解为多个清晰的子查询，这些子查询被发送到生成器，经聚合后产生最终结果。对于。\nRQ-RAG将复杂或模糊的查询分解为清晰的子查询以进行细粒度检索，并对响应进行综合，从而为原始查询提供连贯的答案\n\n\n4.1.2 数据增强\n数据增强表示在检索前对数据进行改进，包括去除无关信息、消除歧义、更新过时文档、合成新数据等技术\nMake-An-Audio利用字幕生成和音频-文本检索为无语言音频生成字幕，以缓解数据稀疏问题，并添加随机概念音频来改进原始音频。\nLESS通过分析梯度信息优化下游任务的数据集选择，旨在提升模型对指令提示的响应性能。\nReACC通过重命名和死代码插入来预训练代码检索模型。\n\n\n\n4.2 检索器增强\n\n4.2.1 递归检索\n归检索是指执行多次搜索以获取更丰富、更高质量的内容。\nReACT利用思维链（CoT）将查询分解以进行递归检索，并提供更丰富的信息。\nRATP采用蒙特卡洛树搜索进行模拟，以选择最优的检索内容，然后将其模板化并转发给生成器进行输出。\n\n\n4.2.2 块优化\n块优化指的是调整块大小以改善检索结果。\nLlamaIndex集成了一系列 chunk 优化方法，其中一种遵循”从小到大”的原则。其核心思想是精准定位更细粒度的内容，同时返回更丰富的信息。例如，句子窗口检索会获取小的文本块，并返回检索片段周围的相关句子窗口。在自动合并检索中，文档被组织成树状结构。该过程先获取子节点，再检索包含其子节点内容的父节点。\nRAPTOR采用递归嵌入、聚类和文本块摘要的方法，直到无法进一步聚类为止，从而构建多层树状结构。\nPrompt-RAG通过预先生成目录来提高检索准确性，使模型能够根据查询自主选择相关章节。\n\n\n4.2.3 检索器微调\n在稠密检索中检索器依赖于一个高效的嵌入模型，来表示相关内容并为生成器提供输入，从而提升系统性能。\n可以通过特定领域或任务相关的数据进行微调，以提升在目标领域的性能。\nREPLUG将语言模型视为黑盒，并根据最终结果更新检索模型。\nAPICoder使用Python文件以及API名称、签名和描述对检索模型进行微调。\nEDITSUM对检索模型进行微调，以减小检索后摘要之间的杰卡德距离。\n最新的模型Qwen3系列开源了多种embedding和rerank模型，并开放了技术报告，效果很好。其中小模型适合用来做微调测试和效果对比。\n\n\n4.2.4 混合检索\n混合检索指同时采用多种不同的检索方法或从多个不同的来源提取信息。\nRAP-Gen、BlendedRAG 和ReACC均同时使用密集检索器和稀疏检索器来提高检索质量。\nRencos使用稀疏检索器在句法层面检索相似的代码片段，并使用密集检索器在语义层面检索相似的代码片段。\nBASHEXPLAINER首先使用密集检索器捕获语义信息，然后使用稀疏检索器获取词汇信息。\nRetDream先通过文本进行检索，再通过图像嵌入进行检索。\nCRAG的特点是配备了一个检索评估器，用于衡量文档与查询的相关性，并根据置信度生成三种检索响应：如果结果准确，则直接用于知识优化；如果结果不正确，则进行网络搜索；对于模糊情况，则采用混合方法。\n\n\n4.2.5 Rerank\n重排序应该是最常见的方式，指对检索到的内容进行重新排序，以获得更高的多样性和更好的结果。也有很多重排序的模型开源可以使用。\nRe2G在传统检索器之后应用了一个重排序器模型，以减少因将文本压缩为向量而导致的信息丢失所带来的影响。\nAceCoder利用选择器对检索到的程序进行重排序，以减少冗余程序并获得多样化的检索程序。\nXRICL在检索后使用基于蒸馏的示例重排序器。\nRangan采用量化影响度量，通过评估查询和参考之间的统计偏差来衡量数据子集的相似性，并对检索结果进行重排序。\nUDAPDR利用大语言模型经济高效地生成用于训练特定领域重排序器的合成查询，然后应用多教师知识蒸馏来开发一个协同的检索器。\n\n\n4.2.6 检索转换\n检索转换通过重新表述检索到的内容，以更好地激发生成器的潜力，从而改进输出结果。\nFILCO能高效地从检索到的文本中清除无关内容，只保留相关的支持性内容，从而简化生成器的任务，有助于准确预测答案。\nFiD-Light首先使用编码器将检索到的内容转换为向量，然后对其进行压缩，大幅减少了延迟时间。\n\n\n\n4.3 生成器增强\n\n4.3.1 提示工程-Prompt Engineering\n提示工程是一种专注于提高大型语言模型输出质量的提示工程技术，如提示压缩、后退提示、主动提示、思维链提示等，均适用于检索增强生成系统中的大型语言模型生成器。\nLLMLingua应用一个小型模型来压缩查询的整体长度，以加速模型推理，减轻无关信息对模型的负面影响，并缓解中间迷失现象。\nReMoDiffuse通过使用ChatGPT将复杂描述分解为结构化文本脚本。\nASAP将包含输入代码、函数定义、分析结果和相应注释的示例元组纳入提示词中，以获得更好的结果。\nCEDAR使用设计好的提示词模板，将代码演示、查询和自然语言指令组织成提示词。\nXRICL利用思维链技术，在跨语言语义解析和推理中添加翻译对作为中间步骤。\nACTIVERAG采用认知连接机制来校准大语言模型的内在认知，并在答案生成中应用思维链提示词。\nMake-An-Audio能够使用其他模态作为输入，这可以为后续过程提供更丰富的信息。\n\n\n4.3.2 解码调优\n解码调优包括通过微调超参数来增强生成器控制，以提高多样性、限制输出词汇量以及进行其他调整。\nInferFix通过调整解码器的温度来平衡结果的多样性和质量。（温度可以理解为一个参数，控制模型生成内容的发散程度）\nSYNCHROMESH通过实施补全引擎来消除实现错误，从而限制解码器的输出词汇量。\n\n\n4.3.3 生成器微调\n生成器的微调可以增强模型掌握更精确领域知识的能力，或使其更好地与检索器相适配。\nRETRO固定了检索器的参数，并在生成器中使用分块交叉注意力机制来结合查询和检索器的内容。\nCARE 利用图像、音频和视频-文本对训练编码器，然后微调解码器（生成器）以同时减少字幕和概念检测损失，同时保持编码器和检索器固定。\nAnimate-A-Story利用图像数据优化视频生成器，然后微调LoRA适配器以捕捉给定角色的外观细节。\n\n\n\n4.4 结果增强\n\n4.4.1 输出重写\n输出重写指的是在特定场景下对生成器生成的内容进行改写，以满足下游任务的需求。\nSARGAM通过采用一种特殊的Transformer，结合删除分类器、占位符分类器和插入分类器，在代码相关任务中优化输出，使其更贴合现实世界的代码语境。\nRing根据生成器产生的每个令牌的对数概率平均值对候选结果进行重新排序，从而获得多样化的结果。\nCBR-KBQA通过将生成的关系与知识图谱中查询实体的本地邻域所呈现的关系进行对齐，来修正结果。\n\n\n\n4.5 流程增强 Pipeline Enhancement\nRAG流程增强指的是对RAG的整个流程进行优化，以获得更好的性能结果。\n\n4.5.1 自适应检索\n一些关于RAG的研究表明，检索并非总能提升最终结果。当模型固有的参数化知识足以回答相关问题时，过度检索可能会导致资源浪费，并可能造成混淆。因此有些方法研究是否应该进行RAG。\n\n基于规则\n\nFLARE会在生成过程中主动决定是否以及何时对概率进行搜索。\nEfficient-KNNLM将 KNN-LM 和 NPM的生成概率与超参数 λ 相结合，以确定生成和检索的比例。\n还有对问题进行统计分析，以便为高频问题提供直接答案，并对低频问题应用检索增强生成等。\n\n基于模型\n\nSelf-RAG使用训练过的生成器，根据不同用户查询下的检索令牌来决定是否执行检索。\nSKR利用大型语言模型自身的能力预先判断其是否能够回答该问题，若能回答，则不执行检索。\nRowen将一个问题翻译成多种语言，并检查这些语言版本答案的一致性，以此来决定是否需要信息检索。\nAdaptiveRAG通过一个较小的语言模型作为分类器，根据查询的复杂程度动态决定是否进行检索。\n\n\n\n\n4.5.2 迭代式检索增强生成\n迭代式检索增强生成通过在检索和生成阶段反复循环来逐步优化结果，实际就是进行多轮操作\nRepoCoder采用迭代检索-生成方法进行代码补全，利用先前生成的代码优化查询，以更好地利用分散的信息并改善结果。\nITER-RETGEN通过使用生成器的输出来确定知识缺口、检索必要信息并为未来的生成周期提供信息，从而迭代地提高内容质量。\nSelfMemory迭代地利用检索增强生成器来构建一个庞大的记忆池，记忆选择器从该池中挑选输出，为下一个生成周期提供信息。\nRAT首先由大语言模型通过零样本思维链提示生成内容，然后通过从外部知识库检索知识来修改每个思维步骤。"
+  },
+  {
+    "objectID": "content/blogs/entries/一文了解RAG.html#rag的多跳多领域问题graph-rag",
+    "href": "content/blogs/entries/一文了解RAG.html#rag的多跳多领域问题graph-rag",
+    "title": "一文了解RAG",
+    "section": "5 RAG的多跳多领域问题（Graph RAG）",
+    "text": "5 RAG的多跳多领域问题（Graph RAG）\n在RAG中有一个非常经典的瓶颈问题：有些问题并不是在找某一段最相似的文本，而是在要求把分散在多篇文档、多个概念、甚至多个领域的线索串起来，形成综合结论。当回答需要沿着共享实体、属性或关系在不同信息片段间穿行，并在此基础上生成新的洞察时，单纯依赖向量相似度检索往往不够用。这就是RAG需要面对的多跳与多领域问题。\nGraphRAG（Graph Retrieval-Augmented Generation）可以被看作是为这两类问题准备的一条升级路线，它不只检索语义相近的文本块，而是把知识显式表示成图结构，例如从文本中抽取实体与关系形成知识图谱或图索引，并利用图中的关系结构来组织证据与推进推理。\nIBM对GraphRAG的定义很贴近工程实践：GraphRAG是一种引入图结构数据的高级RAG；不同于仅靠向量检索语义相似文本，它利用图的关系结构来检索与处理信息，尤其擅长多跳推理、关系上下文以及层级结构数据的组织与查询。"
+  },
+  {
+    "objectID": "content/blogs/entries/一文了解RAG.html#多模态rag",
+    "href": "content/blogs/entries/一文了解RAG.html#多模态rag",
+    "title": "一文了解RAG",
+    "section": "6 多模态RAG",
+    "text": "6 多模态RAG\n\n6.1 多模态大模型\n随着大语言模型技术的不断发展，多模态甚至全模态大模型已经成为重要研究对象，并不断发展，现在多模态大模型也逐渐成为主流，给人们的生活带来便利，值得一提的是，gemini图像生成真的很强，下面的图就是它生成的，直观地展示了多模态大模型从早期的图文基础连接（如CLIP, DALL-E）起步，经历多感官融合（如GPT-4V, Gemini），最终迈向全模态实时交互与通用人工智能（AGI）的完整技术演进路线图。使用的提示词是：“生成一张介绍多模态大模型发展历程的图片”，很简单的提示词，但是生成的图挺科幻的。\n\n\n\n6.2 多模态检索增强生成\n随着多模态大模型的发展，研究者开始探索多模态检索增强生成（Multimodal RAG），即让系统不仅能检索文本，还能利用图像、音频、视频以及代码等多种数据源作为知识依据。比较特殊的是，RAG的核心思想和流程在不同模态之间基本保持一致，不过需要在检索器、生成器和相关技术细节上进行调整。\n多模态RAG的基本理念是：针对不同模态的数据，引入对应的编码器将它们映射到可比较的向量空间，从而支持跨模态检索。例如，系统可以将图像用视觉模型编码为向量、将文本用语言模型编码为向量，并建立统一或可对齐的检索索引。当用户以文本提出查询时，检索模块不仅可以返回相关文本片段，也可以返回相关图像、音频片段或视频片段作为补充信息。目前多模态检索最常见的是图文两种模态，更深入的细节往往与VLM相关，后面会进一步介绍。\n多模态RAG在需要综合视觉与文本信息的任务中展现出独特价值。例如在跨媒体问答场景中，用户给出一张图片并提出与之相关的问题，系统可以先对图像内容进行理解，再结合检索到的外部知识文本回答更深入的问题，例如图片中的人物背景、地点信息或历史事件脉络等。又如在视频问答或多媒体搜索中，系统可以综合检索字幕文本、视频关键帧、片段摘要乃至音频线索来获得更全面的信息。\n一些研究将多模态RAG用于视觉问答任务，证明结合图像内容与外部知识能够回答一些仅凭图像本身难以回答的问题。业界也出现了支持多模态检索的开源工具与框架，例如使用CLIP类模型编码图文以实现跨模态搜索。总体而言，多模态RAG拓展了传统RAG只能处理纯文本的限制，为系统提供了面向多模态世界的外部证据通道，使生成结果更丰富且更可核验。\n\n\n6.3 多模态RAG难题\n\n不同模态的数据格式各异，如何对齐多模态表示是关键，常见做法是基于大规模图文对、音频与转写文本等进行对比学习，使不同模态向量落在语义一致的空间中。\n检索过程可能需要在不同模态间跳转，例如以图搜文或以文搜图，这要求索引能够存储多模态信息并支持任意模态查询到任意模态内容。\n多模态数据规模大且检索计算开销高，尤其是在海量图像或视频片段上做近似最近邻检索时，对成本与延迟都是挑战。一些系统会采用先转文本再检索的策略，例如对图片做OCR或生成描述后再进入文本检索流程，以兼容现有文本检索体系，但这可能丢失关键视觉细节。更偏前沿的方法倾向于保留原始模态信息，让检索结果直接返回图像或视频内容，并由多模态生成模型端到端完成理解与生成，从而减少中间表示带来的信息损失。"
+  },
+  {
+    "objectID": "content/blogs/entries/一文了解RAG.html#rag的应用",
+    "href": "content/blogs/entries/一文了解RAG.html#rag的应用",
+    "title": "一文了解RAG",
+    "section": "7 RAG的应用",
+    "text": "7 RAG的应用\n\n7.1 应用分类\n\n文本RAG\n\n问答：通过从海量且全面的文本资源集合中提取信息，对提出的问题做出回应。\n事实核查：通常是指判断给定的自然语言文本与相关的主张或断言是否与文本中的事实相符。\n常识推理：指的是机器利用所获取的外部知识及其应用，以类人的方式对问题或任务进行推断或做出决策的能力。\n人机对话：包括机器理解自然语言的能力，以及熟练运用这种技能与人类进行无缝交流的能力。\n神经机器翻译：将文本从源语言自动翻译为目标语言。\n事件抽取：这是自然语言处理中的一个过程，它涉及识别文本中的特定事件并对其进行分类，同时将这些事件与相关实体关联起来。\n摘要生成：从冗长的文本中提炼关键信息，并生成一个简洁、连贯的摘要，以概括主要主题。\n\n代码RAG\n\n代码生成：将自然语言描述转换为代码实现。\n代码摘要：将代码转换为自然语言描述。\n代码补全：代码补全类似于下一句预测任务的代码版本。\n自动程序修复：基于查询的RAG常用于自动程序修复中，以帮助生成模型修复有缺陷的代码\nText2SQL和基于代码的语义解析：语义解析将自然语言转换为清晰的结构化表示，例如SQL或其他特定领域语言，通常会借助代码的帮助。\n\n知识RAG\n\n知识库问答：通常利用知识库来确定问题的正确答案。\n知识增强的开放域问答：主要是对结构化知识的应用。\n表格问答：表格作为另一种结构化知识形式，也有助于问答。\n\n3D RAG\n\nText-2-3D：检索可用于增强3D资产生成。\n\n图像 RAG\n\n图像生成：指的是创建新图像的过程，通常运用人工智能和机器学习领域的算法。\n图像摘要： 是生成图像文本描述的过程。\n\n视频 RAG\n\n视频摘要：将视觉内容转化为描述性语句。\n视频问答和对话：视频问答与对话会生成与视频内容一致的单轮或多轮响应。\n\n音频 RAG\n\n音频字幕生成：音频 captioning 本质上是一项序列到序列任务，它为音频数据生成自然语言数据\n音频生成：通常根据自然语言提示合成音频。\n\n科学领域 RAG\n\n药物发现：药物发现的目标是生成能同时满足多种特性的分子。\n生物医学信息学增强：通过从生物医学领域特定数据库中检索信息，提高了大语言模型的表达能力，从而增强了模型为医疗领域的任务提供有价值指导的能力。\n数学问答：数学领域的检索增强生成技术简化了解题过程，促进了研究创新，并优化了教育策略。\n\n\n\n\n7.2 应用领域\n个人与企业内部知识库 这类应用致力于解决私有数据的检索与问答难题，它将公司内部文档、手册或个人笔记进行结构化处理与向量化索引，当用户提问时系统能够定位到文件中的相关段落并由大模型基于证据生成答案，从而在很多场景中替代传统关键词搜索并显著提升信息获取效率。\n学术论文深度阅读与溯源 针对科研人员需要处理海量文献且对准确性要求极高的场景，这类应用能够跨多篇论文检索证据并生成综述或回答，其核心特点是强调证据可追溯与引用对齐，尽可能让每一个关键结论都能回到原文依据，从而最大化降低幻觉带来的风险。\n超大规模代码库智能助手 为了解决传统大模型难以一次性读完完整项目代码的问题，这类应用会对代码仓库的结构、符号与依赖关系进行索引，让开发者能够用自然语言查询项目架构或具体函数实现细节，并在证据范围内给出解释与修改建议，从而更高效地理解与维护复杂的遗留代码。\n\n\n7.3 Ima\nima是腾讯开发的Ai知识库工具，核心就是采用RAG，目前支持导入公众号文章构建知识库进行检索。\n在公众号中文章中点击转发，将文章导入知识库，之后可以通过AI进行相关问答。\n\n\n\n7.4 Coze\nCoze空间是字节跳动旗下AI应用开发平台扣子，是一个多智能体协作开发环境，它允许开发者在一个统一的画布式界面中，将多个AI Agent、工具、数据源和工作流编排成复杂的自动化任务系统，实现从单一聊天机器人到多角色协同、多步骤执行的进阶AI应用构建。\n我们下面使用其中的Agent和知识库构建功能，构建一个八股问答姬。\n首先导入文本，构建知识库，然后创建智能体，并进行测试，测试能从知识库中检索对应信息，这是一个知识库RAG的应用。\n  \n\n\n7.5 Ragflow\nRAGFlow是领先的开源检索增强生成（RAG）引擎，它融合了尖端的RAG与智能体功能，为大语言模型打造卓越的上下文层。它提供了精简的RAG工作流，适用于任何规模的企业。在融合的上下文引擎和预制智能体模板的支持下，RAGFlow使开发者能够将复杂数据转化为高保真、可投入生产的人工智能系统，且效率和精度都极为出色。\n它可以进行本地部署和使用。"
+  },
+  {
+    "objectID": "content/blogs/entries/一文了解RAG.html#数据集benchmark",
+    "href": "content/blogs/entries/一文了解RAG.html#数据集benchmark",
+    "title": "一文了解RAG",
+    "section": "8 数据集&Benchmark",
+    "text": "8 数据集&Benchmark\n\n8.1 Others;\n\n噪声鲁棒性，测试大型语言模型能否从含噪声的文档中提取必要信息\n负例拒绝，评估大型语言模型在检索到的内容不足时能否拒绝回答\n信息整合，检查大型语言模型能否通过整合多个检索到的内容来获取知识并进行回答\n反事实鲁棒性，判断大型语言模型能否识别检索到的内容中的反事实错误\n忠实性，基于检索到的内容评估事实准确性\n答案相关性，判断结果是否针对查询\n上下文相关性，评估检索到的内容的相关性及其简洁性\nCRUD-RAG将RAG任务分为四种类型：创建、读取、更新和删除，并通过文本续写、问答、幻觉纠正和开放域多文档摘要来对其进行评估\n我之前用过的数据集TreezzZ/WebQA，测试多模态效果，这玩意本身就是一个benchmark，包含问答对，通过简单脚本处理就能使用\n\n\n\n8.2 多模态RAG\n\n8.2.1 数据集\n\n\n\n图像-文本数据集\n\n\nLAION-400M：4亿对图文数据；用于多模态模型的预训练（图像-文本） Conceptual-Captions：超过300万对图像-标题；多语言的英德图像描述（图像-文本）CIRR：来自21,552张图像的36,554个三元组；侧重于自然图像关系（图像-文本）MS-COCO：33万张带字幕的图像；用于字幕到图像和图像到字幕的生成（图像-文本）Flickr30K：31K张图像，每张图像都配有5个英文 caption（图像-文本）Multi30K：30k条来自母语者的德语字幕和人工翻译的字幕（图像-文本）NoCaps：用于零样本图像 captioning 评估；15K 张图像（图像-文本）Laion-5B：58.5亿个图像-文本对被用作检索的外部存储器（图像-文本）COCO-CN：用于跨语言标记和带中文句子的图像描述的20,341张图像（图像-文本）CIRCO：1020个查询，每个查询平均有4.53个基准真值；用于组合图像检索（图像-文本）MINT-1T：1万亿个文本标记和34亿张图像；比现有的开源数据集大10倍（图像-文本）ShareGPT4V：120万张图片，配有GPT-4生成的说明文字，包括空间和事实细节（图像-文本）OmniCorpus：22亿个网页文档中的86亿张图像和1.7万亿个标记；交错的文本-图像布局（图像-文本）\n\n\n\n\n视频-文本数据集\n\n\nBDD-X：77小时的驾驶视频，配有专家的文字解释；用于可解释的驾驶行为研究（视频-文本）YouCook2：2000个带有对齐描述的烹饪视频；专注于视频-文本任务（视频-文本）ActivityNet：20,000个带有多个字幕的视频；用于视频理解和字幕生成（视频-文本）SoccerNet：550场足球比赛的视频和元数据；包括转录的解说和关键事件注释（视频-文本）MSVD：1970个视频，每个视频大约有40条字幕（视频-文本）LSMDC：来自202部电影的118,081个视频-文本对；一个电影描述数据集（视频-文本）DiDemo：10,000个视频，每个视频有4个拼接的字幕；包含事件的时间定位（视频-文本）COIN：涵盖180项任务的11,827个教学类YouTube视频，用于全面的教学视频分析（视频-文本）MSRVTT-QA：视频问答基准（视频-文本）ActivityNet-QA：58,000个人工标注的问答对，涉及5,800个视频；视频问答模型的基准（视频-文本）EpicKitchens-100：用于在线动作预测的700个视频（100小时的烹饪活动）；以自我为中心的视觉数据集（视频-文本）Ego4D：430万个以自我为中心的视频的视频-文本对；大规模以自我为中心的视频数据集（视频-文本）HowTo100M：来自120万个YouTube视频的1.36亿个带字幕的视频片段；用于学习文本-视频嵌入（视频-文本）CharadesEgo：来自第一视角和第三人称视角视频的68,536个活动实例；用于评估（视频-文本）ActivityNet：20K个视频，每个视频有3.7个时间定位的句子；对视频中的事件进行密集字幕标注（视频-文本）\n\n\n\n\n音频-文本数据集\n\n\nLibriSpeech：1000小时的英语朗读语音及对应文本；基于有声读物的语音识别语料库（音频-文本）SpeechBrown：55K对语音-文本样本；15个类别，涵盖从宗教到小说的各种主题（音频-文本）AudioCaps：46K个音频片段与人工编写的文本字幕配对（音频-文本）MusicCaps：它由5.5k个音乐-文本对组成，配有人类专家提供的丰富文本描述（音频-文本）Clotho：包含多样化音景的音频字幕数据集（音频-文本）WavCaps：大规模弱标记音频-文本数据集，包含约40万个带配对字幕的音频片段（音频-文本）Spoken SQuAD：SQuAD数据集的音频版本，用于口语问答，侧重于听力理解任务（音频-文本）AudioSet：来自YouTube的2,084,320个人工标注的10秒音频片段；632个音频事件类别（音频-文本）\n\n\n\n\n知识与问答数据集\n\n\nVQA：用于视觉问答的40万个带图像的问答对（图像-文本）PAQ：6500万个基于文本的问答对；一个大规模数据集（文本）ELI5：270K个复杂多样的问题，配有网页和图像作为补充（文本）MultimodalQA：29,918个需要对文本、表格和图像进行多模态多跳推理的问题（图像-文本-表格）ViQuAE：来自维基百科的1180万个段落，涵盖2397个独特实体；知识密集型问答（文本）OK-VQA：14K个需要外部知识的视觉问答问题（图像-文本）WebQA：46K个需要跨文本和图像进行推理的查询（图像-文本）Infoseek：使用基于维基百科的知识库（600万个段落）进行细粒度视觉知识检索（图像-文本）ClueWeb22：100亿个网页被分为三个子集；一个大规模的网络语料库（文本）MOCHEG：15,601个带有真实性标签的声明，并附有文本和图像证据（图像-文本）VQA：110万个问题（通过VG-QA问题扩充），用于微调VQA模型（图像-文本）A-OKVQA：使用世界知识进行视觉问答的基准；约25000个问题（图像-文本）XL-HeadTags：415K条新闻标题-文章对包含来自六个不同语系的20种语言（文本）DocVQA：12767张不同的文档图像，包含50K个问答对，按推理类型分类，用于评估文档视觉问答（DocVQA）方法（图像-文本）ChartQA：9.6K个人工编写的问答对 + 23.1K个从图表摘要生成的问答对（图像-文本）DVQA：30万个图表上的350万个问答对，用于评估结构、数据检索和推理能力（图像-文本）\n\n\n\n\n医学数据集\n\n\nMIMIC-CXR：125,417个胸部X光片和报告的训练对（图像-文本）CheXpert：65,240名患者的224,316张胸部X光片；专注于医学分析（图像-文本）MIMIC-III：超过4万名患者的健康相关数据（文本）IU-Xray：7470对胸部X光片和相应的诊断报告（图像-文本）PubLayNet：从PubLayNet构建了100,000个训练样本和2,160个测试样本（医疗领域定制）（图像-文本）Quilt-1M：438K张医学图像，配有768K个文本对；包含显微图像和UMLS实体（图像-文本）\n\n\n\n\n时尚数据集\n\n\nFashion-IQ：三个类别共77,684张图像；采用Recall@10和Recall@50进行评估 （图像-文本）FashionGen：260.5K 个时尚图像和物品描述的图像-文本对（图像-文本）VITON-HD：83K张用于虚拟试穿的图像；高分辨率服装物品（图像-文本）Fashionpedia：48,000张带有分割掩码和细粒度属性标注的时尚图像（图像-文本）DeepFashion：约80万张多样化的时尚图片，用于伪三元组生成（图像-文本）\n\n\n\n\n3D数据集\n\n\nShapeNet：涵盖55个常见物体类别，包含51300个独特的3D模型（3D-文本）\n\n\n\n\nOthers\n\n\nGeoDE：来自6个世界地区的40个类别中的61,940张图像；强调物体识别中的地理多样性（图像）RU-AI ：147万个真实内容与AI生成内容的样本，用于虚假检测的稳健性（图像-文本-音频）MIMIC-IT：用于模型对齐的280万个多模态指令-响应对（图像-视频-文本）MMVQA：横跨3146份多页研究PDF，包含26.2万个问答对，用于稳健的多模态信息检索（图像-文本）\n\n\n\n\n\n8.2.2 Benchmark\n\n\n\n跨模态\n\n\nMRAG-Bench：评估视觉检索、整合以及对不相关视觉信息的鲁棒性（图像）M2⁢R⁢A⁢G：对多模态检索增强生成（RAG）进行基准测试；评估检索、多跳推理和整合能力（图像-文本）Dyn-VQA：专注于动态检索、多跳推理以及对变化信息的鲁棒性（图像-文本）MMBench：涵盖视觉问答、图像描述、检索；评估跨视觉、文本和音频的跨模态理解能力（图像-文本-音频）ScienceQA：包含21,208个问题；通过文本、图表和图像测试科学推理能力（图像-表格-文本）SK-VQA：提供200万个问答对；专注于合成知识、多模态推理和外部知识整合（图像-文本）SMMQG：包含1024个问答对；侧重于合成多模态数据和受控问题生成（图像-文本）\n\n\n\n\n文本\n\n\nTriviaQA：提供65万个问答对；阅读理解数据集，适用于多模态检索增强生成（RAG）（文本）Natural Questions：包含307,373个训练示例；真实世界的搜索查询，可适配视觉语境（文本）\n\n\n\n\n\n8.2.3 评估指标\n\n检索评估\n\n准确率\n召回率和Recall@K：用于检查前K个结果中的相关项目，比标准召回率更受青睐\n精确率和Top-K准确率\n\n\n\nF1分数\n平均倒数排名（MRR）：用于衡量返回列表中第一个相关结果的排名位置，其中Q是查询的总数。r⁢a⁢n⁢kq是查询q的第一个相关结果的排名。\n\n\n模态评估\n\n文本评估\n\n精确匹配（EM）\nBLEU\n\n\n\n\nROUGE：用于评估文本摘要和生成\nROUGE-N：用于衡量生成文本与参考文本之间 N 元语法的重叠度\n\n\n\nROUGE-L：衡量生成文本与参考文本之间的最长公共子序列（LCS）\n\n\n\nMETEOR\n\n图像评估\n\n图像描述\n\nCIDEr（基于共识的图像描述评估）：利用TF-IDF和余弦相似度来衡量描述质量\nSPICE（语义命题图像描述评估）\nSPIDEr ：结合CIDEr和SPICE\n\n语义对齐\n\nBERTScore\nCLIPScore\n\n\n图像质量\n\nFID\n\n\n\nKID\nInception Score：通过分类概率评估图像的多样性和质量"
+  },
+  {
+    "objectID": "content/blogs/entries/一文了解RAG.html#参考资料",
+    "href": "content/blogs/entries/一文了解RAG.html#参考资料",
+    "title": "一文了解RAG",
+    "section": "参考资料",
+    "text": "参考资料\n为什么大家都用RAG，这篇小白都看懂了\nRetrieval-Augmented Generation for AI-Generated Content: A Survey\nAsk in Any Modality: A Comprehensive Survey on Multimodal Retrieval-Augmented Generation\n未完待续，后续我们会对文章进行优化，并提供相关图片、数据集、代码和文献链接等，这是一个长期不断优化的过程！"
+  },
+  {
+    "objectID": "content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html",
+    "href": "content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html",
+    "title": "一种免费、高清、安全、但是很麻烦的远程桌面连接方案",
+    "section": "",
+    "text": "该方案能够解决的问题\n1、远程连接不受距离限制，通过tailscale实现，但是一定要保证网络的稳定\n2、免费高清串流，通过sunshine和moonlight实现\n3、安全，本方案中安全指的是远端的电脑屏幕在串流期间能够保持黑屏，能有效保护隐私，通过ParsecVDisplay诱骗电脑分屏实现\n\n\n\n\n通过上面的几个工具，大概能够推测出实现的原理 串流指的是将远程计算机的桌面环境、应用程序界面、音频和鼠标键盘输入等实时传输到另一台计算机或设备的过程。 在本方案中，通过ParsecVDisplay诱骗远端的分屏，然后将分屏串流到本地电脑，串流通过sunshine和moonlight实现。 在电脑上设置只在分屏显示，就可以实现主屏幕全程黑屏，保护隐私。然后通过tailscale将两个设备拉到同一个虚拟局域网中，实现不受距离限制的远程连接。\n\n基本原理如下图所示（画的比较糙了）\n\n相较于已有的方法，这个设置起来比较麻烦，但是免费、高清和安全还是非常诱人的。\n同时，这个方案有一个非常之名的缺点，这是由于分屏工具的一个BUG引起的。需要按照严格步骤才能防止意外地发生。\n\n\n\n这个工具的安装没有什么特别的，按照步骤进行安装即可，，可以点击下面的链接找到工具下载地址，如果是在Windows的环境中运行，可以按照图中的版本进行下载，实测有效。\n1、sunshine \n2、moonlight \n3、ParsecVDisplay \n4、tailscale \n注意： 1、sunshine要安装在远端的电脑上\n2、moonlight要安装在本地的电脑上\n3、ParsecVDisplay要安装在远端的电脑上\n4、tailscale在两个电脑上都要安装，注册完成后，登陆同一个账号即可\n\n\n\n在工具安装完成后，我们能够实现基本的串流，然后就是我们方案的实施\n\n\n打开moonlight，在右上角点击添加计算机，然后在框中输入远端主机的IP地址即可。 \n关于ip地址的获取：Win+R，输入cmd，回车，输入ipconfig，回车，找到IPv4地址即可。 \n同时为了能够更好的实现远程的连接推荐使用tailscale安装完成后分配的地址吗，这样可以实现更稳定的远程连接，电脑的ip地址离开局域网之后就不能用了。会自动更换其他地址，这会导致远程连接的失败。\n点击计算机列表中需要远程的电脑，第一次需要输入一个验证码，看到验证码后，在远程主机点击sunshine弹出的框，在框中输入就行。  \n输入完成后，就能实现最基本的电脑远程了。\n\n\n\n保持远程连接的状态下，打开ParsecVDisplay，右下角添加分屏，不过要记住分屏的名称 \n\n需要注意的是，分屏名称会发生变化，这也是 必要按照这个步骤执行的原因\n\n\n\n\n打开sunshine\n在配置中选择Audio/Video，将输出名称改成之前设置分屏的名称，然后重启sunshine\n\n\n这个时候会断连一次\n\n\n\n等待远程电脑的感叹号消失，连接回复正常，连接远程电脑 \n\n\n\n在设置里设置屏幕只在屏2显示，然后就可以实现远程电脑全程黑屏了。 \n\n\n\n先在设置中将原本的只在屏2显示改成复制这些屏幕，然后关闭ParsecVDisplay，然后将远端的电脑锁定，保证下次能正常连接。 \n之后用ctrl+alt+shift+Q退出moonlight就可以了\n\n只有按照上部步骤才能实现稳定连接，不然分屏工具会随机改变分屏名称，这是导致出现意外地原因，可以使用其他分屏工具进行实验 还有关于tailscale的配置和安装，可以参照相关教程\n\n\n\n\n\n\n这件事的灵感来源于跟师兄的聊天，由于初次接触远程连接，感觉很有趣，然后产生了能不能保护隐私的想法，从网上没找到合适方案。由此问师兄，师兄说不能实现吗，串流本质就是投屏，屏幕亮着才能实现吗，然后我就想起了可以借助分屏工具实现，最后测试一番才成功。 个人感觉很有趣，但是限制比较多，也很容易失败，但是也很实用不是吗。"
+  },
+  {
+    "objectID": "content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html#基本原理",
+    "href": "content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html#基本原理",
+    "title": "一种免费、高清、安全、但是很麻烦的远程桌面连接方案",
+    "section": "",
+    "text": "通过上面的几个工具，大概能够推测出实现的原理 串流指的是将远程计算机的桌面环境、应用程序界面、音频和鼠标键盘输入等实时传输到另一台计算机或设备的过程。 在本方案中，通过ParsecVDisplay诱骗远端的分屏，然后将分屏串流到本地电脑，串流通过sunshine和moonlight实现。 在电脑上设置只在分屏显示，就可以实现主屏幕全程黑屏，保护隐私。然后通过tailscale将两个设备拉到同一个虚拟局域网中，实现不受距离限制的远程连接。\n\n基本原理如下图所示（画的比较糙了）\n\n相较于已有的方法，这个设置起来比较麻烦，但是免费、高清和安全还是非常诱人的。\n同时，这个方案有一个非常之名的缺点，这是由于分屏工具的一个BUG引起的。需要按照严格步骤才能防止意外地发生。"
+  },
+  {
+    "objectID": "content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html#工具安装",
+    "href": "content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html#工具安装",
+    "title": "一种免费、高清、安全、但是很麻烦的远程桌面连接方案",
+    "section": "",
+    "text": "这个工具的安装没有什么特别的，按照步骤进行安装即可，，可以点击下面的链接找到工具下载地址，如果是在Windows的环境中运行，可以按照图中的版本进行下载，实测有效。\n1、sunshine \n2、moonlight \n3、ParsecVDisplay \n4、tailscale \n注意： 1、sunshine要安装在远端的电脑上\n2、moonlight要安装在本地的电脑上\n3、ParsecVDisplay要安装在远端的电脑上\n4、tailscale在两个电脑上都要安装，注册完成后，登陆同一个账号即可"
+  },
+  {
+    "objectID": "content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html#实施步骤",
+    "href": "content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html#实施步骤",
+    "title": "一种免费、高清、安全、但是很麻烦的远程桌面连接方案",
+    "section": "",
+    "text": "在工具安装完成后，我们能够实现基本的串流，然后就是我们方案的实施\n\n\n打开moonlight，在右上角点击添加计算机，然后在框中输入远端主机的IP地址即可。 \n关于ip地址的获取：Win+R，输入cmd，回车，输入ipconfig，回车，找到IPv4地址即可。 \n同时为了能够更好的实现远程的连接推荐使用tailscale安装完成后分配的地址吗，这样可以实现更稳定的远程连接，电脑的ip地址离开局域网之后就不能用了。会自动更换其他地址，这会导致远程连接的失败。\n点击计算机列表中需要远程的电脑，第一次需要输入一个验证码，看到验证码后，在远程主机点击sunshine弹出的框，在框中输入就行。  \n输入完成后，就能实现最基本的电脑远程了。\n\n\n\n保持远程连接的状态下，打开ParsecVDisplay，右下角添加分屏，不过要记住分屏的名称 \n\n需要注意的是，分屏名称会发生变化，这也是 必要按照这个步骤执行的原因\n\n\n\n\n打开sunshine\n在配置中选择Audio/Video，将输出名称改成之前设置分屏的名称，然后重启sunshine\n\n\n这个时候会断连一次\n\n\n\n等待远程电脑的感叹号消失，连接回复正常，连接远程电脑 \n\n\n\n在设置里设置屏幕只在屏2显示，然后就可以实现远程电脑全程黑屏了。 \n\n\n\n先在设置中将原本的只在屏2显示改成复制这些屏幕，然后关闭ParsecVDisplay，然后将远端的电脑锁定，保证下次能正常连接。 \n之后用ctrl+alt+shift+Q退出moonlight就可以了\n\n只有按照上部步骤才能实现稳定连接，不然分屏工具会随机改变分屏名称，这是导致出现意外地原因，可以使用其他分屏工具进行实验 还有关于tailscale的配置和安装，可以参照相关教程"
+  },
+  {
+    "objectID": "content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html#总结",
+    "href": "content/blogs/entries/一种免费、高清、安全、但是很麻烦的远程桌面连接方案.html#总结",
+    "title": "一种免费、高清、安全、但是很麻烦的远程桌面连接方案",
+    "section": "",
+    "text": "这件事的灵感来源于跟师兄的聊天，由于初次接触远程连接，感觉很有趣，然后产生了能不能保护隐私的想法，从网上没找到合适方案。由此问师兄，师兄说不能实现吗，串流本质就是投屏，屏幕亮着才能实现吗，然后我就想起了可以借助分屏工具实现，最后测试一番才成功。 个人感觉很有趣，但是限制比较多，也很容易失败，但是也很实用不是吗。"
+  },
+  {
+    "objectID": "content/blogs/entries/在本地跑一些小模型.html",
+    "href": "content/blogs/entries/在本地跑一些小模型.html",
+    "title": "本地跑模型",
+    "section": "",
+    "text": "自己还有一台笔记本，配置还可以，闲来无事，跑一些简单的小模型\n这是配置"
+  },
+  {
+    "objectID": "content/blogs/entries/在本地跑一些小模型.html#qwen3-vl-2b-instruct",
+    "href": "content/blogs/entries/在本地跑一些小模型.html#qwen3-vl-2b-instruct",
+    "title": "本地跑模型",
+    "section": "Qwen3-VL-2B-Instruct",
+    "text": "Qwen3-VL-2B-Instruct"
+  },
+  {
+    "objectID": "content/blogs/entries/在本地跑一些小模型.html#deepseek-ocr-2",
+    "href": "content/blogs/entries/在本地跑一些小模型.html#deepseek-ocr-2",
+    "title": "本地跑模型",
+    "section": "DeepSeek-OCR 2",
+    "text": "DeepSeek-OCR 2"
   },
   {
     "objectID": "content/blogs/entries/如何使用git.html",
