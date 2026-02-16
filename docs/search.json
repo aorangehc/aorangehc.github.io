@@ -1407,6 +1407,13 @@
     "text": "自己还有一台笔记本，配置还可以，闲来无事，跑一些简单的小模型\n这是配置"
   },
   {
+    "objectID": "content/blogs/entries/在本地跑一些小模型.html#相关工具",
+    "href": "content/blogs/entries/在本地跑一些小模型.html#相关工具",
+    "title": "本地跑模型",
+    "section": "相关工具",
+    "text": "相关工具\nollama+open webui openwebui使用 docker 进行安装配置"
+  },
+  {
     "objectID": "content/blogs/entries/在本地跑一些小模型.html#qwen3-vl-2b-instruct",
     "href": "content/blogs/entries/在本地跑一些小模型.html#qwen3-vl-2b-instruct",
     "title": "本地跑模型",
