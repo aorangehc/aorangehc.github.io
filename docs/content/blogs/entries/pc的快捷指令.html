@@ -532,9 +532,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     const storageKey = "site-lang";
     const defaultLang = "zh";
     const button = document.getElementById("lang-toggle");
-    if (!button) {
-      return;
-    }
+    if (!button) return;
 
     const applyLang = (lang) => {
       document.body.dataset.lang = lang;
@@ -555,42 +553,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script>
   (() => {
     const storageKey = "theme-preference";
-    const getStored = () => {
-      try {
-        return window.localStorage.getItem(storageKey);
-      } catch {
-        return null;
-      }
-    };
-    const setStored = (value) => {
-      try {
-        window.localStorage.setItem(storageKey, value);
-      } catch {}
-    };
-    const currentTheme = () =>
-      document.body.classList.contains("quarto-dark") ? "dark" : "light";
+    const getStored = () => { try { return window.localStorage.getItem(storageKey); } catch { return null; } };
+    const setStored = (v) => { try { window.localStorage.setItem(storageKey, v); } catch {} };
+    const currentTheme = () => document.body.classList.contains("quarto-dark") ? "dark" : "light";
 
     const applyStored = () => {
       const stored = getStored();
-      if (!stored) {
-        return;
-      }
-      if (stored !== currentTheme() && window.quartoToggleColorScheme) {
-        window.quartoToggleColorScheme();
-      }
+      if (!stored) return;
+      if (stored !== currentTheme() && window.quartoToggleColorScheme) window.quartoToggleColorScheme();
     };
 
     const bindToggle = () => {
-      const toggles = document.querySelectorAll(".quarto-color-scheme-toggle");
-      toggles.forEach((toggle) => {
-        toggle.addEventListener("click", () => {
-          window.setTimeout(() => setStored(currentTheme()), 0);
-        });
+      document.querySelectorAll(".quarto-color-scheme-toggle").forEach((toggle) => {
+        toggle.addEventListener("click", () => window.setTimeout(() => setStored(currentTheme()), 0));
       });
     };
 
     applyStored();
     bindToggle();
+  })();
+</script>
+<script>
+  (() => {
+    // Fix 1: Add about-page class to body when about content is present
+    if (document.querySelector(".about-wrap")) {
+      document.body.classList.add("about-page");
+    }
+
+    // Fix 2: Move categories from right sidebar to horizontal filter bar above listing
+    const isHomePage = document.body.classList.contains("home-page");
+    if (isHomePage) return;
+
+    const sidebar = document.getElementById("quarto-margin-sidebar");
+    if (!sidebar) return;
+
+    const categoryContainer = sidebar.querySelector(".quarto-listing-category");
+    if (!categoryContainer) return;
+
+    const main = document.getElementById("quarto-document-content");
+    if (!main) return;
+
+    // Build horizontal filter bar
+    const bar = document.createElement("div");
+    bar.className = "listing-filter-bar";
+    bar.appendChild(categoryContainer);
+
+    // Insert above the listing (after the title block)
+    const titleBlock = main.querySelector(".quarto-title-block");
+    const firstListing = main.querySelector(".quarto-listing");
+    const insertTarget = firstListing || titleBlock;
+
+    if (insertTarget) {
+      main.insertBefore(bar, insertTarget);
+    } else {
+      main.prepend(bar);
+    }
+
+    // Hide the now-empty sidebar (keeps it in DOM for Quarto's JS queries)
+    sidebar.style.cssText = "display:none!important";
   })();
 </script>
 <script id="quarto-html-after-body" type="application/javascript">

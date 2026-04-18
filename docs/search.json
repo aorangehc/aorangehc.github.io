@@ -1054,84 +1054,14 @@
     "href": "pages/index.html",
     "title": "About Me关于我",
     "section": "",
-    "text": "我是 aorangehc(He Cheng)\n\n\n这是我的邮箱，欢迎联系：morange0205@gmail.com\n\n\n\n\n\ngolang后端开发\n\n\n大模型应用开发\n\n\nLLM实现和部署\n\n\n\n\n\n\n\n2024 - 2027 [硕士学位/网络空间安全] [北京邮电大学]\n\n\n2020 - 2024 [学士学位/计算机科学与技术] [北方工业大学]\n\n\n\n\n\n\n\n[2025.1-2025.7] [科研实习] [中科院软件所] — [MindSpore框架下经典NLP模型复现和优化]\n\n\n[2025.8-2025.10] [后端开发实习] [长亭科技] — [参与长亭科技项目的后端开发、多模态RAG拓展和项目优化]\n\n\n\n\n\n\n\n[年份] [项目名称] [一句话描述/亮点] GitHub · Blog\n\n\n\n\n\n\nGolang 开发 LLM 深度学习 联邦学习\n\n\n\n\n\nI am aorangehc(He Cheng)\n\n\nThis is my email, feel free to contact me: morange0205@gmail.com\n\n\n\n\n\nGolang Backend Development\n\n\nLarge Model Application Development\n\n\nLLM Implementation and Deployment\n\n\n\n\n\n\n\n2024 - 2027 [Master’s Degree/Cyberspace Security] [Beijing University of Posts and Telecommunications]\n\n\n2020 - 2024 [Bachelor’s Degree/Computer Science and Technology] [North China University of Technology]\n\n\n\n\n\n\n\n[Jan 2025 - Jul 2025] [Research Intern] [Institute of Software, Chinese Academy of Sciences] — [Reproduction and optimization of classic NLP models under MindSpore framework]\n\n\n[Aug 2025 - Oct 2025] [Backend Development Intern] [Chaitin Technology] — [Participated in backend development, multimodal RAG expansion and project optimization for Chaitin Technology projects]\n\n\n\n\n\n\n\n[Years] [Project Name] [One-sentence Description/Highlight] GitHub · Blog\n\n\n\n\n\n\nGolang Development LLM Deep Learning Federated Learning"
-  },
-  {
-    "objectID": "pages/index.html#方向",
-    "href": "pages/index.html#方向",
-    "title": "About Me关于我",
-    "section": "",
-    "text": "golang后端开发\n\n\n大模型应用开发\n\n\nLLM实现和部署"
-  },
-  {
-    "objectID": "pages/index.html#教育经历",
-    "href": "pages/index.html#教育经历",
-    "title": "About Me关于我",
-    "section": "",
-    "text": "2024 - 2027 [硕士学位/网络空间安全] [北京邮电大学]\n\n\n2020 - 2024 [学士学位/计算机科学与技术] [北方工业大学]"
-  },
-  {
-    "objectID": "pages/index.html#工作经历",
-    "href": "pages/index.html#工作经历",
-    "title": "About Me关于我",
-    "section": "",
-    "text": "[2025.1-2025.7] [科研实习] [中科院软件所] — [MindSpore框架下经典NLP模型复现和优化]\n\n\n[2025.8-2025.10] [后端开发实习] [长亭科技] — [参与长亭科技项目的后端开发、多模态RAG拓展和项目优化]"
-  },
-  {
-    "objectID": "pages/index.html#项目",
-    "href": "pages/index.html#项目",
-    "title": "About Me关于我",
-    "section": "",
-    "text": "[年份] [项目名称] [一句话描述/亮点] GitHub · Blog"
-  },
-  {
-    "objectID": "pages/index.html#技术栈",
-    "href": "pages/index.html#技术栈",
-    "title": "About Me关于我",
-    "section": "",
-    "text": "Golang 开发 LLM 深度学习 联邦学习"
-  },
-  {
-    "objectID": "pages/index.html#focus-areas",
-    "href": "pages/index.html#focus-areas",
-    "title": "About Me关于我",
-    "section": "",
-    "text": "Golang Backend Development\n\n\nLarge Model Application Development\n\n\nLLM Implementation and Deployment"
-  },
-  {
-    "objectID": "pages/index.html#education",
-    "href": "pages/index.html#education",
-    "title": "About Me关于我",
-    "section": "",
-    "text": "2024 - 2027 [Master’s Degree/Cyberspace Security] [Beijing University of Posts and Telecommunications]\n\n\n2020 - 2024 [Bachelor’s Degree/Computer Science and Technology] [North China University of Technology]"
-  },
-  {
-    "objectID": "pages/index.html#experience",
-    "href": "pages/index.html#experience",
-    "title": "About Me关于我",
-    "section": "",
-    "text": "[Jan 2025 - Jul 2025] [Research Intern] [Institute of Software, Chinese Academy of Sciences] — [Reproduction and optimization of classic NLP models under MindSpore framework]\n\n\n[Aug 2025 - Oct 2025] [Backend Development Intern] [Chaitin Technology] — [Participated in backend development, multimodal RAG expansion and project optimization for Chaitin Technology projects]"
-  },
-  {
-    "objectID": "pages/index.html#projects",
-    "href": "pages/index.html#projects",
-    "title": "About Me关于我",
-    "section": "",
-    "text": "[Years] [Project Name] [One-sentence Description/Highlight] GitHub · Blog"
-  },
-  {
-    "objectID": "pages/index.html#technical-skills",
-    "href": "pages/index.html#technical-skills",
-    "title": "About Me关于我",
-    "section": "",
-    "text": "Golang Development LLM Deep Learning Federated Learning"
+    "text": "我是 aorangehc（He Cheng）\n\n\n欢迎联系：morange0205@gmail.com\n\n\n研究与工程方向\n\n\n\nGolang 后端开发\n\n\n大模型应用开发\n\n\nLLM 实现和部署\n\n\n联邦学习 / 网络安全\n\n\n\n技术栈\n\n\nGolang Python LLM 深度学习 联邦学习 RAG MindSpore 微服务\n\n\n\n\n教育经历\n\n\n\n2024 — 2027 硕士 · 网络空间安全 北京邮电大学\n\n\n2020 — 2024 学士 · 计算机科学与技术 北方工业大学\n\n\n\n工作经历\n\n\n\n2025.8 — 2025.10 后端开发实习 · 长亭科技 参与后端开发、多模态 RAG 拓展和项目优化\n\n\n2025.1 — 2025.7 科研实习 · 中科院软件所 MindSpore 框架下经典 NLP 模型复现与优化\n\n\n\n项目\n\n\n\n2025 Quarto-Blogs-Template 基于 Quarto 构建的现代化个人博客模板，支持中英双语切换 GitHub · Blog\n\n\n2023 Daily Log Maker 轻量级网页工具，生成长截图日志 GitHub\n\n\n\n\n\n\n\n\n\nI’m aorangehc (He Cheng)\n\n\nFeel free to reach out: morange0205@gmail.com\n\n\nResearch & Engineering\n\n\n\nGolang Backend Development\n\n\nLarge Model Application Dev\n\n\nLLM Implementation & Deployment\n\n\nFederated Learning / Security\n\n\n\nTech Stack\n\n\nGolang Python LLM Deep Learning Federated Learning RAG MindSpore Microservices\n\n\n\n\nEducation\n\n\n\n2024 — 2027 M.Sc. · Cyberspace Security Beijing University of Posts and Telecommunications\n\n\n2020 — 2024 B.Eng. · Computer Science and Technology North China University of Technology\n\n\n\nExperience\n\n\n\nAug — Oct 2025 Backend Dev Intern · Chaitin Technology Backend development, multimodal RAG expansion and project optimization\n\n\nJan — Jul 2025 Research Intern · ISCAS Classic NLP model reproduction and optimization under MindSpore framework\n\n\n\nProjects\n\n\n\n2025 Quarto-Blogs-Template Modern personal blog template built with Quarto, bilingual support GitHub · Blog\n\n\n2023 Daily Log Maker Lightweight web tool for generating long-screenshot logs GitHub"
   },
   {
     "objectID": "pages/home.html",
     "href": "pages/home.html",
     "title": "Home主页",
     "section": "",
-    "text": "这里是首页，汇总各模块最近更新内容。\n\n\nThis is the home page with the latest updates from each module.\n\n\n\nBlogs博客\n\n\n\n\n\n\n\n\n\n\n\nHot100(golang)\n\n\n\nLeetcode\n\nHot100\n\nGolang\n\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nPrompt-&gt;Context-&gt;Skills\n\n\n\nPrompt\n\nContext\n\nSkills\n\nVibe-Coding\n\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n一文了解RAG\n\n\n\nRAG\n\nLLM\n\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\nNo matching items\n\n\n\n\nProjects项目\n\n\n\n\n\n\n\n\n\nDaily Log Maker\n\n\n\nselfTools\n\n前端\n\n每日记录\n\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\n\n\n\n\n\n\n\n\n\nGesture-Fireworks\n\n\n\nselfTools\n\n前端\n\n手指烟花\n\nFireworks\n\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\nQuarto-Blogs-Template\n\n\n\nQuarto\n\nBlog\n\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\nNo matching items\n\n\n\n\nPapers论文\n\n\n\n\n\n\n\n\n\n\n\nDeepSeek\n\n\n\nLLM\n\nPaper\n\nReport\n\nDeepSeek\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nBackdoorIndicator - Leveraging OOD Data for Proactive Backdoor Detection in Federated Learning\n\n\n\nFL\n\nbackdoor\n\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\nNo matching items\n\n\n\n\nLearning Notes学习笔记\n\n\n\n\n\n\n\n\n\n\n\ngolang实现hot100题解(ACM版本)\n\n\n\n算法\n\nleetcode\n\nhot100\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nleetcode-灵神跟练-滑动窗口与双指针-不定长滑动窗口-越长越合法+求最短+最小\n\n\n\n算法\n\nleetcode\n\n滑动窗口\n\n不定长滑动窗口\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nleetcode-灵神跟练-滑动窗口与双指针-定长滑动窗口-基础\n\n\n\n算法\n\nleetcode\n\n滑动窗口与双指针\n\n\n\n\n\n\n\n\n\nNov 9, 2025\n\n\n\n\n\nNo matching items"
+    "text": "这里是首页，汇总各模块最近更新内容。\n\n\nThis is the home page with the latest updates from each module.\n\n\n\nBlogs博客\n\n\n\n\n\n\n\n\n\n\n\nHot100(golang)\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nPrompt-&gt;Context-&gt;Skills\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n一文了解RAG\n\n\n\n\n\n\n\n\nJan 1, 2026\n\n\n\n\n\nNo matching items\n\n\n\n\nProjects项目\n\n\n\n\n\n\n\n\n\nDaily Log Maker\n\n\n\n\n\n\n\n\n\nNov 23, 2025\n\n\n\n\n\n\n\n\n\n\n\nGesture-Fireworks\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\nQuarto-Blogs-Template\n\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\nNo matching items\n\n\n\n\nPapers论文\n\n\n\n\n\n\n\n\n\n\n\nDeepSeek\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nBackdoorIndicator - Leveraging OOD Data for Proactive Backdoor Detection in Federated Learning\n\n\n\n\n\n\n\n\nJan 16, 2025\n\n\n\n\n\nNo matching items\n\n\n\n\nLearning Notes学习笔记\n\n\n\n\n\n\n\n\n\n\n\ngolang实现hot100题解(ACM版本)\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nleetcode-灵神跟练-滑动窗口与双指针-不定长滑动窗口-越长越合法+求最短+最小\n\n\n\n\n\n\n\n\nNov 16, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nleetcode-灵神跟练-滑动窗口与双指针-定长滑动窗口-基础\n\n\n\n\n\n\n\n\nNov 9, 2025\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "content/learning-notes/algorithm/index.html",

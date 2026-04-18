@@ -391,7 +391,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div><div class="category" data-category="JUU0JUI4JThEJUU1JUFFJTlBJUU5JTk1JUJGJUU2JUJCJTkxJUU1JThBJUE4JUU3JUFBJTk3JUU1JThGJUEz">不定长滑动窗口 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUU2JUJCJTkxJUU1JThBJUE4JUU3JUFBJTk3JUU1JThGJUEz">滑动窗口 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUU2JUJCJTkxJUU1JThBJUE4JUU3JUFBJTk3JUU1JThGJUEzJUU0JUI4JThFJUU1JThGJThDJUU2JThDJTg3JUU5JTkyJTg4">滑动窗口与双指针 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUU3JUFFJTk3JUU2JUIzJTk1">算法 <span class="quarto-category-count">(3)</span></div><div class="category" data-category="aG90MTAw">hot100 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bGVldGNvZGU=">leetcode <span class="quarto-category-count">(3)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div><div class="category" data-category="aG90MTAw">hot100 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bGVldGNvZGU=">leetcode <span class="quarto-category-count">(3)</span></div><div class="category" data-category="JUU0JUI4JThEJUU1JUFFJTlBJUU5JTk1JUJGJUU2JUJCJTkxJUU1JThBJUE4JUU3JUFBJTk3JUU1JThGJUEz">不定长滑动窗口 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUU2JUJCJTkxJUU1JThBJUE4JUU3JUFBJTk3JUU1JThGJUEz">滑动窗口 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUU2JUJCJTkxJUU1JThBJUE4JUU3JUFBJTk3JUU1JThGJUEzJUU0JUI4JThFJUU1JThGJThDJUU2JThDJTg3JUU5JTkyJTg4">滑动窗口与双指针 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUU3JUFFJTk3JUU2JUIzJTk1">算法 <span class="quarto-category-count">(3)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -526,9 +526,7 @@ Nov 9, 2025
     const storageKey = "site-lang";
     const defaultLang = "zh";
     const button = document.getElementById("lang-toggle");
-    if (!button) {
-      return;
-    }
+    if (!button) return;
 
     const applyLang = (lang) => {
       document.body.dataset.lang = lang;
@@ -549,42 +547,64 @@ Nov 9, 2025
 <script>
   (() => {
     const storageKey = "theme-preference";
-    const getStored = () => {
-      try {
-        return window.localStorage.getItem(storageKey);
-      } catch {
-        return null;
-      }
-    };
-    const setStored = (value) => {
-      try {
-        window.localStorage.setItem(storageKey, value);
-      } catch {}
-    };
-    const currentTheme = () =>
-      document.body.classList.contains("quarto-dark") ? "dark" : "light";
+    const getStored = () => { try { return window.localStorage.getItem(storageKey); } catch { return null; } };
+    const setStored = (v) => { try { window.localStorage.setItem(storageKey, v); } catch {} };
+    const currentTheme = () => document.body.classList.contains("quarto-dark") ? "dark" : "light";
 
     const applyStored = () => {
       const stored = getStored();
-      if (!stored) {
-        return;
-      }
-      if (stored !== currentTheme() && window.quartoToggleColorScheme) {
-        window.quartoToggleColorScheme();
-      }
+      if (!stored) return;
+      if (stored !== currentTheme() && window.quartoToggleColorScheme) window.quartoToggleColorScheme();
     };
 
     const bindToggle = () => {
-      const toggles = document.querySelectorAll(".quarto-color-scheme-toggle");
-      toggles.forEach((toggle) => {
-        toggle.addEventListener("click", () => {
-          window.setTimeout(() => setStored(currentTheme()), 0);
-        });
+      document.querySelectorAll(".quarto-color-scheme-toggle").forEach((toggle) => {
+        toggle.addEventListener("click", () => window.setTimeout(() => setStored(currentTheme()), 0));
       });
     };
 
     applyStored();
     bindToggle();
+  })();
+</script>
+<script>
+  (() => {
+    // Fix 1: Add about-page class to body when about content is present
+    if (document.querySelector(".about-wrap")) {
+      document.body.classList.add("about-page");
+    }
+
+    // Fix 2: Move categories from right sidebar to horizontal filter bar above listing
+    const isHomePage = document.body.classList.contains("home-page");
+    if (isHomePage) return;
+
+    const sidebar = document.getElementById("quarto-margin-sidebar");
+    if (!sidebar) return;
+
+    const categoryContainer = sidebar.querySelector(".quarto-listing-category");
+    if (!categoryContainer) return;
+
+    const main = document.getElementById("quarto-document-content");
+    if (!main) return;
+
+    // Build horizontal filter bar
+    const bar = document.createElement("div");
+    bar.className = "listing-filter-bar";
+    bar.appendChild(categoryContainer);
+
+    // Insert above the listing (after the title block)
+    const titleBlock = main.querySelector(".quarto-title-block");
+    const firstListing = main.querySelector(".quarto-listing");
+    const insertTarget = firstListing || titleBlock;
+
+    if (insertTarget) {
+      main.insertBefore(bar, insertTarget);
+    } else {
+      main.prepend(bar);
+    }
+
+    // Hide the now-empty sidebar (keeps it in DOM for Quarto's JS queries)
+    sidebar.style.cssText = "display:none!important";
   })();
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
